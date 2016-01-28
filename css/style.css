@@ -1,0 +1,55 @@
+/* Empty. Add your own CSS if you like */
+.button.button-positive-jsu {
+    border-color: #009688;
+    background-color: #009688;
+    color: #fff; }
+.iconAcerca-jsu {
+    color: #FFFFFF;
+    border-color:#009688;
+    background-color:#009688;}
+.iconmenuPrincipal-jsu {
+    color: #009688;
+
+ }
+.iconmenuG-jsu {
+    font-size: 32px;
+    
+ }
+.ion-navicon-jsu{
+	 color: #FFFFFF !important;
+	 background-color:#009688 !important;
+}
+.iconMenu-jsu {
+    color: #9E9E9E;
+    }
+.iconAcerca-jsu:hover {
+    color: #E0F2F1;}
+.iconMenu-jsu:hover {
+    color: #212121;
+    }
+.textAcercade-jsu {
+    color: #585858;
+    font-size:medium;
+    margin: 30px; }
+.spanDerechoAutor-jsu {
+    font-size: 10px;
+    color: #6E6E6E; }
+.button.button-positive-jsu:hover {
+      background-color: #00897B;
+      text-decoration: none; }
+.tabs-color-balanced-jsu{
+	color: #009688;
+	background-color: #ECEFF1;
+	border-color: #E0E0E0;
+   
+}
+.divider-jsu{
+	background-color: #ECEFF1;
+	border-color: #E0E0E0;
+}
+.ion-archive{
+	color: #009688;
+}
+.ion-text{
+	color: #000000;
+}
