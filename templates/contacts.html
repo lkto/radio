@@ -4,14 +4,20 @@
   The ContactsCtrl pulls data from Contacts service (service.js)
   The Contacts service returns array of contacts data
 -->
-  <ion-view view-title="Contacts">
+  <ion-view view-title="Contactos">
     <ion-content>
+    <center>
       <div class="item-input-inset">
-        <label class="item-input-wrapper">
-          <i class="icon ion-ios-search placeholder-icon"></i>
-          <input type="search" placeholder="Search" autofocus="true">
-        </label>
+
+      <div class="item item-icon-left" ui-sref="agregar">
+              <i class="icon ion-ios-play-outline"></i>
+              Agregar
+            </div>
+       
+        
       </div>
+
+      </center>
       <ion-list class="contact-list">
         <ion-item class="item-avatar item-icon-right" ng-repeat="contact in contacts" ng-click="viewContact(contact.id)">
           <img class="profile-picture" src="{{ contact.face }}" alt=""/>

@@ -52,25 +52,28 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     controller: 'HomeCtrl'
   })
 
+  //Inicio
   .state('inicio', {
     url: '/inicio',
-    templateUrl: 'index.html',
+    templateUrl: 'templates/inicio.html'
+  
+  })
+
+  // Emisora
+.state('emisora', {
+    url: '/emisora',
+    templateUrl: 'templates/emisora.html',
     controller: 'HomeCtrl'
   })
 
-  // Recent posts
-  .state('recent_posts', {
-    url: '/recent-posts',
-    templateUrl: 'templates/recent-posts.html',
+ // Agregar Contacto
+.state('agregar', {
+    url: '/agregar',
+    templateUrl: 'templates/agregar.html',
     controller: 'HomeCtrl'
   })
 
-  // Wall post
-  .state('wall_posts', {
-    url: '/wall-posts',
-    templateUrl: 'templates/wall-posts.html',
-    controller: 'HomeCtrl'
-  })
+  
 
   // View post detail
   .state('post', {
