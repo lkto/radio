@@ -3,132 +3,124 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
+// 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'nl2br', 'monospaced.elastic'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
-    if (window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true)
-      cordova.plugins.Keyboard.disableScroll(true)
+    if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+      cordova.plugins.Keyboard.disableScroll(true);
 
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
-      StatusBar.styleDefault()
+      StatusBar.styleDefault();
     }
   });
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
+
+  // Ionic uses AngularUI Router which uses the concept of states
+  // Learn more here: https://github.com/angular-ui/ui-router
+  // Set up the various states which the app can be in.
+  // Each state's controller can be found in controllers.js
   $stateProvider
 
-    .state('app', {
-    url: '/app',
-    abstract: true,
-    templateUrl: 'templates/menu.html',
-    controller: 'AppCtrl'
+  // login screen
+  .state('login', {
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'AuthCtrl'
   })
 
-
-  .state('app.inicio', {
-      url: '/inicio',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/inicio.html',
-          controller: 'PlaylistsCtrl'
-        }
-      }
-    })
-
-   .state('app.perfil', {
-    url: '/perfil',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/perfil.html',
-        controller: 'PlaylistCtrl',
-      }
-    }
+  // register screen
+  .state('register', {
+    url: '/register',
+    templateUrl: 'templates/register.html',
+    controller: 'AuthCtrl'
   })
 
-   .state('app.emisora', {
-    url: '/emisora',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/emisora.html',
-        controller: 'PlaylistCtrl',
-      }
-    }
+  // Home screen
+  .state('home', {
+    url: '/home',
+    templateUrl: 'templates/home.html',
+    controller: 'HomeCtrl'
   })
 
-   .state('app.chat', {
-    url: '/chat',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/chat.html',
-        controller: 'PlaylistCtrl',
-      }
-    }
+  .state('inicio', {
+    url: '/inicio',
+    templateUrl: 'index.html',
+    controller: 'HomeCtrl'
   })
 
-   .state('app.detalleschat', {
-    url: '/detalleschat',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/detalleschat.html',
-        controller: 'PlaylistCtrl',
-      }
-    }
+  // Recent posts
+  .state('recent_posts', {
+    url: '/recent-posts',
+    templateUrl: 'templates/recent-posts.html',
+    controller: 'HomeCtrl'
   })
 
-   .state('app.contactos', {
-    url: '/contactos',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/contactos.html',
-        controller: 'contacto',
-      }
-    }
+  // Wall post
+  .state('wall_posts', {
+    url: '/wall-posts',
+    templateUrl: 'templates/wall-posts.html',
+    controller: 'HomeCtrl'
   })
 
-   .state('app.noticias', {
-    url: '/noticias',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/noticias.html',
-        controller: 'contacto',
-      }
-    }
+  // View post detail
+  .state('post', {
+    url: '/post/:postId',
+    templateUrl: 'templates/post.html',
+    controller: 'PostCtrl'
   })
 
-   .state('app.detallesnoticia', {
-    url: '/detallesnoticia',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/detallesnoticia.html',
-        controller: 'contacto',
-      }
-    }
+  // Chat list
+  .state('chats', {
+    url: '/chats',
+    templateUrl: 'templates/chats.html',
+    controller: 'ChatCtrl'
   })
 
-   .state('registro', {
-    url: '/registro',
-        templateUrl: 'templates/registro.html',
+  .state('chat-detail', {
+    url: '/chats/:chatId',
+    templateUrl: 'templates/chat-detail.html',
+    controller: 'ChatDetailCtrl'
   })
 
- .state('login', {
-      url: '/login',
-      templateUrl: 'templates/login.html',
-      controller: 'loginController',
-      })
+  // List of notifications
+  .state('notifications', {
+    url: '/notifications',
+    templateUrl: 'templates/notifications.html',
+    controller: 'NotificationsCtrl'
+  })
 
- .state('acercade', {
-      url: '/acercade',
-      templateUrl: 'templates/acercade.html',
-    })
-  ;
-  // if none of the above states are matched, use this as the fallback
+  // Contact list
+  .state('contacts', {
+    url: '/contacts',
+    templateUrl: 'templates/contacts.html',
+    controller: 'ContactsCtrl'
+  })
+
+  // User profile
+  .state('user', {
+    url: '/user/:userId',
+    templateUrl: 'templates/user.html',
+    controller: 'UserCtrl'
+  })
+
+  // Setting page
+  .state('setting', {
+    url: '/setting',
+    templateUrl: 'templates/setting.html',
+    controller: 'SettingCtrl'
+  })
+
+    // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');
+
 });

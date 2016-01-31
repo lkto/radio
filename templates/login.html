@@ -1,45 +1,55 @@
-  <ion-header-bar class="bar bar-header bar-balanced">
-    <h1 class="title">Iniciar Sesión</h1>
-     <a class="item-icon-right" href="#/acercade">
-        <i class="icon ion-information-circled iconAcerca-jsu"></i>
-    </a>
-  </ion-header-bar>
-
+<ion-view view-title="Login" hide-nav-bar="true" class="login-bg">
   <ion-content>
-    <form >
-      <div class="list">
-        <div style="text-aling: center;margin-top:20px;">
-         <!-- <center><img src="img/app/logo_utch_400x95.png"  width="100%" /></center> -->
-        </div>
-        <label class="item item-input item-floating-label">
-          <span class="input-label">Identificación</span>
-          <input type="text" placeholder="Ingresa tu Identificación" ng-model="data.identificacion">
-        </label>
-        <label class="item item-input item-floating-label">
-          <span class="input-label">Clave</span>
-          <input type="password" placeholder="Ingresa tu Clave" ng-model="data.clave">
-        </label>
-        <label class="item">
-          <button class="button button-block button-positive-jsu" ng-click="login()">Entrar</button>
-        </label>
+    <!-- Logo -->
+    <div class="padding text-center">
+      <h1>
+        <i class="light ion-social-angular"></i>
+      </h1>
+      <h2 class="light">ionSocial</h2>
+      <p class="light">Flat social template</p>
+    </div>
 
+    <!-- Login form -->
+    <div class="list list-inset transparent-form">
+      <label class="item item-input">
+        <i class="ion-ios-email-outline light icon-label"></i>
+        <input type="text" placeholder="Email" ng-model="data.identificacion" >
+      </label>
+      <label class="item item-input">
+        <i class="ion-ios-locked-outline light icon-label"></i>
+        <input type="text" placeholder="Password" ng-model="data.clave">
+      </label>
+    </div>
+    <div class="padding">
+      <button class="button button-block button-positive"  ng-click="login()">
+        Login
+      </button>
+    </div>
 
-       
-      </div>
-    </form>
-
-
-
-         <a class="item-icon" href="#/registro">
-        Registrarse
+    <!-- Social login -->
+    <div class="padding text-center">
+      <span class="light">Or login with:</span>
+      <p>
+        <a href="#" class="circle-button facebook-color">
+          <i class="ion-social-facebook"></i>
         </a>
-  
+        <a href="#" class="circle-button twitter-color">
+          <i class="ion-social-twitter"></i>
+        </a>
+        <a href="#" class="circle-button googleplus-color">
+          <i class="ion-social-googleplus"></i>
+        </a>
+      </p>
+    </div>
 
-
-
-
-
-
+    <!-- Other links -->
+    <div class="padding row">
+      <div class="col">
+        <span class="light">Forgot password?</span>
+      </div>
+      <div class="col">
+        <a ui-sref="register" class="light">New here? Sign up</a>
+      </div>
+    </div>
   </ion-content>
-
-
+</ion-view>
