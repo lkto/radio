@@ -25,6 +25,12 @@ $scope.data ={};
         });
     }
 
+    $scope.login_q = function() {
+        
+            $state.go('login');
+     
+    }
+
 })
 // Home controller
 .controller('HomeCtrl', function($scope, Posts, $state) {
