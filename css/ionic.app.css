@@ -8621,8 +8621,8 @@ progress {
         color: #fff; }
   .button.button-positive {
     border-color: transparent;
-    background-color: #3EC3D6;
-    color: #fff; }
+    background-color: rgba(255, 255, 255, 0.4);
+    color:#000; }
     .button.button-positive:hover {
       color: #fff;
       text-decoration: none; }
@@ -9407,7 +9407,7 @@ a.button {
  * instead have colors which represent an emotion or generic theme.
  */
 .light, a.light {
-  color: #fff; }
+  color: #000; }
 
 .light-bg {
   background-color: #fff; }
@@ -9759,7 +9759,7 @@ img.profile-picture {
   margin-top: 0.75em; }
 
 .login-bg {
-  background: url("../img/bg/mountain.jpg") no-repeat center;
+  background: url("../img/bg/2.jpg") no-repeat center;
   background-size: 100% 100%; }
 
 .circle-button {

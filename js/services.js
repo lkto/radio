@@ -13,7 +13,7 @@ angular.module('starter.services', [])
             }
             promise.success = function(fn) {
                 promise.then(fn);
-               
+                return promise;
             }
             promise.error = function(fn) {
                 promise.then(null, fn);

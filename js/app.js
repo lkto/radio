@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'nl2br', 'monospaced.elastic'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'nl2br', 'monospaced.elastic', 'ngCordova'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -55,7 +55,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   //Inicio
   .state('inicio', {
     url: '/inicio',
-    templateUrl: 'templates/inicio.html'
+    templateUrl: 'templates/inicio.html',
+    controller: 'HomeCtrl'
   
   })
 
@@ -63,7 +64,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 .state('emisora', {
     url: '/emisora',
     templateUrl: 'templates/emisora.html',
-    controller: 'HomeCtrl'
+    controller: 'ExampleController'
   })
 
  // Agregar Contacto

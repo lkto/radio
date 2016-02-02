@@ -1,21 +1,56 @@
 angular.module('starter.controllers', [])
 
+.controller("ExampleController", function($scope, $cordovaMedia, $ionicLoading) {
+ 
+    $scope.play = function(src) {
+        var media = new Media(src, null, null, mediaStatusCallback);
+        $cordovaMedia.play(media);
+    }
+ 
+    var mediaStatusCallback = function(status) {
+        if(status == 1) {
+            $ionicLoading.show({template: 'Loading...'});
+        } else {
+            $ionicLoading.hide();
+        }
+    }
+ 
+})
+
+
+
 // Authentication controller
 // Put your login, register functions here
-.controller('AuthCtrl', function($scope, $ionicHistory, $ionicSideMenuDelegate, $state,$ionicPopup,loginService) {
+.controller('AuthCtrl', function($scope, $ionicHistory, $ionicSideMenuDelegate, $state, $ionicPopup,loginService) {
   // hide back butotn in next view
   $ionicHistory.nextViewOptions({
     disableBack: true
   });
 
+
+
   // disabled swipe menu
   $ionicSideMenuDelegate.canDragContent(false);
+console.log(localStorage.getItem("usuario"));
+         console.log(localStorage.getItem("clave"));
+    $scope.data ={};
 
-$scope.data ={};
+    if(localStorage.getItem("usuario"))
+    {
+       $state.go('inicio');
+    }
+    else
+    {
+      
+    }
 
          $scope.login = function() {
         loginService.loginUser($scope.data.identificacion, $scope.data.clave).success(function(data) {
-            $state.go('home');
+       localStorage.setItem("usuario", $scope.data.identificacion);
+        localStorage.setItem("clave", $scope.data.clave);
+
+         
+            $state.go('inicio');
         }).error(function(data) {
               var alertPopup = $ionicPopup.alert({
                 title: 'Acceso Denegado!',
@@ -26,6 +61,11 @@ $scope.data ={};
     }
 
     $scope.login_q = function() {
+
+      window.localStorage.clear();
+
+      console.log(localStorage.getItem("usuario"));
+         console.log(localStorage.getItem("clave"));
         
             $state.go('login');
      
@@ -35,7 +75,17 @@ $scope.data ={};
 // Home controller
 .controller('HomeCtrl', function($scope, Posts, $state) {
 
+  if(localStorage.getItem("usuario"))
+    {
+       
+    }
+    else
+    {
+      $state.go('login');
+    }
 
+console.log(localStorage.getItem("usuario"));
+         console.log(localStorage.getItem("clave"));
       
 
   // get list posts froms service
