@@ -37,7 +37,7 @@ console.log(localStorage.getItem("usuario"));
 
     if(localStorage.getItem("usuario"))
     {
-       $state.go('inicio');
+       $state.go('home');
     }
     else
     {
@@ -73,7 +73,11 @@ console.log(localStorage.getItem("usuario"));
 
 })
 // Home controller
-.controller('HomeCtrl', function($scope, Posts, $state) {
+.controller('HomeCtrl', function($scope, Posts, $state, $ionicHistory) {
+
+  $ionicHistory.nextViewOptions({
+    disableBack: true
+  });
 
   if(localStorage.getItem("usuario"))
     {

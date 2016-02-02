@@ -1,4 +1,4 @@
-@charset "UTF-8";
+c@charset "UTF-8";
 /*
 To customize the look and feel of Ionic, you can override the variables
 in ionic's _variables.scss file.
@@ -9789,7 +9789,7 @@ img.profile-picture {
     background: transparent; }
     .transparent-form .item-input input {
       margin-left: 5px;
-      color: #fff; }
+      color: #E42112; }
     .transparent-form .item-input .icon-label {
       font-size: 1.4em;
       margin-top: -0.25em; }
