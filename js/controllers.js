@@ -21,7 +21,7 @@ angular.module('starter.controllers', [])
 
 // Authentication controller
 // Put your login, register functions here
-.controller('AuthCtrl', function($scope, $ionicHistory, $ionicSideMenuDelegate, $state, $ionicPopup,loginService) {
+.controller('AuthCtrl', function($scope, $location, $ionicHistory, $ionicSideMenuDelegate, $state, $ionicPopup,loginService) {
   // hide back butotn in next view
   $ionicHistory.nextViewOptions({
     disableBack: true
@@ -30,14 +30,15 @@ angular.module('starter.controllers', [])
 
 
   // disabled swipe menu
-  $ionicSideMenuDelegate.canDragContent(false);
+ 
 console.log(localStorage.getItem("usuario"));
          console.log(localStorage.getItem("clave"));
     $scope.data ={};
 
     if(localStorage.getItem("usuario"))
     {
-       $state.go('inicio');
+       $location.url("/inicio");
+      // $state.go('inicio');
     }
     else
     {
