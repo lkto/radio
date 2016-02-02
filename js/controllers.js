@@ -37,7 +37,7 @@ console.log(localStorage.getItem("usuario"));
 
     if(localStorage.getItem("usuario"))
     {
-       $state.go('home');
+       $state.go('inicio');
     }
     else
     {
