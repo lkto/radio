@@ -6,23 +6,12 @@
 -->
   <ion-view view-title="Contactos">
     <ion-content>
-    <center>
-      <div class="item-input-inset">
-
-      <div class="item item-icon-left" ui-sref="agregar">
-              <i class="icon ion-ios-play-outline"></i>
-              Agregar
-            </div>
-       
-        
-      </div>
-
-      </center>
       <ion-list class="contact-list">
-        <ion-item class="item-avatar item-icon-right" ng-repeat="contact in contacts" ng-click="viewContact(contact.id)">
+
+        <ion-item class="item-avatar item-icon-right" ng-repeat="contact in contacts" href="#/chats/{{chat.id}}" >
           <img class="profile-picture" src="{{ contact.face }}" alt=""/>
           <p>
-            <a ui-sref="user({userId: id})" class="post-author">
+            <a href="#/chats/{{chat.id}}" class="post-author">
               {{ contact.name }}
             </a>
             <span class="badge badge-positive" ng-if="contact.group == 'Family'">Family</span>
@@ -39,4 +28,11 @@
         </ion-item>
       </ion-list>
     </ion-content>
+
+<div class="contenedor" ui-sref="agregar">
+<button class="botonF1">
+<span><i class="icon ion-person-add"></i></span>
+</button>
+</div>
+
   </ion-view>

@@ -5,7 +5,7 @@
   The UserCtrl pull data from Contacts service (service.js)
   The Contacts service returns contact by id
 -->
-<ion-view view-title="Profile">
+<ion-view view-title="Perfil">
   <ion-content>
     <div class="text-center user-profile positive-bg">
 
@@ -16,51 +16,39 @@
       <div class="row positive-bg light">
         <a class="col text-center">
           <span class="number">{{ user.followers }}</span>
-          <span class="desc">Follower</span>
+          <span class="desc">Contactos</span>
         </a>
         <a class="col text-center">
           <span class="number">{{ user.following }}</span>
-          <span class="desc">Following</span>
+          <span class="desc">Amigos</span>
         </a>
         <a class="col text-center">
           <span class="number">{{ user.favorites }}</span>
-          <span class="desc">Favorites</span>
+          <span class="desc">Familia</span>
         </a>
       </div>
     </div>
 
-    <div class="list">
+<div class="list">
+  <label class="item item-input item-floating-label">
+    <span class="input-label">Nombre</span>
+    <input type="text" placeholder="Nombre" value="{{ user.name }}">
+  </label>
+  <label class="item item-input item-floating-label">
+    <span class="input-label">Estado</span>
+    <input type="text" placeholder="Estado" value="SIGTICS">
+  </label>
+  <label class="item item-input item-floating-label">
+    <span class="input-label">Correo</span>
+    <input type="text" placeholder="Correo" value="sigtics@gmail.com">
+  </label>
+</div>
 
-      <div class="item item-avatar" ng-repeat="post in user.posts">
-        <img class="profile-picture" src="{{ post.face }}" alt=""/>
-
-        <a ui-sref="user({userId: id})" class="post-author">
-          {{ post.name }}
-        </a>
-
-        <div class="post-content">
-          <div ng-click="viewPost(post.id)">
-            <p>{{ post.content | nl2br}}</p>
-          </div>
-          <p>
-            <a ng-click="toggleLike(post)" class="subdued">
-              <i class="ion-heart assertive" ng-if="post.liked"></i>
-              <i class="ion-heart" ng-if="!post.liked"></i>
-              {{ post.likeCount}}
-            </a>
-            <a ui-sref="post({postId: post.id})" class="subdued">
-              <i class="ion-chatbox positive"></i>
-              {{ post.commentCount}}
-            </a>
-            <span class="post-time">
-              <i class="ion-ios-timer-outline"></i>
-              {{ post.time }}
-            </span>
-          </p>
-        </div>
-      </div>
-
-    </div>
+<div class="contenedor" ui-sref="agregar">
+<button class="botonF1">
+<span><i class="icon ion-ios-reload"></i></span>
+</button>
+</div>
 
   </ion-content>
 </ion-view>

@@ -124,6 +124,48 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     controller: 'SettingCtrl'
   })
 
+  .state('acercade', {
+    url: '/acercade',
+    templateUrl: 'templates/acercade.html',
+    controller: 'SettingCtrl'
+  })
+
+  .state('edit_perfil', {
+    url: '/edit_perfil',
+    templateUrl: 'templates/edit_perfil.html',
+    controller: 'SettingCtrl'
+  })
+
+  .state('cambiar_contraseña', {
+    url: '/cambiar_contraseña',
+    templateUrl: 'templates/cambiar_contraseña.html',
+    controller: 'SettingCtrl'
+  })
+
+  .state('restaurar', {
+    url: '/restaurar',
+    templateUrl: 'templates/restaurar.html',
+    controller: 'SettingCtrl'
+  })
+
+  .state('solicitudes', {
+    url: '/solicitudes',
+    templateUrl: 'templates/solicitudes.html',
+    controller: 'SettingCtrl'
+  })
+
+  .state('s_recibidas', {
+    url: '/s_recibidas',
+    templateUrl: 'templates/s_recibidas.html',
+    controller: 'SettingCtrl'
+  })
+
+  .state('s_enviadas', {
+    url: '/s_enviadas',
+    templateUrl: 'templates/s_enviadas.html',
+    controller: 'SettingCtrl'
+  })
+
     // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');
 

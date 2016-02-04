@@ -28,6 +28,7 @@
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
     <script src="js/services.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
   <body ng-app="starter">
     <ion-side-menus>
@@ -37,7 +38,7 @@
         <ion-nav-bar class="bar-positive" align-title="center">
           <!-- Back button -->
        <ion-nav-back-button>
-            Back
+            Atras
         </ion-nav-back-button> 
 
           <!-- Burger button -->
@@ -75,41 +76,55 @@
 
           <div class="list" menu-close="">
             <div class="item item-icon-left" ui-sref="inicio">
-              <i class="icon ion-ios-home-outline"></i>
+              <i class="icon ion-ios-home-outline" style="color:#3ec3d6"></i>
               Inicio
             </div>
 
           <div class="list" menu-close="">
             <div class="item item-icon-left" ui-sref="home">
-              <i class="icon ion-ios-information-outline"></i>
+              <i class="icon ion-ios-information-outline"  style="color:#3ec3d6"></i>
               Noticias
             </div>
 
             <div class="list" menu-close="">
             <div class="item item-icon-left" ui-sref="emisora">
-              <i class="icon ion-ios-play-outline"></i>
+              <i class="icon ion-radio-waves" style="color:#3ec3d6"></i>
               Emisora
             </div>
 
 
             <div class="item item-icon-left" ui-sref="chats">
-              <i class="icon ion-ios-email-outline"></i>
+              <i class="icon ion-chatbubbles" style="color:#3ec3d6"></i>
               Chats
-              <span class="badge badge-assertive"></span>
+              <span class="badge badge-assertive" style="color:#3ec3d6"></span>
             </div>
             
           
             <div class="item item-icon-left" ui-sref="contacts">
-              <i class="icon ion-ios-contact-outline"></i>
+              <i class="icon ion-android-contacts" style="color:#3ec3d6"></i>
               Contactos
             </div>
-            
-            <div class="item item-icon-left" ng-controller="AuthCtrl">
-             
-              <button class="button button-block button-positive"  ng-click="login_q()">
-               Salir
-              </button>
+
+            <div class="item item-icon-left" ui-sref="solicitudes">
+              <i class="icon ion-android-notifications" style="color:#3ec3d6"></i>
+              Mis solicitudes
             </div>
+
+             <div class="item item-icon-left" ui-sref="setting">
+              <i class="icon ion-ios-gear-outline" style="color:#3ec3d6"></i>
+              Configuracion
+            </div>
+
+            <div class="item item-icon-left" ui-sref="acercade">
+              <i class="icon ion-ios-help-outline" style="color:#3ec3d6"></i>
+              Acerca de
+            </div>
+
+             <div class="item item-icon-left"  ng-controller="AuthCtrl" ng-click="login_q()">
+              <i class="icon ion-log-out"  style="color:#3ec3d6"></i>
+              Salir
+            </div>
+            
           </div>
 
         </ion-content>
