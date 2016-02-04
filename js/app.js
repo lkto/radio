@@ -136,9 +136,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     controller: 'SettingCtrl'
   })
 
-  .state('cambiar_contraseña', {
-    url: '/cambiar_contraseña',
-    templateUrl: 'templates/cambiar_contraseña.html',
+  .state('cambiar_contrasena', {
+    url: '/cambiar_contrasena',
+    templateUrl: 'templates/cambiar_contrasena.html',
     controller: 'SettingCtrl'
   })
 
