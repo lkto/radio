@@ -33,20 +33,22 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   // login screen
   .state('login', {
+    cache: false,
     url: '/login',
     templateUrl: 'templates/login.html',
-    controller: 'AuthCtrl'
+    controller: 'login'
   })
 
   // register screen
   .state('register', {
     url: '/register',
     templateUrl: 'templates/register.html',
-    controller: 'AuthCtrl'
+    controller: 'registrar'
   })
 
   // Home screen
   .state('home', {
+    cache: false,
     url: '/home',
     templateUrl: 'templates/home.html',
     controller: 'HomeCtrl'
@@ -54,6 +56,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   //Inicio
   .state('inicio', {
+    cache: false,
     url: '/inicio',
     templateUrl: 'templates/inicio.html',
     controller: 'HomeCtrl'
@@ -126,18 +129,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   .state('acercade', {
     url: '/acercade',
-    templateUrl: 'templates/acercade.html',
-    controller: 'SettingCtrl'
+    templateUrl: 'templates/acerca.html',
+    controller: 'AcercaCtrl'
   })
 
   .state('edit_perfil', {
     url: '/edit_perfil',
     templateUrl: 'templates/edit_perfil.html',
-    controller: 'SettingCtrl'
+    controller: 'UserCtrl'
   })
 
-  .state('cambiar_contrasena', {
-    url: '/cambiar_contrasena',
+  .state('cambiar_contraseña', {
+    url: '/cambiar_contraseña',
     templateUrl: 'templates/cambiar_contrasena.html',
     controller: 'SettingCtrl'
   })
@@ -145,7 +148,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   .state('restaurar', {
     url: '/restaurar',
     templateUrl: 'templates/restaurar.html',
-    controller: 'SettingCtrl'
+    controller: 'restaurar'
   })
 
   .state('solicitudes', {

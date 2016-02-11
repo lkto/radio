@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html>
+<html >
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
@@ -30,7 +30,7 @@
     <script src="js/services.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
-  <body ng-app="starter">
+  <body ng-app="starter" >
     <ion-side-menus>
 
       <!-- Center content -->
@@ -59,16 +59,18 @@
       </ion-side-menu-content>
 
       <!-- Left menu -->
-      <ion-side-menu side="left">
+      <ion-side-menu side="left" >
         <ion-content>
 
-          <!-- User profile -->
-          <div class="text-center">
-            <a ui-sref="user({userId: 0})">
-              <img class="profile-picture" menu-close="" src="img/thumb/adam.jpg">
-              <h4>Adam Lambert</h4>
+          <!-- User profile 
+          <div class="text-center" ng-controller = 'HomeCtrl' >
+
+            <a ui-sref="user">
+              <img class="profile-picture" menu-close="" src="{{ user.img }}">
+              <h4>{{ user.nombre }}</h4>
             </a>
-          </div>
+
+          </div> -->
 
         
 
@@ -108,6 +110,7 @@
             <div class="item item-icon-left" ui-sref="solicitudes">
               <i class="icon ion-android-notifications" style="color:#3ec3d6"></i>
               Mis solicitudes
+               <span class="badge badge-assertive">2</span>
             </div>
 
              <div class="item item-icon-left" ui-sref="setting">

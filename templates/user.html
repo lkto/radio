@@ -6,12 +6,16 @@
   The Contacts service returns contact by id
 -->
 <ion-view view-title="Perfil">
+
   <ion-content>
-    <div class="text-center user-profile positive-bg">
 
-      <img class="profile-picture" menu-close="" src="{{ user.face}}">
 
-      <h4 class="light">{{ user.name }}</h4>
+    <div class="text-center user-profile positive-bg" >
+
+
+
+     <img class="profile-picture" menu-close="" src="{{ user.img}}">
+      <h4>  Ver Foto </h4>
 
       <div class="row positive-bg light">
         <a class="col text-center">
@@ -29,26 +33,42 @@
       </div>
     </div>
 
+            
 <div class="list">
   <label class="item item-input item-floating-label">
     <span class="input-label">Nombre</span>
-    <input type="text" placeholder="Nombre" value="{{ user.name }}">
+    <input type="text" placeholder="Nombre" value="{{ user.nombre }}">
   </label>
   <label class="item item-input item-floating-label">
     <span class="input-label">Estado</span>
-    <input type="text" placeholder="Estado" value="SIGTICS">
+    <input type="text" placeholder="Estado" value="{{ user.mensaje_personal }}">
   </label>
   <label class="item item-input item-floating-label">
     <span class="input-label">Correo</span>
-    <input type="text" placeholder="Correo" value="sigtics@gmail.com">
+    <input type="text" placeholder="Correo" value="{{ user.email }}">
   </label>
+  <div class="padding">
+      <button class="button button-block button-positive"  ng-click="login()">
+        Actualizar
+      </button>
+    </div>
 </div>
 
-<div class="contenedor" ui-sref="agregar">
+
+
+
+
+
+     
+      
+
+</ion-content>
+
+
+<div class="contenedor" ui-sref="agregar" style="top:500px">
 <button class="botonF1">
 <span><i class="icon ion-ios-reload"></i></span>
 </button>
 </div>
 
-  </ion-content>
 </ion-view>
