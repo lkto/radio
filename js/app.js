@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'nl2br', 'monospaced.elastic', 'ngCordova'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'nl2br', 'monospaced.elastic', 'ngCordova', 'ngAlertify', 'angularFileUpload'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -41,6 +41,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   // register screen
   .state('register', {
+    cache: false,
     url: '/register',
     templateUrl: 'templates/register.html',
     controller: 'registrar'
@@ -79,8 +80,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   
 
-  // View post detail
+  // View post detailj
   .state('post', {
+    cache: false,
     url: '/post/:postId',
     templateUrl: 'templates/post.html',
     controller: 'PostCtrl'
@@ -115,6 +117,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   // User profile
   .state('user', {
+    cache: false,
     url: '/user/:userId',
     templateUrl: 'templates/user.html',
     controller: 'UserCtrl'
@@ -139,10 +142,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     controller: 'UserCtrl'
   })
 
-  .state('cambiar_contraseña', {
-    url: '/cambiar_contraseña',
+  .state('cambiar_contrasena', {
+    cache: false,
+    url: '/cambiar_contrasena',
     templateUrl: 'templates/cambiar_contrasena.html',
-    controller: 'SettingCtrl'
+    controller: 'c_clave'
   })
 
   .state('restaurar', {
@@ -155,6 +159,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     url: '/solicitudes',
     templateUrl: 'templates/solicitudes.html',
     controller: 'SettingCtrl'
+  })
+
+  .state('viewfoto', {
+    cache: false,
+    url: '/viewfoto',
+    templateUrl: 'templates/viewfoto.html',
+    controller: 'foto'
   })
 
   .state('s_recibidas', {

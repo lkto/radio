@@ -4,38 +4,25 @@
   The PostCtrl pulls data from Posts Service (service.js)
   The Posts Service returns post object
 -->
-<ion-view view-title="{{ post.name }}" class="post-detail">
+<ion-view view-title="{{ post.titulo }}" >
   <ion-content>
 
     <div class="main-post item item-avatar no-border">
-      <img ng-src="{{post.face}}" ng-click="viewUser(post.user_id)">
-      <h2 class="post-author" ng-click="viewUser(post.user_id)">
-        {{ post.name }}
+      <img ng-src="{{post.img_publica}}" ng-click="viewUser(post.id_usuario)">
+      <h2 class="post-author" style="white-space:initial;">
+        {{ post.titulo }}
       </h2>
       <span class="post-time">
         <i class="ion-ios-timer-outline"></i>
-        {{ post.time }}
+        {{ post.fechar }}
       </span>
     </div>
 
     <div class="padding">
-      <img class="full-image" ng-if="post.image" src="{{ post.image }}">
-      <p>{{ post.content | nl2br}}</p>
-
-      <p>
-        <a ng-click="toggleLike(post)" class="subdued">
-          <i class="ion-heart assertive" ng-if="post.liked"></i>
-          <i class="ion-heart" ng-if="!post.liked"></i>
-          {{ post.likeCount}}
-        </a>
-        <a ui-sref="post({postId: post.id})" class="subdued">
-          <i class="ion-chatbox positive"></i>
-          {{ post.commentCount}}
-        </a>
-      </p>
-
-    </div>
-
+      <img class="full-image" ng-if="post.img_noticia" src="{{ post.img_noticia }}">
+      <p style="text-align: justify; padding: 10px;" ng-bing-html='descripcion'>{{ post.descripcion }}</p> 
+    </div> 
+<!--
     <div class="item item-avatar post-comment" ng-repeat="comment in post.comments">
       <img ng-src="{{comment.face}}">
       <h3 class="post-author">
@@ -52,6 +39,6 @@
         {{ comment.time }}
       </span>
     </div>
-
+-->
   </ion-content>
 </ion-view>

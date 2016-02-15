@@ -14,10 +14,9 @@
 
 
 
-     <img class="profile-picture" menu-close="" src="{{ user.img}}">
-      <h4>  Ver Foto </h4>
-
-      <div class="row positive-bg light">
+     <img class="profile-picture" menu-close="" src="{{ user.img}}" ng-click="viewFoto(user.email )">
+     <!-- <div class="row positive-bg light">
+  
         <a class="col text-center">
           <span class="number">{{ user.followers }}</span>
           <span class="desc">Contactos</span>
@@ -30,28 +29,33 @@
           <span class="number">{{ user.favorites }}</span>
           <span class="desc">Familia</span>
         </a>
-      </div>
+       
+      </div> -->
     </div>
 
-            
+   
+
+<div id="c_clave" ng-app='angular_post' ng-controller='UserCtrl'>           
 <div class="list">
-  <label class="item item-input item-floating-label">
+  <label class="item item-input item-floating-label" >
     <span class="input-label">Nombre</span>
-    <input type="text" placeholder="Nombre" value="{{ user.nombre }}">
+    <input type="text" placeholder="Nombre"  value="{{ user.nombre }}" id='nombre_u' name='nombre_u' >
   </label>
   <label class="item item-input item-floating-label">
     <span class="input-label">Estado</span>
-    <input type="text" placeholder="Estado" value="{{ user.mensaje_personal }}">
+    <input type="text" placeholder="Estado" value="{{ user.mensaje_personal }}" id='estado_u' name='estado_u' >
   </label>
   <label class="item item-input item-floating-label">
     <span class="input-label">Correo</span>
-    <input type="text" placeholder="Correo" value="{{ user.email }}">
+    <span> {{ user.email }} </span>
   </label>
   <div class="padding">
-      <button class="button button-block button-positive"  ng-click="login()">
+      <button class="button button-block button-positive"  ng-click="actualizar()">
         Actualizar
       </button>
     </div>
+</div>
+
 </div>
 
 

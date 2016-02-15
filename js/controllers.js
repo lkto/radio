@@ -66,21 +66,9 @@ angular.module('starter.controllers', [])
      disableBack: true
       });
 
-
-
-    
       $state.go('login');
      
     }
-
-
-    
-
-
-
-     
-
-
 
      //fin
 
@@ -88,9 +76,7 @@ angular.module('starter.controllers', [])
 // Home controller
 .controller('HomeCtrl', function($scope, Posts, $state, $ionicHistory,$templateCache,$http) {
 
-$ionicHistory.nextViewOptions({
-    disableBack: true
-  });
+
 
   $templateCache.removeAll();
   console.log(localStorage.getItem("prueba"));
@@ -98,12 +84,14 @@ $ionicHistory.nextViewOptions({
   
   $email_d = localStorage.getItem("usuario");
   console.log($email_d);
-
+   var token = "io-gluk@fct%vusb";
    var request = $http({
             method: "post",
             url: "http://radio.sigtics.org/movil_funciones/getUser",
             data: {
                     email: $email_d,
+                    token:token
+
                 },
 
                   headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
@@ -119,8 +107,6 @@ $ionicHistory.nextViewOptions({
             });
 
  
-
-  
 
   if(localStorage.getItem("usuario"))
     {
@@ -144,6 +130,7 @@ console.log(localStorage.getItem("usuario"));
   $scope.posts = Posts.all();
 
   // toggle like button
+  /*
   $scope.toggleLike = function (post) {
     // if user liked
     if(post.liked) {
@@ -152,13 +139,19 @@ console.log(localStorage.getItem("usuario"));
       post.likeCount++;
     }
     post.liked = !post.liked;
-  };
+  };*/
 
   // view post
-  $scope.viewPost = function(postId) {
-    $state.go('post', {postId: postId});
-  }
 
+$scope.viewPost = function(postId) {
+
+
+  localStorage.setItem("View_id_noticia", postId);
+  /*  $state.go('post'); */
+
+    $state.go('post', {postId: postId});
+}
+   
   // view user
 
 
@@ -279,20 +272,42 @@ console.log(localStorage.getItem("usuario"));
 
 
 
-.controller('PostCtrl', function($scope, Posts, $state) {
+.controller('PostCtrl', function($scope, Posts, $state,$http) {
   // get list posts froms service
-  $scope.post = Posts.get(0);
+
+  /*
+
+    var id_noticia = localStorage.getItem("View_id_noticia");
+        var token = "io-gluk@fct%vusb";
+        console.log(id_noticia);
+
+        var request = $http({
+            method: "post",
+            url: "http://radio.sigtics.org/movil_funciones/viewNoticia",
+            data: {
+                    id_noticia: id_noticia,
+                    token: token
+                },
+
+                  headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
+               
+            }); */
+            /* Check whether the HTTP Request is Successfull or not. */
+           /* request.success(function (response) {
+
+              $scope.post1 = response;
+
+              console.log(response);
+
+             
+
+            }); */
+        $scope.post = Posts.get(0);
+        //$state.go('post');
+
 
   // toggle like button
-  $scope.toggleLike = function (post) {
-    // if user liked
-    if(post.liked) {
-      post.likeCount--;
-    } else {
-      post.likeCount++;
-    }
-    post.liked = !post.liked;
-  };
+
 
   // view user function
  
@@ -314,18 +329,28 @@ console.log(localStorage.getItem("usuario"));
 })
 
 // UserCtrl controller
-.controller('UserCtrl', function($scope, Contacts, Posts, $stateParams, $http) {
+.controller('UserCtrl', function($scope, Contacts, Posts, $stateParams, $http,$ionicPopup,$ionicHistory, $state,$timeout,$upload,alertify) {
   // get contact from Contacts service
   // set the userId here
-
+  $ionicHistory.nextViewOptions({
+    disableBack: true
+  });
   $email_d = localStorage.getItem("usuario");
-  console.log($email_d);
+  var token = "io-gluk@fct%vusb";
 
-   var request = $http({
+  
+
+  $scope.clickUpload = function(){
+    document.getElementById("i_file").trigger('click');
+}
+  
+  //console.log($email_d);
+    var request = $http({
             method: "post",
             url: "http://radio.sigtics.org/movil_funciones/getUser",
             data: {
                     email: $email_d,
+                    token: token
                 },
 
                   headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
@@ -344,11 +369,6 @@ console.log(localStorage.getItem("usuario"));
 
   //$scope.user = Contacts.get(0);
 
-
-
-
-
-
   // attach post to this contact
  /* angular.extend($scope.user, {
     'followers': 199,
@@ -357,8 +377,123 @@ console.log(localStorage.getItem("usuario"));
     'posts': Posts.all()
   });*/
 
+
+
+   
+
+     $scope.actualizar = function () {
+
+      $nombre = document.getElementById("nombre_u").value;
+      $estado = document.getElementById("estado_u").value;
+      console.log($nombre);
+      console.log($estado);
+
+    var token = "io-gluk@fct%vusb";
+    $email_ac = localStorage.getItem("usuario");
+
+            var request = $http({
+                method: "post",
+                url: "http://radio.sigtics.org/movil_funciones/datos_personales",
+                data: {
+                    nombre: $nombre,
+                    estado: $estado,
+                    usuario_id: $email_ac,
+                    token: token
+              
+                },
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+            /* Check whether the HTTP Request is Successfull or not. */
+            request.success(function (data) {
+              
+              $men=data.msg;
+              if (data.error==true) {
+                
+              alertify.logPosition("top right");
+              alertify.error($men);
+
+              }else
+              {
+              alertify.logPosition("top right");
+              alertify.success($men);
+              $state.go('user');
+              console.log(data);
+              }
+             
+            });
+    }
+
+
+    $scope.viewFoto = function(viewFoto) {
+
+      localStorage.setItem("email_f", viewFoto);
+      //console.log(viewFoto);
+      /*  $state.go('post'); */
+$ionicHistory.nextViewOptions({
+    disableBack: true
+  });
+      $state.go('viewfoto');
+
+    }
+
   
     
+})
+
+.controller('foto', function($scope,$http,$upload,$timeout,$state, $ionicHistory){
+  $ionicHistory.nextViewOptions({
+    disableBack: true
+  });
+  var email = localStorage.getItem("email_f");
+  console.log(email);
+  var token = "io-gluk@fct%vusb";
+  var request = $http({
+            method: "post",
+            url: "http://radio.sigtics.org/movil_funciones/getUser",
+            data: {
+                    email: email,
+                    token: token
+                },
+
+                  headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
+               
+            });
+
+  request.success(function (data) {
+    console.log(data.img);
+    $scope.img = data.img
+
+  })
+
+   $scope.uploadResult = [];
+   $scope.onFileSelect = function($files) {
+    //$files: an array of files selected, each file has name, size, and type.
+     alertify.logPosition("top right");
+      alertify.success("Actualizando foto , Espere un momento");
+    for (var i = 0; i < $files.length; i++) {
+      var $file = $files[i];
+      $upload.upload({
+        url: 'http://radio.sigtics.org/movil_funciones/fotoPerfil',
+        data: {id: email,
+               token: token},
+        file: $file,
+        progress: function(e){
+         
+        }
+      }).then(function(response) {
+        // file is uploaded successfully
+           
+       $timeout(function() {
+         $state.go('user');
+          $scope.uploadResult.push(response.data);
+          console.log($scope.uploadResult);
+        });
+
+      }); 
+    }
+  }
+
+
 })
 
  
@@ -367,7 +502,7 @@ console.log(localStorage.getItem("usuario"));
               
 
  
-.controller('login', function($scope,$ionicPopup,$http,$state,$location,$templateCache,$ionicHistory){
+.controller('login', function($scope,$ionicPopup,$http,$state,$location,$templateCache,$ionicHistory,alertify){
 
 $ionicHistory.nextViewOptions({
     disableBack: true
@@ -390,13 +525,15 @@ $ionicHistory.nextViewOptions({
      
       $email = $scope.usuario_l;
       $clave = $scope.clave_l;
+      var token = "io-gluk@fct%vusb";
 
           var request = $http({
             method: "post",
             url: "http://radio.sigtics.org/movil_funciones/login",
             data: {
                     email: $email,
-                    pass: $clave
+                    pass: $clave,
+                    token: token
                 },
 
                   headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
@@ -424,11 +561,8 @@ $ionicHistory.nextViewOptions({
               else
               {
 
-                 var alertPopup = $ionicPopup.alert({
-                title: 'Login',
-                okType: 'button-assertive',
-                template: 'Datos Incorrectos'
-              });
+                 alertify.logPosition("top right");
+                 alertify.error("Datos Incorrectos");
 
               }
               
@@ -443,7 +577,7 @@ $ionicHistory.nextViewOptions({
 
 })
 
-.controller('restaurar', function($scope,$ionicPopup,$http,$state,$location,$templateCache,$ionicHistory){
+.controller('restaurar', function($scope,$ionicPopup,$http,$state,$location,$templateCache,$ionicHistory,alertify){
 
   $ionicHistory.nextViewOptions({
     disableBack: true
@@ -454,12 +588,14 @@ $ionicHistory.nextViewOptions({
 
     console.log($scope.usuario_res);
     $email_res = $scope.usuario_res
+    var token = "io-gluk@fct%vusb";
 
     var request = $http({
             method: "post",
             url: "http://radio.sigtics.org/movil_funciones/restaurar",
             data: {
                     email: $email_res,
+                    token: token
                 },
 
                   headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
@@ -472,23 +608,13 @@ $ionicHistory.nextViewOptions({
 
               if(data == 1)
               {
-
-                 var alertPopup = $ionicPopup.alert({
-                title: 'Restaurar',
-                okType: 'button-assertive',
-                template: 'Su nueva contraseña a sido enviada a la direccion de correo electronico registrado en el sistema'
-                });
-
+               alertify.logPosition("top right");
+               alertify.success("Se envio una informacion a tu correo, para seguir los pasos de restauracion");
               }
               else
               {
-
-                 var alertPopup = $ionicPopup.alert({
-                title: 'Registrar',
-                okType: 'button-assertive',
-                template: 'Datos Incorrectos'
-              });
-
+                 alertify.logPosition("top right");
+                 alertify.error("Datos Incorrectos");
               }
               
              
@@ -502,7 +628,7 @@ $ionicHistory.nextViewOptions({
 })
 
 
-.controller('menu_perfil', function($scope,$ionicPopup,$http,$state,$location,$templateCache){
+.controller('menu_perfil', function($scope,$ionicPopup,$http,$state,$location,$templateCache,alertify){
 
   
 
@@ -510,12 +636,13 @@ $ionicHistory.nextViewOptions({
 
 $email_d = localStorage.getItem("usuario");
   console.log($email_d);
-
+   var token = "io-gluk@fct%vusb";
    var request = $http({
             method: "post",
             url: "http://radio.sigtics.org/movil_funciones/getUser",
             data: {
                     email: $email_d,
+                    token: token
                 },
 
                   headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
@@ -539,11 +666,12 @@ $email_d = localStorage.getItem("usuario");
 
 })
 
-.controller('registrar', function($scope,$ionicPopup,$http,$state,$location,$templateCache,$ionicHistory){
+.controller('registrar', function($scope,$ionicPopup,$http,$state,$location,$templateCache,$ionicHistory,alertify){
 
-$ionicHistory.nextViewOptions({
+  $ionicHistory.nextViewOptions({
               disableBack: true
                });
+ var token = "io-gluk@fct%vusb";
    $scope.registrar = function () {
 
             var request = $http({
@@ -553,33 +681,86 @@ $ionicHistory.nextViewOptions({
                     email: $scope.email_r,
                     pass: $scope.password_r,
                     nombre: $scope.nombre_r,
-                    user: $scope.user_r
+                    user: $scope.user_r,
+                    sexo: $scope.sexo_r,
+                    token: token
                 },
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
             /* Check whether the HTTP Request is Successfull or not. */
             request.success(function (data) {
-              var alertPopup = $ionicPopup.alert({
-                title: 'Registro',
-                okType: 'button-assertive',
-                template: 'Usuario Registrado Con exito'
-              });
+               
+              $men = data.msg;
+              if (data.error==true) {
+                
+              alertify.logPosition("top right");
+              alertify.error($men);
 
+              }else
+              {
 
-                 $ionicHistory.nextViewOptions({
+              alertify.logPosition("top right");
+              alertify.success($men);
+              $ionicHistory.nextViewOptions({
               disableBack: true
                });
+              $state.go('login');
+              }
+            
 
 
-                $state.go('login');
-
-              console.log(data);
-
-                $scope.message = "From PHP file : "+data;
             });
     }
 
 
+
+})
+
+
+.controller('c_clave', function($scope,$ionicPopup,$http,$state,$location,$templateCache,$ionicHistory){
+
+  $scope.cambiar = function () {
+
+    var token = "io-gluk@fct%vusb";
+    $email_c = localStorage.getItem("usuario");
+    console.log($email_c);
+
+            var request = $http({
+                method: "post",
+                url: "http://radio.sigtics.org/movil_funciones/c_clave",
+                data: {
+                    c_actual: $scope.c_actual,
+                    c_nueva: $scope.c_nueva,
+                    cc_nueva: $scope.cc_nueva,
+                    usuario_id: $email_c,
+                    token: token
+              
+                },
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+            /* Check whether the HTTP Request is Successfull or not. */
+            request.success(function (data) {
+
+              $men = data.msg;
+              if (data.error==1) {
+              alertify.logPosition("top right");
+              alertify.error($men);
+
+              }else
+              {
+
+              alertify.logPosition("top right");
+              alertify.success($men);          
+
+              $ionicHistory.nextViewOptions({
+              disableBack: true
+               });
+
+              console.log(data.msg);
+
+                }
+            });
+    }
 
 })
 
