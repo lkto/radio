@@ -75,7 +75,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 .state('agregar', {
     url: '/agregar',
     templateUrl: 'templates/agregar.html',
-    controller: 'HomeCtrl'
+    controller: 'agrgarC'
   })
 
   
@@ -110,6 +110,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   // Contact list
   .state('contacts', {
+    cache: false,
     url: '/contacts',
     templateUrl: 'templates/contacts.html',
     controller: 'ContactsCtrl'
@@ -156,6 +157,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   })
 
   .state('solicitudes', {
+    cache: false,
     url: '/solicitudes',
     templateUrl: 'templates/solicitudes.html',
     controller: 'SettingCtrl'
@@ -169,15 +171,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   })
 
   .state('s_recibidas', {
+    cache: false,
     url: '/s_recibidas',
     templateUrl: 'templates/s_recibidas.html',
-    controller: 'SettingCtrl'
+    controller: 'Senrecibidas'
   })
 
   .state('s_enviadas', {
+    cache: false,
     url: '/s_enviadas',
     templateUrl: 'templates/s_enviadas.html',
-    controller: 'SettingCtrl'
+    controller: 'Senviadas'
   })
 
     // if none of the above states are matched, use this as the fallback

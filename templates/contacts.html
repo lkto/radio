@@ -4,12 +4,12 @@
   The ContactsCtrl pulls data from Contacts service (service.js)
   The Contacts service returns array of contacts data
 -->
-<link rel="stylesheet" type="text/css" href="css/inicio.css">
-  <ion-view view-title="Contactos">
+<link rel="stylesheet" type="text/css" href="css/inicio.css"> 
+  <ion-view view-title="Contactos" cache-view="false">
     <ion-content>
       <ion-list class="contact-list">
 
-        <ion-item class="item-avatar item-icon-right" ng-repeat="contact in contacts" href="#/chats/{{chat.id}}" >
+        <ion-item class="item-avatar item-icon-right" ng-repeat=" contact in contacts" href="#/chats/{{chat.id}}" >
           <img class="profile-picture" src="{{ contact.face }}" alt=""/>
           <p>
             <a href="#/chats/{{chat.id}}" class="post-author">
@@ -21,9 +21,9 @@
 
           <i class="icon ion-chevron-right icon-accessory"></i>
 
-          <ion-option-button class="button-stable ion-edit" ng-click="edit(contact)">
+          <ion-option-button class="button-stable ion-android-contact" ng-click="edit({{ contact.id }})">
           </ion-option-button>
-          <ion-option-button class="button-assertive ion-android-delete" ng-click="remove(contact)">
+          <ion-option-button class="button-assertive ion-android-delete" ng-click="remove({{ contact.id }})">
           </ion-option-button>
 
         </ion-item>

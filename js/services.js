@@ -251,8 +251,33 @@ angular.module('starter.services', [])
     };
 
   })
-  .factory('Contacts', function() {
+.factory('Contacts', function($http) {
     // Some fake testing data
+  /*
+    var usuarioC = localStorage.getItem("usuario");
+    var contacts;
+    var request = $http({
+                method: "post",
+                url: "http://radio.sigtics.org/movil_funciones/listarUsuario",
+                data: {
+                    usuario: usuarioC 
+              
+                },
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            }); 
+          request.success(function (data) {
+
+            
+              contacts = data;
+              console.log(contacts);
+              
+             
+              
+           })
+*/
+
+/*
+
     var contacts = [
       {
         id: 0,
@@ -277,7 +302,7 @@ angular.module('starter.services', [])
       },
       {
 
-        d: 3,
+        id: 3,
         name: 'Perry Governor',
         lastText: 'Look at my mukluks!',
         face: 'img/thumb/perry.png',
@@ -305,6 +330,8 @@ angular.module('starter.services', [])
         group: 'Family'
       }
     ];
+
+    */
 
     return {
       all: function() {

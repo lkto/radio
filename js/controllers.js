@@ -66,6 +66,10 @@ angular.module('starter.controllers', [])
      disableBack: true
       });
 
+      $ionicHistory.clearHistory();
+    $ionicHistory.clearCache();
+    $ionicHistory.goBack()
+
       $state.go('login');
      
     }
@@ -320,9 +324,31 @@ $scope.viewPost = function(postId) {
 })
 
 // ContactsCtrl controller
-.controller('ContactsCtrl', function($scope, Contacts, $state) {
+.controller('ContactsCtrl', function($scope, Contacts, $state,$http) {
   // get list posts froms service
-  $scope.contacts = Contacts.all();
+  //$scope.contacts = Contacts.all();
+ // console.log($scope.contacts);
+  $usuarioC = localStorage.getItem("usuario");
+
+  var request = $http({
+                method: "post",
+                url: "http://radio.sigtics.org/movil_funciones/listarUsuario",
+                data: {
+                    usuario: $usuarioC 
+              
+                },
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            }); 
+           
+          request.success(function (data) {
+
+            
+              $scope.contacts = data;
+              console.log($scope.contacts);
+              
+              
+             }); 
+ 
 
   // view contact function
   
@@ -507,6 +533,12 @@ $ionicHistory.nextViewOptions({
 $ionicHistory.nextViewOptions({
     disableBack: true
   });
+
+$ionicHistory.goBack()
+
+ $ionicHistory.clearHistory();
+    $ionicHistory.clearCache();
+    $templateCache.removeAll();
 
   
 
@@ -717,7 +749,7 @@ $email_d = localStorage.getItem("usuario");
 })
 
 
-.controller('c_clave', function($scope,$ionicPopup,$http,$state,$location,$templateCache,$ionicHistory){
+.controller('c_clave', function($scope,$ionicPopup,$http,$state,$location,$templateCache,$ionicHistory,alertify){
 
   $scope.cambiar = function () {
 
@@ -761,6 +793,244 @@ $email_d = localStorage.getItem("usuario");
                 }
             });
     }
+
+})
+
+// Agregar Contactos
+
+.controller('agrgarC', function($scope,$ionicPopup,$http,$state,$location,$templateCache,$ionicHistory,alertify){
+
+  $scope.cClave = function () {
+
+    var token = "io-gluk@fct%vusb";
+    var usuario = $scope.usuarioA;
+    $email_con = localStorage.getItem("usuario");
+    var tipoU = $scope.tipoU;
+    console.log(tipoU);
+    
+   
+ 
+            var request = $http({
+                method: "post",
+                url: "http://radio.sigtics.org/movil_funciones/Ausuario",
+                data: {
+                    usuario: usuario,
+                    usuario_id: $email_con,
+                    tipoU: tipoU,
+                    token: token
+              
+                },
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            }); 
+            /* Check whether the HTTP Request is Successfull or not. */
+           request.success(function (data) {
+
+             if (data.error==true) {
+              alertify.logPosition("top right");
+              alertify.error(data.msg);
+
+              }else
+              {
+
+              alertify.logPosition("top right");
+              alertify.success(data.msg); 
+              $ionicHistory.nextViewOptions({
+              disableBack: true
+               });
+              console.log(data);
+              $state.go('contacts'); 
+
+
+             }
+
+              
+
+             
+            }); 
+    }
+
+})
+
+
+
+// Solicitudes Enviadas
+.controller('Senviadas', function($scope,$http,alertify,$ionicHistory,$state){
+
+  
+  $email_en = localStorage.getItem("usuario");
+  console.log($email_en);
+   var token = "io-gluk@fct%vusb";
+   console.log(token);
+  var request = $http({
+            method: "post",
+            url: "http://radio.sigtics.org/movil_funciones/S_enviadas",
+            data: {
+                    email: $email_en,
+                    token: token
+                },
+
+                  headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
+               
+            });
+        
+          request.success(function (response) {
+
+              $scope.soli = response;
+
+
+
+              console.log(response);
+
+            }); 
+
+
+$scope.Csolicitud = function (Csolicitu) {
+
+
+console.log(Csolicitu);
+var usuarioSoli = Csolicitu;
+ var token = "io-gluk@fct%vusb";
+ $email_can = localStorage.getItem("usuario");
+
+var request = $http({
+            method: "post",
+            url: "http://radio.sigtics.org/movil_funciones/S_cancelar",
+            data: {
+                    usuarioe: $email_can,
+                    usuarios: usuarioSoli,
+                    token: token
+                },
+
+                  headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
+               
+            });
+          
+           request.success(function (response) {
+
+
+
+              alertify.logPosition("top right");
+              alertify.error(response.msg); 
+              $ionicHistory.nextViewOptions({
+              disableBack: true
+               });
+              console.log(response);
+              $state.go('solicitudes'); 
+
+
+            }); 
+}
+
+
+})
+
+// SettingCtrl controller
+.controller('Senrecibidas', function($scope,$http,alertify,$ionicHistory,$state){
+
+  $email_rec = localStorage.getItem("usuario");
+  console.log($email_rec);
+   var token = "io-gluk@fct%vusb";
+   console.log(token);
+  var request = $http({
+            method: "post",
+            url: "http://radio.sigtics.org/movil_funciones/S_recibidas",
+            data: {
+                    email: $email_rec,
+                    token: token
+                },
+
+                  headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
+               
+            });
+        
+          request.success(function (response) {
+
+              $scope.reci = response;
+
+
+
+              console.log(response);
+
+            }); 
+
+  $scope.Dsolicitud = function (Dsolicitu) {
+
+
+console.log(Dsolicitu);
+var usuarioSoliD = Dsolicitu;
+ var token = "io-gluk@fct%vusb";
+ $email_den = localStorage.getItem("usuario");
+
+var request = $http({
+            method: "post",
+            url: "http://radio.sigtics.org/movil_funciones/S_cancelar_recibidas",
+            data: {
+                    usuarioe: $email_den,
+                    usuarios: usuarioSoliD,
+                    token: token
+                },
+
+                  headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
+               
+            });
+          
+           request.success(function (response) {
+
+
+
+              alertify.logPosition("top right");
+              alertify.error(response.msg); 
+              $ionicHistory.nextViewOptions({
+              disableBack: true
+               });
+              console.log(response);
+              $state.go('solicitudes'); 
+
+
+            }); 
+}
+
+  $scope.Asolicitud = function (Asolicitu) {
+
+
+console.log(Asolicitu);
+var usuarioSoliA = Asolicitu;
+ var token = "io-gluk@fct%vusb";
+ $email_acep = localStorage.getItem("usuario");
+
+var request = $http({
+            method: "post",
+            url: "http://radio.sigtics.org/movil_funciones/S_aceptar_recibidas",
+            data: {
+                    usuarioe: $email_acep,
+                    usuarios: usuarioSoliA,
+                    token: token
+                },
+
+                  headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
+               
+            });
+          
+           request.success(function (response) {
+
+
+
+              alertify.logPosition("top right");
+              alertify.success(response.msg); 
+              $ionicHistory.nextViewOptions({
+              disableBack: true
+               });
+              console.log(response);
+              $state.go('solicitudes'); 
+
+
+            }); 
+}
+
+
+
+
+
 
 })
 

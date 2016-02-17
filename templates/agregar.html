@@ -1,18 +1,36 @@
-<ion-view view-title="Agregar Contacto">
+<ion-view view-title="Agregar Contacto" cache-view="false">
   <ion-content>
 
-
-<div class="list list-inset transparent-form">
+<div id="c_clave" ng-app='angular_post' ng-controller='agrgarC' >
+  <div class="list list-inset transparent-form">
       
       <label class="item item-input">
        
-        <input type="text" placeholder="Nombre de Usuario / Correo Electronico">
+        <input type="text" placeholder="Nombre de Usuario / Correo Electronico" ng-model="usuarioA">
       </label>
+
+    <label class="item item-input item-select">
+    <div class="input-label" style="color:#bbb;">
+      <i class="ion-ios-person-outline light icon-label"></i> Grupo
+    </div>
+
+   <select name="id_tipo" id="id_tipo" ng-model="tipoU">
+          <option selected value="1" style="color:#000;border:0;width:100%">Amigo</option>
+          <option value="2" style="color:#000;border:0;width:100%">Familia</option>
+
+  </select>
+
+
+  </label>
+
+
+      
     <div class="padding">
-      <button class="button button-block button-positive">
+      <button class="button button-block button-positive" ng-click="cClave()">
         Agregar
       </button>
     </div>
+</div>
 
       </ion-content>
 </ion-view>
