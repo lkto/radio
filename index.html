@@ -51,10 +51,12 @@
         </ion-nav-back-button> 
 
           <!-- Burger button -->
+          <div ng-controller = 'HomeCtrl'  > 
           <ion-nav-buttons side="left">
-            <button class="button button-icon button-clear ion-navicon" menu-toggle="left" >
+            <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-click="(pruebaC())">
             </button>
           </ion-nav-buttons>
+          </div>
 
           <!-- Cart button -->
           <ion-nav-buttons side="right">
@@ -72,14 +74,15 @@
         <ion-content>
 
           <!-- User profile 
+
           <div class="text-center" ng-controller = 'HomeCtrl' >
 
             <a ui-sref="user">
-              <img class="profile-picture" menu-close="" src="{{ user.img }}">
-              <h4>{{ user.nombre }}</h4>
+              <img class="profile-picture" menu-close="" src="{{ pru.img }}">
+              <h4>{{ pru.nombre }}</h4>
             </a>
 
-          </div> 
+          </div> -->
 
         
 

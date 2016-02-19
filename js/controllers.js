@@ -85,6 +85,16 @@ angular.module('starter.controllers', [])
   $templateCache.removeAll();
   console.log(localStorage.getItem("prueba"));
 
+  $scope.pruebaC = function () {
+
+  $email_p = localStorage.getItem("usuario");
+  console.log($email_p);
+   var token = "io-gluk@fct%vusb";
+
+
+
+ }
+
   
   $email_d = localStorage.getItem("usuario");
   console.log($email_d);
@@ -101,7 +111,6 @@ angular.module('starter.controllers', [])
                   headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
                
             });
-            /* Check whether the HTTP Request is Successfull or not. */
             request.success(function (response) {
 
               $scope.user = response;
@@ -160,9 +169,6 @@ $scope.viewPost = function(postId) {
 
 
 
-  $scope.viewContact = function(contactId) {
-    $state.go('user', {userId: contactId});
-  }
   
 
 
@@ -324,10 +330,12 @@ $scope.viewPost = function(postId) {
 })
 
 // ContactsCtrl controller
-.controller('ContactsCtrl', function($scope, Contacts, $state,$http) {
+.controller('ContactsCtrl', function($scope, Contacts, $state,$http,alertify) {
   // get list posts froms service
   //$scope.contacts = Contacts.all();
  // console.log($scope.contacts);
+$scope.ccon = function(){
+
   $usuarioC = localStorage.getItem("usuario");
 
   var request = $http({
@@ -344,14 +352,71 @@ $scope.viewPost = function(postId) {
 
             
               $scope.contacts = data;
-              console.log($scope.contacts);
               
+              console.log($scope.contacts);
+              return $scope.contacts
               
              }); 
+}
+
+  
+$scope.ccon();
+
+
+
+
+
+
  
 
   // view contact function
-  
+
+  $scope.ver_contac = function(idusuario){
+
+   // console.log(idusuario);
+
+   $state.go('edit_perfil');
+    localStorage.setItem("View_id_contac", idusuario);
+
+    
+  }
+
+  $scope.eliminar_contac = function(idusuarioE){
+
+    
+    var idE = idusuarioE;
+    console.log(idE);
+    var token = "io-gluk@fct%vusb";
+
+
+   var request = $http({
+            method: "post",
+            url: "http://radio.sigtics.org/movil_funciones/eliminarContacto",
+            data: {
+                    id: idE,
+                    token:token
+
+                },
+
+                  headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
+               
+            });
+            request.success(function (response) {
+
+              alertify.logPosition("top right");
+                 alertify.success(response.msg);
+
+                
+
+                  $scope.ccon();
+                  
+               
+              console.log(response);
+
+            }); 
+
+}
+
 })
 
 // UserCtrl controller
@@ -470,6 +535,8 @@ $ionicHistory.nextViewOptions({
   $ionicHistory.nextViewOptions({
     disableBack: true
   });
+
+
   var email = localStorage.getItem("email_f");
   console.log(email);
   var token = "io-gluk@fct%vusb";
@@ -518,6 +585,10 @@ $ionicHistory.nextViewOptions({
       }); 
     }
   }
+   $scope.clickUpload = function(){
+    console.log("da");
+    ionic.trigger('click', { target: document.getElementById('i_file') });
+   }
 
 
 })
@@ -1030,6 +1101,38 @@ var request = $http({
 
 
 
+
+
+})
+
+.controller('perfil', function($scope,$http){
+
+  var idC = localStorage.getItem("View_id_contac");
+console.log(idC);
+   var token = "io-gluk@fct%vusb";
+
+
+   var request = $http({
+            method: "post",
+            url: "http://radio.sigtics.org/movil_funciones/getUser",
+            data: {
+                    email: idC,
+                    token:token
+
+                },
+
+                  headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
+               
+            });
+            request.success(function (response) {
+
+              $scope.ver_user = response;
+
+              console.log(response);
+
+            }); 
+
+ 
 
 
 })

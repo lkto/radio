@@ -43,10 +43,17 @@
         
       </ul> -->
 
+      <div class="list list-inset" >
+        <label class="item item-input">
+         <i class="icon ion-search placeholder-icon"></i>
+         <input type="text" placeholder="Buscar" ng-model="busqueda">
+       </label>
+      </div>
+
 
       <ul class="timeline" >
       
-        <li ng-repeat="solicitud in soli" >
+        <li ng-repeat="solicitud in soli | filter: busqueda" >
         <div class="list list-inset transparent-form" ng-app='angular_post' ng-controller='Senviadas'>
           <img src="{{ solicitud.img_usuario }}" alt="" class="timeline-thumb">
           <div class="timeline-item">

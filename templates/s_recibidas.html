@@ -4,9 +4,16 @@
 
    <ion-refresher on-refresh="doRefresh()" pulling-icon="ion-load-d" spinner="ios-small"></ion-refresher>
 
+    <div class="list list-inset" >
+        <label class="item item-input">
+         <i class="icon ion-search placeholder-icon"></i>
+         <input type="text" placeholder="Buscar" ng-model="busqueda">
+       </label>
+      </div>
+
       <ul class="timeline">
 
-        <li ng-repeat="solicitud in reci">
+        <li ng-repeat="solicitud in reci | filter: busqueda">
           <img src="{{ solicitud.img_usuario }}" alt="" class="timeline-thumb">
           <div class="timeline-item">
             <h4>{{ solicitud.nombre_usuario }}</h4>

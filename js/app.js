@@ -140,7 +140,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   .state('edit_perfil', {
     url: '/edit_perfil',
     templateUrl: 'templates/edit_perfil.html',
-    controller: 'UserCtrl'
+    controller: 'perfil'
   })
 
   .state('cambiar_contrasena', {
