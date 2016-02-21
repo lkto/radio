@@ -494,6 +494,7 @@ angular.module('starter.services', [])
           };
         },
 
+
         /**
          * @ngdoc method
          * @name $ionicPlatform#ready

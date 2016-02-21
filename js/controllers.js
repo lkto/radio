@@ -618,10 +618,11 @@ $ionicHistory.nextViewOptions({
 $ionicPlatform.onHardwareBackButton (function () {
      event.preventDefault ();
      event.stopPropagation ();
-    navigator.app && navigator.app.exitApp && navigator.app.exitApp();
-     $ionicPlatform.registerBackButtonAction();
+   
+     window.close ();
+    alert('vuelta atrás todos ustedes');
 
-     console.log( 'vuelta atrás todos ustedes');
+    // console.log( 'vuelta atrás todos ustedes');
   });
 
 $ionicHistory.nextViewOptions({
