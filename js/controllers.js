@@ -21,7 +21,7 @@ angular.module('starter.controllers', [])
 
 // Authentication controller
 // Put your login, register functions here
-.controller('AuthCtrl', function($scope, $location, $ionicHistory, $ionicSideMenuDelegate, $state, $ionicPopup,loginService,$http,$templateCache) {
+.controller('AuthCtrl', function($scope, $location, $ionicHistory, $ionicSideMenuDelegate, $state, $ionicPopup,loginService,$http,$templateCache,$rootScope) {
   // hide back butotn in next view
   $ionicHistory.nextViewOptions({
     disableBack: true
@@ -69,6 +69,7 @@ angular.module('starter.controllers', [])
       $ionicHistory.clearHistory();
     $ionicHistory.clearCache();
     $ionicHistory.goBack()
+  
 
       $state.go('login');
      
@@ -78,7 +79,20 @@ angular.module('starter.controllers', [])
 
 })
 // Home controller
-.controller('HomeCtrl', function($scope, Posts, $state, $ionicHistory,$templateCache,$http) {
+.controller('HomeCtrl', function($scope, Posts, $state, $ionicHistory,$templateCache,$http,$ionicPlatform) {
+
+ var self = $ionicPlatform = {
+
+
+    exitApp: function() {
+      self.ready(function() {
+        navigator.app && navigator.app.exitApp && navigator.app.exitApp();
+      });
+    }
+    
+  };
+
+
 
 
 
@@ -599,13 +613,22 @@ $ionicHistory.nextViewOptions({
               
 
  
-.controller('login', function($scope,$ionicPopup,$http,$state,$location,$templateCache,$ionicHistory,alertify){
+.controller('login', function($scope,$ionicPopup,$http,$state,$location,$templateCache,$ionicHistory,alertify,$rootScope,$ionicPlatform){
+
+$ionicPlatform.onHardwareBackButton (function () {
+     event.preventDefault ();
+     event.stopPropagation ();
+    navigator.app && navigator.app.exitApp && navigator.app.exitApp();
+     $ionicPlatform.registerBackButtonAction();
+
+     console.log( 'vuelta atrás todos ustedes');
+  });
 
 $ionicHistory.nextViewOptions({
     disableBack: true
   });
 
-$ionicHistory.goBack()
+
 
  $ionicHistory.clearHistory();
     $ionicHistory.clearCache();
