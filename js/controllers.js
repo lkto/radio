@@ -1,3 +1,20 @@
+document.addEventListener("deviceready", onDeviceReady, false);
+  function onDeviceReady() {
+  document.addEventListener("backbutton", backButtonEvent, false);
+}
+   function backButtonEvent() {
+    var currentUrl=window.location.hash;
+     if(currentUrl=='#/login' || currentUrl=='#/'){
+      console.log("prueba")
+      alert("prueba");
+  window.close ();
+ }
+else{
+  history.go(-1);
+  navigator.app.backhistory();
+  }
+}
+
 angular.module('starter.controllers', [])
 
 .controller("ExampleController", function($scope, $cordovaMedia, $ionicLoading) {
@@ -615,15 +632,7 @@ $ionicHistory.nextViewOptions({
  
 .controller('login', function($scope,$ionicPopup,$http,$state,$location,$templateCache,$ionicHistory,alertify,$rootScope,$ionicPlatform){
 
-$ionicPlatform.onHardwareBackButton (function () {
-     event.preventDefault ();
-     event.stopPropagation ();
-   
-     window.close ();
-    alert('vuelta atrás todos ustedes');
 
-    // console.log( 'vuelta atrás todos ustedes');
-  });
 
 $ionicHistory.nextViewOptions({
     disableBack: true
