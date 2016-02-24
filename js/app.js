@@ -184,6 +184,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     controller: 'Senviadas'
   })
 
+  .state('crear_grupo', {
+    cache: false,
+    url: '/crear_grupo',
+    templateUrl: 'templates/crear_grupo.html',
+    controller: 'ContactsCtrl'
+  })
+
     // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');
 
