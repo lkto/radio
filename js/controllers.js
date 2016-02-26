@@ -56,6 +56,16 @@ angular.module('starter.controllers', [])
 
     $scope.login_q = function() {
 
+       window.localStorage.clear();
+     
+
+        $ionicHistory.clearCache().then(function() {
+    //now you can clear history or goto another state if you need
+       $ionicHistory.clearHistory();
+       $ionicHistory.nextViewOptions({ disableBack: true, historyRoot: true });
+       $state.go('login');
+      })
+/*
       window.localStorage.clear();
 
       console.log(localStorage.getItem("usuario"));
@@ -72,7 +82,7 @@ angular.module('starter.controllers', [])
     $ionicHistory.goBack()
   
 
-      $state.go('login');
+      $state.go('login'); */
      
     }
 
@@ -617,6 +627,28 @@ $ionicHistory.nextViewOptions({
 .controller('login', function($scope,$ionicPopup,$http,$state,$location,$templateCache,$ionicHistory,alertify,$rootScope,$ionicPlatform){
 
 
+   $ionicPlatform.ready(function() {
+        // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+        // for form inputs)
+        if (window.cordova && window.cordova.plugins.Keyboard) {
+            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+        }
+        if (window.StatusBar) {
+            // org.apache.cordova.statusbar required
+            StatusBar.styleDefault();
+        }
+
+        // Función Botón atrás
+        $ionicPlatform.registerBackButtonAction(function () {
+
+                ionic.Platform.exitApp();
+                console.log("aqui");
+
+        }, 100);
+
+
+    }); 
+
 
 $ionicHistory.nextViewOptions({
     disableBack: true
@@ -625,8 +657,7 @@ $ionicHistory.nextViewOptions({
 
 
  $ionicHistory.clearHistory();
-    $ionicHistory.clearCache();
-    $templateCache.removeAll();
+
 
   
 
@@ -1153,6 +1184,79 @@ console.log(idC);
 
 
 })
+ 
+.controller('StreamController' ,function ($interval, appSettings, streamService){
+
+  var isPlaying = false;
+  var stream;
+  var timer;
+
+
+  
+
+ 
+ 
+
+   var audioStream = appSettings.getSettings().audioStream;
+    var hasAudioStreamMeta = appSettings.getSettings().hasAudioStreamMeta;
+    var vm = angular.extend(this, {
+      togglePlay: togglePlay,
+      isPlaying: isPlaying,
+      info: null
+    });
+
+    // ********************************************************************
+
+    function togglePlay() {
+      if (vm.isPlaying) {
+        pause();
+      } else {
+        play();
+      }
+
+      vm.isPlaying = isPlaying = !isPlaying;
+    }
+
+    function play() {
+      if (window.Stream) {
+        stream = new window.Stream(audioStream);
+        // Play audio
+        stream.play();
+      }
+
+      getStreamInfo();
+      timer = $interval(function() {
+        getStreamInfo();
+      }, 5000);
+    }
+
+    function pause() {
+      vm.info = null;
+      $interval.cancel(timer);
+
+      if (!stream) {
+        return;
+      }
+
+      stream.stop();
+    }
+
+    function getStreamInfo() {
+      streamService.getStreamInfo().then(function(info) {
+        vm.info = info;
+      }, function() {
+        vm.info = null;
+      });
+    }
+  
+  
+
+
+})
+
+  
+
+ 
 
 // SettingCtrl controller
 .controller('SettingCtrl', function($scope){

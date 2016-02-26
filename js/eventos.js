@@ -1,3 +1,5 @@
+
+/*
 document.addEventListener("deviceready", onDeviceReady, false);
 
   function onDeviceReady() {
@@ -5,14 +7,13 @@ document.addEventListener("deviceready", onDeviceReady, false);
 }
    function backButtonEvent() {
     var currentUrl=window.location.hash;
-     if(currentUrl=='#/login' || currentUrl=='#/'){
+   if (state == 'login')
+   {
       console.log("prueba")
-      alert("prueba");
-  window.close ();
- }
+   }
 else{
   history.go(-1);
   navigator.app.backhistory();
   }
-}
+}*/
 

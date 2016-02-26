@@ -1,0 +1,10 @@
+<ion-view view-title="Radio">
+	<ion-content class="center" style="
+		background: url({{vm.info.coverUrl || 'img/welcome.jpg'}}) center center;
+		background-size: cover;">
+		<center>
+		<a class="button button-icon icon play-button-icon {{ vm.isPlaying ? 'ion-ios-pause' : 'ion-ios-play' }}"
+			ng-click="vm.togglePlay()"></a>
+		</center>
+	</ion-content>
+</ion-view>

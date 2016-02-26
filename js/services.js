@@ -1,5 +1,8 @@
 angular.module('starter.services', [])
 
+.constant('ENV', {name:'development',youtubeKey:'AIzaSyDael5MmCQa1GKQNKQYypmBeB08GATgSEo',ionicPrivateKey:'a9265eaf15a20cc8516c770e8748aeed4891b28f453ce755',ionicPublicKey:'e30d4d540b8c75d1f167bbf242423c3fb23fe10275d1c016',ionicAppId:'241b6d37',gcmId:'228071472080',instagramAppId:'2998ca20ed924ca3be22907c6ae77363',facebookPermanentAccessToken:'CAANL6xXrSHYBANNHhMUDugVZBHXfVQBMeWG6FmpYROWcOEmC2xze1BNiraZB87NCAZC3w08L7KhCBnhJItZCUzWCgBNzBjt0BkoV6qMoXjIZBjkWRTUGgZBR39OZAiP3DF76jufQ4hJ7xsdQc0l68vFAZAePdZCZAjkjTwaOeEZC22xi8ZAQYBqvNvYRgIfOZBzf4zRURHgrLtNazxzln8ZBkd9FZC7',firebaseUrl:'music-band-ionic.firebaseio.com',parse:{applicationId:'sidmrbO9OqG3pe4iErva408MHFysJZ2zChYPAXlU',key:'e49Rnlja6llKnFW5p0OOF8dkHvJi5o1hrVzFGBnc'},settingsSource:'LOCAL'})
+
+
 .service('loginService', function($q) {
     return {
         loginUser: function(name, pw) {
@@ -347,181 +350,282 @@ angular.module('starter.services', [])
       }
     }
   })
+.factory('localAppSettings', function($q){
 
-.constant('IONIC_BACK_PRIORITY', {
-  view: 100,
-  sideMenu: 150,
-  modal: 200,
-  actionSheet: 300,
-  popup: 400,
-  loading: 500
+    var settings = {
+      welcomeTitle: 'The Music Band',
+      welcomeSlogan: 'But suddenly popular music became bigger than it had ever been before',
+
+      youtubeUser: 'TheRollingStones',
+      facebookPage: 'therollingstones',
+      instagramTag: 'therollingstones',
+      newsJSONURI: 'https://skounis.s3.amazonaws.com/mobile-apps/music-band/news.json',
+      wordPressURI: 'https://demo.titaniumtemplates.com/wordpress/tag/rollingstones/?json=1',
+      website: 'http://www.rollingstones.com/',
+      store: 'https://rollingstones.shop.bravadousa.com/store/',
+      iTunesURI: 'https://itunes.apple.com/us/artist/the-rolling-stones/id1249595',
+      // Live Radio
+      audioStream: 'http://www.marioenturadio.com/audioenvivo/juvenil/index.html',
+      hasAudioStreamMeta: true,
+      // audioStream: 'http://stream-dc1.radioparadise.com/mp3-128',
+      // hasAudioStreamMeta: false,
+
+      socialMediaAccounts: {
+        facebook: 'therollingstones',
+        twitter: 'RollingStones',
+        instagram: 'therollingstones',
+      }
+    };
+
+      var events = [{
+      title: 'Hartford United States XL Center',
+      type: 'info',
+      startsAt: new Date(2015, 5, 25, 1),
+      endsAt: new Date(2015, 5, 26, 15),
+      editable: false,
+      deletable: false,
+      incrementsBadgeTotal: false
+    }, {
+      title: 'Trenton Sun National Bank Center',
+      type: 'important',
+      startsAt: new Date(2015, 5, 6, 12),
+      endsAt: new Date(2015, 5, 9, 15),
+      editable: false,
+      deletable: false,
+      incrementsBadgeTotal: false
+    }, {
+      title: 'Cincinnati US Bank Arena',
+      type: 'success',
+      startsAt: new Date(2015, 6, 10, 9),
+      endsAt: new Date(2015, 6, 12, 21),
+      editable: false,
+      deletable: false,
+      incrementsBadgeTotal: false
+    }, {
+      title: 'Milwaukee Marcus Amphitheater',
+      type: 'special',
+      startsAt: new Date(2015, 6, 14, 12),
+      endsAt: new Date(2015, 6, 15, 15),
+      editable: false,
+      deletable: false,
+      incrementsBadgeTotal: false
+    }];
+
+    var mapData = {
+      origin: {
+        latitude: 37.407,
+        longitude: -122.1
+      },
+      zoomLevel: 15,
+      annotations: [{
+        title: 'Hartford United States XL Center.',
+        latitude: 37.407,
+        longitude: -122.1
+      }, {
+        title: 'Trenton Sun National Bank Center.',
+        latitude: 37.41,
+        longitude: -122.1
+      }]
+    };
+return {
+      initSettings: function() {
+        return $q.when(settings);
+      },
+      getSettings: function() {
+        return settings;
+      },
+      getMapData: function() {
+        return $q.when(mapData);
+      },
+      getEvents: function() {
+        return $q.when(events);
+      }
+    };
+
+
 })
 
-.provider('$ionicPlatform', function() {
+.factory('firebaseAppSettings', function(firebaseDb, $firebaseObject, $firebaseArray, $q, _){
 
-  return {
-    $get: ['$q', '$ionicScrollDelegate', function($q, $ionicScrollDelegate) {
-      var self = {
 
-        /**
-         * @ngdoc method
-         * @name $ionicPlatform#onHardwareBackButton
-         * @description
-         * Some platforms have a hardware back button, so this is one way to
-         * bind to it.
-         * @param {function} callback the callback to trigger when this event occurs
-         */
-        onHardwareBackButton: function(cb) {
-          ionic.Platform.ready(function() {
-            document.addEventListener('backbutton', cb, false);
-          });
-        },
+    var storedSettings;
 
-        /**
-         * @ngdoc method
-         * @name $ionicPlatform#offHardwareBackButton
-         * @description
-         * Remove an event listener for the backbutton.
-         * @param {function} callback The listener function that was
-         * originally bound.
-         */
+    return {
+      initSettings: initSettings,
+      getSettings: getSettings,
+      getMapData: getMapData,
+      getEvents: getEvents
+    };
+    
+    function initSettings() {
+      var deferred = $q.defer();
+      $firebaseObject(firebaseDb.child('appSettings'))
+        .$loaded(function(settings) {
+          storedSettings = settings;
+          deferred.resolve(settings);
+        });
+      
+      return deferred.promise;
+    }
+    
+    function getMapData() {
+      var deferred = $q.defer();
+      $firebaseObject(firebaseDb.child('mapData'))
+        .$loaded(function(mapData) {
+          deferred.resolve(mapData);
+        });
+      
+      return deferred.promise;
+    }
 
-         
-        offHardwareBackButton: function(fn) {
-          ionic.Platform.ready(function() {
-            document.removeEventListener('backbutton', fn);
-          });
-        }, 
-
-        /**
-         * @ngdoc method
-         * @name $ionicPlatform#registerBackButtonAction
-         * @description
-         * Register a hardware back button action. Only one action will execute
-         * when the back button is clicked, so this method decides which of
-         * the registered back button actions has the highest priority.
-         *
-         * For example, if an actionsheet is showing, the back button should
-         * close the actionsheet, but it should not also go back a page view
-         * or close a modal which may be open.
-         *
-         * The priorities for the existing back button hooks are as follows:
-         *   Return to previous view = 100
-         *   Close side menu = 150
-         *   Dismiss modal = 200
-         *   Close action sheet = 300
-         *   Dismiss popup = 400
-         *   Dismiss loading overlay = 500
-         *
-         * Your back button action will override each of the above actions
-         * whose priority is less than the priority you provide. For example,
-         * an action assigned a priority of 101 will override the 'return to
-         * previous view' action, but not any of the other actions.
-         *
-         * @param {function} callback Called when the back button is pressed,
-         * if this listener is the highest priority.
-         * @param {number} priority Only the highest priority will execute.
-         * @param {*=} actionId The id to assign this action. Default: a
-         * random unique id.
-         * @returns {function} A function that, when called, will deregister
-         * this backButtonAction.
-         */
-
-        $backButtonActions: {},
-        registerBackButtonAction: function(fn, priority, actionId) {
-
-          if (!self._hasBackButtonHandler) {
-            // add a back button listener if one hasn't been setup yet
-            self.$backButtonActions = {};
-            self.onHardwareBackButton(self.hardwareBackButtonClick);
-            self._hasBackButtonHandler = true;
-          }
-
-          var action = {
-            id: (actionId ? actionId : ionic.Utils.nextUid()),
-            priority: (priority ? priority : 0),
-            fn: fn
-          };
-          self.$backButtonActions[action.id] = action;
-
-          // return a function to de-register this back button action
-          return function() {
-            delete self.$backButtonActions[action.id];
-          };
-        },
-
-        /**
-         * @private
-         */
-        hardwareBackButtonClick: function(e) {
-          // loop through all the registered back button actions
-          // and only run the last one of the highest priority
-          var priorityAction, actionId;
-          for (actionId in self.$backButtonActions) {
-            if (!priorityAction || self.$backButtonActions[actionId].priority >= priorityAction.priority) {
-              priorityAction = self.$backButtonActions[actionId];
-            }
-          }
-          if (priorityAction) {
-            priorityAction.fn(e);
-            return priorityAction;
-          }
-        },
-
-        is: function(type) {
-          return ionic.Platform.is(type);
-        },
-
-        /**
-         * @ngdoc method
-         * @name $ionicPlatform#on
-         * @description
-         * Add Cordova event listeners, such as `pause`, `resume`, `volumedownbutton`, `batterylow`,
-         * `offline`, etc. More information about available event types can be found in
-         * [Cordova's event documentation](https://cordova.apache.org/docs/en/edge/cordova_events_events.md.html#Events).
-         * @param {string} type Cordova [event type](https://cordova.apache.org/docs/en/edge/cordova_events_events.md.html#Events).
-         * @param {function} callback Called when the Cordova event is fired.
-         * @returns {function} Returns a deregistration function to remove the event listener.
-         */
-        on: function(type, cb) {
-          ionic.Platform.ready(function() {
-            document.addEventListener(type, cb, false);
-          });
-          return function() {
-            ionic.Platform.ready(function() {
-              document.removeEventListener(type, cb);
+    function getEvents() {
+      var deferred = $q.defer();
+      $firebaseArray(firebaseDb.child('events'))
+        .$loaded(function(data) {
+          var events = [];
+          _.each(data, function(event) {
+            events.push({
+              title: event.title,
+              type: event.type,
+              startsAt: new Date(event.startsAt),
+              endsAt: new Date(event.endsAt),
+              editable: event.editable,
+              deletable: event.deletable,
+              incrementsBadgeTotal: event.incrementsBadgeTotal
             });
-          };
-        },
-
-
-        /**
-         * @ngdoc method
-         * @name $ionicPlatform#ready
-         * @description
-         * Trigger a callback once the device is ready,
-         * or immediately if the device is already ready.
-         * @param {function=} callback The function to call.
-         * @returns {promise} A promise which is resolved when the device is ready.
-         */
-        ready: function(cb) {
-          var q = $q.defer();
-
-          ionic.Platform.ready(function() {
-            q.resolve();
-            cb && cb();
           });
+          deferred.resolve(events);
+        });
+      return deferred.promise;
+    }
+    
+    function getSettings() {
+      return storedSettings;
+    }
 
-          return q.promise;
-        }
-      };
 
-      window.addEventListener('statusTap', function() {
-        $ionicScrollDelegate.scrollTop(true);
+})
+
+.factory('parseAppSettings', function(_){
+
+  var storedSettings;
+
+    return {
+      initSettings: initSettings,
+      getSettings: getSettings,
+      getMapData: getMapData,
+      getEvents: getEvents
+    };
+
+    function initSettings() {
+      var query = new Parse.Query('AppSettings');
+      return query.find().then(function(result) {
+        storedSettings = result[0].attributes;
+        return storedSettings;
       });
+    }
 
-      return self;
-    }]
-  };
+    function getSettings() {
+      return storedSettings;
+    }
 
-});
+    function getMapData() {
+      var query = new Parse.Query('MapData');
+      return query.find().then(function(result) {
+        return result[0].attributes;
+      });
+    }
+
+    function getEvents() {
+      var query = new Parse.Query('Event');
+      return query.find().then(function(result) {
+        var events = [];
+        _.each(result, function(item) {
+          events.push(item.attributes);
+        });
+        return events;
+      })
+    }
+
+})
+
+
+
+.factory('appSettings', function(ENV,$injector){
+
+  switch(ENV.settingsSource) {
+      case 'LOCAL':
+        return $injector.get('localAppSettings');
+      case 'FIREBASE':
+        return $injector.get('firebaseAppSettings');
+      case 'PARSE':
+        return $injector.get('parseAppSettings');
+    }
+    
+    throw new Error('Setting source is not valid');
+
+
+})
+
+
+.factory('streamService', function($http,$q,appSettings){
+
+  /* @ngInject */
+
+
+  
+   var streamUrl = appSettings.getSettings().audioStream;
+  var metadataUrl = streamUrl;
+    var contentRegex = /<body>(.*)<\/body>/;
+    var itunesSearchUrl = 'https://itunes.apple.com/search?term=';
+    var resolutionRegex = /100x100/;
+    var config = {
+      skipSpinner: true
+    };
+
+    var service = {
+      getStreamInfo: getStreamInfo
+    };
+    return service;
+
+    // ****************************************************************************
+
+    function getStreamInfo() {
+      return $http.get(metadataUrl, config).then(function(response) {
+        var title = parseShoutcastResponse(response.data);
+        if (!title) {
+          return {};
+        }
+
+        return getCover(title).then(function(coverUrl) {
+          return {
+            title: title,
+            coverUrl: coverUrl
+          };
+        });
+      });
+    }
+
+    function getCover(title) {
+      return $http.get(itunesSearchUrl + title, config).then(function(response) {
+        var item = response.data.results[0];
+        if (!item || !item.artworkUrl100) {
+          return null;
+        }
+        
+        return item.artworkUrl100.replace(resolutionRegex, '500x500');
+      });
+    }
+
+    function parseShoutcastResponse(html) {
+      var content = html.match(contentRegex);
+      var parts = content;
+     
+      return parts;
+    }
+  
+})
+
+
+
+
