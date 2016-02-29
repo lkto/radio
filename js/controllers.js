@@ -1192,11 +1192,6 @@ console.log(idC);
   var timer;
 
 
-  
-
- 
- 
-
    var audioStream = appSettings.getSettings().audioStream;
     var hasAudioStreamMeta = appSettings.getSettings().hasAudioStreamMeta;
     var vm = angular.extend(this, {

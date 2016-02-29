@@ -365,7 +365,7 @@ angular.module('starter.services', [])
       store: 'https://rollingstones.shop.bravadousa.com/store/',
       iTunesURI: 'https://itunes.apple.com/us/artist/the-rolling-stones/id1249595',
       // Live Radio
-      audioStream: 'http://69.64.58.8:8003/',
+      audioStream: 'http://198.100.125.242:80/',
       hasAudioStreamMeta: true,
       // audioStream: 'http://stream-dc1.radioparadise.com/mp3-128',
       // hasAudioStreamMeta: false,
