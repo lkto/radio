@@ -361,11 +361,11 @@ angular.module('starter.services', [])
       instagramTag: 'therollingstones',
       newsJSONURI: 'https://skounis.s3.amazonaws.com/mobile-apps/music-band/news.json',
       wordPressURI: 'https://demo.titaniumtemplates.com/wordpress/tag/rollingstones/?json=1',
-      website: 'http://www.rollingstones.com/',
+      website: 'http://www.marioenturadio.com',
       store: 'https://rollingstones.shop.bravadousa.com/store/',
       iTunesURI: 'https://itunes.apple.com/us/artist/the-rolling-stones/id1249595',
       // Live Radio
-      audioStream: 'http://www.marioenturadio.com/audioenvivo/juvenil/index.html',
+      audioStream: 'http://69.64.58.8:8005/',
       hasAudioStreamMeta: true,
       // audioStream: 'http://stream-dc1.radioparadise.com/mp3-128',
       // hasAudioStreamMeta: false,
@@ -575,7 +575,8 @@ return {
 
   
    var streamUrl = appSettings.getSettings().audioStream;
-  var metadataUrl = streamUrl;
+  var metadataUrl = streamUrl + '7.html';
+  console.log(metadataUrl);
     var contentRegex = /<body>(.*)<\/body>/;
     var itunesSearchUrl = 'https://itunes.apple.com/search?term=';
     var resolutionRegex = /100x100/;
