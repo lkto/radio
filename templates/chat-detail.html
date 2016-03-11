@@ -4,20 +4,34 @@
   The ChatDetailCtrl pulls data from the Chats service (service.js)
   The Chats service returns an array of chat messages data
 -->
-<ion-view view-title="{{chat.name}}" class="chat-detail" cache-view="false">
+<ion-view view-title="Chat"  hide-nav-bar="true" class="chat-detail" cache-view="false">
+
+<div class="bar bar-header" style="border-color: transparent;
+    background-color: #387EF5;
+    color: #fff;">
+  <button class="button button-icon icon ion-chevron-left" style="color: #fff;" ng-click="atras()">Atras</button>
+  <div class="h1 title" style="color: #fff;">{{chat[0].name}}</div>
+  <button class="button button-icon icon ion-navicon" style="color: #fff;"></button>
+</div>
+
+
   <ion-content class="padding" delegate-handle="mainScroll">
-    <div ng-repeat="message in chat.messages" class="message-wrapper rlt"
+<br/>
+<br/>
+
+    <div ng-repeat="message in chat[0].messages" class="message-wrapper rlt"
          on-hold="onMessageHold($event, $index, message)">
 
       <div ng-if="message.type == 'received'">
 
-        <img class="profile-picture left" src="{{ chat.face }}" />
+        <img class="profile-picture left" src="{{ chat[0].face }}" />
 
         <div class="chat-bubble left">
 
           <div class="message">
             {{ message.text | nl2br }}
-            <img src="{{ message.image }}" class="block" ng-if="message.image" alt=""/>
+            
+            <img src="{{ message.image }}" class="block" ng-if="message.image" alt="" style="width:90%" />
           </div>
 
           <div class="message-detail">
@@ -29,11 +43,14 @@
 
       <div ng-if="message.type == 'sent'">
 
-        <img class="profile-picture right" src="img/thumb/adam.jpg"  />
+        <img class="profile-picture right" src="{{ chat[0].face2 }}"  />
 
         <div class="chat-bubble right">
 
-          <div class="message" ng-bind-html="message.text | nl2br">
+          <div class="message" >
+          {{ message.text | nl2br }}
+
+          <img src="{{ message.image }}" class="block" ng-if="message.image" alt="" style="width:90%"  />
           </div>
 
           <div class="message-detail">
@@ -47,15 +64,29 @@
       <div class="cf"></div>
 
     </div>
+
+<form style="display:none">
+<div style="text-align: left;font-size: 20px;padding: 10px;color: #487eaa;">
+</div>
+<div class="file-upload">
+  <br/>
+  <input type="file" id="i_file1" name="file" ng-file-select="onFileSelect($files)" accept="image/*"/>
+  <div ng-repeat="files in uploadResult">
+  <!-- in case of error show error message with file name-->
+  <span class='label label-info'>{{files.name}}</span><br/>
+  </div>
+</div>
+</form>
+
   </ion-content>
 
   <form name="sendMessageForm" ng-submit="sendMessage(sendMessageForm)" novalidate>
     <ion-footer-bar class="bar-stable message-footer">
       <div class="footer-btn-wrap">
-        <button class="button button-icon icon ion-android-attach"></button>
+        <button type="button"  class="button button-icon icon ion-android-attach" ng-click="clickUpload1()" ></button>
       </div>
       <label class="item-input-wrapper">
-        <textarea ng-model="input.message" value="" placeholder="Send {{chat.name}} a message..."
+        <textarea ng-model="input.message" value="" placeholder="Envia un mensaje a {{chat[0].name}} ...."
                   required minlength="1" maxlength="1500" msd-elastic></textarea>
       </label>
       <div class="footer-btn-wrap">

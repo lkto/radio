@@ -8,11 +8,12 @@
        </label>
       </div>
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats | filter: busqueda" type="item-text-wrap"
-                href="#/chats/{{chat.id}}">
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats | filter: busqueda | orderBy: 'chat.fecha' " type="item-text-wrap"
+                ng-click="viewChat(chat.id)">
         <img ng-src="{{chat.face}}">
         <h2>{{chat.name}}</h2>
-        <p>{{chat.lastText}}</p>
+        <p>{{chat.lasText}}</p>
+       <!-- <span class="badge badge-assertive">2</span> -->
         <i class="icon ion-chevron-right icon-accessory"></i>
 
         <ion-option-button class="button-energized" ng-click="mute(chat)">
@@ -26,12 +27,16 @@
   </ion-content>
 
 
-  <div class="contenedor" ui-sref="crear_grupo">
-<button class="botonF1">
-<span><i class="icon ion-ios-chatbubble-outline"></i></span>
+<div class="contenedor">
+<button class="botonF1" ui-sref="contacts">
+  <span><i class="ion-person-add"></i></span>
 </button>
-</div>
+ </div>
 
-
+ <div class="contenedor" style="margin-bottom:80px" ui-sref="crear_grupo">
+<button class="botonF1">
+  <span><i class="ion-ios-people"></i></span>
+</button>
+ </div>
 
 </ion-view>

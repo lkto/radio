@@ -3,6 +3,7 @@ angular.module('starter.services', [])
 .constant('ENV', {name:'development',youtubeKey:'AIzaSyDael5MmCQa1GKQNKQYypmBeB08GATgSEo',ionicPrivateKey:'a9265eaf15a20cc8516c770e8748aeed4891b28f453ce755',ionicPublicKey:'e30d4d540b8c75d1f167bbf242423c3fb23fe10275d1c016',ionicAppId:'241b6d37',gcmId:'228071472080',instagramAppId:'2998ca20ed924ca3be22907c6ae77363',facebookPermanentAccessToken:'CAANL6xXrSHYBANNHhMUDugVZBHXfVQBMeWG6FmpYROWcOEmC2xze1BNiraZB87NCAZC3w08L7KhCBnhJItZCUzWCgBNzBjt0BkoV6qMoXjIZBjkWRTUGgZBR39OZAiP3DF76jufQ4hJ7xsdQc0l68vFAZAePdZCZAjkjTwaOeEZC22xi8ZAQYBqvNvYRgIfOZBzf4zRURHgrLtNazxzln8ZBkd9FZC7',firebaseUrl:'music-band-ionic.firebaseio.com',parse:{applicationId:'sidmrbO9OqG3pe4iErva408MHFysJZ2zChYPAXlU',key:'e49Rnlja6llKnFW5p0OOF8dkHvJi5o1hrVzFGBnc'},settingsSource:'LOCAL'})
 
 
+
 .service('loginService', function($q) {
     return {
         loginUser: function(name, pw) {
@@ -27,11 +28,23 @@ angular.module('starter.services', [])
     }
 })
 
-  .factory('Chats', function () {
+.factory('socket', function (socketFactory) {
+  var myIoSocket = io.connect('http://sigtics.org:30000');
+
+    mySocket = socketFactory({
+      ioSocket: myIoSocket
+    });
+    
+  return mySocket;
+})
+
+
+  .factory('Chats', function ($http) {
     // Might use a resource here that returns a JSON array
 
-    // Some fake testing data
-    var chats = [
+
+
+    /*var chats = [
       {
         id: 0,
         name: 'Ben Sparrow',
@@ -107,16 +120,63 @@ angular.module('starter.services', [])
         lastText: 'Hey, it\'s me',
         face: 'img/thumb/max.png'
       }
-    ];
+    ]; */
+
+var usuario = localStorage.getItem("usuario");
+ var chats;
+$http.get('php/cargar_chat.php?usuario='+usuario).
+      then(function(response) {
+       // $scope.$apply(function() {
+       
+
+          chats = response.data;
+
+           console.log(chats);
+           
+      //  })
+        
+     }) 
+
+    
 
     return {
       all: function () {
-        return chats;
+       /* var usuario = localStorage.getItem("usuario");
+      var request = $http({
+                method: "get",
+                url: "php/cargar_chat.php",
+                data: {
+                    usuario: usuario 
+              
+                },
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            }); 
+           
+          request.then(function (data) {
+              var chats;
+            
+              chats = data.data;
+
+
+              return chats;
+
+              console.log(chats);
+              
+             }); 
+
+*/
+
+     return chats;
+        
       },
       remove: function (chat) {
         chats.splice(chats.indexOf(chat), 1);
       },
       get: function (chatId) {
+
+        var id_post = localStorage.getItem("View_id_chat");
+        console.log(id_post);
+
         for (var i = 0; i < chats.length; i++) {
           if (chats[i].id === parseInt(chatId)) {
             return chats[i];
@@ -153,8 +213,7 @@ angular.module('starter.services', [])
     
       console.log(posts);
         //var id_noticia = postId;
-        var id_post = localStorage.getItem("View_id_noticia");
-          console.log(id_post);
+       
        /* console.log(id_noticia);
         var token = "io-gluk@fct%vusb";
 
@@ -178,6 +237,7 @@ angular.module('starter.services', [])
 
         for (var i = 0; i < posts.length; i++) {
           console.log(posts[i].id_noticia);
+          var id_post = posts[i].id_noticia;
           if (posts[i].id_noticia == parseInt(id_post)) {
             //console.log(posts[i]);
             return posts[i];

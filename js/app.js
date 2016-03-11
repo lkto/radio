@@ -1,14 +1,31 @@
 // Ionic Starter App
 
+
+
+
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'nl2br', 'monospaced.elastic', 'ngCordova', 'ngAlertify', 'angularFileUpload'])
+angular.module('starter', ['ionic', 'btford.socket-io' , 'starter.controllers', 'starter.services', 'nl2br', 'monospaced.elastic', 'ngCordova', 'ngAlertify', 'angularFileUpload','ngSanitize'])
+
+
+
+.value('_', window._)
+
 
 .run(function($ionicPlatform) {
+
+
+
+
+
+
   $ionicPlatform.ready(function() {
+
+
+
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
@@ -93,13 +110,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   // Chat list
   .state('chats', {
+    cache: false,
     url: '/chats',
     templateUrl: 'templates/chats.html',
     controller: 'ChatCtrl'
   })
 
   .state('chat-detail', {
-    url: '/chats/:chatId',
+    cache: false,
+    url: '/chats-detail',
     templateUrl: 'templates/chat-detail.html',
     controller: 'ChatDetailCtrl'
   })
@@ -194,6 +213,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     templateUrl: 'templates/s_enviadas.html',
     controller: 'Senviadas'
   })
+
+  .state('d_chat', {
+    cache: false,
+    url: '/d_chat',
+    templateUrl: 'templates/d_chat.html',
+    controller: 'prueba'
+  })
+
+  
 
   .state('crear_grupo', {
     cache: false,

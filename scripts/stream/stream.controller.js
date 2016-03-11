@@ -33,8 +33,9 @@
 				stream = new window.Stream(audioStream);
 				// Play audio
 				stream.play();
+				console.log("ff");
 			}
-
+			
 			getStreamInfo();
 			timer = $interval(function() {
 				getStreamInfo();

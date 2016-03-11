@@ -234,8 +234,78 @@ $scope.viewPost = function(postId) {
 })
 
 // Chat controller, view list chats and chat detail
-.controller('ChatCtrl', function($scope, Chats) {
-  $scope.chats = Chats.all();
+.controller('ChatCtrl', function($scope, Chats,$http,$state,socket) {
+ /* $scope.chats = Chats.all();
+  console.log ($scope.chats);*/
+/*
+  var usuario = localStorage.getItem("usuario");
+ var chats;
+$http.get('http://radio.sigtics.org/chat/ListarChat?usuario='+usuario).
+      then(function(response) {
+       // $scope.$apply(function() {
+       
+
+         $scope.chats = response.data;
+         console.log($scope.chats);
+
+
+        
+           
+        }) */
+
+
+$scope.Dchat = function() {
+
+var usuario = localStorage.getItem("usuario");
+var chats;
+$http.get('http://radio.sigtics.org/chat/ListarChat?usuario='+usuario).
+      then(function(response) {
+       // $scope.$apply(function() {
+         $scope.chats = response.data;
+         console.log($scope.chats);
+
+})
+    }
+
+$scope.Dchat();
+
+socket = io.connect( 'http://sigtics.org:30000');
+socket.on( 'new_message', function( data ) {
+/*
+    console.log(data);
+
+    var message = {
+      type: data.tipo,
+      time: 'Just now',
+      text: data.mensaje
+    };
+    $scope.input.message = '';
+    // push to massages list
+    $scope.chat.messages.push(message);
+    $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
+*/
+    console.log ("detchat");
+
+     $scope.Dchat();
+  
+  });
+
+
+
+
+ 
+
+
+  $scope.viewChat = function(chatId) {
+
+console.log(chatId);
+  localStorage.setItem("View_id_chat", chatId);
+  /*  $state.go('post'); */
+
+  $state.go('chat-detail');
+}
+
+
 
   // remove a conversation
   $scope.remove = function(chat) {
@@ -248,23 +318,238 @@ $scope.viewPost = function(postId) {
   }
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats, $ionicScrollDelegate, $ionicActionSheet, $timeout) {
+.controller('ChatDetailCtrl', function($scope,socket,$upload,$ionicHistory, $stateParams, Chats, $ionicScrollDelegate, $ionicActionSheet, $timeout, $http,$state) {
   //$scope.chat = Chats.get($stateParams.chatId);
-  $scope.chat = Chats.get(0);
+     //$scope.chat = Chats.get(0);
+ 
+
+
+   /*var datos = id_chat + '-' + usuario ;
+
+   $http.get('php/detalle_chat.php?datos='+datos).
+      success(function(response) {
+       // $scope.$apply(function() {
+       
+         $scope.chats1 = response;
+         console.log($scope.chats1);
+          return $scope.chats1
+           
+      //  })
+        
+     })*/
+     $scope.atras = function (){
+
+
+         $ionicHistory.clearHistory();
+       $ionicHistory.nextViewOptions({ disableBack: true, historyRoot: true });
+        $state.go('chats');
+
+     }
+
+$scope.uploadResult = [];
+   $scope.onFileSelect = function($files) {
+    //$files: an array of files selected, each file has name, size, and type.
+     alertify.logPosition("top right");
+      alertify.success("Enviando Archivo");
+
+        var id_chat1 = localStorage.getItem("View_id_chat");
+        var usuario1 = localStorage.getItem("usuario");
+        var id_user21 = localStorage.getItem("user_id_chat");
+        var token = "io-gluk@fct%vusb";
+    for (var i = 0; i < $files.length; i++) {
+      var $file = $files[i];
+      $upload.upload({
+        url: 'http://radio.sigtics.org/chat/FotoChat',
+        data: {
+                    id_chat:id_chat1,
+                    usuario:usuario1,
+                    id_user2:id_user21,
+                    token:token
+             },
+        file: $file,
+        progress: function(e){
+         
+        }
+      }).then(function(response) {
+        // file is uploaded successfully
+           
+       $timeout(function() {
+          
+          $scope.uploadResult.push(response.data);
+          console.log($scope.uploadResult);
+        });
+            socket = io.connect( 'http://sigtics.org:30000');
+
+                 socket.emit('new_message', { 
+                 
+                 
+
+                });
+
+              console.log(response.data);
+
+               localStorage.setItem("View_id_chat", response.data.id_chat);
+               var id_chat1 = localStorage.getItem("View_id_chat");
+               console.log(id_chat1);
+
+      }); 
+    }
+  }
+
+
+
+
+$scope.clickUpload1 = function(){
+
+   ionic.trigger('click', { target: document.getElementById('i_file1') });
+   console.log("click");
+   }
+
+
+
+$scope.chat1 = function() {
+
+  var usuario = localStorage.getItem("usuario");
+   var id_chat = localStorage.getItem("View_id_chat");
+   var id_user2 = localStorage.getItem("user_id_chat");
+   
+ 
+
+
+
+
+       var request = $http({
+                method: "post",
+                url: "http://radio.sigtics.org/chat/DetallesChat",
+                data: {
+                    usuario:usuario,
+                    id_chat:id_chat,
+                    id_user2:id_user2
+                    
+              
+                },
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            }); 
+           
+          request.success(function (data) {
+
+            
+              $scope.chat = data;
+              console.log( $scope.chat);
+
+               $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
+             socket = io.connect( 'http://sigtics.org:30000');
+
+                
+           
+              console.log($scope.chat);
+                 
+             }); 
+ }
+
+   
+
+    $scope.chat1();
+
+
+socket = io.connect( 'http://sigtics.org:30000');
+
+
+
+    socket.on( 'new_message', function( data ) {
+/*
+    console.log(data);
+
+    var message = {
+      type: data.tipo,
+      time: 'Just now',
+      text: data.mensaje
+    };
+    $scope.input.message = '';
+    // push to massages list
+    $scope.chat.messages.push(message);
+    $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
+*/
+    console.log ("hvsss");
+
+     $scope.chat1();
+  
+  });
+
+
+
+
+
+
 
   $scope.sendMessage = function() {
-    var message = {
-      type: 'sent',
+
+    var message =  $scope.input.message;
+     var id_chat = localStorage.getItem("View_id_chat");
+     var usuario = localStorage.getItem("usuario");
+       var id_user2 = localStorage.getItem("user_id_chat");
+
+
+    var request = $http({
+                method: "post",
+                url: "http://radio.sigtics.org/chat/InsertarChat",
+                data: {
+                    message:message,
+                    id_chat:id_chat,
+                    usuario:usuario,
+                    id_user2:id_user2
+              
+                },
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            }); 
+           
+          request.success(function (data) {
+              console.log("devuelve");
+            
+              //$scope.chat = data;
+              console.log(data);
+
+              var message = {
+      type: data.tipo,
       time: 'Just now',
-      text: $scope.input.message
+      text: data.mensaje
     };
 
+             
+
+          socket = io.connect( 'http://sigtics.org:30000' );
+
+           
+
+                 socket.emit('new_message', { 
+                  mensaje: data.mensaje,
+                  id_chat: data.id_chat,
+                  tipo: data.tipo
+
+                });
+
+              console.log(data);
+
+               localStorage.setItem("View_id_chat", data.id_chat);
+               var id_chat1 = localStorage.getItem("View_id_chat");
+               console.log(id_chat1);
+        
+ 
+              
+             }); 
+
+
+
+   
+    console.log(message);
     $scope.input.message = '';
 
     // push to massages list
-    $scope.chat.messages.push(message);
 
-    $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
+
+   // $scope.chat.messages.push(message);
+
+   // $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
   };
 
   $scope.openFileDialog=function() {
@@ -337,7 +622,7 @@ $scope.viewPost = function(postId) {
              
 
             }); */
-        $scope.post = Posts.get(0);
+  $scope.post = Posts.get(0);
         //$state.go('post');
 
 
@@ -359,6 +644,73 @@ $scope.viewPost = function(postId) {
   // get list posts froms service
   //$scope.contacts = Contacts.all();
  // console.log($scope.contacts);
+ 
+      
+
+$scope.cont=[];
+
+$scope.crearGrupo = function (ej) {
+
+var e = true;
+for (var i = 0; i < $scope.cont.length; i++) {
+    if ($scope.cont[i]==ej) {
+      $scope.cont.splice(i, 1);
+      e=false;
+    }
+}
+if (e) {$scope.cont.push(ej);}
+}
+
+$scope.InsertarGrupo = function() {
+ 
+var asunto = document.getElementById('asunto').value;
+if (asunto==="") {
+alertify.logPosition("top right");
+alertify.error('Ingrese asunto');
+return;
+
+};
+
+if ($scope.cont.length<=1) {
+alertify.logPosition("top right");
+alertify.error('Seleccione mas de 1 contacto');
+return;
+
+};
+
+if ($scope.cont.length>=25) {
+alertify.logPosition("top right");
+alertify.error('Seleccione menos de 25 contactos para iniciar');
+return;
+};
+
+var contactos = $scope.cont;
+console.log($scope.cont);
+$usuarioG = localStorage.getItem("usuario");
+
+  var request = $http({
+                method: "post",
+                url: "http://radio.sigtics.org/chat/crearGrupo",
+                data: {
+                    usuario: $usuarioG,
+                    contactos: contactos,
+                    asunto: asunto
+              
+                },
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            }); 
+           
+          request.success(function (data) {
+
+            
+            console.log(data);
+              
+             }); 
+
+}
+
+
+
 $scope.ccon = function(){
 
   $usuarioC = localStorage.getItem("usuario");
@@ -377,15 +729,29 @@ $scope.ccon = function(){
 
             
               $scope.contacts = data;
+              $scope.list = $scope.contacts ;
               
               console.log($scope.contacts);
-              return $scope.contacts
+              console.log($scope.list);
+              return $scope.list
               
              }); 
 }
 
+
+
   
 $scope.ccon();
+
+
+$scope.viewChat1 = function(ID_cont) {
+  localStorage.setItem("View_id_chat", 0);
+  localStorage.setItem("user_id_chat", ID_cont);
+  console.log(ID_cont);
+  /*  $state.go('post'); */
+  $state.go('chat-detail');
+}
+
 
 
 
@@ -443,6 +809,8 @@ $scope.ccon();
 }
 
 })
+
+
 
 // UserCtrl controller
 .controller('UserCtrl', function($scope, Contacts, Posts, $stateParams, $http,$ionicPopup,$ionicHistory, $state,$timeout,$upload,alertify) {
@@ -611,7 +979,7 @@ $ionicHistory.nextViewOptions({
     }
   }
    $scope.clickUpload = function(){
-    console.log("da");
+
     ionic.trigger('click', { target: document.getElementById('i_file') });
    }
 
@@ -1254,10 +1622,39 @@ console.log(idC);
  
 
 // SettingCtrl controller
-.controller('SettingCtrl', function($scope){
+.controller('prueba', function($scope,$http){
+
+  var usuario = localStorage.getItem("usuario");
+   var id_chat = localStorage.getItem("View_id_chat");
+
+   var request = $http({
+                method: "post",
+                url: "php/detalle_chat.php",
+                data: {
+                    usuario:usuario,
+                    id_chat:id_chat
+              
+                },
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            }); 
+           
+          request.success(function (data) {
+
+            
+              $scope.chat = data;
+              
+              console.log(data);
+        
+
+              
+             }); 
 
 })
 
+
+.controller('SettingCtrl', function($scope){
+
+})
 // AcercaCtrl controller
 .controller('AcercaCtrl', function($scope){
 

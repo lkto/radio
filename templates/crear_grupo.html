@@ -1,41 +1,63 @@
 <link rel="stylesheet" type="text/css" href="css/inicio.css"> 
-  <ion-view view-title="Contactos" cache-view="false">
+  <ion-view view-title="Crear Grupo" cache-view="false">
 
     <ion-content>
 
-     <div class="list list-inset" >
-        <label class="item item-input">
-       
-         <input type="text" placeholder="Austo del grupo" ng-model="busqueda">
-       </label>
-      </div>
+     
 
       <ion-list class="contact-list">
+        
+        <div class="list list-inset" >
+        <label class="item item-input">
+        <input type="text" placeholder="Asunto del grupo" ng-model="asunto" id="asunto" name="asunto">
+        </label>
+        </div>
 
-        <ion-item class="item-avatar item-icon-right" ng-repeat=" contact in contacts " href="#/chats/{{chat.id}}" >
-          <img class="profile-picture" src="{{ contact.face }}" alt=""/>
+<style type="text/css">
+  .item-checkbox .checkbox {
+position: absolute;
+top: 30% !important;
+right: 8px;
+left: 80% !important;
+z-index: 3;
+margin-top: -21px;
+}
+.item-avatar, .item-avatar .item-content, .item-avatar-left, .item-avatar-left .item-content {
+padding-left: 0px !important;
+min-height: 72px;
+}
+</style>
+
+<ion-item class="item-avatar item-icon-right" ng-repeat=" contact in contacts " style="
+padding-left: 0px;
+padding-right: 0px;
+padding-bottom: 0px;
+padding-top: 0px;
+height: 52px;" >
+
+  
+
+ <ion-checkbox ng-change="crearGrupo( {{ contact.id }})" ng-model="activo" id="{{ contact.id }}">
+           <img class="profile-picture" src="{{ contact.face }}" alt=""/>
           <p>
-            <a href="#/chats/{{chat.id}}" class="post-author">
+            <a href="#" class="post-author">
               {{ contact.name }}
             </a>
             <span class="badge badge-positive" ng-if="contact.group == 'Family'">Familia</span>
             <span class="badge badge-energized" ng-if="contact.group == 'Friend'">Amigos</span>
           </p>
-
-          <i class="icon ion-chevron-right icon-accessory"></i>
-
-          <ion-option-button class="button-stable ion-android-contact" ng-click="ver_contac({{ 'contact.user' }})">
-          </ion-option-button>
-          <ion-option-button class="button-assertive ion-android-delete" ng-click="eliminar_contac({{ contact.id_relacion }})">
-          </ion-option-button>
+  </ion-checkbox> 
+       
 
         </ion-item>
       </ion-list>
+
+
     </ion-content>
 
-<div class="contenedor" ui-sref="agregar">
-<button class="botonF1">
-<span><i class="icon ion-person-add"></i></span>
+<div class="contenedor" >
+<button class="botonF1" ng-click="InsertarGrupo()" >
+<span><i class="ion-ios-compose-outline"></i></span>
 </button>
 </div>
 

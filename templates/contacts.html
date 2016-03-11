@@ -18,10 +18,10 @@
 
       <ion-list class="contact-list">
 
-        <ion-item class="item-avatar item-icon-right" ng-repeat=" contact in contacts | filter: busqueda" href="#/chats/{{chat.id}}" >
+        <ion-item class="item-avatar item-icon-right" ng-repeat=" contact in contacts | filter: busqueda" ng-click="viewChat1( {{ contact.id }} )" >
           <img class="profile-picture" src="{{ contact.face }}" alt=""/>
           <p>
-            <a href="#/chats/{{chat.id}}" class="post-author">
+            <a ng-click="viewChat1({{ contact.id }})" class="post-author">
               {{ contact.name }}
             </a>
             <span class="badge badge-positive" ng-if="contact.group == 'Family'">Familia</span>
