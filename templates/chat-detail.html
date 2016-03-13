@@ -24,11 +24,20 @@
 
       <div ng-if="message.type == 'received'">
 
-        <img class="profile-picture left" src="{{ chat[0].face }}" />
+        <img class="profile-picture left" src="{{ chat[0].face }}" ng-if="chat[0].face "/>
 
         <div class="chat-bubble left">
 
+        <div style="color: {{ message.color}}">
+
+            {{ message.name | nl2br }}
+          
+        </div>
+
+
+
           <div class="message">
+
             {{ message.text | nl2br }}
             
             <img src="{{ message.image }}" class="block" ng-if="message.image" alt="" style="width:90%" />
@@ -43,9 +52,15 @@
 
       <div ng-if="message.type == 'sent'">
 
-        <img class="profile-picture right" src="{{ chat[0].face2 }}"  />
+        <img class="profile-picture right" src="{{ chat[0].face2 }}" ng-if="chat[0].face2" />
 
         <div class="chat-bubble right">
+
+         <div style="color: {{ message.color}}">
+
+            {{ message.name | nl2br }}
+          
+        </div>
 
           <div class="message" >
           {{ message.text | nl2br }}

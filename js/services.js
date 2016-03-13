@@ -29,7 +29,7 @@ angular.module('starter.services', [])
 })
 
 .factory('socket', function (socketFactory) {
-  var myIoSocket = io.connect('http://sigtics.org:30000');
+  var myIoSocket = io.connect('http://sigtics.org:30001');
 
     mySocket = socketFactory({
       ioSocket: myIoSocket

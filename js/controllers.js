@@ -269,7 +269,7 @@ $http.get('http://radio.sigtics.org/chat/ListarChat?usuario='+usuario).
 
 $scope.Dchat();
 
-socket = io.connect( 'http://sigtics.org:30000');
+socket = io.connect( 'http://sigtics.org:30001');
 socket.on( 'new_message', function( data ) {
 /*
     console.log(data);
@@ -378,7 +378,7 @@ $scope.uploadResult = [];
           $scope.uploadResult.push(response.data);
           console.log($scope.uploadResult);
         });
-            socket = io.connect( 'http://sigtics.org:30000');
+            socket = io.connect( 'http://sigtics.org:30001');
 
                  socket.emit('new_message', { 
                  
@@ -403,6 +403,7 @@ $scope.clickUpload1 = function(){
 
    ionic.trigger('click', { target: document.getElementById('i_file1') });
    console.log("click");
+
    }
 
 
@@ -438,7 +439,7 @@ $scope.chat1 = function() {
               console.log( $scope.chat);
 
                $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
-             socket = io.connect( 'http://sigtics.org:30000');
+             socket = io.connect( 'http://sigtics.org:30001');
 
                 
            
@@ -452,7 +453,7 @@ $scope.chat1 = function() {
     $scope.chat1();
 
 
-socket = io.connect( 'http://sigtics.org:30000');
+socket = io.connect( 'http://sigtics.org:30001');
 
 
 
@@ -517,7 +518,7 @@ socket = io.connect( 'http://sigtics.org:30000');
 
              
 
-          socket = io.connect( 'http://sigtics.org:30000' );
+          socket = io.connect( 'http://sigtics.org:30001' );
 
            
 
@@ -700,10 +701,10 @@ $usuarioG = localStorage.getItem("usuario");
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             }); 
            
-          request.success(function (data) {
-
+                request.success(function (data) {
+                $state.go('chats');
             
-            console.log(data);
+                console.log(data);
               
              }); 
 
