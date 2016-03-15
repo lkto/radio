@@ -35,3 +35,8 @@ span{
 .animacionVer{
   transform:scale(1);
 }
+
+.cssClass{
+  width: 95%;
+  height: 95%;
+}

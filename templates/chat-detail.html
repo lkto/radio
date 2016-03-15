@@ -3,7 +3,17 @@
   'chat' is a $scope variable created in the ChatDetailCtrl controller (controllers.js)
   The ChatDetailCtrl pulls data from the Chats service (service.js)
   The Chats service returns an array of chat messages data
+
+
 -->
+
+<style>
+  .cssClass{
+    width: 95%;
+    height: 95%;
+  }
+</style>
+
 <ion-view view-title="Chat"  hide-nav-bar="true" class="chat-detail" cache-view="false">
 
 <div class="bar bar-header" style="border-color: transparent;
@@ -11,7 +21,8 @@
     color: #fff;">
   <button class="button button-icon icon ion-chevron-left" style="color: #fff;" ng-click="atras()">Atras</button>
   <div class="h1 title" style="color: #fff;">{{chat[0].name}}</div>
-  <button class="button button-icon icon ion-navicon" style="color: #fff;"></button>
+  <button class="button button-icon icon ion-information-circled" style="color: #fff;" 
+  ng-click="viwPerfilU(chat[0].name)"></button>
 </div>
 
 
@@ -20,7 +31,7 @@
 <br/>
 
     <div ng-repeat="message in chat[0].messages" class="message-wrapper rlt"
-         on-hold="onMessageHold($event, $index, message)">
+         on-hold="onMessageHold($event, $index, message )">
 
       <div ng-if="message.type == 'received'">
 
@@ -40,7 +51,7 @@
 
             {{ message.text | nl2br }}
             
-            <img src="{{ message.image }}" class="block" ng-if="message.image" alt="" style="width:90%" />
+            <img src="{{ message.image }}" ng-click="ftoChat(message.image)" class="block" ng-if="message.image" alt="" style="width:90%" />
           </div>
 
           <div class="message-detail">
@@ -65,7 +76,7 @@
           <div class="message" >
           {{ message.text | nl2br }}
 
-          <img src="{{ message.image }}" class="block" ng-if="message.image" alt="" style="width:90%"  />
+          <img src="{{ message.image }}" ng-click="ftoChat(message.image)" class="block" ng-if="message.image" alt="" style="width:90%"  />
           </div>
 
           <div class="message-detail">

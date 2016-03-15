@@ -1,6 +1,11 @@
 <link rel="stylesheet" type="text/css" href="css/inicio.css">
-<ion-view view-title="Chats" cache-view="false">
+<ion-view view-title="Chats"  cache-view="false">
+
+
+
+
   <ion-content>
+
    <div class="list list-inset" >
         <label class="item item-input">
          <i class="icon ion-search placeholder-icon"></i>
@@ -13,20 +18,33 @@
         <img ng-src="{{chat.face}}">
         <h2>{{chat.name}}</h2>
         <p>{{chat.lasText}}</p>
-       <!-- <span class="badge badge-assertive">2</span> -->
+   <span class="badge badge-assertive" >2</span> 
         <i class="icon ion-chevron-right icon-accessory"></i>
-
+     <!--
         <ion-option-button class="button-energized" ng-click="mute(chat)">
           Silenciar
         </ion-option-button>
-        <ion-option-button class="button-assertive" ng-click="remove(chat)">
+      -->
+        <ion-option-button class="button-assertive" ng-click="remove(chat.id)">
           Eliminar
         </ion-option-button>
       </ion-item>
     </ion-list>
   </ion-content>
 
+<div class="tabs tabs-icon-only" style="background-color: #387EF5;">
+  
+  <a class="tab-item"  href="#/contacts" style="color: white; font-weight: bold;">
+    <i class="ion-android-contact" ></i>
+      Iniciar Chat 
+  </a>
+  <a class="tab-item" href="#/crear_grupo" style="color: white; font-weight: bold;">
+    <i class="ion-android-contacts"></i>
+    Crear Grupo
+  </a>
+</div>
 
+<!--
 <div class="contenedor">
 <button class="botonF1" ui-sref="contacts">
   <span><i class="ion-person-add"></i></span>
@@ -38,5 +56,6 @@
   <span><i class="ion-ios-people"></i></span>
 </button>
  </div>
+ -->
 
 </ion-view>

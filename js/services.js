@@ -28,8 +28,36 @@ angular.module('starter.services', [])
     }
 })
 
-.factory('socket', function (socketFactory) {
-  var myIoSocket = io.connect('http://sigtics.org:30001');
+.factory('id_serve', function ($http) {
+
+  $http.get('http://radio.sigtics.org/chat/aceptar').
+      then(function(response) {
+       // $scope.$apply(function() {
+            localStorage.setItem("server", response.data.socket);
+
+            $server = localStorage.getItem("server");
+
+           console.log($server);
+           
+      //  })
+        
+     }) 
+
+$server = localStorage.getItem("server");
+
+return $server;
+
+
+})
+
+.factory('socket', function (socketFactory,$http,id_serve) { 
+
+ var servicio = id_serve;
+ console.log(servicio);
+
+  var myIoSocket = io.connect('http://sigtics.org:'+servicio);
+
+  console.log(myIoSocket);
 
     mySocket = socketFactory({
       ioSocket: myIoSocket

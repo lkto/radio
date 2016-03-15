@@ -86,6 +86,19 @@ angular.module('starter.controllers', [])
      
     }
 
+      $http.get('http://radio.sigtics.org/chat/aceptar').
+      then(function(response) {
+       // $scope.$apply(function() {
+            localStorage.setItem("server", response.data.socket);
+
+            $server = localStorage.getItem("server");
+
+           console.log($server);
+           
+      //  })
+        
+     }) 
+
      //fin
 
 })
@@ -102,6 +115,19 @@ angular.module('starter.controllers', [])
     }
     
   };
+
+  $http.get('http://radio.sigtics.org/chat/aceptar').
+      then(function(response) {
+       // $scope.$apply(function() {
+            localStorage.setItem("server", response.data.socket);
+
+            $server = localStorage.getItem("server");
+
+           console.log($server);
+           
+      //  })
+        
+     }) 
 
 
 
@@ -234,7 +260,7 @@ $scope.viewPost = function(postId) {
 })
 
 // Chat controller, view list chats and chat detail
-.controller('ChatCtrl', function($scope, Chats,$http,$state,socket) {
+.controller('ChatCtrl', function($scope, Chats,$http,$state,socket,id_serve) {
  /* $scope.chats = Chats.all();
   console.log ($scope.chats);*/
 /*
@@ -254,6 +280,9 @@ $http.get('http://radio.sigtics.org/chat/ListarChat?usuario='+usuario).
         }) */
 
 
+var servicio = id_serve;
+
+
 $scope.Dchat = function() {
 
 var usuario = localStorage.getItem("usuario");
@@ -269,7 +298,9 @@ $http.get('http://radio.sigtics.org/chat/ListarChat?usuario='+usuario).
 
 $scope.Dchat();
 
-socket = io.connect( 'http://sigtics.org:30001');
+socket = io.connect( 'http://sigtics.org:'+servicio);
+
+console.log(io.connect( 'http://sigtics.org:'+servicio));
 socket.on( 'new_message', function( data ) {
 /*
     console.log(data);
@@ -309,7 +340,8 @@ console.log(chatId);
 
   // remove a conversation
   $scope.remove = function(chat) {
-    Chats.remove(chat);
+    console.log(chat);
+    //Chats.remove(chat);
   };
 
   // mute a conversation
@@ -318,7 +350,7 @@ console.log(chatId);
   }
 })
 
-.controller('ChatDetailCtrl', function($scope,socket,$upload,$ionicHistory, $stateParams, Chats, $ionicScrollDelegate, $ionicActionSheet, $timeout, $http,$state) {
+.controller('ChatDetailCtrl', function($scope,socket,$upload,$ionicHistory, $stateParams, Chats, $ionicScrollDelegate, $ionicActionSheet, $timeout, $http,$state,id_serve,$ionicPopup) {
   //$scope.chat = Chats.get($stateParams.chatId);
      //$scope.chat = Chats.get(0);
  
@@ -337,6 +369,37 @@ console.log(chatId);
       //  })
         
      })*/
+
+$scope.ftoChat = function(foto) {
+
+  console.log(foto);
+  var foto1 = foto;
+  $scope.cssClass = "cssClass"
+
+  $foto = " <img src='"+foto1+"'   /> ";
+  console.log($foto);
+
+
+  var myPopup = $ionicPopup.show({
+    template:$foto,
+    buttons: [
+       { 
+        text: 'Cerrar',
+        type: 'button-positive'
+       }      
+    ]
+  })
+
+
+
+
+
+}
+
+
+
+var servicio = id_serve;
+
      $scope.atras = function (){
 
 
@@ -378,7 +441,7 @@ $scope.uploadResult = [];
           $scope.uploadResult.push(response.data);
           console.log($scope.uploadResult);
         });
-            socket = io.connect( 'http://sigtics.org:30001');
+            socket = io.connect( 'http://sigtics.org:'+servicio);
 
                  socket.emit('new_message', { 
                  
@@ -439,7 +502,7 @@ $scope.chat1 = function() {
               console.log( $scope.chat);
 
                $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
-             socket = io.connect( 'http://sigtics.org:30001');
+             socket = io.connect( 'http://sigtics.org:'+servicio);
 
                 
            
@@ -453,7 +516,7 @@ $scope.chat1 = function() {
     $scope.chat1();
 
 
-socket = io.connect( 'http://sigtics.org:30001');
+socket = io.connect( 'http://sigtics.org:'+servicio);
 
 
 
@@ -478,6 +541,14 @@ socket = io.connect( 'http://sigtics.org:30001');
   });
 
 
+  $scope.viwPerfilU = function(idU) {
+
+      console.log(idU);
+      localStorage.setItem("View_id_contac", idU);
+      $state.go('edit_perfil');
+   
+
+  }
 
 
 
@@ -518,7 +589,7 @@ socket = io.connect( 'http://sigtics.org:30001');
 
              
 
-          socket = io.connect( 'http://sigtics.org:30001' );
+          socket = io.connect( 'http://sigtics.org:'+servicio );
 
            
 
@@ -559,7 +630,7 @@ socket = io.connect( 'http://sigtics.org:30001');
         };
 
   // hover menu
-  $scope.onMessageHold = function(e, itemIndex, message) {
+  $scope.onMessageHold = function(e, itemIndex, message , id_msg) {
     // show hover menu
     $ionicActionSheet.show({
       buttons: [
@@ -577,7 +648,8 @@ socket = io.connect( 'http://sigtics.org:30001');
             break;
           case 1: // Delete
             // no server side secrets here :~)
-            $scope.chat.messages.splice(itemIndex, 1);
+           // $scope.chat.messages.splice(itemIndex, 1);
+            console.log(message);
             break;
         }
 
@@ -1525,7 +1597,8 @@ var request = $http({
 .controller('perfil', function($scope,$http){
 
   var idC = localStorage.getItem("View_id_contac");
-console.log(idC);
+  console.log(idC);
+  
    var token = "io-gluk@fct%vusb";
 
 
@@ -1545,7 +1618,7 @@ console.log(idC);
 
               $scope.ver_user = response;
 
-              console.log(response);
+              console.log($scope.ver_user);
 
             }); 
 
