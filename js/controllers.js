@@ -526,9 +526,27 @@ var socket = io.connect( 'http://sigtics.org:'+servicio);
 
   $scope.viwPerfilU = function(idU) {
 
-      console.log(idU);
-      localStorage.setItem("View_id_contac", idU);
-      $state.go('edit_perfil');
+     
+
+      var idf = idU.split("-");
+      if(idf[1])
+      {
+        console.log("Grupo");
+        localStorage.setItem("Chat_G", idf[1]);
+        $state.go('info_chat');
+      }
+      else
+      {
+        console.log("Persona");
+        localStorage.setItem("View_id_contac", idf[0]);
+        console.log(idf[0]);
+        $state.go('edit_perfil');
+      }
+ 
+
+
+     // localStorage.setItem("View_id_contac", idU);
+      //$state.go('edit_perfil');
    
 
   }
@@ -1710,16 +1728,164 @@ var request = $http({
 
 })
 
-.controller('info_chat', function($scope){
+.controller('info_chat', function($scope,$http,$state){
+
+  var ChatGrupo = localStorage.getItem("Chat_G");
+  console.log(ChatGrupo);
+
+  var request = $http({
+                method: "post",
+                url: "http://radio.sigtics.org/chat/DetallesGrupo",
+                data: {
+                    id_grupo:ChatGrupo
+              
+                },
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            }); 
+           
+          request.success(function (data) {
+
+            
+              $scope.D_Grupo = data;
+              
+                console.log(data);
+        
+
+              
+             }); 
+
+
 
   $scope.viewFoto1 = function (id_g){
     console.log(id_g);
+
+    localStorage.setItem("grupo_id", id_g);
+    $state.go('foto_grupo');
+
   }
+
   $scope.agregar = function (id_au){
      console.log(id_au);
+
+     var usuario = localStorage.getItem("usuario");
+     var token = "io-gluk@fct%vusb";
+     var id_contac = id_au;
+     var tipoU = 1;
+
+
+
+            var request = $http({
+                method: "post",
+                url: "http://radio.sigtics.org/movil_funciones/Ausuario",
+                data: {
+                    usuario: usuario,
+                    usuario_id: id_contac,
+                    tipoU: tipoU,
+                    token: token
+              
+                },
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            }); 
+            /* Check whether the HTTP Request is Successfull or not. */
+           request.success(function (data) {
+
+             if (data.error==true) {
+              alertify.logPosition("top right");
+              alertify.error(data.msg);
+
+              }else
+              {
+
+              alertify.logPosition("top right");
+              alertify.success(data.msg); 
+              $ionicHistory.nextViewOptions({
+              disableBack: true
+               });
+              console.log(data);
+              $state.go('contacts'); 
+
+
+             }
+
+              
+
+             
+            }); 
+
+
+
   }
 
 })
+
+
+
+.controller('foto_grupo', function($scope,$http,$ionicHistory,alertify,$upload, $timeout,$state){
+
+
+$ionicHistory.nextViewOptions({
+    disableBack: true
+  });
+  var grupo_id = localStorage.getItem("grupo_id");
+  console.log(grupo_id);
+
+  var token = "io-gluk@fct%vusb";
+  var request = $http({
+            method: "post",
+            url: "http://radio.sigtics.org/chat/FotoGrupo",
+            data: {
+                    id: grupo_id,
+                    token: token
+                },
+
+                  headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
+               
+            });
+
+  request.success(function (data) {
+    console.log(data);
+    $scope.img1 = data;
+
+  })
+
+
+   $scope.uploadResult = [];
+   $scope.onFileSelect = function($files) {
+    //$files: an array of files selected, each file has name, size, and type.
+     alertify.logPosition("top right");
+      alertify.success("Actualizando foto , Espere un momento");
+    for (var i = 0; i < $files.length; i++) {
+      var $file = $files[i];
+      $upload.upload({
+        url: 'http://radio.sigtics.org/chat/UploadFotoGrupo',
+        data: {id: grupo_id,
+               token: token},
+        file: $file,
+        progress: function(e){
+         
+        }
+      }).then(function(response) {
+        // file is uploaded successfully
+           
+       $timeout(function() {
+         $state.go('info_chat');
+          $scope.uploadResult.push(response.data);
+          console.log($scope.uploadResult);
+        });
+
+       console.log(response);
+
+      }); 
+    }
+  }
+   $scope.clickUpload = function(){
+
+    ionic.trigger('click', { target: document.getElementById('i_file') });
+   }
+
+
+})
+
 .controller('SettingCtrl', function($scope){
 
 })

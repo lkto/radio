@@ -229,6 +229,13 @@ angular.module('starter', ['ionic', 'btford.socket-io' , 'starter.controllers', 
     controller: 'info_chat'
   })
 
+    .state('foto_grupo', {
+    cache: false,
+    url: '/foto_grupo',
+    templateUrl: 'templates/foto_grupo.html',
+    controller: 'foto_grupo'
+  })
+
   .state('crear_grupo', {
     cache: false,
     url: '/crear_grupo',

@@ -1,14 +1,32 @@
-<ion-view view-title="Informacion Grupos" cache-view="false">
+
+
+<ion-view view-title="Informacion Grupos" cache-view="false" hide-nav-bar="true">
+
+
+<div class="bar bar-header" style="border:none;background-color:#387EF5;">
+<button class="button button-icon icon ion-ios-arrow-back" style="color:#fff" ui-sref="chat-detail">
+   Perfil
+ </button>
+<div class="h1 title" style="color:#fff">Informacion Grupos</div>
+
+</div>
+
+
 <ion-content>
+
+<br/>
+
+
+
 
 </br>
 
 <div class="list">
 
-    <ion-item class="item item-thumbnail-left" ng-click="viewFoto1('1')">
-      <img src="http://radio.sigtics.org/img/grupos.png">
-      <h2>Nombre del Grupo</h2>
-      <p>Ultimo Mensage</p>
+    <ion-item class="item item-thumbnail-left" ng-click="viewFoto1(D_Grupo.id)">
+      <img src="{{D_Grupo.img}}" style=" border-radius: 100%;">
+      <h2>{{D_Grupo.nombre}}</h2>
+      <p>{{D_Grupo.ultimo_mensaje}}</p>
 
   </ion-item>
 
@@ -18,62 +36,23 @@
   <h2 style="">Integrantes</h2>
 
 
-<ion-list class="contact-list">
- <ion-item class="item-avatar item-icon-right"  >
-          <img class="profile-picture" src="img/ben.png" alt=""/>
+<ion-list class="contact-list"  >
+ <ion-item class="item-avatar item-icon-right" ng-repeat="usuarios in D_Grupo.integrantes" >
+
+          <img class="profile-picture" src="{{usuarios.img}}" alt=""/>
+          <h2>{{usuarios.nombre}}</h2>
           <p>
-              Usuario 1
+              {{usuarios.estado}}
           </p>
 
           <i class="icon ion-chevron-right icon-accessory"></i>
 
-          <ion-option-button class="button-stable ion-person-add" ng-click="agregar('2')" >
-          </ion-option-button>
-
- </ion-item>
-  <ion-item class="item-avatar item-icon-right"  >
-          <img class="profile-picture" src="img/ben.png" alt=""/>
-          <p>
-              Usuario 2
-          </p>
-
-          <i class="icon ion-chevron-right icon-accessory"></i>
-
-          <ion-option-button class="button-stable ion-person-add" ng-click="agregar('3')">
-          </ion-option-button>
-
- </ion-item>
-  <ion-item class="item-avatar item-icon-right"  >
-          <img class="profile-picture" src="img/ben.png" alt=""/>
-          <p>
-              Usuario 3
-          </p>
-
-          <i class="icon ion-chevron-right icon-accessory"></i>
-
-          <ion-option-button class="button-stable ion-person-add" ng-click="agregar('4')">
+          <ion-option-button class="button-stable ion-person-add" ng-click="agregar(usuarios.nombre_usuario)" >
           </ion-option-button>
 
  </ion-item>
 
-<!--
 
-    <a class="item item-avatar" href="#">
-      <img src="img/ben.png">
-      <h2>Usuario 1</h2>
-      <p>Estado</p>
-      <ion-option-button class="button-stable ion-android-contact" >
-        </ion-option-button>
-    </a>
-
-    <a class="item item-avatar" href="#">
-      <img src="img/adam.jpg">
-      <h2>Usuario 2</h2>
-      <p>Estado</p>
-      <ion-option-button class="button-stable ion-android-contact" >
-          </ion-option-button>
-    </a>
-    -->
 
 </ion-list>
 

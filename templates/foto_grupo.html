@@ -1,0 +1,62 @@
+<ion-view view-title="Foto de perfil" hide-nav-bar="true" cache-view="false">
+  <ion-content>
+<div class="bar bar-header" style="border:none;background-color:#387EF5;">
+<button class="button button-icon icon ion-ios-arrow-back" style="color:#fff" ui-sref="info_chat">
+   Perfil
+ </button>
+<div class="h1 title" style="color:#fff">Cambiar Fotos</div>
+<button type="button" class="button button-icon icon ion-edit" style="color:#fff" ng-click="clickUpload()"> 
+  </button>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div style="position:relative">
+
+<div style="z-index:1;position:absolute;width:100%">
+<img src="{{ img1 }}" style="-webkit-filter:blur(5px);width:100%;">
+</div>
+<!-- PRINCIPA -->
+
+<div style="z-index:2;position:absolute;width:100%;padding-top:20px">
+<center><img src="{{ img1 }}" class="profile-picture" style="width:90%;box-shadow:0px 0px 10px">
+<form style="display:none">
+<div style="text-align: left;font-size: 20px;padding: 10px;color: #487eaa;">
+</div>
+<div class="file-upload">
+  <br/>
+  <input type="file" id="i_file" name="file" ng-file-select="onFileSelect($files)" accept="image/*"/>
+  <div ng-repeat="files in uploadResult">
+  <!-- in case of error show error message with file name-->
+  <span class='label label-info'>{{files.name}}</span><br/>
+  </div>
+</div>
+</form>
+</center>
+</div>
+</div>
+<style type="text/css">
+div.file-upload {
+    width: 157px;
+    height: 57px;
+    background: url(img/upload.png);
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+
+div.file-upload input {
+    display: block !important;
+    width: 157px !important;
+    height: 57px !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
+}
+</style>
+
+  </ion-content>
+</ion-view>
