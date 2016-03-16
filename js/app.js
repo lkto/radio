@@ -222,6 +222,12 @@ angular.module('starter', ['ionic', 'btford.socket-io' , 'starter.controllers', 
   })
 
   
+  .state('info_chat', {
+    cache: false,
+    url: '/info_chat',
+    templateUrl: 'templates/info_chat.html',
+    controller: 'info_chat'
+  })
 
   .state('crear_grupo', {
     cache: false,

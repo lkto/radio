@@ -86,18 +86,7 @@ angular.module('starter.controllers', [])
      
     }
 
-      $http.get('http://radio.sigtics.org/chat/aceptar').
-      then(function(response) {
-       // $scope.$apply(function() {
-            localStorage.setItem("server", response.data.socket);
-
-            $server = localStorage.getItem("server");
-
-           console.log($server);
-           
-      //  })
-        
-     }) 
+    
 
      //fin
 
@@ -116,19 +105,7 @@ angular.module('starter.controllers', [])
     
   };
 
-  $http.get('http://radio.sigtics.org/chat/aceptar').
-      then(function(response) {
-       // $scope.$apply(function() {
-            localStorage.setItem("server", response.data.socket);
-
-            $server = localStorage.getItem("server");
-
-           console.log($server);
-           
-      //  })
-        
-     }) 
-
+  
 
 
 
@@ -260,7 +237,7 @@ $scope.viewPost = function(postId) {
 })
 
 // Chat controller, view list chats and chat detail
-.controller('ChatCtrl', function($scope, Chats,$http,$state,socket,id_serve) {
+.controller('ChatCtrl', function($scope, Chats,$http,$state,id_serve) {
  /* $scope.chats = Chats.all();
   console.log ($scope.chats);*/
 /*
@@ -298,7 +275,7 @@ $http.get('http://radio.sigtics.org/chat/ListarChat?usuario='+usuario).
 
 $scope.Dchat();
 
-socket = io.connect( 'http://sigtics.org:'+servicio);
+ var socket = io.connect( 'http://sigtics.org:'+servicio);
 
 console.log(io.connect( 'http://sigtics.org:'+servicio));
 socket.on( 'new_message', function( data ) {
@@ -350,7 +327,7 @@ console.log(chatId);
   }
 })
 
-.controller('ChatDetailCtrl', function($scope,socket,$upload,$ionicHistory, $stateParams, Chats, $ionicScrollDelegate, $ionicActionSheet, $timeout, $http,$state,id_serve,$ionicPopup) {
+.controller('ChatDetailCtrl', function($scope,$upload,$ionicHistory, $stateParams, Chats, $ionicScrollDelegate, $ionicActionSheet, $timeout, $http,$state,id_serve,$ionicPopup) {
   //$scope.chat = Chats.get($stateParams.chatId);
      //$scope.chat = Chats.get(0);
  
@@ -441,7 +418,7 @@ $scope.uploadResult = [];
           $scope.uploadResult.push(response.data);
           console.log($scope.uploadResult);
         });
-            socket = io.connect( 'http://sigtics.org:'+servicio);
+            var socket = io.connect( 'http://sigtics.org:'+servicio);
 
                  socket.emit('new_message', { 
                  
@@ -473,6 +450,10 @@ $scope.clickUpload1 = function(){
 
 $scope.chat1 = function() {
 
+
+
+
+
   var usuario = localStorage.getItem("usuario");
    var id_chat = localStorage.getItem("View_id_chat");
    var id_user2 = localStorage.getItem("user_id_chat");
@@ -502,7 +483,7 @@ $scope.chat1 = function() {
               console.log( $scope.chat);
 
                $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
-             socket = io.connect( 'http://sigtics.org:'+servicio);
+             var socket = io.connect( 'http://sigtics.org:'+servicio);
 
                 
            
@@ -515,8 +496,10 @@ $scope.chat1 = function() {
 
     $scope.chat1();
 
+  
 
-socket = io.connect( 'http://sigtics.org:'+servicio);
+
+var socket = io.connect( 'http://sigtics.org:'+servicio);
 
 
 
@@ -582,14 +565,19 @@ socket = io.connect( 'http://sigtics.org:'+servicio);
               console.log(data);
 
               var message = {
-      type: data.tipo,
-      time: 'Just now',
-      text: data.mensaje
-    };
+              type: data.tipo,
+             time: 'Just now',
+             text: data.mensaje
+                  };
+
+
+                  
+
+                  
 
              
 
-          socket = io.connect( 'http://sigtics.org:'+servicio );
+         var socket = io.connect( 'http://sigtics.org:'+servicio );
 
            
 
@@ -634,22 +622,19 @@ socket = io.connect( 'http://sigtics.org:'+servicio);
     // show hover menu
     $ionicActionSheet.show({
       buttons: [
-        {
-          text: 'Copy Text'
-        }, {
-          text: 'Delete Message'
+       {
+          text: 'Eliminar Mensage',
+          type: 'button-assertive'
         }
       ],
       buttonClicked: function(index) {
         switch (index) {
-          case 0: // Copy Text
+          case 0: // ELiminar Mensage
             //cordova.plugins.clipboard.copy(message.text);
+             
+              var idm = message.id;
+              console.log(idm);
 
-            break;
-          case 1: // Delete
-            // no server side secrets here :~)
-           // $scope.chat.messages.splice(itemIndex, 1);
-            console.log(message);
             break;
         }
 
@@ -1725,7 +1710,16 @@ var request = $http({
 
 })
 
+.controller('info_chat', function($scope){
 
+  $scope.viewFoto1 = function (id_g){
+    console.log(id_g);
+  }
+  $scope.agregar = function (id_au){
+     console.log(id_au);
+  }
+
+})
 .controller('SettingCtrl', function($scope){
 
 })

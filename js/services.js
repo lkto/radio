@@ -50,21 +50,7 @@ return $server;
 
 })
 
-.factory('socket', function (socketFactory,$http,id_serve) { 
 
- var servicio = id_serve;
- console.log(servicio);
-
-  var myIoSocket = io.connect('http://sigtics.org:'+servicio);
-
-  console.log(myIoSocket);
-
-    mySocket = socketFactory({
-      ioSocket: myIoSocket
-    });
-    
-  return mySocket;
-})
 
 
   .factory('Chats', function ($http) {
