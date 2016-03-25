@@ -243,6 +243,20 @@ angular.module('starter', ['ionic', 'btford.socket-io' , 'starter.controllers', 
     controller: 'ContactsCtrl'
   })
 
+  .state('a_p_grupo', {
+    cache: false,
+    url: '/a_p_grupo',
+    templateUrl: 'templates/a_p_grupo.html',
+    controller: 'ContactsCtrl'
+  })
+
+  .state('chat-canal', {
+    cache: false,
+    url: '/chat-canal',
+    templateUrl: 'templates/chat-canal.html',
+    controller: 'chat-canal'
+  })
+
     // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');
 

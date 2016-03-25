@@ -13,6 +13,23 @@
        </label>
       </div>
     <ion-list>
+
+
+     <ion-item class="item-remove-animate item-avatar item-icon-right"  type="item-text-wrap"
+                ng-click="canal()">
+        <img ng-src="img/nuevos-iconos/android/iconos/48-48.png">
+        <h2>Mario En Tu Radio</h2>
+   <span class="badge badge-assertive" >2</span> 
+        <i class="icon ion-chevron-right icon-accessory"></i>
+     <!--
+        <ion-option-button class="button-energized" ng-click="mute(chat)">
+          Silenciar
+        </ion-option-button>
+      -->
+      </ion-item>
+    </ion-list>
+
+
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats | filter: busqueda | orderBy: 'chat.fecha' " type="item-text-wrap"
                 ng-click="viewChat(chat.id)">
         <img ng-src="{{chat.face}}">

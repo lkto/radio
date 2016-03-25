@@ -1,0 +1,53 @@
+
+
+<ion-view view-title="Chat"  hide-nav-bar="true" class="chat-detail" cache-view="false">
+
+<div class="bar bar-header" style="border-color: transparent;
+    background-color: #387EF5;
+    color: #fff;">
+  <button class="button button-icon icon ion-chevron-left" style="color: #fff;" ng-click="atras()">Atras</button>
+  <div class="h1 title" style="color: #fff;" >Canal Mario En Tu Radio</div>
+
+</div>
+
+
+  <ion-content class="padding" delegate-handle="mainScroll">
+<br/>
+<br/>
+
+    <div ng-repeat="message in canalM" class="message-wrapper rlt" >
+
+ 
+        <img class="profile-picture left" src="{{ message.face }}" />
+
+
+        <div class="chat-bubble left">
+
+          <div class="message">
+
+           {{ message.titulo | nl2br }}
+
+          <img src="{{ message.image }}" ng-click="ftoChat(message.image)" class="block" ng-if="message.image" alt="" style="width:90%" />
+
+            {{ message.text | nl2br }}
+            
+            
+          </div>
+
+          <div class="message-detail">
+          
+          </div>
+
+        </div>
+
+
+
+
+
+    </div>
+
+
+  </ion-content>
+
+</ion-view>
+

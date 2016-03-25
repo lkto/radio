@@ -300,6 +300,10 @@ socket.on( 'new_message', function( data ) {
 
 
 
+ $scope.canal=function() {
+            
+    $state.go('chat-canal');
+  };
 
  
 
@@ -318,6 +322,67 @@ console.log(chatId);
   // remove a conversation
   $scope.remove = function(chat) {
     console.log(chat);
+
+      var idf = chat.split("-");
+
+      if(idf[1])
+      { 
+
+        var usuario2 = localStorage.getItem("usuario");
+        console.log("Grupo");
+        console.log(idf[0]);
+        var request = $http({
+                method: "post",
+                url: "http://radio.sigtics.org/chat/SalirGrupo",
+                data: {
+                    usuario:usuario2,
+                    id_chat:idf[1]
+                },
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            }); 
+           
+          request.success(function (data) {
+
+            
+         
+              console.log( data);        
+
+                 $scope.Dchat();
+             }); 
+
+
+
+
+      }
+      else
+      {
+        console.log("Persona");
+
+        console.log(idf[0]);
+
+        var request = $http({
+                method: "post",
+                url: "http://radio.sigtics.org/chat/SalirChat",
+                data: {
+                    id_chat:idf[0]
+                },
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            }); 
+           
+          request.success(function (data) {
+
+            
+         
+              console.log( data);        
+
+                 $scope.Dchat();
+             }); 
+ 
+      }
+
+
+
+
     //Chats.remove(chat);
   };
 
@@ -501,7 +566,7 @@ $scope.chat1 = function() {
 
 var socket = io.connect( 'http://sigtics.org:'+servicio);
 
-
+console.log('http://sigtics.org:'+servicio);
 
     socket.on( 'new_message', function( data ) {
 /*
@@ -534,6 +599,7 @@ var socket = io.connect( 'http://sigtics.org:'+servicio);
         console.log("Grupo");
         localStorage.setItem("Chat_G", idf[1]);
         $state.go('info_chat');
+
       }
       else
       {
@@ -551,6 +617,8 @@ var socket = io.connect( 'http://sigtics.org:'+servicio);
 
   }
 
+
+ 
 
 
 
@@ -591,7 +659,7 @@ var socket = io.connect( 'http://sigtics.org:'+servicio);
 
                   
 
-                  
+                  $scope.chat1();
 
              
 
@@ -653,6 +721,31 @@ var socket = io.connect( 'http://sigtics.org:'+servicio);
               var idm = message.id;
               console.log(idm);
 
+               var request = $http({
+                method: "post",
+                url: "http://radio.sigtics.org/chat/EliminarMensaje",
+                data: {
+                    mensaje_id:idm
+
+                },
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+             }); 
+           
+              request.success(function (data) {
+
+            
+              //$scope.chat = data;
+              console.log(data);
+              $scope.chat1();
+
+
+                  });
+
+             
+
+
+
+
             break;
         }
 
@@ -660,6 +753,8 @@ var socket = io.connect( 'http://sigtics.org:'+servicio);
       }
     });
   };
+
+
 
 
 
@@ -784,6 +879,54 @@ $usuarioG = localStorage.getItem("usuario");
              }); 
 
 }
+
+$scope.Agregar_mas = function() {
+
+  if ($scope.cont.length<1) {
+  alertify.logPosition("top right");
+  alertify.error('Seleccione Almenos un contacto ');
+  return;
+  };
+
+
+  var contactos = $scope.cont;
+console.log($scope.cont);
+//localStorage.setItem("Chat_G", idf[1]);
+var Id_Gr = localStorage.getItem("Chat_G");
+console.log(Id_Gr);
+alertify.logPosition("top right");
+alertify.success('Agregando Usuarios, Espere por favor');
+
+
+  var request = $http({
+                method: "post",
+                url: "http://radio.sigtics.org/chat/AgregarUsuarioGrupo",
+                data: {
+                    id_grupo:  Id_Gr,
+                    contactos: contactos
+ 
+              
+                },
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            }); 
+           
+                request.success(function (data) {
+                $state.go('info_chat');
+                alertify.logPosition("top right");
+alertify.success('Usuarios Agregados');
+            
+                console.log(data);
+              
+             }); 
+
+
+
+
+
+
+}
+
+
 
 
 
@@ -1873,7 +2016,7 @@ $ionicHistory.nextViewOptions({
           console.log($scope.uploadResult);
         });
 
-       console.log(response);
+       console.log(response);CHATD
 
       }); 
     }
@@ -1886,6 +2029,41 @@ $ionicHistory.nextViewOptions({
 
 })
 
+.controller('chat-canal', function($scope,$http,$ionicHistory,alertify,$upload, $timeout,$state,$ionicScrollDelegate){
+
+var s = 1;
+       var request = $http({
+                method: "post",
+                url: "http://radio.sigtics.org/chat/DetallesCanal",
+                data: {
+                    usuario: s
+            
+                },
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            }); 
+           
+          request.success(function (data) {
+
+              $scope.canalM = data.messages;
+              $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
+             
+              console.log(data.messages);
+                 
+             }); 
+
+
+
+
+         $scope.atras = function (){
+
+
+         $ionicHistory.clearHistory();
+       $ionicHistory.nextViewOptions({ disableBack: true, historyRoot: true });
+        $state.go('chats');
+     }
+
+
+})
 .controller('SettingCtrl', function($scope){
 
 })
