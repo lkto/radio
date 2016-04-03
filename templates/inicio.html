@@ -17,7 +17,7 @@
                 <h5 class="marginBottom0 marginTop0">{{activity.title}}</h5>
                 <p class="marginTop5 cd-author">Hora: {{activity.author}} - {{activity.date | date: "d MMM"}}</p>
                 <p class="timelineText" ng-if="(activity.type=='text')">{{activity.text}}</p>
-                 <img src={{activity.text}} ng-if="(activity.type=='picture')" style="width:50%"></img>
+                 <img src={{activity.text}} ng-if="(activity.type=='picture')"  ng-click="ftoini(activity.text)"style="width:50%"></img>
               </div>
             </div>
           </div>

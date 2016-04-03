@@ -2040,40 +2040,9 @@ var s = 1;
 })
 
 
-.controller('inicioC', function($scope,$http,$state){
+.controller('inicioC', function($scope,$http,$state,$ionicPopup){
 
- /*    $scope.timeline = [{
-    date: "11 Febrero",
-    title: "Fabio Garcia",
-    author: "13:03 PM",
-    profilePicture: "img/adam.jpg",
-    text: "Lorem ipsum dolor sit amet",
-    type: "text"
 
-  }, {
-    date: "11 Febrero",
-    title: "Fabio Garcia",
-    author:  "13:03 PM",
-    profilePicture: "img/adam.jpg",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    type: "text"
-
-  }, {
-    date: "11 Febrero",
-    title: "Fabio Garcia",
-    author:  "13:03 PM",
-    profilePicture: "img/adam.jpg",
-    text: "img/adam.jpg",
-    type: "picture"
-
-  }, {
-    date: "11 Febrero",
-    title: "Fabio Garcia",
-    author:  "13:03 PM",
-    profilePicture: "img/adam.jpg",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    type: "text"  //video... audio
-  }] */
 
   $http.get('http://radio.sigtics.org/movil_funciones/aceptar').
       then(function(response) {
@@ -2087,6 +2056,29 @@ var s = 1;
       //  })
         
      })
+
+
+     $scope.ftoini = function(dimg)
+     {
+      console.log(dimg);
+      var foto2 = dimg;
+
+        $scope.cssClass = "cssClass"
+
+        $foto1 = " <img src='"+foto2+"'   /> ";
+        console.log($foto1);
+
+
+          var myPopup = $ionicPopup.show({
+            template:$foto1,
+           buttons: [
+            { 
+              text: 'Cerrar',
+              type: 'button-positive'
+           }      
+         ]
+        })
+     }
 
 
 })
