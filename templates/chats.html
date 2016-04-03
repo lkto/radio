@@ -17,9 +17,9 @@
 
      <ion-item class="item-remove-animate item-avatar item-icon-right"  type="item-text-wrap"
                 ng-click="canal()">
-        <img ng-src="img/nuevos-iconos/android/iconos/48-48.png">
+        <img ng-src="img/logo72_os.png">
         <h2>Mario En Tu Radio</h2>
-   <span class="badge badge-assertive" >2</span> 
+   <span class="badge badge-assertive" ></span> 
         <i class="icon ion-chevron-right icon-accessory"></i>
      <!--
         <ion-option-button class="button-energized" ng-click="mute(chat)">
@@ -35,7 +35,7 @@
         <img ng-src="{{chat.face}}">
         <h2>{{chat.name}}</h2>
         <p>{{chat.lasText}}</p>
-   <span class="badge badge-assertive" >2</span> 
+   <span class="badge badge-assertive" ng-if="(chat.total > '0')">{{chat.total}}</span> 
         <i class="icon ion-chevron-right icon-accessory"></i>
      <!--
         <ion-option-button class="button-energized" ng-click="mute(chat)">

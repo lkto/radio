@@ -1,10 +1,16 @@
 <ion-view view-title="{{vm.info.title || 'Radio En linea'}}">
-	<ion-content class="center" style="
-		background: url({{vm.info.coverUrl || 'img/welcome.jpg'}}) center center;
+<ion-content class="center" style="
+		background: url({{vm.info.coverUrl || 'img/image_radio.png'}}) center center;
 		background-size: cover;">
 		<center>
-		<a class="button button-icon icon play-button-icon {{ vm.isPlaying ? 'ion-ios-pause' : 'ion-ios-play' }}"
+		<!--	<a class="button button-icon icon play-button-icon {{ vm.isPlaying ? 'ion-ios-pause' : 'ion-ios-play' }}"
 			ng-click="vm.togglePlay()"></a>
-		</center>
+		</center>-->
+
+		<audio  autoplay="autoplay"><source src=" http://69.64.58.8:8005/;stream.mp3" type="audio/mp3">Your browser does not support the audio element.</audio>
 	</ion-content>
+
+	
+
+
 </ion-view>

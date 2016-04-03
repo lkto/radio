@@ -200,38 +200,7 @@ $scope.viewPost = function(postId) {
   
 
 
-   $scope.timeline = [{
-    date: "11 Febrero",
-    title: "Fabio Garcia",
-    author: "13:03 PM",
-    profilePicture: "img/adam.jpg",
-    text: "Lorem ipsum dolor sit amet",
-    type: "text"
 
-  }, {
-    date: "11 Febrero",
-    title: "Fabio Garcia",
-    author:  "13:03 PM",
-    profilePicture: "img/adam.jpg",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    type: "text"
-
-  }, {
-    date: "11 Febrero",
-    title: "Fabio Garcia",
-    author:  "13:03 PM",
-    profilePicture: "img/adam.jpg",
-    text: "img/adam.jpg",
-    type: "picture"
-
-  }, {
-    date: "11 Febrero",
-    title: "Fabio Garcia",
-    author:  "13:03 PM",
-    profilePicture: "img/adam.jpg",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-    type: "text"  //video... audio
-  }]
 
 
 })
@@ -258,22 +227,27 @@ $http.get('http://radio.sigtics.org/chat/ListarChat?usuario='+usuario).
 
 
 var servicio = id_serve;
-
-
+var chat1;
 $scope.Dchat = function() {
 
 var usuario = localStorage.getItem("usuario");
-var chats;
+
 $http.get('http://radio.sigtics.org/chat/ListarChat?usuario='+usuario).
       then(function(response) {
        // $scope.$apply(function() {
          $scope.chats = response.data;
+         chat1 = response.data;
          console.log($scope.chats);
 
 })
+
+console.log(chat1);
+
     }
 
 $scope.Dchat();
+
+console.log(chat1);
 
  var socket = io.connect( 'http://sigtics.org:'+servicio);
 
@@ -2061,6 +2035,58 @@ var s = 1;
        $ionicHistory.nextViewOptions({ disableBack: true, historyRoot: true });
         $state.go('chats');
      }
+
+
+})
+
+
+.controller('inicioC', function($scope,$http,$state){
+
+ /*    $scope.timeline = [{
+    date: "11 Febrero",
+    title: "Fabio Garcia",
+    author: "13:03 PM",
+    profilePicture: "img/adam.jpg",
+    text: "Lorem ipsum dolor sit amet",
+    type: "text"
+
+  }, {
+    date: "11 Febrero",
+    title: "Fabio Garcia",
+    author:  "13:03 PM",
+    profilePicture: "img/adam.jpg",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+    type: "text"
+
+  }, {
+    date: "11 Febrero",
+    title: "Fabio Garcia",
+    author:  "13:03 PM",
+    profilePicture: "img/adam.jpg",
+    text: "img/adam.jpg",
+    type: "picture"
+
+  }, {
+    date: "11 Febrero",
+    title: "Fabio Garcia",
+    author:  "13:03 PM",
+    profilePicture: "img/adam.jpg",
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+    type: "text"  //video... audio
+  }] */
+
+  $http.get('http://radio.sigtics.org/movil_funciones/aceptar').
+      then(function(response) {
+       // $scope.$apply(function() {
+           // localStorage.setItem("server", response.data.socket);
+
+            //$server = localStorage.getItem("server");
+           $scope.timeline = response.data;
+           console.log(response.data);
+           
+      //  })
+        
+     })
 
 
 })
