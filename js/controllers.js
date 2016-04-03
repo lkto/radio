@@ -633,7 +633,7 @@ console.log('http://sigtics.org:'+servicio);
 
                   
 
-                  $scope.chat1();
+                  $scope.chat1(false);
 
              
 
