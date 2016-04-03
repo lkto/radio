@@ -188,8 +188,7 @@ $http.get('php/cargar_chat.php?usuario='+usuario).
       },
       get: function (chatId) {
 
-        var id_post = localStorage.getItem("View_id_chat");
-        console.log(id_post);
+      
 
         for (var i = 0; i < chats.length; i++) {
           if (chats[i].id === parseInt(chatId)) {
