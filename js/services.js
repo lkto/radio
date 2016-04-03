@@ -250,8 +250,12 @@ $http.get('php/cargar_chat.php?usuario='+usuario).
             }); */
 
         for (var i = 0; i < posts.length; i++) {
-          console.log(posts[i].id_noticia);
-          var id_post = posts[i].id_noticia;
+          
+       
+          var id_post = localStorage.getItem("View_id_noticia");
+          console.log(id_post);
+
+
           if (posts[i].id_noticia == parseInt(id_post)) {
             //console.log(posts[i]);
             return posts[i];

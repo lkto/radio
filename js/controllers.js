@@ -188,6 +188,7 @@ $scope.viewPost = function(postId) {
 
 
   localStorage.setItem("View_id_noticia", postId);
+  console.log(postId);
   /*  $state.go('post'); */
 
     $state.go('post', {postId: postId});
@@ -487,9 +488,9 @@ $scope.clickUpload1 = function(){
 
 
 
-$scope.chat1 = function() {
+$scope.chat1 = function(s=true) {
 
-
+console.log(s);
 
 
 
@@ -508,9 +509,8 @@ $scope.chat1 = function() {
                 data: {
                     usuario:usuario,
                     id_chat:id_chat,
-                    id_user2:id_user2
-                    
-              
+                    id_user2:id_user2,
+                    socket: s
                 },
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             }); 
@@ -558,7 +558,7 @@ console.log('http://sigtics.org:'+servicio);
 */
     console.log ("hvsss");
 
-     $scope.chat1();
+     $scope.chat1(false);
   
   });
 
