@@ -1808,13 +1808,14 @@ var request = $http({
   
   */
 
-      var media = null;
+     
 
     $scope.Play = function(src) {
-        if (media == null) {
-            media = $cordovaMedia.newMedia(src, null, null, mediaStatusCallback);
-        }
-        media.play();
+        var audio = {};
+        audio["walk"] = new Audio();
+        audio["walk"].src = src;
+        audio["walk"].play();
+       console.log(audio);
     }
 
  
