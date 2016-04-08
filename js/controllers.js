@@ -488,8 +488,8 @@ $scope.clickUpload1 = function(){
 
 
 
-$scope.chat1 = function(s=true) {
-
+$scope.chat1 = function() {
+var s = true;
 console.log(s);
 
 
@@ -1747,8 +1747,8 @@ var request = $http({
 
 })
  
-.controller('StreamController' ,function ($interval, appSettings, streamService){
-
+.controller('StreamController' ,function ($interval, appSettings, streamService, $cordovaMedia, $ionicLoading,$scope){
+/*
   var isPlaying = false;
   var stream;
   var timer;
@@ -1806,7 +1806,29 @@ var request = $http({
       });
     }
   
-  
+  */
+
+      var media = null;
+
+    $scope.Play = function(src) {
+        if (media == null) {
+            media = $cordovaMedia.newMedia(src, null, null, mediaStatusCallback);
+        }
+        media.play();
+    }
+
+ 
+    var mediaStatusCallback = function(status) {
+        if(status == 1) {
+            $ionicLoading.show({template: 'Loading...'});
+        } else {
+            $ionicLoading.hide();
+        }
+    }
+
+
+
+
 
 
 })
