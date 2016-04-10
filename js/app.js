@@ -8,7 +8,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'btford.socket-io' , 'starter.controllers', 'starter.services', 'nl2br', 'monospaced.elastic', 'ngCordova', 'ngAlertify', 'angularFileUpload','ngSanitize','ionic.service.core','ionic.service.push'])
+angular.module('starter', ['ionic', 'btford.socket-io' , 'starter.controllers', 'starter.services', 'nl2br', 'monospaced.elastic', 'ngCordova', 'ngAlertify', 'angularFileUpload','ngSanitize','ionic.service.core','ionic.service.push','angularSoundManager'])
 
 
 

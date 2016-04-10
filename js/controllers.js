@@ -1748,67 +1748,9 @@ var request = $http({
 })
  
 .controller('StreamController' ,function ($interval, appSettings, streamService, $cordovaMedia, $ionicLoading,$scope){
-/*
-  var isPlaying = false;
-  var stream;
-  var timer;
 
 
-   var audioStream = appSettings.getSettings().audioStream;
-    var hasAudioStreamMeta = appSettings.getSettings().hasAudioStreamMeta;
-    var vm = angular.extend(this, {
-      togglePlay: togglePlay,
-      isPlaying: isPlaying,
-      info: null
-    });
-
-    // ********************************************************************
-
-    function togglePlay() {
-      if (vm.isPlaying) {
-        pause();
-      } else {
-        play();
-      }
-
-      vm.isPlaying = isPlaying = !isPlaying;
-    }
-
-    function play() {
-      if (window.Stream) {
-        stream = new window.Stream(audioStream);
-        // Play audio
-        stream.play();
-      }
-
-      getStreamInfo();
-      timer = $interval(function() {
-        getStreamInfo();
-      }, 5000);
-    }
-
-    function pause() {
-      vm.info = null;
-      $interval.cancel(timer);
-
-      if (!stream) {
-        return;
-      }
-
-      stream.stop();
-    }
-
-    function getStreamInfo() {
-      streamService.getStreamInfo().then(function(info) {
-        vm.info = info;
-      }, function() {
-        vm.info = null;
-      });
-    }
-  
-  */
-
-     
+     /*
 
     $scope.Play = function(src) {
         var audio = {};
@@ -1826,9 +1768,16 @@ var request = $http({
             $ionicLoading.hide();
         }
     }
+*/
 
-
-
+$scope.songs = [
+            {
+                id: 'one',
+                title: 'Mario En Tu Radio Juvenil',
+                artist: 'Mario',
+                url: 'http://69.64.58.8:8005/;stream.mp3'
+            }
+        ];
 
 
 
