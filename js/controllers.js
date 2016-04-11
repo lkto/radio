@@ -1772,10 +1772,10 @@ var request = $http({
 
 $scope.songs = [
             {
-                id: 'one',
+                id: 'juv',
                 title: 'Mario En Tu Radio Juvenil',
                 artist: 'Mario',
-                url: 'http://69.64.58.8:8005/;stream.mp3'
+                url: 'http://5.199.169.190:8221/;stream.mp3'
             }
         ];
 
