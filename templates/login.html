@@ -1,6 +1,14 @@
 <ion-view view-title="Login" hide-nav-bar="true"  cache-view="false">
 
-  <ion-content >
+<style type="text/css">
+  .menu {
+width: 2px !important;
+background-color: #fff !important;
+display: none !important;
+}
+</style>
+
+  <ion-content class="padding" delegate-handle="mainScroll">
     <!-- Logo -->
       
     <div class="padding text-center" style="padding-top:140px">
@@ -12,7 +20,7 @@
     <div class="list list-inset transparent-form">
       <label class="item item-input">
         <i class="ion-ios-email-outline light icon-label"></i>
-        <input type="text" placeholder="Email o Nombre de usuario" name='usuario_l' id='usuario_l' ng-model="usuario_l" >
+        <input type="text" placeholder="Email o nombre de usuario" name='usuario_l' id='usuario_l' ng-model="usuario_l" >
       </label>
       <label class="item item-input">
         <i class="ion-ios-locked-outline light icon-label"></i>
@@ -21,7 +29,7 @@
     </div>
     <div class="padding">
       <button class="button button-block button-positive"  ng-click="login()">
-        Iniciar Sesion
+        Iniciar sesión
       </button>
     </div>
     </div>

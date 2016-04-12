@@ -1,7 +1,8 @@
 <ion-view view-title="{{vm.info.title || 'Radio En linea'}}">
 <ion-content class="center" style="
-		background: url({{vm.info.coverUrl || 'img/image_radio.png'}}) center center;
-		background-size: cover;">
+        background: url({{vm.info.coverUrl || 'img/b.png'}}) center center;
+        background-size: cover;"
+>
 		<center>
 		<!--	<a class="button button-icon icon play-button-icon {{ vm.isPlaying ? 'ion-ios-pause' : 'ion-ios-play' }}"
 			ng-click="vm.togglePlay()"></a>
@@ -11,23 +12,32 @@
 
 
 		<button class="button" ng-click="Play('http://69.64.58.8:8005/;listen.pls')">Reproducir</button>-->
+</br> 
 
 		<div >
             <div >
 
                 <ul>
                     <li ng-repeat="song in songs">
-                        <button class="button"  music-player="play" add-song="song">{{ song.title }}</button>
-     
+                        <button class="button icon-left ion-play   button-positive"  music-player="play" add-song="song" ng-model="play" ng-click="play1()" data-ng-if="song.play = 1">{{ song.title }}</button>
+
+                        </br>  </br>
                     </li>
+
+
+
                 </ul>
+
+                <button stop-music class="button icon-left ion-stop button-clear  button-outline button-assertive" ng-model="pause" ng-click="play1()" data-ng-if="song.play = 2">Pausar</button>
+
+               
 
              
 
             </div>
         </div>
 
-      
+
         
 
 

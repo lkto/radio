@@ -16,7 +16,7 @@
     <div class="item item-body" style="text-align: justify; padding: 10px;">
       <div ng-click="viewPost(post.id_noticia)">
         <img class="full-image" ng-if="post.img_noticia" src="{{ post.img_noticia }}">
-        <p ng-bing-html='resumen'>{{ post.resumen }}</p>
+        <p ng-bing-html='resumen'><pre>{{ post.resumen }}</pre></p>
       </div>
      
     </div>

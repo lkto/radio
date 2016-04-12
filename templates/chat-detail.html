@@ -34,10 +34,7 @@
 
 
 
-          <div class="message">
-
-            {{ message.text | nl2br }}
-            
+          <div class="message"><pre>{{ message.text  }}</pre>
             <img src="{{ message.image }}" ng-click="ftoChat(message.image)" class="block" ng-if="message.image" alt="" style="width:90%" />
           </div>
 
@@ -57,14 +54,12 @@
         <div class="chat-bubble right">
 
          <div style="color: {{ message.color}}">
-
+            
             {{ message.name | nl2br }}
-          
+           
         </div>
 
-          <div class="message" >
-          {{ message.text | nl2br }}
-
+          <div class="message" ><pre>{{ message.text }}</pre>
           <img src="{{ message.image }}" ng-click="ftoChat(message.image)" class="block" ng-if="message.image" alt="" style="width:90%"  />
           </div>
 
@@ -101,8 +96,8 @@
         <button type="button"  class="button button-icon icon ion-android-attach" ng-click="clickUpload1()" ></button>
       </div>
       <label class="item-input-wrapper">
-        <textarea ng-model="input.message" value="" placeholder="Envia un mensaje a {{chat[0].name}} ...."
-                  required minlength="1" maxlength="1500" msd-elastic></textarea>
+        
+  <textarea ng-model="input.message" value="" placeholder="Envia un mensaje a {{chat[0].name}} ...."required minlength="1" maxlength="1500" msd-elastic></textarea>
       </label>
       <div class="footer-btn-wrap">
         <button class="button button-icon icon ion-android-send footer-btn" type="submit"

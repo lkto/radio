@@ -1,6 +1,14 @@
 /* Empty. Add your own CSS if you like */
 
 .popup{
-	width: 95%;
-	height: 95%;
+min-height: 400px !important;
+width: 90% !important;
+}
+
+.popup-body {
+padding: 10px;
+width: 100%;
+}
+.popup-body img{
+	width: 99% !important;
 }

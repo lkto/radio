@@ -488,8 +488,8 @@ $scope.clickUpload1 = function(){
 
 
 
-$scope.chat1 = function() {
-var s = true;
+$scope.chat1 = function(s) {
+
 console.log(s);
 
 
@@ -499,10 +499,6 @@ console.log(s);
    var id_user2 = localStorage.getItem("user_id_chat");
    
  
-
-
-
-
        var request = $http({
                 method: "post",
                 url: "http://radio.sigtics.org/chat/DetallesChat",
@@ -556,7 +552,7 @@ console.log('http://sigtics.org:'+servicio);
     $scope.chat.messages.push(message);
     $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
 */
-    console.log ("hvsss");
+    //console.log ("hvsss");
 
      $scope.chat1(false);
   
@@ -1064,6 +1060,7 @@ $scope.viewChat1 = function(ID_cont) {
       $estado = document.getElementById("estado_u").value;
       console.log($nombre);
       console.log($estado);
+      localStorage.setItem("nombre_user", $nombre);
 
     var token = "io-gluk@fct%vusb";
     $email_ac = localStorage.getItem("usuario");
@@ -1161,7 +1158,8 @@ $ionicHistory.nextViewOptions({
         }
       }).then(function(response) {
         // file is uploaded successfully
-           
+        localStorage.setItem("imagen_user", response.data.img);
+
        $timeout(function() {
          $state.go('user');
           $scope.uploadResult.push(response.data);
@@ -1254,19 +1252,23 @@ $ionicHistory.nextViewOptions({
             /* Check whether the HTTP Request is Successfull or not. */
             request.success(function (data) {
 
-         
+         console.log(data);
 
-              if(data == 1)
+              if(data.entro == 1)
               {
 
                 localStorage.setItem("usuario", $email);
                 localStorage.setItem("prueba", 0);
                  $templateCache.removeAll();
-
                  $ionicHistory.nextViewOptions({
-    disableBack: true
-  });
+                disableBack: true
+              });
+              
+              localStorage.setItem("nombre_user", data.name);
+              localStorage.setItem("imagen_user", data.foto);
 
+              document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombre_user");
+              document.getElementById("img_usuario").src = localStorage.getItem("imagen_user");
 
                 $state.go('inicio');
               }
@@ -1747,41 +1749,61 @@ var request = $http({
 
 })
  
-.controller('StreamController' ,function ($interval, appSettings, streamService, $cordovaMedia, $ionicLoading,$scope){
-
-
-     /*
-
-    $scope.Play = function(src) {
+.controller('StreamController' ,function($scope,$http,ngAudio,$interval, appSettings, streamService){
+  /*
+$scope.Play = function(src) {
         var audio = {};
         audio["walk"] = new Audio();
         audio["walk"].src = src;
         audio["walk"].play();
        console.log(audio);
     }
+$scope.PlayEmisora = function(src) {
+    $scope.audio = ngAudio.load(src); // returns NgAudioObject
+    console.log($scope.audio);
+    $scope.audio.play();
+  }*/
+  var play = 1;
 
- 
-    var mediaStatusCallback = function(status) {
-        if(status == 1) {
-            $ionicLoading.show({template: 'Loading...'});
-        } else {
-            $ionicLoading.hide();
-        }
-    }
-*/
+$scope.play1 = function(){
+   if (play == 1)
+   {
+    play = 2;
+   } else if (play == 2)
+   {
+    play = 1;
+   }
+
+}
+
+
+
+
+
 
 $scope.songs = [
             {
                 id: 'juv',
                 title: 'Mario En Tu Radio Juvenil',
                 artist: 'Mario',
-                url: 'http://5.199.169.190:8221/;stream.mp3'
+                url: 'http://5.199.169.190:8221/;stream.mp3',
+                play:'play'
+            },{
+                id: 'sal',
+                title: 'Mario En Tu Radio Salsa',
+                artist: 'Mario',
+                url: 'http://5.199.169.190:8036/;stream.mp3',
+                play:'play'
             }
         ];
 
 
 
+console.log($scope.songs);
+
+
 })
+
 
   
 
@@ -1789,7 +1811,7 @@ $scope.songs = [
 
 // SettingCtrl controller
 .controller('prueba', function($scope,$http){
-
+/*
   var usuario = localStorage.getItem("usuario");
    var id_chat = localStorage.getItem("View_id_chat");
 
@@ -1814,6 +1836,7 @@ $scope.songs = [
 
               
              }); 
+          */
 
 })
 
@@ -2015,6 +2038,8 @@ var s = 1;
 .controller('inicioC', function($scope,$http,$state,$ionicPopup){
 
 
+document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombre_user");
+document.getElementById("img_usuario").src = localStorage.getItem("imagen_user");
 
   $http.get('http://radio.sigtics.org/movil_funciones/aceptar').
       then(function(response) {
