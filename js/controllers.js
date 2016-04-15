@@ -207,7 +207,7 @@ $scope.viewPost = function(postId) {
 })
 
 // Chat controller, view list chats and chat detail
-.controller('ChatCtrl', function($scope, Chats,$http,$state,id_serve) {
+.controller('ChatCtrl', function($scope, Chats,$http,$state,id_serve,ngAudio) {
  /* $scope.chats = Chats.all();
   console.log ($scope.chats);*/
 /*
@@ -250,12 +250,22 @@ $http.get('http://radio.sigtics.org/chat/ListarChat?usuario='+usuario).
 
                 for (var x = 0 ; x < chat1[i].total ; x++) {
 
+                  /*
+
                   var audio = {};
       
                   audio["walk"] = new Audio();
                   audio["walk"].src = "sounds/t3.mp3";
                   audio["walk"].play();
                   console.log(audio);
+
+                  */
+                  var src = "sounds/t3.mp3";
+                  $scope.audio = ngAudio.load(src); // returns NgAudioObject
+                  console.log($scope.audio);
+                  $scope.audio.play();
+
+
 
                   //mensaje de los push
                   console.log(chat1[i].push.mensaje);
@@ -1195,8 +1205,10 @@ $ionicHistory.nextViewOptions({
       }).then(function(response) {
         // file is uploaded successfully
         localStorage.setItem("imagen_user", response.data.img);
+              document.getElementById("img_usuario").src = localStorage.getItem("imagen_user");
 
        $timeout(function() {
+
          $state.go('user');
           $scope.uploadResult.push(response.data);
           console.log($scope.uploadResult);
@@ -1829,6 +1841,13 @@ $scope.songs = [
                 title: 'Mario En Tu Radio Salsa',
                 artist: 'Mario',
                 url: 'http://5.199.169.190:8036/;stream.mp3',
+                play:'play'
+            },
+            {
+                id: 'pru',
+                title: 'Timbre',
+                artist: 'Mario',
+                url: 'sounds/t3.mp3',
                 play:'play'
             }
         ];
