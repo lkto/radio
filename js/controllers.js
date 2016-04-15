@@ -239,16 +239,51 @@ $http.get('http://radio.sigtics.org/chat/ListarChat?usuario='+usuario).
          $scope.chats = response.data;
          chat1 = response.data;
          console.log($scope.chats);
+         console.log(chat1.length);
+
+        for (var i = 0 ; i < chat1.length ; i++) {
+
+            //console.log(i);
+
+            console.log (chat1[i].total);
+            if (chat1[i].total > 0){
+
+                for (var x = 0 ; x < chat1[i].total ; x++) {
+
+                  var audio = {};
+      
+                  audio["walk"] = new Audio();
+                  audio["walk"].src = "sounds/t3.mp3";
+                  audio["walk"].play();
+                  console.log(audio);
+
+                  //mensaje de los push
+                  console.log(chat1[i].push.mensaje);
+                  //Usuario
+                  console.log(chat1[i].name);
+
+                 
+                }
+
+
+
+            }
+         
+        }
+     
+
+
+
 
 })
 
-console.log(chat1);
+
 
     }
 
 $scope.Dchat();
 
-console.log(chat1);
+
 
  var socket = io.connect( 'http://sigtics.org:'+servicio);
 
@@ -471,6 +506,7 @@ $scope.uploadResult = [];
                localStorage.setItem("View_id_chat", response.data.id_chat);
                var id_chat1 = localStorage.getItem("View_id_chat");
                console.log(id_chat1);
+                $scope.chat1(false);
 
       }); 
     }
