@@ -29,7 +29,7 @@ angular.module('starter.services', [])
 
 .factory('id_serve', function ($http) {
 
-  $http.get('http://radio.sigtics.org/chat/aceptar').
+  $http.get('http://167.114.164.224/~radiomario/chat/aceptar').
       then(function(response) {
        // $scope.$apply(function() {
             localStorage.setItem("server", response.data.socket);
@@ -135,20 +135,7 @@ return $server;
       }
     ]; */
 
-var usuario = localStorage.getItem("usuario");
- var chats;
-$http.get('php/cargar_chat.php?usuario='+usuario).
-      then(function(response) {
-       // $scope.$apply(function() {
-       
 
-          chats = response.data;
-
-           console.log(chats);
-           
-      //  })
-        
-     }) 
 
     
 
@@ -203,7 +190,7 @@ $http.get('php/cargar_chat.php?usuario='+usuario).
     // Might use a resource here that returns a JSON array
  var posts;
     // Some fake testing data
-     $http.get('http://radio.sigtics.org/movil_funciones/getNoticias').
+     $http.get('http://167.114.164.224/~radiomario/movil_funciones/getNoticias').
       then(function(response) {
        // $scope.$apply(function() {
             posts= response.data;
