@@ -44,5 +44,13 @@ io.on('connection', function (socket) {
     console.log(data);
   }); 
 
+    socket.on( 'new_contact', function( data ) {
+    io.sockets.emit( 'new_contact', {
+      name: data.mensaje,
+      id: data.id_chat
+    });
+    console.log(data);
+  }); 
+
   
 });

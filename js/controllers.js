@@ -22,12 +22,14 @@ angular.module('starter.controllers', [])
 
 // Authentication controller
 // Put your login, register functions here
-.controller('AuthCtrl', function($scope, $location, $ionicHistory, $ionicSideMenuDelegate, $state, $ionicPopup,loginService,$http,$templateCache,$rootScope) {
+.controller('AuthCtrl', function($scope, nom_img, $location, $ionicHistory, $ionicSideMenuDelegate, $state, $ionicPopup,loginService,$http,$templateCache,$rootScope) {
   // hide back butotn in next view
   $ionicHistory.nextViewOptions({
     disableBack: true
   });
-
+console.log(nom_img);
+document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombre_user");
+document.getElementById("img_usuario").src = nom_img;
 
 
   // disabled swipe menu
@@ -92,7 +94,7 @@ angular.module('starter.controllers', [])
 
 })
 // Home controller
-.controller('HomeCtrl', function($scope, Posts, $state, $ionicHistory,$templateCache,$http,$ionicPlatform) {
+.controller('HomeCtrl', function($scope, nom_img, Posts, $state, $ionicHistory,$templateCache,$http,$ionicPlatform) {
 
  var self = $ionicPlatform = {
 
@@ -105,7 +107,11 @@ angular.module('starter.controllers', [])
     
   };
 
-  
+
+
+  console.log(nom_img);
+document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombre_user");
+document.getElementById("img_usuario").src = nom_img;
 
 
 
@@ -157,7 +163,7 @@ angular.module('starter.controllers', [])
     {
       $ionicHistory.nextViewOptions({
     disableBack: true
-  });
+     });
 
 
       $state.go('login');
@@ -207,7 +213,7 @@ $scope.viewPost = function(postId) {
 })
 
 // Chat controller, view list chats and chat detail
-.controller('ChatCtrl', function($scope, Chats,$http,$state,id_serve,ngAudio) {
+.controller('ChatCtrl', function($scope, Chats,$http,$state,id_serve,ngAudio,nom_img, $ionicHistory) {
  /* $scope.chats = Chats.all();
   console.log ($scope.chats);*/
 /*
@@ -226,7 +232,25 @@ $http.get('http://radio.sigtics.org/chat/ListarChat?usuario='+usuario).
            
         }) */
 
+        if(localStorage.getItem("usuario"))
+    {
+       
+    }
+    else
+    {
+      $ionicHistory.nextViewOptions({
+    disableBack: true
+     });
 
+
+      $state.go('login');
+    }
+
+        console.log(nom_img);
+document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombre_user");
+document.getElementById("img_usuario").src = nom_img;
+
+var cont = 0;
 var servicio = id_serve;
 var chat1;
 $scope.Dchat = function() {
@@ -246,10 +270,17 @@ $http.get('http://167.114.164.224/~radiomario/chat/ListarChat?usuario='+usuario)
             //console.log(i);
 
             console.log (chat1[i].total);
+           
             if (chat1[i].total > 0){
 
-                for (var x = 0 ; x < chat1[i].total ; x++) {
 
+
+                cont = parseFloat(chat1[i].total) + cont;
+
+
+               // for (var x = 0 ; x < chat1[i].total ; x++) {
+
+                
                   /*
 
                   var audio = {};
@@ -260,26 +291,43 @@ $http.get('http://167.114.164.224/~radiomario/chat/ListarChat?usuario='+usuario)
                   console.log(audio);
 
                   */
+                  /*
                   var src = "sounds/t3.mp3";
                   $scope.audio = ngAudio.load(src); // returns NgAudioObject
                   console.log($scope.audio);
-                  $scope.audio.play();
+                  $scope.audio.play();*/
 
 
 
                   //mensaje de los push
-                  console.log(chat1[i].push.mensaje);
+                 // console.log(chat1[i].push.mensaje);
                   //Usuario
-                  console.log(chat1[i].name);
+                 // console.log(chat1[i].name);
 
                  
-                }
+             //   }
 
 
 
             }
+
+
          
         }
+
+
+     console.log(cont);
+
+     if (cont > 0 )
+     {
+       document.getElementById("chatLey").innerHTML = cont;
+       cont = 0;
+     }
+     else
+     {
+      document.getElementById("chatLey").innerHTML = "";
+     }
+     
      
 
 
@@ -412,7 +460,7 @@ console.log(chatId);
   }
 })
 
-.controller('ChatDetailCtrl', function($scope,$upload,$ionicHistory, $stateParams, Chats, $ionicScrollDelegate, $ionicActionSheet, $timeout, $http,$state,id_serve,$ionicPopup) {
+.controller('ChatDetailCtrl', function($scope,$upload,$ionicHistory, $stateParams, Chats, $ionicScrollDelegate, $ionicActionSheet, $timeout, $http,$state,id_serve,$ionicPopup, $ionicHistory) {
   //$scope.chat = Chats.get($stateParams.chatId);
      //$scope.chat = Chats.get(0);
  
@@ -431,6 +479,8 @@ console.log(chatId);
       //  })
         
      })*/
+
+
 
 $scope.ftoChat = function(foto) {
 
@@ -779,7 +829,25 @@ console.log('http://167.114.164.224:'+servicio);
 
 
 
-.controller('PostCtrl', function($scope, Posts, $state,$http) {
+.controller('PostCtrl', function($scope, Posts, $state,$http,nom_img, $ionicHistory) {
+
+  if(localStorage.getItem("usuario"))
+    {
+       
+    }
+    else
+    {
+      $ionicHistory.nextViewOptions({
+    disableBack: true
+     });
+
+
+      $state.go('login');
+    }
+  
+console.log(nom_img);
+document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombre_user");
+document.getElementById("img_usuario").src = nom_img;
   // get list posts froms service
 
   /*
@@ -827,11 +895,27 @@ console.log('http://167.114.164.224:'+servicio);
 })
 
 // ContactsCtrl controller
-.controller('ContactsCtrl', function($scope, Contacts, $state,$http,alertify) {
+.controller('ContactsCtrl', function($scope, Contacts, $state,$http,alertify,nom_img, $ionicHistory) {
   // get list posts froms service
   //$scope.contacts = Contacts.all();
  // console.log($scope.contacts);
- 
+
+ if(localStorage.getItem("usuario"))
+    {
+       
+    }
+    else
+    {
+      $ionicHistory.nextViewOptions({
+    disableBack: true
+     });
+
+
+      $state.go('login');
+    }
+ console.log(nom_img);
+document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombre_user");
+document.getElementById("img_usuario").src = nom_img;
       
 
 $scope.cont=[];
@@ -1048,15 +1132,30 @@ $scope.viewChat1 = function(ID_cont) {
 
 
 // UserCtrl controller
-.controller('UserCtrl', function($scope, Contacts, Posts, $stateParams, $http,$ionicPopup,$ionicHistory, $state,$timeout,$upload,alertify) {
+.controller('UserCtrl', function($scope, Contacts, nom_img, Posts, $stateParams, $http,$ionicPopup,$ionicHistory, $state,$timeout,$upload,alertify) {
   // get contact from Contacts service
   // set the userId here
   $ionicHistory.nextViewOptions({
     disableBack: true
   });
+  if(localStorage.getItem("usuario"))
+    {
+       
+    }
+    else
+    {
+      $ionicHistory.nextViewOptions({
+    disableBack: true
+     });
+
+
+      $state.go('login');
+    }
   $email_d = localStorage.getItem("usuario");
   var token = "io-gluk@fct%vusb";
-
+console.log(nom_img);
+document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombre_user");
+document.getElementById("img_usuario").src = nom_img;
   
 
   $scope.clickUpload = function(){
@@ -1184,6 +1283,8 @@ $ionicHistory.nextViewOptions({
   request.success(function (data) {
     console.log(data.img);
     $scope.img = data.img
+    localStorage.setItem("imagen_user", response.data.img);
+    document.getElementById("img_usuario").src = localStorage.getItem("imagen_user");
 
   })
 
@@ -1212,6 +1313,8 @@ $ionicHistory.nextViewOptions({
          $state.go('user');
           $scope.uploadResult.push(response.data);
           console.log($scope.uploadResult);
+          localStorage.setItem("imagen_user", response.data.img);
+              document.getElementById("img_usuario").src = localStorage.getItem("imagen_user");
         });
 
       }); 
@@ -1231,7 +1334,7 @@ $ionicHistory.nextViewOptions({
               
 
  
-.controller('login', function($scope,$ionicPopup,$http,$state,$location,$templateCache,$ionicHistory,alertify,$rootScope,$ionicPlatform){
+.controller('login', function($scope,$ionicPopup,$http,$state,$location,$templateCache,$ionicHistory,alertify,$rootScope,$ionicPlatform, $ionicHistory){
 
 
    $ionicPlatform.ready(function() {
@@ -1390,7 +1493,7 @@ $ionicHistory.nextViewOptions({
 })
 
 
-.controller('menu_perfil', function($scope,$ionicPopup,$http,$state,$location,$templateCache,alertify){
+.controller('menu_perfil', function($scope,$ionicPopup,$http,$state,$location,$templateCache,alertify, $ionicHistory){
 
   
 
@@ -1481,6 +1584,19 @@ $email_d = localStorage.getItem("usuario");
 
 .controller('c_clave', function($scope,$ionicPopup,$http,$state,$location,$templateCache,$ionicHistory,alertify){
 
+  if(localStorage.getItem("usuario"))
+    {
+       
+    }
+    else
+    {
+      $ionicHistory.nextViewOptions({
+    disableBack: true
+     });
+
+
+      $state.go('login');
+    }
   $scope.cambiar = function () {
 
     var token = "io-gluk@fct%vusb";
@@ -1528,8 +1644,21 @@ $email_d = localStorage.getItem("usuario");
 
 // Agregar Contactos
 
-.controller('agrgarC', function($scope,$ionicPopup,$http,$state,$location,$templateCache,$ionicHistory,alertify){
+.controller('agrgarC', function($scope,$ionicPopup,$http,$state,$location,$templateCache,$ionicHistory,id_serve,alertify){
+var servicio = id_serve;
+if(localStorage.getItem("usuario"))
+    {
+       
+    }
+    else
+    {
+      $ionicHistory.nextViewOptions({
+    disableBack: true
+     });
 
+
+      $state.go('login');
+    }
   $scope.cClave = function () {
 
     var token = "io-gluk@fct%vusb";
@@ -1568,6 +1697,14 @@ $email_d = localStorage.getItem("usuario");
               disableBack: true
                });
               console.log(data);
+            var socket = io.connect( 'http://167.114.164.224:'+servicio);
+              socket.emit('new_contact', { 
+                  usuario: usuario,
+                  usuario_id: $email_con,
+                  tipoU: tipoU
+
+                });
+
               $state.go('contacts'); 
 
 
@@ -1584,14 +1721,29 @@ $email_d = localStorage.getItem("usuario");
 
 
 // Solicitudes Enviadas
-.controller('Senviadas', function($scope,$http,alertify,$ionicHistory,$state){
+.controller('Senviadas', function($scope,$http,alertify,id_serve,$ionicHistory,$state){
+  var servicio = id_serve;
+  if(localStorage.getItem("usuario"))
+    {
+       
+    }
+    else
+    {
+      $ionicHistory.nextViewOptions({
+    disableBack: true
+     });
 
-  
-  $email_en = localStorage.getItem("usuario");
-  console.log($email_en);
-   var token = "io-gluk@fct%vusb";
-   console.log(token);
-  var request = $http({
+
+      $state.go('login');
+    }
+
+$scope.solev = function(){
+
+    $email_en = localStorage.getItem("usuario");
+      console.log($email_en);
+      var token = "io-gluk@fct%vusb";
+      console.log(token);
+      var request = $http({
             method: "post",
             url: "http://167.114.164.224/~radiomario/movil_funciones/S_enviadas",
             data: {
@@ -1611,7 +1763,22 @@ $email_d = localStorage.getItem("usuario");
 
               console.log(response);
 
-            }); 
+            });
+
+          }
+
+
+$scope.solev();
+
+  var socket = io.connect( 'http://167.114.164.224:'+servicio);
+
+    socket.on( 'new_contact', function( data ) {
+
+    $scope.solev();
+  
+  });
+
+
 
 
 $scope.Csolicitud = function (Csolicitu) {
@@ -1644,6 +1811,11 @@ var request = $http({
               $ionicHistory.nextViewOptions({
               disableBack: true
                });
+              var socket = io.connect( 'http://167.114.164.224:'+servicio);
+              socket.on( 'new_contact', function( data ) {
+
+                    $scope.solev();
+               });
               console.log(response);
               $state.go('solicitudes'); 
 
@@ -1655,7 +1827,23 @@ var request = $http({
 })
 
 // SettingCtrl controller
-.controller('Senrecibidas', function($scope,$http,alertify,$ionicHistory,$state){
+.controller('Senrecibidas', function($scope,$http,alertify,$ionicHistory,id_serve,$state){
+var servicio = id_serve;
+if(localStorage.getItem("usuario"))
+    {
+       
+    }
+    else
+    {
+      $ionicHistory.nextViewOptions({
+    disableBack: true
+     });
+
+
+      $state.go('login');
+    }
+
+$scope.solrec = function (){
 
   $email_rec = localStorage.getItem("usuario");
   console.log($email_rec);
@@ -1682,6 +1870,20 @@ var request = $http({
               console.log(response);
 
             }); 
+
+}
+
+
+  $scope.solrec();
+
+  var socket = io.connect( 'http://167.114.164.224:'+servicio);
+
+    socket.on( 'new_contact', function( data ) {
+
+
+     $scope.solrec();
+  
+  });
 
   $scope.Dsolicitud = function (Dsolicitu) {
 
@@ -1713,6 +1915,15 @@ var request = $http({
               $ionicHistory.nextViewOptions({
               disableBack: true
                });
+
+               var socket = io.connect( 'http://167.114.164.224:'+servicio);
+
+              socket.on( 'new_contact', function( data ) {
+
+
+                $scope.solrec();
+  
+              });
               console.log(response);
               $state.go('solicitudes'); 
 
@@ -1750,6 +1961,15 @@ var request = $http({
               $ionicHistory.nextViewOptions({
               disableBack: true
                });
+
+               var socket = io.connect( 'http://167.114.164.224:'+servicio);
+
+              socket.on( 'new_contact', function( data ) {
+
+
+                $scope.solrec();
+  
+              });
               console.log(response);
               $state.go('solicitudes'); 
 
@@ -1764,7 +1984,21 @@ var request = $http({
 
 })
 
-.controller('perfil', function($scope,$http){
+.controller('perfil', function($scope,$http, $ionicHistory){
+
+  if(localStorage.getItem("usuario"))
+    {
+       
+    }
+    else
+    {
+      $ionicHistory.nextViewOptions({
+    disableBack: true
+     });
+
+
+      $state.go('login');
+    }
 
   var idC = localStorage.getItem("View_id_contac");
   console.log(idC);
@@ -1797,7 +2031,7 @@ var request = $http({
 
 })
  
-.controller('StreamController' ,function($scope,$http,ngAudio,$interval, appSettings, streamService){
+.controller('StreamController' ,function($scope,$http,ngAudio,$interval, appSettings, streamService, $ionicHistory){
   /*
 $scope.Play = function(src) {
         var audio = {};
@@ -1811,6 +2045,19 @@ $scope.PlayEmisora = function(src) {
     console.log($scope.audio);
     $scope.audio.play();
   }*/
+  if(localStorage.getItem("usuario"))
+    {
+       
+    }
+    else
+    {
+      $ionicHistory.nextViewOptions({
+    disableBack: true
+     });
+
+
+      $state.go('login');
+    }
   var play = 1;
 
 $scope.play1 = function(){
@@ -2084,11 +2331,25 @@ var s = 1;
 })
 
 
-.controller('inicioC', function($scope,$http,$state,$ionicPopup){
+.controller('inicioC', function($scope,$http,$state,$ionicPopup, nom_img, $ionicHistory){
+  if(localStorage.getItem("usuario"))
+    {
+       
+    }
+    else
+    {
+      $ionicHistory.nextViewOptions({
+    disableBack: true
+     });
 
 
+      $state.go('login');
+    }
+
+console.log(nom_img);
 document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombre_user");
-document.getElementById("img_usuario").src = localStorage.getItem("imagen_user");
+document.getElementById("img_usuario").src = nom_img;
+console.log(nom_img);
 
   $http.get('http://167.114.164.224/~radiomario/movil_funciones/aceptar').
       then(function(response) {

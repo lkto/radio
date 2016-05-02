@@ -17,14 +17,14 @@
 <br/>
 
     <div ng-repeat="message in chat[0].messages" class="message-wrapper rlt"
-         on-hold="onMessageHold($event, $index, message )">
+         >
 
       <div ng-if="message.type == 'received'">
 
         <img class="profile-picture left" src="{{ chat[0].face }}" ng-if="chat[0].face "/>
         <img class="profile-picture left" src="{{ message.imagen_per }}" ng-if="message.imagen_per"/>
 
-        <div class="chat-bubble left">
+   <div class="chat-bubble left">
 
         <div style="color: {{ message.color}}">
 
@@ -45,7 +45,7 @@
         </div>
       </div>
 
-      <div ng-if="message.type == 'sent'">
+      <div ng-if="message.type == 'sent'" on-hold="onMessageHold($event, $index, message )">
 
         <img class="profile-picture right" src="{{ chat[0].face2 }}" ng-if="chat[0].face2" />
         <img class="profile-picture right" src="{{ chat[0].faceg }}" ng-if="chat[0].faceg" />

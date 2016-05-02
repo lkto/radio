@@ -1,5 +1,55 @@
 angular.module('starter.services', [])
 
+.run(function($cordovaPush) {
+
+
+  var androidConfig = {
+    "senderID": "217743739524"
+  };
+
+  document.addEventListener("deviceready", function(){
+
+    $cordovaPush.register(androidConfig).then(function(result) {
+      // Success
+      alert(result);
+    }, function(err) {
+      // Error
+      alert(err);
+    })
+
+    /*$rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+      switch(notification.event) {
+        case 'registered':
+          if (notification.regid.length > 0 ) {
+            alert('registration ID = ' + notification.regid);
+          }
+          break;
+
+        case 'message':
+          // this is the actual push notification. its format depends on the data model from the push server
+          alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
+          break;
+
+        case 'error':
+          alert('GCM error = ' + notification.msg);
+          break;
+
+        default:
+          alert('An unknown GCM event has occurred');
+          break;
+      }
+    });*/
+
+
+    // WARNING: dangerous to unregister (results in loss of tokenID)
+    /*$cordovaPush.unregister(options).then(function(result) {
+      // Success!
+    }, function(err) {
+      // Error
+    })*/
+
+ }, false);
+})
 .constant('ENV', {name:'development',youtubeKey:'AIzaSyDael5MmCQa1GKQNKQYypmBeB08GATgSEo',ionicPrivateKey:'a9265eaf15a20cc8516c770e8748aeed4891b28f453ce755',ionicPublicKey:'e30d4d540b8c75d1f167bbf242423c3fb23fe10275d1c016',ionicAppId:'241b6d37',gcmId:'228071472080',instagramAppId:'2998ca20ed924ca3be22907c6ae77363',facebookPermanentAccessToken:'CAANL6xXrSHYBANNHhMUDugVZBHXfVQBMeWG6FmpYROWcOEmC2xze1BNiraZB87NCAZC3w08L7KhCBnhJItZCUzWCgBNzBjt0BkoV6qMoXjIZBjkWRTUGgZBR39OZAiP3DF76jufQ4hJ7xsdQc0l68vFAZAePdZCZAjkjTwaOeEZC22xi8ZAQYBqvNvYRgIfOZBzf4zRURHgrLtNazxzln8ZBkd9FZC7',firebaseUrl:'music-band-ionic.firebaseio.com',parse:{applicationId:'sidmrbO9OqG3pe4iErva408MHFysJZ2zChYPAXlU',key:'e49Rnlja6llKnFW5p0OOF8dkHvJi5o1hrVzFGBnc'},settingsSource:'LOCAL'})
 
 
@@ -45,6 +95,39 @@ angular.module('starter.services', [])
 $server = localStorage.getItem("server");
 
 return $server;
+
+
+})
+
+.factory('nom_img', function ($http) {
+
+    $email_d = localStorage.getItem("usuario");
+    var token = "io-gluk@fct%vusb";
+
+  //console.log($email_d);
+    var request = $http({
+            method: "post",
+            url: "http://167.114.164.224/~radiomario/movil_funciones/getUser",
+            data: {
+                    email: $email_d,
+                    token: token
+                },
+
+                  headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
+               
+            });
+            /* Check whether the HTTP Request is Successfull or not. */
+            request.success(function (response) {
+
+              console.log(response.img);
+              localStorage.setItem("img_user", response.img);
+              $img1 = localStorage.getItem("img_user");
+
+            });
+
+            $img1 = localStorage.getItem("img_user");
+            return $img1;
+      
 
 
 })
