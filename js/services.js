@@ -8,6 +8,8 @@ angular.module('starter.services', [])
   };
 
   document.addEventListener("deviceready", function(){
+
+    alert('funciona');
     
     $cordovaPush.register(androidConfig).then(function(result) {
       // Success
@@ -17,7 +19,7 @@ angular.module('starter.services', [])
       alert(err);
     })
 
-    /*$rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+    $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
       switch(notification.event) {
         case 'registered':
           if (notification.regid.length > 0 ) {
@@ -38,7 +40,7 @@ angular.module('starter.services', [])
           alert('An unknown GCM event has occurred');
           break;
       }
-    });*/
+    });
 
 
     // WARNING: dangerous to unregister (results in loss of tokenID)
