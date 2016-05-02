@@ -1,12 +1,8 @@
 <script  type="text/javascript" charset="utf-8" async defer>
 
-    function onLoad() {
-        document.addEventListener("deviceready", onDeviceReady, false);
-    }
-    // device APIs are available
-    function onDeviceReady() {
-        alert("device ready event occured");
-    }
+   alert('sss');
+   var string = device.uuid;
+   alert(string);
 
 </script>
 
@@ -91,7 +87,7 @@
 
     <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
-  <body ng-app="starter" onload="onLoad()" >
+  <body ng-app="starter"  >
     <ion-side-menus>
 
       <!-- Center content -->
