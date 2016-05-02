@@ -66,12 +66,7 @@ angular.module('starter', ['ionic', 'btford.socket-io','starter.controllers', 's
   
   })
 
-  // Emisora
-.state('emisora', {
-    url: '/emisora',
-    templateUrl: 'templates/emisora.html',
-    controller: 'ExampleController'
-  })
+
 
  // Agregar Contacto
 .state('agregar', {
@@ -105,12 +100,6 @@ angular.module('starter', ['ionic', 'btford.socket-io','starter.controllers', 's
     controller: 'ChatDetailCtrl'
   })
 
-  // List of notifications
-  .state('notifications', {
-    url: '/notifications',
-    templateUrl: 'templates/notifications.html',
-    controller: 'NotificationsCtrl'
-  })
 
   // Contact list
   .state('contacts', {

@@ -1,33 +1,18 @@
 
 angular.module('starter.controllers', [])
 
-.controller("ExampleController", function($scope, $cordovaMedia, $ionicLoading) {
- 
-    $scope.play = function(src) {
-        var media = new Media(src, null, null, mediaStatusCallback);
-        $cordovaMedia.play(media);
-    }
- 
-    var mediaStatusCallback = function(status) {
-        if(status == 1) {
-            $ionicLoading.show({template: 'Cargando...'});
-        } else {
-            $ionicLoading.hide();
-        }
-    }
- 
-})
+
 
 
 
 // Authentication controller
 // Put your login, register functions here
-.controller('AuthCtrl', function($scope, nom_img, $location, $ionicHistory, $ionicSideMenuDelegate, $state, $ionicPopup,loginService,$http,$templateCache,$rootScope) {
+.controller('AuthCtrl', function($scope, nom_img, $location, $ionicHistory, $ionicSideMenuDelegate, $state, $ionicPopup,$http,$templateCache,$rootScope) {
   // hide back butotn in next view
   $ionicHistory.nextViewOptions({
     disableBack: true
   });
-console.log(nom_img);
+
 document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombre_user");
 document.getElementById("img_usuario").src = nom_img;
 
@@ -109,7 +94,7 @@ document.getElementById("img_usuario").src = nom_img;
 
 
 
-  console.log(nom_img);
+  
 document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombre_user");
 document.getElementById("img_usuario").src = nom_img;
 
@@ -117,12 +102,12 @@ document.getElementById("img_usuario").src = nom_img;
 
 
   $templateCache.removeAll();
-  console.log(localStorage.getItem("prueba"));
+ 
 
   $scope.pruebaC = function () {
 
   $email_p = localStorage.getItem("usuario");
-  console.log($email_p);
+ 
    var token = "io-gluk@fct%vusb";
 
 
@@ -131,7 +116,7 @@ document.getElementById("img_usuario").src = nom_img;
 
   
   $email_d = localStorage.getItem("usuario");
-  console.log($email_d);
+ 
    var token = "io-gluk@fct%vusb";
    var request = $http({
             method: "post",
@@ -149,7 +134,6 @@ document.getElementById("img_usuario").src = nom_img;
 
               $scope.user = response;
 
-              console.log(response);
 
             });
 
@@ -169,7 +153,7 @@ document.getElementById("img_usuario").src = nom_img;
       $state.go('login');
     }
 
-console.log(localStorage.getItem("usuario"));
+
     
       
 
@@ -194,7 +178,7 @@ $scope.viewPost = function(postId) {
 
 
   localStorage.setItem("View_id_noticia", postId);
-  console.log(postId);
+ 
   /*  $state.go('post'); */
 
     $state.go('post', {postId: postId});
@@ -246,7 +230,7 @@ $http.get('http://radio.sigtics.org/chat/ListarChat?usuario='+usuario).
       $state.go('login');
     }
 
-        console.log(nom_img);
+  
 document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombre_user");
 document.getElementById("img_usuario").src = nom_img;
 
@@ -262,14 +246,13 @@ $http.get('http://167.114.164.224/~radiomario/chat/ListarChat?usuario='+usuario)
        // $scope.$apply(function() {
          $scope.chats = response.data;
          chat1 = response.data;
-         console.log($scope.chats);
-         console.log(chat1.length);
+      
 
         for (var i = 0 ; i < chat1.length ; i++) {
 
             //console.log(i);
 
-            console.log (chat1[i].total);
+        
            
             if (chat1[i].total > 0){
 
@@ -316,7 +299,7 @@ $http.get('http://167.114.164.224/~radiomario/chat/ListarChat?usuario='+usuario)
         }
 
 
-     console.log(cont);
+     
 
      if (cont > 0 )
      {
@@ -345,7 +328,7 @@ $scope.Dchat();
 
  var socket = io.connect( 'http://167.114.164.224:'+servicio);
 
-console.log(io.connect( 'http://167.114.164.224:'+servicio));
+
 socket.on( 'new_message', function( data ) {
 /*
     console.log(data);
@@ -360,7 +343,7 @@ socket.on( 'new_message', function( data ) {
     $scope.chat.messages.push(message);
     $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
 */
-    console.log ("detchat");
+ 
 
      $scope.Dchat();
   
@@ -389,7 +372,7 @@ console.log(chatId);
 
   // remove a conversation
   $scope.remove = function(chat) {
-    console.log(chat);
+
 
       var idf = chat.split("-");
 
@@ -397,8 +380,7 @@ console.log(chatId);
       { 
 
         var usuario2 = localStorage.getItem("usuario");
-        console.log("Grupo");
-        console.log(idf[0]);
+     
         var request = $http({
                 method: "post",
                 url: "http://167.114.164.224/~radiomario/chat/SalirGrupo",
@@ -413,7 +395,7 @@ console.log(chatId);
 
             
          
-              console.log( data);        
+                 
 
                  $scope.Dchat();
              }); 
@@ -424,9 +406,7 @@ console.log(chatId);
       }
       else
       {
-        console.log("Persona");
 
-        console.log(idf[0]);
 
         var request = $http({
                 method: "post",
@@ -441,7 +421,7 @@ console.log(chatId);
 
             
          
-              console.log( data);        
+            
 
                  $scope.Dchat();
              }); 
@@ -484,12 +464,12 @@ console.log(chatId);
 
 $scope.ftoChat = function(foto) {
 
-  console.log(foto);
+
   var foto1 = foto;
   $scope.cssClass = "cssClass"
 
   $foto = " <img src='"+foto1+"'   /> ";
-  console.log($foto);
+
 
 
   var myPopup = $ionicPopup.show({
@@ -551,7 +531,7 @@ $scope.uploadResult = [];
        $timeout(function() {
           
           $scope.uploadResult.push(response.data);
-          console.log($scope.uploadResult);
+       
         });
             var socket = io.connect( 'http://167.114.164.224:'+servicio);
 
@@ -561,11 +541,11 @@ $scope.uploadResult = [];
 
                 });
 
-              console.log(response.data);
+            
 
                localStorage.setItem("View_id_chat", response.data.id_chat);
                var id_chat1 = localStorage.getItem("View_id_chat");
-               console.log(id_chat1);
+             
                 $scope.chat1(false);
 
       }); 
@@ -578,7 +558,7 @@ $scope.uploadResult = [];
 $scope.clickUpload1 = function(){
 
    ionic.trigger('click', { target: document.getElementById('i_file1') });
-   console.log("click");
+
 
    }
 
@@ -586,7 +566,7 @@ $scope.clickUpload1 = function(){
 
 $scope.chat1 = function(s) {
 
-console.log(s);
+
 
 
 
@@ -611,15 +591,13 @@ console.log(s);
 
             
               $scope.chat = data;
-              console.log( $scope.chat);
+           
 
                $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
              var socket = io.connect( 'http://167.114.164.224:'+servicio);
 
                 
-           
-              console.log($scope.chat);
-                 
+
              }); 
  }
 
@@ -632,7 +610,7 @@ console.log(s);
 
 var socket = io.connect( 'http://167.114.164.224:'+servicio);
 
-console.log('http://167.114.164.224:'+servicio);
+
 
     socket.on( 'new_message', function( data ) {
 /*
@@ -662,16 +640,16 @@ console.log('http://167.114.164.224:'+servicio);
       var idf = idU.split("-");
       if(idf[1])
       {
-        console.log("Grupo");
+    
         localStorage.setItem("Chat_G", idf[1]);
         $state.go('info_chat');
 
       }
       else
       {
-        console.log("Persona");
+      
         localStorage.setItem("View_id_contac", idf[0]);
-        console.log(idf[0]);
+    
         $state.go('edit_perfil');
       }
  
@@ -711,10 +689,7 @@ console.log('http://167.114.164.224:'+servicio);
             }); 
            
           request.success(function (data) {
-              console.log("devuelve");
-            
-              //$scope.chat = data;
-              console.log(data);
+             
 
               var message = {
               type: data.tipo,
@@ -740,11 +715,11 @@ console.log('http://167.114.164.224:'+servicio);
 
                 });
 
-              console.log(data);
+          
 
                localStorage.setItem("View_id_chat", data.id_chat);
                var id_chat1 = localStorage.getItem("View_id_chat");
-               console.log(id_chat1);
+           
         
  
               
@@ -753,7 +728,7 @@ console.log('http://167.114.164.224:'+servicio);
 
 
    
-    console.log(message);
+   
     $scope.input.message = '';
 
     // push to massages list
@@ -785,7 +760,7 @@ console.log('http://167.114.164.224:'+servicio);
             //cordova.plugins.clipboard.copy(message.text);
              
               var idm = message.id;
-              console.log(idm);
+             
 
                var request = $http({
                 method: "post",
@@ -801,7 +776,7 @@ console.log('http://167.114.164.224:'+servicio);
 
             
               //$scope.chat = data;
-              console.log(data);
+            
               $scope.chat1();
 
 
@@ -845,7 +820,7 @@ console.log('http://167.114.164.224:'+servicio);
       $state.go('login');
     }
   
-console.log(nom_img);
+
 document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombre_user");
 document.getElementById("img_usuario").src = nom_img;
   // get list posts froms service
@@ -888,11 +863,8 @@ document.getElementById("img_usuario").src = nom_img;
  
 })
 
-// Notifications controller
-.controller('NotificationsCtrl', function($scope, Notifications) {
-  // get list posts from service
-  $scope.notifications = Notifications.all();
-})
+
+
 
 // ContactsCtrl controller
 .controller('ContactsCtrl', function($scope, Contacts, $state,$http,alertify,nom_img, $ionicHistory) {
@@ -913,7 +885,7 @@ document.getElementById("img_usuario").src = nom_img;
 
       $state.go('login');
     }
- console.log(nom_img);
+ 
 document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombre_user");
 document.getElementById("img_usuario").src = nom_img;
       
@@ -956,7 +928,7 @@ return;
 };
 
 var contactos = $scope.cont;
-console.log($scope.cont);
+
 $usuarioG = localStorage.getItem("usuario");
 
   var request = $http({
@@ -974,7 +946,7 @@ $usuarioG = localStorage.getItem("usuario");
                 request.success(function (data) {
                 $state.go('chats');
             
-                console.log(data);
+                
               
              }); 
 
@@ -990,10 +962,10 @@ $scope.Agregar_mas = function() {
 
 
   var contactos = $scope.cont;
-console.log($scope.cont);
+
 //localStorage.setItem("Chat_G", idf[1]);
 var Id_Gr = localStorage.getItem("Chat_G");
-console.log(Id_Gr);
+
 alertify.logPosition("top right");
 alertify.success('Agregando Usuarios, Espere por favor');
 
@@ -1015,7 +987,7 @@ alertify.success('Agregando Usuarios, Espere por favor');
                 alertify.logPosition("top right");
 alertify.success('Usuarios Agregados');
             
-                console.log(data);
+              
               
              }); 
 
@@ -1049,9 +1021,7 @@ $scope.ccon = function(){
             
               $scope.contacts = data;
               $scope.list = $scope.contacts ;
-              
-              console.log($scope.contacts);
-              console.log($scope.list);
+        
               return $scope.list
               
              }); 
@@ -1095,7 +1065,7 @@ $scope.viewChat1 = function(ID_cont) {
 
     
     var idE = idusuarioE;
-    console.log(idE);
+ 
     var token = "io-gluk@fct%vusb";
 
 
@@ -1121,7 +1091,7 @@ $scope.viewChat1 = function(ID_cont) {
                   $scope.ccon();
                   
                
-              console.log(response);
+          
 
             }); 
 
@@ -1153,7 +1123,7 @@ $scope.viewChat1 = function(ID_cont) {
     }
   $email_d = localStorage.getItem("usuario");
   var token = "io-gluk@fct%vusb";
-console.log(nom_img);
+
 document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombre_user");
 document.getElementById("img_usuario").src = nom_img;
   
@@ -1179,7 +1149,7 @@ document.getElementById("img_usuario").src = nom_img;
 
               $scope.user = response;
 
-              console.log(response);
+            
 
             });
 
@@ -1203,8 +1173,7 @@ document.getElementById("img_usuario").src = nom_img;
 
       $nombre = document.getElementById("nombre_u").value;
       $estado = document.getElementById("estado_u").value;
-      console.log($nombre);
-      console.log($estado);
+      
       localStorage.setItem("nombre_user", $nombre);
 
     var token = "io-gluk@fct%vusb";
@@ -1236,7 +1205,7 @@ document.getElementById("img_usuario").src = nom_img;
               alertify.logPosition("top right");
               alertify.success($men);
               $state.go('user');
-              console.log(data);
+             
               }
              
             });
@@ -1281,7 +1250,7 @@ $ionicHistory.nextViewOptions({
             });
 
   request.success(function (data) {
-    console.log(data.img);
+ 
     $scope.img = data.img
     localStorage.setItem("imagen_user", response.data.img);
     document.getElementById("img_usuario").src = localStorage.getItem("imagen_user");
@@ -1312,7 +1281,7 @@ $ionicHistory.nextViewOptions({
 
          $state.go('user');
           $scope.uploadResult.push(response.data);
-          console.log($scope.uploadResult);
+         
           localStorage.setItem("imagen_user", response.data.img);
               document.getElementById("img_usuario").src = localStorage.getItem("imagen_user");
         });
@@ -1352,7 +1321,7 @@ $ionicHistory.nextViewOptions({
         $ionicPlatform.registerBackButtonAction(function () {
 
                 ionic.Platform.exitApp();
-                console.log("aqui");
+             
 
         }, 100);
 
@@ -1403,7 +1372,7 @@ $ionicHistory.nextViewOptions({
             /* Check whether the HTTP Request is Successfull or not. */
             request.success(function (data) {
 
-         console.log(data);
+        
 
               if(data.entro == 1)
               {
@@ -1451,7 +1420,7 @@ $ionicHistory.nextViewOptions({
 
   $scope.restaurar = function() {
 
-    console.log($scope.usuario_res);
+  
     $email_res = $scope.usuario_res
     var token = "io-gluk@fct%vusb";
 
@@ -1500,7 +1469,7 @@ $ionicHistory.nextViewOptions({
  
 
 $email_d = localStorage.getItem("usuario");
-  console.log($email_d);
+ 
    var token = "io-gluk@fct%vusb";
    var request = $http({
             method: "post",
@@ -1518,7 +1487,7 @@ $email_d = localStorage.getItem("usuario");
 
               $scope.user = response;
 
-              console.log(response);
+            
 
             });
 
@@ -1634,7 +1603,7 @@ $email_d = localStorage.getItem("usuario");
               disableBack: true
                });
 
-              console.log(data.msg);
+           
 
                 }
             });
@@ -1665,7 +1634,7 @@ if(localStorage.getItem("usuario"))
     var usuario = $scope.usuarioA;
     $email_con = localStorage.getItem("usuario");
     var tipoU = $scope.tipoU;
-    console.log(tipoU);
+
     
    
  
@@ -1696,7 +1665,7 @@ if(localStorage.getItem("usuario"))
               $ionicHistory.nextViewOptions({
               disableBack: true
                });
-              console.log(data);
+             
             var socket = io.connect( 'http://167.114.164.224:'+servicio);
               socket.emit('new_contact', { 
                   usuario: usuario,
@@ -1740,9 +1709,9 @@ if(localStorage.getItem("usuario"))
 $scope.solev = function(){
 
     $email_en = localStorage.getItem("usuario");
-      console.log($email_en);
+   
       var token = "io-gluk@fct%vusb";
-      console.log(token);
+     
       var request = $http({
             method: "post",
             url: "http://167.114.164.224/~radiomario/movil_funciones/S_enviadas",
@@ -1761,7 +1730,6 @@ $scope.solev = function(){
 
 
 
-              console.log(response);
 
             });
 
@@ -1784,7 +1752,7 @@ $scope.solev();
 $scope.Csolicitud = function (Csolicitu) {
 
 
-console.log(Csolicitu);
+
 var usuarioSoli = Csolicitu;
  var token = "io-gluk@fct%vusb";
  $email_can = localStorage.getItem("usuario");
@@ -1816,7 +1784,7 @@ var request = $http({
 
                     $scope.solev();
                });
-              console.log(response);
+             
               $state.go('solicitudes'); 
 
 
@@ -1846,9 +1814,9 @@ if(localStorage.getItem("usuario"))
 $scope.solrec = function (){
 
   $email_rec = localStorage.getItem("usuario");
-  console.log($email_rec);
+  
    var token = "io-gluk@fct%vusb";
-   console.log(token);
+   
   var request = $http({
             method: "post",
             url: "http://167.114.164.224/~radiomario/movil_funciones/S_recibidas",
@@ -1866,8 +1834,6 @@ $scope.solrec = function (){
               $scope.reci = response;
 
 
-
-              console.log(response);
 
             }); 
 
@@ -1888,7 +1854,7 @@ $scope.solrec = function (){
   $scope.Dsolicitud = function (Dsolicitu) {
 
 
-console.log(Dsolicitu);
+
 var usuarioSoliD = Dsolicitu;
  var token = "io-gluk@fct%vusb";
  $email_den = localStorage.getItem("usuario");
@@ -1924,7 +1890,6 @@ var request = $http({
                 $scope.solrec();
   
               });
-              console.log(response);
               $state.go('solicitudes'); 
 
 
@@ -1934,7 +1899,6 @@ var request = $http({
   $scope.Asolicitud = function (Asolicitu) {
 
 
-console.log(Asolicitu);
 var usuarioSoliA = Asolicitu;
  var token = "io-gluk@fct%vusb";
  $email_acep = localStorage.getItem("usuario");
@@ -1970,7 +1934,7 @@ var request = $http({
                 $scope.solrec();
   
               });
-              console.log(response);
+
               $state.go('solicitudes'); 
 
 
@@ -2001,7 +1965,7 @@ var request = $http({
     }
 
   var idC = localStorage.getItem("View_id_contac");
-  console.log(idC);
+
   
    var token = "io-gluk@fct%vusb";
 
@@ -2022,7 +1986,6 @@ var request = $http({
 
               $scope.ver_user = response;
 
-              console.log($scope.ver_user);
 
             }); 
 
@@ -2031,7 +1994,7 @@ var request = $http({
 
 })
  
-.controller('StreamController' ,function($scope,$http,ngAudio,$interval, appSettings, streamService, $ionicHistory){
+.controller('StreamController' ,function($scope,$http,ngAudio,$interval, $ionicHistory){
   /*
 $scope.Play = function(src) {
         var audio = {};
@@ -2095,7 +2058,6 @@ $scope.songs = [
 
 
 
-console.log($scope.songs);
 
 
 })
@@ -2106,40 +2068,11 @@ console.log($scope.songs);
  
 
 // SettingCtrl controller
-.controller('prueba', function($scope,$http){
-/*
-  var usuario = localStorage.getItem("usuario");
-   var id_chat = localStorage.getItem("View_id_chat");
-
-   var request = $http({
-                method: "post",
-                url: "php/detalle_chat.php",
-                data: {
-                    usuario:usuario,
-                    id_chat:id_chat
-              
-                },
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-            }); 
-           
-          request.success(function (data) {
-
-            
-              $scope.chat = data;
-              
-              console.log(data);
-        
-
-              
-             }); 
-          */
-
-})
 
 .controller('info_chat', function($scope,$http,$state){
 
   var ChatGrupo = localStorage.getItem("Chat_G");
-  console.log(ChatGrupo);
+
 
   var request = $http({
                 method: "post",
@@ -2156,7 +2089,7 @@ console.log($scope.songs);
             
               $scope.D_Grupo = data;
               
-                console.log(data);
+                
         
 
               
@@ -2165,7 +2098,7 @@ console.log($scope.songs);
 
 
   $scope.viewFoto1 = function (id_g){
-    console.log(id_g);
+
 
     localStorage.setItem("grupo_id", id_g);
     $state.go('foto_grupo');
@@ -2173,7 +2106,7 @@ console.log($scope.songs);
   }
 
   $scope.agregar = function (id_au){
-     console.log(id_au);
+
 
      var usuario = localStorage.getItem("usuario");
      var token = "io-gluk@fct%vusb";
@@ -2209,7 +2142,7 @@ console.log($scope.songs);
               $ionicHistory.nextViewOptions({
               disableBack: true
                });
-              console.log(data);
+
               $state.go('contacts'); 
 
 
@@ -2235,7 +2168,7 @@ $ionicHistory.nextViewOptions({
     disableBack: true
   });
   var grupo_id = localStorage.getItem("grupo_id");
-  console.log(grupo_id);
+
 
   var token = "io-gluk@fct%vusb";
   var request = $http({
@@ -2251,7 +2184,7 @@ $ionicHistory.nextViewOptions({
             });
 
   request.success(function (data) {
-    console.log(data);
+
     $scope.img1 = data;
 
   })
@@ -2278,10 +2211,9 @@ $ionicHistory.nextViewOptions({
        $timeout(function() {
          $state.go('info_chat');
           $scope.uploadResult.push(response.data);
-          console.log($scope.uploadResult);
+
         });
 
-       console.log(response);CHATD
 
       }); 
     }
@@ -2311,8 +2243,7 @@ var s = 1;
 
               $scope.canalM = data.messages;
               $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
-             
-              console.log(data.messages);
+
                  
              }); 
 
@@ -2346,10 +2277,9 @@ var s = 1;
       $state.go('login');
     }
 
-console.log(nom_img);
 document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombre_user");
 document.getElementById("img_usuario").src = nom_img;
-console.log(nom_img);
+
 
   $http.get('http://167.114.164.224/~radiomario/movil_funciones/aceptar').
       then(function(response) {
@@ -2358,7 +2288,7 @@ console.log(nom_img);
 
             //$server = localStorage.getItem("server");
            $scope.timeline = response.data;
-           console.log(response.data);
+
            
       //  })
         
@@ -2367,13 +2297,13 @@ console.log(nom_img);
 
      $scope.ftoini = function(dimg)
      {
-      console.log(dimg);
+     
       var foto2 = dimg;
 
         $scope.cssClass = "cssClass"
 
         $foto1 = " <img src='"+foto2+"'   /> ";
-        console.log($foto1);
+  
 
 
           var myPopup = $ionicPopup.show({

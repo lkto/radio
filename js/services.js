@@ -1,5 +1,5 @@
 angular.module('starter.services', [])
-
+/*
 .run(function($cordovaPush) {
 
 
@@ -9,8 +9,7 @@ angular.module('starter.services', [])
 
   document.addEventListener("deviceready", function(){
 
-    alert('funciona');
-    
+   
     $cordovaPush.register(androidConfig).then(function(result) {
       // Success
       alert(result);
@@ -50,34 +49,10 @@ angular.module('starter.services', [])
       // Error
     })*/
 
- }, false);
-})
-.constant('ENV', {name:'development',youtubeKey:'AIzaSyDael5MmCQa1GKQNKQYypmBeB08GATgSEo',ionicPrivateKey:'a9265eaf15a20cc8516c770e8748aeed4891b28f453ce755',ionicPublicKey:'e30d4d540b8c75d1f167bbf242423c3fb23fe10275d1c016',ionicAppId:'241b6d37',gcmId:'228071472080',instagramAppId:'2998ca20ed924ca3be22907c6ae77363',facebookPermanentAccessToken:'CAANL6xXrSHYBANNHhMUDugVZBHXfVQBMeWG6FmpYROWcOEmC2xze1BNiraZB87NCAZC3w08L7KhCBnhJItZCUzWCgBNzBjt0BkoV6qMoXjIZBjkWRTUGgZBR39OZAiP3DF76jufQ4hJ7xsdQc0l68vFAZAePdZCZAjkjTwaOeEZC22xi8ZAQYBqvNvYRgIfOZBzf4zRURHgrLtNazxzln8ZBkd9FZC7',firebaseUrl:'music-band-ionic.firebaseio.com',parse:{applicationId:'sidmrbO9OqG3pe4iErva408MHFysJZ2zChYPAXlU',key:'e49Rnlja6llKnFW5p0OOF8dkHvJi5o1hrVzFGBnc'},settingsSource:'LOCAL'})
+ //}, false);
+//})
 
 
-.service('loginService', function($q) {
-    return {
-        loginUser: function(name, pw) {
-            var deferred = $q.defer();
-            var promise = deferred.promise;
- 
-            if (name == 'user' && pw == '1234') {
-                deferred.resolve('Bienvenido ' + name + '!');
-            } else {
-                deferred.reject('Datos Incorrectos.');
-            }
-            promise.success = function(fn) {
-                promise.then(fn);
-                return promise;
-            }
-            promise.error = function(fn) {
-                promise.then(null, fn);
-                return promise;
-            }
-            return promise;
-        }
-    }
-})
 
 .factory('id_serve', function ($http) {
 
@@ -121,7 +96,7 @@ return $server;
             /* Check whether the HTTP Request is Successfull or not. */
             request.success(function (response) {
 
-              console.log(response.img);
+      
               localStorage.setItem("img_user", response.img);
               $img1 = localStorage.getItem("img_user");
 
@@ -279,7 +254,7 @@ return $server;
       then(function(response) {
        // $scope.$apply(function() {
             posts= response.data;
-           console.log(response.data);
+        
            
       //  })
         
@@ -295,7 +270,7 @@ return $server;
       get: function (postId) {
 
     
-      console.log(posts);
+   
         //var id_noticia = postId;
        
        /* console.log(id_noticia);
@@ -323,7 +298,7 @@ return $server;
           
        
           var id_post = localStorage.getItem("View_id_noticia");
-          console.log(id_post);
+         
 
 
           if (posts[i].id_noticia == parseInt(id_post)) {
@@ -336,72 +311,7 @@ return $server;
     };
   })
 
-  .factory('Notifications', function() {
-    // fake data
-    var notifications = [
-      {
-        id: 1,
-        type: 'liked',
-        user_id: 2,
-        name: 'Max Lynx',
-        face: 'img/thumb/max.png',
-        read: false,
-        time: 'Just now'
-      },
-      {
-        id: 2,
-        type: 'commented',
-        user_id: 2,
-        name: 'Adam Bradleyson',
-        face: 'img/thumb/adam.jpg',
-        read: true,
-        time: '3 minutes ago'
-      },
-      {
-        id: 3,
-        type: 'friend_request',
-        user_id: 2,
-        name: 'Perry Governor',
-        face: 'img/thumb/perry.png',
-        read: true,
-        time: '5 minutes ago'
-      },
-      {
-        id: 4,
-        type: 'liked',
-        user_id: 2,
-        name: 'Ben Sparrow',
-        face: 'img/thumb/ben.png',
-        read: false,
-        time: '6 minutes ago'
-      },
-      {
-        id: 5,
-        type: 'friend_request',
-        user_id: 2,
-        name: 'Perry Governor',
-        face: 'img/thumb/perry.png',
-        read: true,
-        time: '5 minutes ago'
-      },
-      {
-        id: 6,
-        type: 'liked',
-        user_id: 2,
-        name: 'Ben Sparrow',
-        face: 'img/thumb/ben.png',
-        read: false,
-        time: '6 minutes ago'
-      }
-    ];
-
-    return {
-      all: function() {
-        return notifications
-      }
-    };
-
-  })
+  
 .factory('Contacts', function($http) {
     // Some fake testing data
   /*
@@ -498,279 +408,5 @@ return $server;
       }
     }
   })
-.factory('localAppSettings', function($q){
-
-    var settings = {
-      welcomeTitle: 'The Music Band',
-      welcomeSlogan: 'But suddenly popular music became bigger than it had ever been before',
-
-      youtubeUser: 'TheRollingStones',
-      facebookPage: 'therollingstones',
-      instagramTag: 'therollingstones',
-      newsJSONURI: 'https://skounis.s3.amazonaws.com/mobile-apps/music-band/news.json',
-      wordPressURI: 'https://demo.titaniumtemplates.com/wordpress/tag/rollingstones/?json=1',
-      website: 'http://www.marioenturadio.com',
-      store: 'https://rollingstones.shop.bravadousa.com/store/',
-      iTunesURI: 'https://itunes.apple.com/us/artist/the-rolling-stones/id1249595',
-      // Live Radio
-      audioStream: 'http://79.111.14.76:9091/',
-      hasAudioStreamMeta: true,
-      // audioStream: 'http://stream-dc1.radioparadise.com/mp3-128',
-      // hasAudioStreamMeta: false,
-
-      socialMediaAccounts: {
-        facebook: 'therollingstones',
-        twitter: 'RollingStones',
-        instagram: 'therollingstones',
-      }
-    };
-
-      var events = [{
-      title: 'Hartford United States XL Center',
-      type: 'info',
-      startsAt: new Date(2015, 5, 25, 1),
-      endsAt: new Date(2015, 5, 26, 15),
-      editable: false,
-      deletable: false,
-      incrementsBadgeTotal: false
-    }, {
-      title: 'Trenton Sun National Bank Center',
-      type: 'important',
-      startsAt: new Date(2015, 5, 6, 12),
-      endsAt: new Date(2015, 5, 9, 15),
-      editable: false,
-      deletable: false,
-      incrementsBadgeTotal: false
-    }, {
-      title: 'Cincinnati US Bank Arena',
-      type: 'success',
-      startsAt: new Date(2015, 6, 10, 9),
-      endsAt: new Date(2015, 6, 12, 21),
-      editable: false,
-      deletable: false,
-      incrementsBadgeTotal: false
-    }, {
-      title: 'Milwaukee Marcus Amphitheater',
-      type: 'special',
-      startsAt: new Date(2015, 6, 14, 12),
-      endsAt: new Date(2015, 6, 15, 15),
-      editable: false,
-      deletable: false,
-      incrementsBadgeTotal: false
-    }];
-
-    var mapData = {
-      origin: {
-        latitude: 37.407,
-        longitude: -122.1
-      },
-      zoomLevel: 15,
-      annotations: [{
-        title: 'Hartford United States XL Center.',
-        latitude: 37.407,
-        longitude: -122.1
-      }, {
-        title: 'Trenton Sun National Bank Center.',
-        latitude: 37.41,
-        longitude: -122.1
-      }]
-    };
-return {
-      initSettings: function() {
-        return $q.when(settings);
-      },
-      getSettings: function() {
-        return settings;
-      },
-      getMapData: function() {
-        return $q.when(mapData);
-      },
-      getEvents: function() {
-        return $q.when(events);
-      }
-    };
-
-
-})
-
-.factory('firebaseAppSettings', function(firebaseDb, $firebaseObject, $firebaseArray, $q, _){
-
-
-    var storedSettings;
-
-    return {
-      initSettings: initSettings,
-      getSettings: getSettings,
-      getMapData: getMapData,
-      getEvents: getEvents
-    };
-    
-    function initSettings() {
-      var deferred = $q.defer();
-      $firebaseObject(firebaseDb.child('appSettings'))
-        .$loaded(function(settings) {
-          storedSettings = settings;
-          deferred.resolve(settings);
-        });
-      
-      return deferred.promise;
-    }
-    
-    function getMapData() {
-      var deferred = $q.defer();
-      $firebaseObject(firebaseDb.child('mapData'))
-        .$loaded(function(mapData) {
-          deferred.resolve(mapData);
-        });
-      
-      return deferred.promise;
-    }
-
-    function getEvents() {
-      var deferred = $q.defer();
-      $firebaseArray(firebaseDb.child('events'))
-        .$loaded(function(data) {
-          var events = [];
-          _.each(data, function(event) {
-            events.push({
-              title: event.title,
-              type: event.type,
-              startsAt: new Date(event.startsAt),
-              endsAt: new Date(event.endsAt),
-              editable: event.editable,
-              deletable: event.deletable,
-              incrementsBadgeTotal: event.incrementsBadgeTotal
-            });
-          });
-          deferred.resolve(events);
-        });
-      return deferred.promise;
-    }
-    
-    function getSettings() {
-      return storedSettings;
-    }
-
-
-})
-
-.factory('parseAppSettings', function(_){
-
-  var storedSettings;
-
-    return {
-      initSettings: initSettings,
-      getSettings: getSettings,
-      getMapData: getMapData,
-      getEvents: getEvents
-    };
-
-    function initSettings() {
-      var query = new Parse.Query('AppSettings');
-      return query.find().then(function(result) {
-        storedSettings = result[0].attributes;
-        return storedSettings;
-      });
-    }
-
-    function getSettings() {
-      return storedSettings;
-    }
-
-    function getMapData() {
-      var query = new Parse.Query('MapData');
-      return query.find().then(function(result) {
-        return result[0].attributes;
-      });
-    }
-
-    function getEvents() {
-      var query = new Parse.Query('Event');
-      return query.find().then(function(result) {
-        var events = [];
-        _.each(result, function(item) {
-          events.push(item.attributes);
-        });
-        return events;
-      })
-    }
-
-})
-
-
-
-.factory('appSettings', function(ENV,$injector){
-
-  switch(ENV.settingsSource) {
-      case 'LOCAL':
-        return $injector.get('localAppSettings');
-      case 'FIREBASE':
-        return $injector.get('firebaseAppSettings');
-      case 'PARSE':
-        return $injector.get('parseAppSettings');
-    }
-    
-    throw new Error('Setting source is not valid');
-
-
-})
-
-.factory('streamService', function($http,$q,appSettings){
-
-  /* @ngInject */
-  
-  var streamUrl = appSettings.getSettings().audioStream;
-    var metadataUrl = streamUrl + '7.html';
-    var contentRegex = /<body>(.*)<\/body>/;
-    var itunesSearchUrl = 'https://itunes.apple.com/search?term=';
-    var resolutionRegex = /100x100/;
-    var config = {
-      skipSpinner: true
-    };
-
-    var service = {
-      getStreamInfo: getStreamInfo
-    };
-    return service;
-
-    // ****************************************************************************
-
-    function getStreamInfo() {
-      return $http.get(metadataUrl, config).then(function(response) {
-        var title = parseShoutcastResponse(response.data);
-        if (!title) {
-          return {};
-        }
-
-        return getCover(title).then(function(coverUrl) {
-          return {
-            title: title,
-            coverUrl: coverUrl
-          };
-        });
-      });
-    }
-
-    function getCover(title) {
-      return $http.get(itunesSearchUrl + title, config).then(function(response) {
-        var item = response.data.results[0];
-        if (!item || !item.artworkUrl100) {
-          return null;
-        }
-        
-        return item.artworkUrl100.replace(resolutionRegex, '500x500');
-      });
-    }
-
-    function parseShoutcastResponse(html) {
-      var content = html.match(contentRegex);
-      var parts = content;
-     
-      return parts;
-    }
-  
-})
-
-
 
 
