@@ -8,16 +8,15 @@ angular.module('starter', ['ionic', 'btford.socket-io','starter.controllers', 's
 
 .value('_', window._)
 .run(function($ionicPlatform,$cordovaPush) {
-  $ionicPlatform.ready(function() {
+  $ionicPlatform.ready(function(window) {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     var androidConfig = {
       "senderID": "217743739524",
     };
-
-    var pushNotification = window.plugin.pushNotification;
+    var pushNotification = $window.plugin.pushNotification;
     pushNotification.register(successHandler, errorHandler,{"senderID":"217743739524","ecb":"onNotificationGCM"});
-    
+    console.log(pushNotification);
     function successHandler(result) { 
       alert('Callback Success! Result = '+result) 
     }
