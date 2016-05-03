@@ -3,65 +3,65 @@ angular.module('starter.services', ['ngCordova'])
 .run(function($cordovaPush) {
 
 
-  var androidConfig = {
-    "senderID": "217743739524"
-  };
+  // var androidConfig = {
+  //   "senderID": "217743739524"
+  // };
 
-  document.addEventListener("deviceready",OnDeviceReady, false);
+//   document.addEventListener("deviceready",OnDeviceReady, false);
    
-  function OnDeviceReady(){
+//   function OnDeviceReady(){
     
-      var pushNotification = window.plugin.pushNotification;
-          pushNotification.register(successHandler, errorHandler,{"senderID":"217743739524","ecb":"onNotificationGCM"}); 
+//       var pushNotification = window.plugin.pushNotification;
+//           pushNotification.register(successHandler, errorHandler,{"senderID":"217743739524","ecb":"onNotificationGCM"}); 
 
 
-          function successHandler(result) { 
-    //alert('Callback Success! Result = '+result) 
-          }
-      function errorHandler(error) { 
-    //alert(error); 
-        } 
-function onNotificationGCM(e) {
-   switch(e.event) 
-    { 
-      case 'registered': 
-            if(e.regid.length>0) 
-            { 
-                //console.log("Regid " + e.regid); 
-                //alert('registration id = '+e.regid); 
-                var registro='regId='+encodeURIComponent(e.regid);
-                alert(registro);
-                /*
-                $.ajax({
-                    type:'POST',
-                    data: registro,
-                    async:true,
-                    url:'http://app.ccq.org.co/appmovil/Notificaciones/registro.php',
-                    success: function(valo){
-                         //alert(valo);
-                    },
-                    error: function(err){ 
-                        //alert(err);
-                    }
-                }); */
+//           function successHandler(result) { 
+//     //alert('Callback Success! Result = '+result) 
+//           }
+//       function errorHandler(error) { 
+//     //alert(error); 
+//         } 
+// function onNotificationGCM(e) {
+//    switch(e.event) 
+//     { 
+//       case 'registered': 
+//             if(e.regid.length>0) 
+//             { 
+//                 //console.log("Regid " + e.regid); 
+//                 //alert('registration id = '+e.regid); 
+//                 var registro='regId='+encodeURIComponent(e.regid);
+//                 alert(registro);
+                
+//                 $.ajax({
+//                     type:'POST',
+//                     data: registro,
+//                     async:true,
+//                     url:'http://app.ccq.org.co/appmovil/Notificaciones/registro.php',
+//                     success: function(valo){
+//                          //alert(valo);
+//                     },
+//                     error: function(err){ 
+//                         //alert(err);
+//                     }
+//                 }); 
 
-            } 
-            break; 
+//             } 
+//             break; 
 
-        case 'message': 
-          // NOTIFICACION!!! 
-            //alert('message = '+e.message+' msgcnt = '+e.msgcnt); 
-            break; 
+//         case 'message': 
+//           // NOTIFICACION!!! 
+//             //alert('message = '+e.message+' msgcnt = '+e.msgcnt); 
+//             break; 
 
-        case 'error': 
-            //alert('GCM error = '+e.msg); 
-            break; 
+//         case 'error': 
+//             //alert('GCM error = '+e.msg); 
+//             break; 
 
-        default: 
-            //alert('An unknown GCM event has occurred'); 
-            break; 
-    } 
-}
+//         default: 
+//             //alert('An unknown GCM event has occurred'); 
+//             break; 
+//     } 
+// }
       // $cordovaPush.register(androidConfig).then(function(result) {
       //   // Success
       //   alert(result);
@@ -100,7 +100,7 @@ function onNotificationGCM(e) {
       // }, function(err) {
       //   // Error
       // });
-  }
+  //}
 })
 
 

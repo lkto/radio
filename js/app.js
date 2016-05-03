@@ -7,10 +7,89 @@
 angular.module('starter', ['ionic', 'btford.socket-io','starter.controllers', 'starter.services', 'nl2br', 'monospaced.elastic', 'ngCordova', 'ngAlertify','ngAudio','angularFileUpload','ngSanitize','ionic.service.core','ionic.service.push','angularSoundManager'])
 
 .value('_', window._)
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform,$cordovaPush) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
+    var androidConfig = {
+      "senderID": "217743739524",
+    };
+
+    var pushNotification = window.plugin.pushNotification;
+    pushNotification.register(successHandler, errorHandler,{"senderID":"217743739524","ecb":"onNotificationGCM"});
+    
+    function successHandler(result) { 
+      alert('Callback Success! Result = '+result) 
+    }
+    function errorHandler(error) { 
+      alert(error); 
+    } 
+
+    function onNotificationGCM(e){
+      alert("e");
+      switch(e.event) 
+      { 
+        case 'registered': 
+              if(e.regid.length>0) 
+              { 
+                  //console.log("Regid " + e.regid); 
+                  //alert('registration id = '+e.regid); 
+                  var registro='regId='+encodeURIComponent(e.regid);
+                  alert(registro);
+              } 
+              break; 
+        case 'message': 
+          // NOTIFICACION!!! 
+            //alert('message = '+e.message+' msgcnt = '+e.msgcnt); 
+            break; 
+
+        case 'error': 
+            //alert('GCM error = '+e.msg); 
+            break; 
+        default: 
+            //alert('An unknown GCM event has occurred'); 
+            break; 
+      }
+    } 
+    // $cordovaPush.register(androidConfig).then(function(result) {
+    //     // Success
+    //     alert(result);
+    // }, function(err) {
+    //   // Error
+    //   alert(err);
+    // });
+
+    // $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+    //     switch(notification.event) {
+    //       case 'registered':
+    //         if (notification.regid.length > 0 ) {
+    //           alert('registration ID = ' + notification.regid);
+    //         }
+    //         break;
+
+    //       case 'message':
+    //         // this is the actual push notification. its format depends on the data model from the push server
+    //         alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
+    //         break;
+
+    //       case 'error':
+    //         alert('GCM error = ' + notification.msg);
+    //         break;
+
+    //       default:
+    //         alert('An unknown GCM event has occurred');
+    //         break;
+    //     }
+    //   });
+
+
+      // WARNING: dangerous to unregister (results in loss of tokenID)
+      // $cordovaPush.unregister(options).then(function(result) {
+      //   // Success!
+      // }, function(err) {
+      //   // Error
+      // });
+
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
