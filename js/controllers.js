@@ -1075,17 +1075,15 @@ $ionicHistory.nextViewOptions({
 var androidConfig = {
  "senderID": "217743739524"
  };
- 
- var cadena = device.uuid;
 
-alert('registration ID por device.uuid = ' + cadena);
 
 
   $cordovaPush.register(androidConfig).then(function(result) {
       // Success
     }, function(err) {
       // Error
-    })
+    }
+    )
 
   $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
     switch(notification.event) {
