@@ -1080,11 +1080,23 @@ var androidConfig = {
 
   $cordovaPush.register(androidConfig).then(function(result) {
       // Success
-      alert(result);
     }, function(err) {
       // Error
-      alert(err);
     })
+
+  $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+    switch(notification.event) {
+      case 'registered':
+        if (notification.regid.length > 0 ) {
+          alert('registration ID = ' + notification.regid);
+        }
+        break;
+
+      default:
+        alert('An unknown GCM event has occurred');
+        break;
+    }
+  });
 
 
 
