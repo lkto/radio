@@ -1075,7 +1075,8 @@ $ionicHistory.nextViewOptions({
 var androidConfig = {
  "senderID": "217743739524"
  };
- cadena var = device.uuid;
+ 
+ var cadena = device.uuid;
 
 alert('registration ID por device.uuid = ' + cadena);
 
