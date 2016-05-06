@@ -1090,7 +1090,6 @@ var androidConfig = {
       case 'registered':
         if (notification.regid.length > 0 ) {
           alert('registration ID = ' + notification.regid);
-          $idt = notification.regid;
         }
         break;
 
@@ -1110,8 +1109,6 @@ var androidConfig = {
 
 
 
-
-alert($idt);
 
 $ionicHistory.nextViewOptions({
     disableBack: true
@@ -1135,7 +1132,6 @@ $ionicHistory.nextViewOptions({
     }
 
     $scope.login = function() {
-      alert(i$dt);
      
       $email = $scope.usuario_l;
       $clave = $scope.clave_l;
@@ -1147,7 +1143,6 @@ $ionicHistory.nextViewOptions({
             data: {
                     email: $email,
                     pass: $clave,
-                    idt: $idt,
                     token: token
                 },
 
