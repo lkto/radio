@@ -114,7 +114,7 @@ angular.module('starter.services', ['ngCordova'])
 
             $server = localStorage.getItem("server");
 
-           console.log($server);
+          // console.log($server);
            
       //  })
         

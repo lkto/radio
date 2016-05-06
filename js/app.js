@@ -4,7 +4,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'btford.socket-io','starter.controllers', 'starter.services', 'nl2br', 'monospaced.elastic', 'ngCordova', 'ngAlertify','ngAudio','angularFileUpload','ngSanitize','ionic.service.core','ionic.service.push','angularSoundManager'])
+angular.module('starter', ['ionic', 'btford.socket-io','starter.controllers', 'starter.services', 'nl2br', 'ngCordova', 'ngAlertify','angularFileUpload','ngSanitize','ionic.service.core','ionic.service.push','angularSoundManager'])
 
 .value('_', window._)
 .run(function($ionicPlatform,$cordovaPush) {

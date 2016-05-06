@@ -1,0 +1,601 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '-g',
+1 verbose cli   'ionic',
+1 verbose cli   'to',
+1 verbose cli   'update' ]
+2 info using npm@2.14.12
+3 info using node@v4.3.2
+4 verbose install initial load of /usr/local/lib/package.json
+5 verbose readDependencies loading dependencies from /usr/local/lib/package.json
+6 silly cache add args [ 'ionic', null ]
+7 verbose cache add spec ionic
+8 silly cache add args [ 'to', null ]
+9 verbose cache add spec to
+10 silly cache add args [ 'update', null ]
+11 verbose cache add spec update
+12 silly cache add parsed spec Result {
+12 silly cache add   raw: 'ionic',
+12 silly cache add   scope: null,
+12 silly cache add   name: 'ionic',
+12 silly cache add   rawSpec: '',
+12 silly cache add   spec: 'latest',
+12 silly cache add   type: 'tag' }
+13 silly addNamed ionic@latest
+14 verbose addNamed "latest" is being treated as a dist-tag for ionic
+15 info addNameTag [ 'ionic', 'latest' ]
+16 silly mapToRegistry name ionic
+17 silly mapToRegistry using default registry
+18 silly mapToRegistry registry https://registry.npmjs.org/
+19 silly mapToRegistry uri https://registry.npmjs.org/ionic
+20 verbose addNameTag registry:https://registry.npmjs.org/ionic not in flight; fetching
+21 silly cache add parsed spec Result {
+21 silly cache add   raw: 'to',
+21 silly cache add   scope: null,
+21 silly cache add   name: 'to',
+21 silly cache add   rawSpec: '',
+21 silly cache add   spec: 'latest',
+21 silly cache add   type: 'tag' }
+22 silly addNamed to@latest
+23 verbose addNamed "latest" is being treated as a dist-tag for to
+24 info addNameTag [ 'to', 'latest' ]
+25 silly mapToRegistry name to
+26 silly mapToRegistry using default registry
+27 silly mapToRegistry registry https://registry.npmjs.org/
+28 silly mapToRegistry uri https://registry.npmjs.org/to
+29 verbose addNameTag registry:https://registry.npmjs.org/to not in flight; fetching
+30 silly cache add parsed spec Result {
+30 silly cache add   raw: 'update',
+30 silly cache add   scope: null,
+30 silly cache add   name: 'update',
+30 silly cache add   rawSpec: '',
+30 silly cache add   spec: 'latest',
+30 silly cache add   type: 'tag' }
+31 silly addNamed update@latest
+32 verbose addNamed "latest" is being treated as a dist-tag for update
+33 info addNameTag [ 'update', 'latest' ]
+34 silly mapToRegistry name update
+35 silly mapToRegistry using default registry
+36 silly mapToRegistry registry https://registry.npmjs.org/
+37 silly mapToRegistry uri https://registry.npmjs.org/update
+38 verbose addNameTag registry:https://registry.npmjs.org/update not in flight; fetching
+39 verbose request uri https://registry.npmjs.org/to
+40 verbose request no auth needed
+41 info attempt registry request try #1 at 11:02:22 AM
+42 verbose request id 1fc0310d9603025b
+43 http request GET https://registry.npmjs.org/to
+44 verbose request uri https://registry.npmjs.org/update
+45 verbose request no auth needed
+46 info attempt registry request try #1 at 11:02:22 AM
+47 http request GET https://registry.npmjs.org/update
+48 verbose request uri https://registry.npmjs.org/ionic
+49 verbose request no auth needed
+50 info attempt registry request try #1 at 11:02:22 AM
+51 verbose etag "7RRHBPCPCSZABQ5PORKXJ1NTT"
+52 http request GET https://registry.npmjs.org/ionic
+53 http 200 https://registry.npmjs.org/to
+54 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+54 verbose headers   etag: '"C0CKNCOJZFPGGLNP1OSQMTNDW"',
+54 verbose headers   'content-type': 'application/json',
+54 verbose headers   'content-encoding': 'gzip',
+54 verbose headers   'cache-control': 'max-age=300',
+54 verbose headers   'content-length': '4456',
+54 verbose headers   'accept-ranges': 'bytes',
+54 verbose headers   date: 'Thu, 05 May 2016 16:02:23 GMT',
+54 verbose headers   via: '1.1 varnish',
+54 verbose headers   age: '0',
+54 verbose headers   connection: 'keep-alive',
+54 verbose headers   'x-served-by': 'cache-iad2139-IAD',
+54 verbose headers   'x-cache': 'HIT',
+54 verbose headers   'x-cache-hits': '1',
+54 verbose headers   'x-timer': 'S1462464143.299622,VS0,VE21',
+54 verbose headers   vary: 'Accept-Encoding' }
+55 silly get cb [ 200,
+55 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+55 silly get     etag: '"C0CKNCOJZFPGGLNP1OSQMTNDW"',
+55 silly get     'content-type': 'application/json',
+55 silly get     'content-encoding': 'gzip',
+55 silly get     'cache-control': 'max-age=300',
+55 silly get     'content-length': '4456',
+55 silly get     'accept-ranges': 'bytes',
+55 silly get     date: 'Thu, 05 May 2016 16:02:23 GMT',
+55 silly get     via: '1.1 varnish',
+55 silly get     age: '0',
+55 silly get     connection: 'keep-alive',
+55 silly get     'x-served-by': 'cache-iad2139-IAD',
+55 silly get     'x-cache': 'HIT',
+55 silly get     'x-cache-hits': '1',
+55 silly get     'x-timer': 'S1462464143.299622,VS0,VE21',
+55 silly get     vary: 'Accept-Encoding' } ]
+56 verbose get saving to to /Users/Lkto/.npm/registry.npmjs.org/to/.cache.json
+57 silly addNameTag next cb for to with tag latest
+58 silly addNamed to@0.2.9
+59 verbose addNamed "0.2.9" is a plain semver version for to
+60 silly mapToRegistry name to
+61 silly mapToRegistry using default registry
+62 silly mapToRegistry registry https://registry.npmjs.org/
+63 silly mapToRegistry uri https://registry.npmjs.org/to
+64 verbose addRemoteTarball https://registry.npmjs.org/to/-/to-0.2.9.tgz not in flight; adding
+65 verbose addRemoteTarball [ 'https://registry.npmjs.org/to/-/to-0.2.9.tgz',
+65 verbose addRemoteTarball   '0ba5a56fe53538db9205ceb6d7ed217aae4635c4' ]
+66 info retry fetch attempt 1 at 11:02:23 AM
+67 info attempt registry request try #1 at 11:02:23 AM
+68 http fetch GET https://registry.npmjs.org/to/-/to-0.2.9.tgz
+69 http 200 https://registry.npmjs.org/update
+70 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+70 verbose headers   etag: '"CZ6D6CM10G9ROFBSVVU2IPUAE"',
+70 verbose headers   'content-type': 'application/json',
+70 verbose headers   'cache-control': 'max-age=300',
+70 verbose headers   'content-length': '30797',
+70 verbose headers   'accept-ranges': 'bytes',
+70 verbose headers   date: 'Thu, 05 May 2016 16:02:23 GMT',
+70 verbose headers   via: '1.1 varnish',
+70 verbose headers   age: '0',
+70 verbose headers   connection: 'keep-alive',
+70 verbose headers   'x-served-by': 'cache-iad2141-IAD',
+70 verbose headers   'x-cache': 'HIT',
+70 verbose headers   'x-cache-hits': '1',
+70 verbose headers   'x-timer': 'S1462464143.294161,VS0,VE97',
+70 verbose headers   vary: 'Accept-Encoding' }
+71 silly get cb [ 200,
+71 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+71 silly get     etag: '"CZ6D6CM10G9ROFBSVVU2IPUAE"',
+71 silly get     'content-type': 'application/json',
+71 silly get     'cache-control': 'max-age=300',
+71 silly get     'content-length': '30797',
+71 silly get     'accept-ranges': 'bytes',
+71 silly get     date: 'Thu, 05 May 2016 16:02:23 GMT',
+71 silly get     via: '1.1 varnish',
+71 silly get     age: '0',
+71 silly get     connection: 'keep-alive',
+71 silly get     'x-served-by': 'cache-iad2141-IAD',
+71 silly get     'x-cache': 'HIT',
+71 silly get     'x-cache-hits': '1',
+71 silly get     'x-timer': 'S1462464143.294161,VS0,VE97',
+71 silly get     vary: 'Accept-Encoding' } ]
+72 verbose get saving update to /Users/Lkto/.npm/registry.npmjs.org/update/.cache.json
+73 silly addNameTag next cb for update with tag latest
+74 silly addNamed update@0.4.2
+75 verbose addNamed "0.4.2" is a plain semver version for update
+76 silly mapToRegistry name update
+77 silly mapToRegistry using default registry
+78 silly mapToRegistry registry https://registry.npmjs.org/
+79 silly mapToRegistry uri https://registry.npmjs.org/update
+80 verbose addRemoteTarball https://registry.npmjs.org/update/-/update-0.4.2.tgz not in flight; adding
+81 verbose addRemoteTarball [ 'https://registry.npmjs.org/update/-/update-0.4.2.tgz',
+81 verbose addRemoteTarball   '04c3bf907b653522c83a19d17879370b51097657' ]
+82 info retry fetch attempt 1 at 11:02:23 AM
+83 info attempt registry request try #1 at 11:02:23 AM
+84 http fetch GET https://registry.npmjs.org/update/-/update-0.4.2.tgz
+85 http fetch 200 https://registry.npmjs.org/update/-/update-0.4.2.tgz
+86 silly fetchAndShaCheck shasum 04c3bf907b653522c83a19d17879370b51097657
+87 verbose addTmpTarball /var/folders/sc/z6bq1w0x2mb6cxzbyqpy33xc0000gp/T/npm-52200-99effb78/registry.npmjs.org/update/-/update-0.4.2.tgz not in flight; adding
+88 verbose addTmpTarball already have metadata; skipping unpack for update@0.4.2
+89 silly cache afterAdd update@0.4.2
+90 verbose afterAdd /Users/Lkto/.npm/update/0.4.2/package/package.json not in flight; writing
+91 verbose afterAdd /Users/Lkto/.npm/update/0.4.2/package/package.json written
+92 http fetch 200 https://registry.npmjs.org/to/-/to-0.2.9.tgz
+93 silly fetchAndShaCheck shasum 0ba5a56fe53538db9205ceb6d7ed217aae4635c4
+94 verbose addTmpTarball /var/folders/sc/z6bq1w0x2mb6cxzbyqpy33xc0000gp/T/npm-52200-99effb78/registry.npmjs.org/to/-/to-0.2.9.tgz not in flight; adding
+95 verbose addTmpTarball already have metadata; skipping unpack for to@0.2.9
+96 silly cache afterAdd to@0.2.9
+97 verbose afterAdd /Users/Lkto/.npm/to/0.2.9/package/package.json not in flight; writing
+98 verbose afterAdd /Users/Lkto/.npm/to/0.2.9/package/package.json written
+99 http 200 https://registry.npmjs.org/ionic
+100 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+100 verbose headers   etag: '"AKBN9O5QEOVDP4R4JTCB4OV1H"',
+100 verbose headers   'content-type': 'application/json',
+100 verbose headers   'content-encoding': 'gzip',
+100 verbose headers   'cache-control': 'max-age=300',
+100 verbose headers   'content-length': '60432',
+100 verbose headers   'accept-ranges': 'bytes',
+100 verbose headers   date: 'Thu, 05 May 2016 16:02:23 GMT',
+100 verbose headers   via: '1.1 varnish',
+100 verbose headers   age: '186',
+100 verbose headers   connection: 'keep-alive',
+100 verbose headers   'x-served-by': 'cache-iad2132-IAD',
+100 verbose headers   'x-cache': 'HIT',
+100 verbose headers   'x-cache-hits': '1',
+100 verbose headers   'x-timer': 'S1462464143.320832,VS0,VE0',
+100 verbose headers   vary: 'Accept-Encoding' }
+101 silly get cb [ 200,
+101 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+101 silly get     etag: '"AKBN9O5QEOVDP4R4JTCB4OV1H"',
+101 silly get     'content-type': 'application/json',
+101 silly get     'content-encoding': 'gzip',
+101 silly get     'cache-control': 'max-age=300',
+101 silly get     'content-length': '60432',
+101 silly get     'accept-ranges': 'bytes',
+101 silly get     date: 'Thu, 05 May 2016 16:02:23 GMT',
+101 silly get     via: '1.1 varnish',
+101 silly get     age: '186',
+101 silly get     connection: 'keep-alive',
+101 silly get     'x-served-by': 'cache-iad2132-IAD',
+101 silly get     'x-cache': 'HIT',
+101 silly get     'x-cache-hits': '1',
+101 silly get     'x-timer': 'S1462464143.320832,VS0,VE0',
+101 silly get     vary: 'Accept-Encoding' } ]
+102 verbose get saving ionic to /Users/Lkto/.npm/registry.npmjs.org/ionic/.cache.json
+103 silly addNameTag next cb for ionic with tag latest
+104 silly addNamed ionic@1.7.14
+105 verbose addNamed "1.7.14" is a plain semver version for ionic
+106 silly mapToRegistry name ionic
+107 silly mapToRegistry using default registry
+108 silly mapToRegistry registry https://registry.npmjs.org/
+109 silly mapToRegistry uri https://registry.npmjs.org/ionic
+110 verbose addRemoteTarball https://registry.npmjs.org/ionic/-/ionic-1.7.14.tgz not in flight; adding
+111 verbose addRemoteTarball [ 'https://registry.npmjs.org/ionic/-/ionic-1.7.14.tgz',
+111 verbose addRemoteTarball   'af493d5df4688d917d778b0934d1739b9be6efe6' ]
+112 info retry fetch attempt 1 at 11:02:24 AM
+113 info attempt registry request try #1 at 11:02:24 AM
+114 http fetch GET https://registry.npmjs.org/ionic/-/ionic-1.7.14.tgz
+115 http fetch 200 https://registry.npmjs.org/ionic/-/ionic-1.7.14.tgz
+116 silly fetchAndShaCheck shasum af493d5df4688d917d778b0934d1739b9be6efe6
+117 verbose addTmpTarball /var/folders/sc/z6bq1w0x2mb6cxzbyqpy33xc0000gp/T/npm-52200-99effb78/registry.npmjs.org/ionic/-/ionic-1.7.14.tgz not in flight; adding
+118 verbose addTmpTarball already have metadata; skipping unpack for ionic@1.7.14
+119 silly cache afterAdd ionic@1.7.14
+120 verbose afterAdd /Users/Lkto/.npm/ionic/1.7.14/package/package.json not in flight; writing
+121 verbose afterAdd /Users/Lkto/.npm/ionic/1.7.14/package/package.json written
+122 silly install resolved [ { name: 'update',
+122 silly install resolved     description: 'Easily keep anything in your project up-to-date by installing the updaters you want to use and running `update` in the command line! Update the copyright date, licence type, ensure that a project uses your latest eslint or jshint configuration, remove dep',
+122 silly install resolved     version: '0.4.2',
+122 silly install resolved     homepage: 'https://github.com/update/update',
+122 silly install resolved     author:
+122 silly install resolved      { name: 'Jon Schlinkert',
+122 silly install resolved        url: 'https://github.com/jonschlinkert' },
+122 silly install resolved     authors:
+122 silly install resolved      [ 'Brian Woodward <brian.woodward@gmail.com> (https://github.com/doowb)',
+122 silly install resolved        'Jon Schlinkert (https://github.com/jonschlinkert)' ],
+122 silly install resolved     contributors: [ [Object], [Object] ],
+122 silly install resolved     repository: { type: 'git', url: 'git+https://github.com/update/update.git' },
+122 silly install resolved     bugs: { url: 'https://github.com/update/update/issues' },
+122 silly install resolved     license: 'MIT',
+122 silly install resolved     files: [ 'bin', 'index.js', 'lib/' ],
+122 silly install resolved     main: 'index.js',
+122 silly install resolved     engines: { node: '>=0.10.0' },
+122 silly install resolved     scripts: { test: 'mocha' },
+122 silly install resolved     preferGlobal: true,
+122 silly install resolved     bin: { update: 'bin/update.js' },
+122 silly install resolved     dependencies:
+122 silly install resolved      { 'ansi-cyan': '^0.1.1',
+122 silly install resolved        'ansi-gray': '^0.1.1',
+122 silly install resolved        'ansi-green': '^0.1.1',
+122 silly install resolved        'ansi-red': '^0.1.1',
+122 silly install resolved        'ansi-yellow': '^0.1.1',
+122 silly install resolved        'assemble-core': '^0.8.0',
+122 silly install resolved        'assemble-loader': '^0.2.6',
+122 silly install resolved        async: '^1.5.2',
+122 silly install resolved        base: '^0.6.3',
+122 silly install resolved        'base-cli': '^0.4.0',
+122 silly install resolved        'base-config': '^0.3.3',
+122 silly install resolved        'base-options': '^0.5.4',
+122 silly install resolved        'base-pipeline': '^0.1.4',
+122 silly install resolved        'base-store': '^0.3.2',
+122 silly install resolved        'composer-runtimes': '^0.7.0',
+122 silly install resolved        'define-property': '^0.2.5',
+122 silly install resolved        'engine-base': '^0.1.2',
+122 silly install resolved        'expand-args': '^0.3.1',
+122 silly install resolved        'expand-object': '^0.4.1',
+122 silly install resolved        'export-files': '^2.1.0',
+122 silly install resolved        'extend-shallow': '^2.0.1',
+122 silly install resolved        'for-own': '^0.1.3',
+122 silly install resolved        'get-value': '^2.0.2',
+122 silly install resolved        'global-modules': '^0.2.0',
+122 silly install resolved        'gulp-eslint': '^1.1.1',
+122 silly install resolved        'lazy-cache': '^1.0.3',
+122 silly install resolved        'load-pkg': '^3.0.1',
+122 silly install resolved        matched: '^0.4.1',
+122 silly install resolved        micromatch: '^2.3.7',
+122 silly install resolved        minimist: '^1.2.0',
+122 silly install resolved        'object.omit': '^2.0.0',
+122 silly install resolved        'object.pick': '^1.1.1',
+122 silly install resolved        'parser-front-matter': '^1.3.0',
+122 silly install resolved        'project-name': '^0.2.3',
+122 silly install resolved        'question-cache': '^0.3.5',
+122 silly install resolved        rimraf: '^2.5.0',
+122 silly install resolved        'set-value': '^0.3.2',
+122 silly install resolved        'sort-object-arrays': '^0.1.1',
+122 silly install resolved        'stream-exhaust': '^1.0.1',
+122 silly install resolved        'success-symbol': '^0.1.0',
+122 silly install resolved        through2: '^2.0.0',
+122 silly install resolved        'time-stamp': '^0.1.3',
+122 silly install resolved        'union-value': '^0.2.1',
+122 silly install resolved        use: '^1.1.2' },
+122 silly install resolved     devDependencies:
+122 silly install resolved      { 'buffer-equal': '^1.0.0',
+122 silly install resolved        consolidate: '^0.13.1',
+122 silly install resolved        coveralls: '^2.11.6',
+122 silly install resolved        'data-store': '^0.12.1',
+122 silly install resolved        'engine-handlebars': '^0.8.0',
+122 silly install resolved        'event-stream': '^3.3.2',
+122 silly install resolved        'graceful-fs': '^4.1.2',
+122 silly install resolved        gulp: '^3.9.0',
+122 silly install resolved        'gulp-format-md': '^0.1.5',
+122 silly install resolved        'gulp-istanbul': '^0.10.3',
+122 silly install resolved        'gulp-mocha': '^2.2.0',
+122 silly install resolved        'is-buffer': '^1.1.1',
+122 silly install resolved        istanbul: '^0.4.1',
+122 silly install resolved        'kind-of': '^3.0.2',
+122 silly install resolved        mocha: '^2.3.4',
+122 silly install resolved        'resolve-glob': '^0.1.8',
+122 silly install resolved        should: '^8.0.2',
+122 silly install resolved        sinon: '^1.17.2',
+122 silly install resolved        swig: '^1.4.2',
+122 silly install resolved        vinyl: '^1.1.0' },
+122 silly install resolved     keywords: [ 'lint', 'next', 'repo', 'update' ],
+122 silly install resolved     verb:
+122 silly install resolved      { related: [Object],
+122 silly install resolved        reflinks: [Object],
+122 silly install resolved        plugins: [Object],
+122 silly install resolved        data: [Object] },
+122 silly install resolved     update:
+122 silly install resolved      { note: 'this is just pseudo data for tests. I\'ll update with real stuff soon.',
+122 silly install resolved        cwd: 'lib/pipeline',
+122 silly install resolved        helpers: [Object],
+122 silly install resolved        plugins: [Object],
+122 silly install resolved        set: [Object] },
+122 silly install resolved     gitHead: 'de0e1344b048505ed5e49c1b1618a86f98f999e4',
+122 silly install resolved     _id: 'update@0.4.2',
+122 silly install resolved     _shasum: '04c3bf907b653522c83a19d17879370b51097657',
+122 silly install resolved     _from: 'update@latest',
+122 silly install resolved     _npmVersion: '3.3.12',
+122 silly install resolved     _nodeVersion: '5.3.0',
+122 silly install resolved     _npmUser: { name: 'jonschlinkert', email: 'github@sellside.com' },
+122 silly install resolved     maintainers: [ [Object] ],
+122 silly install resolved     dist:
+122 silly install resolved      { shasum: '04c3bf907b653522c83a19d17879370b51097657',
+122 silly install resolved        tarball: 'https://registry.npmjs.org/update/-/update-0.4.2.tgz' },
+122 silly install resolved     directories: {},
+122 silly install resolved     _resolved: 'https://registry.npmjs.org/update/-/update-0.4.2.tgz' },
+122 silly install resolved   { name: 'to',
+122 silly install resolved     description: 'load/convert between xml,json,yaml formats',
+122 silly install resolved     homepage: 'https://github.com/openmason/to',
+122 silly install resolved     version: '0.2.9',
+122 silly install resolved     author: { name: 'el aras', email: 'openmason@gmail.com' },
+122 silly install resolved     dependencies:
+122 silly install resolved      { handy: '>= 0.0.11',
+122 silly install resolved        underscore: '>= 1.4.0',
+122 silly install resolved        'js-yaml': '>= 1.0.2',
+122 silly install resolved        htmlparser: '>= 1.7.6',
+122 silly install resolved        optimist: '>= 0.3.5' },
+122 silly install resolved     devDependencies: { mocha: '>= 1.6.0', should: '>= 1.2.0' },
+122 silly install resolved     keywords: [ 'converter', 'convertor', 'json', 'xml', 'yaml' ],
+122 silly install resolved     repository: { type: 'git', url: 'git://github.com/openmason/to' },
+122 silly install resolved     main: 'index',
+122 silly install resolved     scripts: { prepublish: 'npm prune', test: 'make test' },
+122 silly install resolved     engines: { node: '>= 0.8.0' },
+122 silly install resolved     readme: '[![build status](https://secure.travis-ci.org/openmason/to.png)](http://travis-ci.org/openmason/to)\n\n# to.js\ncollection of convertors.\nComes with command line options to use the convertors along with a library version that can be used within programs as well.\n\n# Solves\n  * read input formats json, xml, yaml \n  * converts the document to internal javascript object form\n  * write output as json, yaml documents\n  * only input xml is handled (no output xml yet)\n\n## Installation\n\n    $ npm install -g to\n    $ npm install to\n\n## Usage\n\nCommand line:\n\n     # reads xml file and prints it in yml\n     $ to -i examples/sample.xml -o .yaml\n     \n     # reads yaml and prints it in json\n     $ to -i examples/sample.yml -o .json\n\nWithin your program:\n\n    var to = require(\'to\');\n    \n    # Load yaml\n    var yamldoc = to.format.yaml.load(\'config.yaml\');\n    \n    # print doc in yaml \n    var doc = ...;\n    console.log(to.format.yaml.stringify(doc));\n\n * refer to examples directory for xml, json, yaml code\n\n## Example\nFor a sample input xml:\n\n    <?xml version="1.0" encoding="UTF-8" ?>\n    <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">    \n    <dummy>\n    <value>15</value>\n    <value>35</value>\n    <value>5</value>\n    <value>4784</value>\n    <value>one more</value>\n    <h>decent</h>\n    <h>list</h>\n    <h>another</h>\n    <object>value</object>\n    <inner>\n      <h1>value</h1>\n      <li>got</li>\n      <li>milk</li>\n    </inner>\n   </dummy>\n\nOutput in json:\n\n    {\n      "dummy": {\n        "value": [\n          "15",\n          "35",\n          "5",\n          "4784",\n          "one more"\n        ],\n        "h": [\n          "decent",\n          "list",\n          "another"\n        ],\n        "object": "value",\n        "inner": {\n          "h1": "value",\n          "li": [\n            "got",\n            "milk"\n          ]\n        }\n      }\n    }\n    \n    # to try this example\n    $ to -i examples/sample1.xml -o .json\n\nOutput in yaml:\n\n    dummy: \n      value: \n        - 15\n        - 35\n        - 5\n        - 4784\n        - "one more"\n      h: \n        - decent\n        - list\n        - another\n      object: value\n      inner: \n        h1: value\n        li: \n          - got\n          - milk\n\n    # to try this example\n    $ to -i examples/sample1.xml -o .yaml\n\n## Todo\n * Input html (be forgiving with bad html)\n * Input markdown \n * Output xml\n * Output html\n * add unit tests\n * allow beautification params for all outputs \n\n## Test cases\nTo execute full test cases\n\n    $ make\n\n',
+122 silly install resolved     _id: 'to@0.2.9',
+122 silly install resolved     dist:
+122 silly install resolved      { shasum: '0ba5a56fe53538db9205ceb6d7ed217aae4635c4',
+122 silly install resolved        tarball: 'https://registry.npmjs.org/to/-/to-0.2.9.tgz' },
+122 silly install resolved     maintainers: [ [Object], [Object] ],
+122 silly install resolved     directories: {},
+122 silly install resolved     _shasum: '0ba5a56fe53538db9205ceb6d7ed217aae4635c4',
+122 silly install resolved     _resolved: 'https://registry.npmjs.org/to/-/to-0.2.9.tgz',
+122 silly install resolved     _from: 'to@latest' },
+122 silly install resolved   { name: 'ionic',
+122 silly install resolved     version: '1.7.14',
+122 silly install resolved     preferGlobal: true,
+122 silly install resolved     description: 'A tool for creating and developing Ionic Framework mobile apps.',
+122 silly install resolved     homepage: 'http://ionicframework.com/',
+122 silly install resolved     bin: { ionic: 'bin/ionic' },
+122 silly install resolved     scripts:
+122 silly install resolved      { bump: 'node lib/tasks/bumpversion',
+122 silly install resolved        'beta-bump': 'node lib/tasks/bumpversion --level pre --identifier beta',
+122 silly install resolved        'publish-release': 'node lib/tasks/bumpversion --npmPublish',
+122 silly install resolved        'publish-tag': 'node lib/tasks/bumpversion --level beta --npmPublishTag',
+122 silly install resolved        'full-release': 'node lib/tasks/bumpversion --npmInstall --git --npmPublish',
+122 silly install resolved        test: 'npm run jasmine',
+122 silly install resolved        e2e: 'jasmine-node --captureExceptions ./e2e',
+122 silly install resolved        jasmine: 'jasmine-node --captureExceptions  ./spec' },
+122 silly install resolved     keywords:
+122 silly install resolved      [ 'ionic',
+122 silly install resolved        'ionic framework',
+122 silly install resolved        'ionicframework',
+122 silly install resolved        'mobile',
+122 silly install resolved        'app',
+122 silly install resolved        'hybrid',
+122 silly install resolved        'cordova',
+122 silly install resolved        'phonegap' ],
+122 silly install resolved     repository:
+122 silly install resolved      { type: 'git',
+122 silly install resolved        url: 'git+https://github.com/driftyco/ionic-cli.git' },
+122 silly install resolved     contributors: [ [Object], [Object], [Object], [Object] ],
+122 silly install resolved     license: 'MIT',
+122 silly install resolved     dependencies:
+122 silly install resolved      { async: '^0.9.0',
+122 silly install resolved        cheerio: '^0.19.0',
+122 silly install resolved        'cli-table': '^0.3.1',
+122 silly install resolved        colors: '0.6.2',
+122 silly install resolved        connect: '3.1.1',
+122 silly install resolved        'connect-livereload': '0.5.2',
+122 silly install resolved        crc: '3.2.1',
+122 silly install resolved        'cross-spawn': '0.2.3',
+122 silly install resolved        'event-stream': '3.0.x',
+122 silly install resolved        'expand-tilde': '^1.2.0',
+122 silly install resolved        finalhandler: '0.2.0',
+122 silly install resolved        'form-data': '0.1.4',
+122 silly install resolved        gulp: '3.8.8',
+122 silly install resolved        'ionic-app-lib': '0.7.0',
+122 silly install resolved        moment: '^2.10.6',
+122 silly install resolved        ncp: '0.4.2',
+122 silly install resolved        npm: '2.1.3',
+122 silly install resolved        open: '0.0.5',
+122 silly install resolved        optimist: '0.6.0',
+122 silly install resolved        progress: '1.1.7',
+122 silly install resolved        prompt: '0.2.12',
+122 silly install resolved        'proxy-middleware': '^0.7.0',
+122 silly install resolved        q: '1.0.1',
+122 silly install resolved        request: '2.51.0',
+122 silly install resolved        semver: '^4.2.0',
+122 silly install resolved        'serve-static': '1.7.1',
+122 silly install resolved        shelljs: '0.2.6',
+122 silly install resolved        'tiny-lr-fork': '0.0.5',
+122 silly install resolved        underscore: '~1.7.0',
+122 silly install resolved        unzip: '0.1.9',
+122 silly install resolved        'vinyl-fs': '0.3.7',
+122 silly install resolved        xml2js: '0.4.4' },
+122 silly install resolved     devDependencies: { 'jasmine-node': '^1.14.5', rewire: '^2.3.4' },
+122 silly install resolved     gitHead: '5b03fedea11144cebd15a374c14c48252a318723',
+122 silly install resolved     bugs: { url: 'https://github.com/driftyco/ionic-cli/issues' },
+122 silly install resolved     bundleDependencies:
+122 silly install resolved      [ 'async',
+122 silly install resolved        'cheerio',
+122 silly install resolved        'cli-table',
+122 silly install resolved        'colors',
+122 silly install resolved        'connect',
+122 silly install resolved        'connect-livereload',
+122 silly install resolved        'crc',
+122 silly install resolved        'cross-spawn',
+122 silly install resolved        'event-stream',
+122 silly install resolved        'expand-tilde',
+122 silly install resolved        'finalhandler',
+122 silly install resolved        'form-data',
+122 silly install resolved        'gulp',
+122 silly install resolved        'ionic-app-lib',
+122 silly install resolved        'moment',
+122 silly install resolved        'ncp',
+122 silly install resolved        'npm',
+122 silly install resolved        'open',
+122 silly install resolved        'optimist',
+122 silly install resolved        'progress',
+122 silly install resolved        'prompt',
+122 silly install resolved        'proxy-middleware',
+122 silly install resolved        'q',
+122 silly install resolved        'request',
+122 silly install resolved        'semver',
+122 silly install resolved        'serve-static',
+122 silly install resolved        'shelljs',
+122 silly install resolved        'tiny-lr-fork',
+122 silly install resolved        'underscore',
+122 silly install resolved        'unzip',
+122 silly install resolved        'vinyl-fs',
+122 silly install resolved        'xml2js' ],
+122 silly install resolved     _id: 'ionic@1.7.14',
+122 silly install resolved     _shasum: 'af493d5df4688d917d778b0934d1739b9be6efe6',
+122 silly install resolved     _from: 'ionic@latest',
+122 silly install resolved     _npmVersion: '3.3.12',
+122 silly install resolved     _nodeVersion: '5.1.0',
+122 silly install resolved     _npmUser: { name: 'dwieeb', email: 'dwieeb@gmail.com' },
+122 silly install resolved     dist:
+122 silly install resolved      { shasum: 'af493d5df4688d917d778b0934d1739b9be6efe6',
+122 silly install resolved        tarball: 'https://registry.npmjs.org/ionic/-/ionic-1.7.14.tgz' },
+122 silly install resolved     maintainers: [ [Object], [Object], [Object], [Object], [Object] ],
+122 silly install resolved     _npmOperationalInternal:
+122 silly install resolved      { host: 'packages-9-west.internal.npmjs.com',
+122 silly install resolved        tmp: 'tmp/ionic-1.7.14.tgz_1454368560204_0.25241430499590933' },
+122 silly install resolved     directories: {},
+122 silly install resolved     _resolved: 'https://registry.npmjs.org/ionic/-/ionic-1.7.14.tgz' } ]
+123 info install update@0.4.2 into /usr/local/lib
+124 info install to@0.2.9 into /usr/local/lib
+125 info install ionic@1.7.14 into /usr/local/lib
+126 info installOne update@0.4.2
+127 verbose installOne of update to /usr/local/lib not in flight; installing
+128 info installOne to@0.2.9
+129 verbose installOne of to to /usr/local/lib not in flight; installing
+130 info installOne ionic@1.7.14
+131 verbose installOne of ionic to /usr/local/lib not in flight; installing
+132 verbose lock using /Users/Lkto/.npm/_locks/to-9394763c9b022e79.lock for /usr/local/lib/node_modules/to
+133 verbose lock using /Users/Lkto/.npm/_locks/update-a554ca6fd1dfb67b.lock for /usr/local/lib/node_modules/update
+134 verbose lock using /Users/Lkto/.npm/_locks/ionic-61c0cd50dc7a1457.lock for /usr/local/lib/node_modules/ionic
+135 silly install write writing to 0.2.9 to /usr/local/lib/node_modules/to
+136 silly install write writing update 0.4.2 to /usr/local/lib/node_modules/update
+137 silly install write writing ionic 1.7.14 to /usr/local/lib/node_modules/ionic
+138 verbose unbuild lib/node_modules/to
+139 verbose unbuild lib/node_modules/update
+140 silly gentlyRm /usr/local/lib/node_modules/to is being purged from base /usr/local
+141 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/to
+142 verbose tar unpack /Users/Lkto/.npm/to/0.2.9/package.tgz
+143 verbose tar unpacking to /usr/local/lib/node_modules/to
+144 silly gentlyRm /usr/local/lib/node_modules/to is being purged
+145 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/to
+146 silly gentlyRm /usr/local/lib/node_modules/update is being purged from base /usr/local
+147 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/update
+148 verbose unbuild lib/node_modules/ionic
+149 silly gunzTarPerm modes [ '755', '644' ]
+150 verbose tar unpack /Users/Lkto/.npm/update/0.4.2/package.tgz
+151 verbose tar unpacking to /usr/local/lib/node_modules/update
+152 silly gentlyRm /usr/local/lib/node_modules/update is being purged
+153 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/update
+154 silly gunzTarPerm modes [ '755', '644' ]
+155 error tar.unpack untar error /Users/Lkto/.npm/to/0.2.9/package.tgz
+156 verbose unlock done using /Users/Lkto/.npm/_locks/to-9394763c9b022e79.lock for /usr/local/lib/node_modules/to
+157 error tar.unpack untar error /Users/Lkto/.npm/update/0.4.2/package.tgz
+158 verbose unlock done using /Users/Lkto/.npm/_locks/update-a554ca6fd1dfb67b.lock for /usr/local/lib/node_modules/update
+159 info preuninstall ionic@1.6.4
+160 info uninstall ionic@1.6.4
+161 verbose unbuild rmStuff ionic@1.6.4 from /usr/local/lib/node_modules
+162 silly gentlyRm /usr/local/bin/ionic is being gently removed
+163 silly gentlyRm verifying /usr/local is an npm working directory
+164 silly gentlyRm containing path /usr/local is under npm's control, in /usr/local
+165 silly gentlyRm deletion target /usr/local/bin/ionic is under /usr/local
+166 verbose gentlyRm vacuuming from /usr/local/bin/ionic up to /usr/local
+167 silly vacuum-fs removing /usr/local/bin/ionic
+168 silly vacuum-fs quitting because other entries in /usr/local/bin
+169 info postuninstall ionic@1.6.4
+170 silly gentlyRm /usr/local/lib/node_modules/ionic is being purged from base /usr/local
+171 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/ionic
+172 silly vacuum-fs purging /usr/local/lib/node_modules/ionic
+173 verbose unlock done using /Users/Lkto/.npm/_locks/ionic-61c0cd50dc7a1457.lock for /usr/local/lib/node_modules/ionic
+174 verbose fstream_path /usr/local/lib/node_modules/to
+175 verbose fstream_type Directory
+176 verbose fstream_class DirWriter
+177 verbose stack Error: EACCES: permission denied, mkdir '/usr/local/lib/node_modules/to'
+177 verbose stack     at Error (native)
+178 verbose fstream_stack /usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:35:25
+178 verbose fstream_stack /usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:47:53
+178 verbose fstream_stack FSReqWrap.oncomplete (fs.js:82:15)
+179 verbose cwd /Applications/XAMPP/xamppfiles/htdocs/Enri2
+180 error Darwin 15.4.0
+181 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "install" "-g" "ionic" "to" "update"
+182 error node v4.3.2
+183 error npm  v2.14.12
+184 error path /usr/local/lib/node_modules/to
+185 error code EACCES
+186 error errno -13
+187 error syscall mkdir
+188 error Error: EACCES: permission denied, mkdir '/usr/local/lib/node_modules/to'
+188 error     at Error (native)
+188 error  { [Error: EACCES: permission denied, mkdir '/usr/local/lib/node_modules/to']
+188 error   errno: -13,
+188 error   code: 'EACCES',
+188 error   syscall: 'mkdir',
+188 error   path: '/usr/local/lib/node_modules/to',
+188 error   fstream_type: 'Directory',
+188 error   fstream_path: '/usr/local/lib/node_modules/to',
+188 error   fstream_class: 'DirWriter',
+188 error   fstream_stack:
+188 error    [ '/usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:35:25',
+188 error      '/usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:47:53',
+188 error      'FSReqWrap.oncomplete (fs.js:82:15)' ] }
+189 error Please try running this command again as root/Administrator.
+190 verbose exit [ -13, true ]
+191 verbose unbuild lib/node_modules/to
+192 silly gentlyRm /usr/local/lib/node_modules/to is being purged from base /usr/local
+193 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/to
+194 verbose unbuild lib/node_modules/update
+195 silly gentlyRm /usr/local/lib/node_modules/update is being purged from base /usr/local
+196 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/update
+197 verbose unbuild lib/node_modules/ionic
+198 info preuninstall ionic@1.6.4
+199 info uninstall ionic@1.6.4
+200 verbose unbuild rmStuff ionic@1.6.4 from /usr/local/lib/node_modules
+201 silly gentlyRm /usr/local/bin/ionic is being gently removed
+202 silly gentlyRm verifying /usr/local is an npm working directory
+203 silly gentlyRm containing path /usr/local is under npm's control, in /usr/local
+204 silly gentlyRm deletion target /usr/local/bin/ionic is under /usr/local
+205 verbose gentlyRm vacuuming from /usr/local/bin/ionic up to /usr/local
+206 info postuninstall ionic@1.6.4
+207 silly gentlyRm /usr/local/lib/node_modules/ionic is being purged from base /usr/local
+208 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/ionic
+209 silly vacuum-fs purging /usr/local/lib/node_modules/ionic
+210 error error rolling back Error: EACCES: permission denied, rmdir '/usr/local/lib/node_modules/ionic'
+210 error error rolling back     at Error (native)
+210 error error rolling back  { [Error: EACCES: permission denied, rmdir '/usr/local/lib/node_modules/ionic']
+210 error error rolling back   errno: -13,
+210 error error rolling back   code: 'EACCES',
+210 error error rolling back   syscall: 'rmdir',
+210 error error rolling back   path: '/usr/local/lib/node_modules/ionic' }

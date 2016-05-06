@@ -2,44 +2,18 @@
 angular.module('starter.controllers', [])
 
 
-
-
-
-// Authentication controller
-// Put your login, register functions here
 .controller('AuthCtrl', function($scope, nom_img, $location, $ionicHistory, $ionicSideMenuDelegate, $state, $ionicPopup,$http,$templateCache,$rootScope) {
   // hide back butotn in next view
   $ionicHistory.nextViewOptions({
     disableBack: true
   });
 
-document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombre_user");
-document.getElementById("img_usuario").src = nom_img;
-
-
-  // disabled swipe menu
- 
+    document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombre_user");
+    document.getElementById("img_usuario").src = nom_img;
 
 
   $scope.data ={};
  
-
-
-
-      /*    loginService.loginUser($scope.data.identificacion, $scope.data.clave).success(function(data) {
-          localStorage.setItem("usuario", $scope.data.identificacion);
-          localStorage.setItem("clave", $scope.data.clave);
-
-         
-            $state.go('inicio');
-        }).error(function(data) {
-              var alertPopup = $ionicPopup.alert({
-                title: 'Acceso Denegado!',
-                okType: 'button-assertive',
-                template: 'Por favor verifique sus datos!'
-            });
-        });
-    } */
 
     $scope.login_q = function() {
 
@@ -52,49 +26,14 @@ document.getElementById("img_usuario").src = nom_img;
        $ionicHistory.nextViewOptions({ disableBack: true, historyRoot: true });
        $state.go('login');
       })
-/*
-      window.localStorage.clear();
-
-      console.log(localStorage.getItem("usuario"));
-
-      $templateCache.removeAll();
-
-
-      $ionicHistory.nextViewOptions({
-     disableBack: true
-      });
-
-      $ionicHistory.clearHistory();
-    $ionicHistory.clearCache();
-    $ionicHistory.goBack()
-  
-
-      $state.go('login'); */
      
     }
 
-    
-
-     //fin
 
 })
-// Home controller
+
 .controller('HomeCtrl', function($scope, nom_img, Posts, $state, $ionicHistory,$templateCache,$http,$ionicPlatform) {
 
- var self = $ionicPlatform = {
-
-
-    exitApp: function() {
-      self.ready(function() {
-        navigator.app && navigator.app.exitApp && navigator.app.exitApp();
-      });
-    }
-    
-  };
-
-
-
-  
 document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombre_user");
 document.getElementById("img_usuario").src = nom_img;
 
@@ -160,19 +99,6 @@ document.getElementById("img_usuario").src = nom_img;
   // get list posts froms service
   $scope.posts = Posts.all();
 
-  // toggle like button
-  /*
-  $scope.toggleLike = function (post) {
-    // if user liked
-    if(post.liked) {
-      post.likeCount--;
-    } else {
-      post.likeCount++;
-    }
-    post.liked = !post.liked;
-  };*/
-
-  // view post
 
 $scope.viewPost = function(postId) {
 
@@ -188,35 +114,13 @@ $scope.viewPost = function(postId) {
 
 
 
-  
-
-
-
-
-
 })
 
 // Chat controller, view list chats and chat detail
-.controller('ChatCtrl', function($scope, Chats,$http,$state,id_serve,ngAudio,nom_img, $ionicHistory) {
- /* $scope.chats = Chats.all();
-  console.log ($scope.chats);*/
-/*
-  var usuario = localStorage.getItem("usuario");
- var chats;
-$http.get('http://radio.sigtics.org/chat/ListarChat?usuario='+usuario).
-      then(function(response) {
-       // $scope.$apply(function() {
-       
-
-         $scope.chats = response.data;
-         console.log($scope.chats);
+.controller('ChatCtrl', function($scope, Chats,$http,$state,id_serve,nom_img, $ionicHistory) {
 
 
-        
-           
-        }) */
-
-        if(localStorage.getItem("usuario"))
+    if(localStorage.getItem("usuario"))
     {
        
     }
@@ -225,7 +129,6 @@ $http.get('http://radio.sigtics.org/chat/ListarChat?usuario='+usuario).
       $ionicHistory.nextViewOptions({
     disableBack: true
      });
-
 
       $state.go('login');
     }
@@ -310,11 +213,7 @@ $http.get('http://167.114.164.224/~radiomario/chat/ListarChat?usuario='+usuario)
      {
       document.getElementById("chatLey").innerHTML = "";
      }
-     
-     
-
-
-
+    
 
 })
 
@@ -330,20 +229,6 @@ $scope.Dchat();
 
 
 socket.on( 'new_message', function( data ) {
-/*
-    console.log(data);
-
-    var message = {
-      type: data.tipo,
-      time: 'Just now',
-      text: data.mensaje
-    };
-    $scope.input.message = '';
-    // push to massages list
-    $scope.chat.messages.push(message);
-    $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
-*/
- 
 
      $scope.Dchat();
   
@@ -356,12 +241,10 @@ socket.on( 'new_message', function( data ) {
     $state.go('chat-canal');
   };
 
- 
-
 
   $scope.viewChat = function(chatId) {
 
-console.log(chatId);
+
   localStorage.setItem("View_id_chat", chatId);
   /*  $state.go('post'); */
 
@@ -393,10 +276,6 @@ console.log(chatId);
            
           request.success(function (data) {
 
-            
-         
-                 
-
                  $scope.Dchat();
              }); 
 
@@ -419,10 +298,6 @@ console.log(chatId);
            
           request.success(function (data) {
 
-            
-         
-            
-
                  $scope.Dchat();
              }); 
  
@@ -430,36 +305,12 @@ console.log(chatId);
 
 
 
-
-    //Chats.remove(chat);
   };
 
-  // mute a conversation
-  $scope.mute = function(chat) {
-    // write your code here
-  }
+ 
 })
 
 .controller('ChatDetailCtrl', function($scope,$upload,$ionicHistory, $stateParams, Chats, $ionicScrollDelegate, $ionicActionSheet, $timeout, $http,$state,id_serve,$ionicPopup, $ionicHistory) {
-  //$scope.chat = Chats.get($stateParams.chatId);
-     //$scope.chat = Chats.get(0);
- 
-
-
-   /*var datos = id_chat + '-' + usuario ;
-
-   $http.get('php/detalle_chat.php?datos='+datos).
-      success(function(response) {
-       // $scope.$apply(function() {
-       
-         $scope.chats1 = response;
-         console.log($scope.chats1);
-          return $scope.chats1
-           
-      //  })
-        
-     })*/
-
 
 
 $scope.ftoChat = function(foto) {
@@ -481,9 +332,6 @@ $scope.ftoChat = function(foto) {
        }      
     ]
   })
-
-
-
 
 
 }
@@ -613,20 +461,7 @@ var socket = io.connect( 'http://167.114.164.224:'+servicio);
 
 
     socket.on( 'new_message', function( data ) {
-/*
-    console.log(data);
 
-    var message = {
-      type: data.tipo,
-      time: 'Just now',
-      text: data.mensaje
-    };
-    $scope.input.message = '';
-    // push to massages list
-    $scope.chat.messages.push(message);
-    $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
-*/
-    //console.log ("hvsss");
 
      $scope.chat1(false);
   
@@ -652,17 +487,10 @@ var socket = io.connect( 'http://167.114.164.224:'+servicio);
     
         $state.go('edit_perfil');
       }
- 
 
-
-     // localStorage.setItem("View_id_contac", idU);
-      //$state.go('edit_perfil');
    
 
   }
-
-
- 
 
 
 
@@ -731,12 +559,6 @@ var socket = io.connect( 'http://167.114.164.224:'+servicio);
    
     $scope.input.message = '';
 
-    // push to massages list
-
-
-   // $scope.chat.messages.push(message);
-
-   // $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
   };
 
   $scope.openFileDialog=function() {
@@ -784,9 +606,6 @@ var socket = io.connect( 'http://167.114.164.224:'+servicio);
 
              
 
-
-
-
             break;
         }
 
@@ -823,54 +642,15 @@ var socket = io.connect( 'http://167.114.164.224:'+servicio);
 
 document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombre_user");
 document.getElementById("img_usuario").src = nom_img;
-  // get list posts froms service
-
-  /*
-
-    var id_noticia = localStorage.getItem("View_id_noticia");
-        var token = "io-gluk@fct%vusb";
-        console.log(id_noticia);
-
-        var request = $http({
-            method: "post",
-            url: "http://radio.sigtics.org/movil_funciones/viewNoticia",
-            data: {
-                    id_noticia: id_noticia,
-                    token: token
-                },
-
-                  headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
-               
-            }); */
-            /* Check whether the HTTP Request is Successfull or not. */
-           /* request.success(function (response) {
-
-              $scope.post1 = response;
-
-              console.log(response);
-
-             
-
-            }); */
+ 
   $scope.post = Posts.get(0);
-        //$state.go('post');
 
-
-  // toggle like button
-
-
-  // view user function
  
 })
 
 
-
-
-// ContactsCtrl controller
 .controller('ContactsCtrl', function($scope, Contacts, $state,$http,alertify,nom_img, $ionicHistory) {
-  // get list posts froms service
-  //$scope.contacts = Contacts.all();
- // console.log($scope.contacts);
+
 
  if(localStorage.getItem("usuario"))
     {
@@ -1154,19 +934,6 @@ document.getElementById("img_usuario").src = nom_img;
             });
 
 
-
-  //$scope.user = Contacts.get(0);
-
-  // attach post to this contact
- /* angular.extend($scope.user, {
-    'followers': 199,
-    'following': 48,
-    'favorites': 14,
-    'posts': Posts.all()
-  });*/
-
-
-
    
 
      $scope.actualizar = function () {
@@ -1303,31 +1070,25 @@ $ionicHistory.nextViewOptions({
               
 
  
-.controller('login', function($scope,$ionicPopup,$http,$state,$location,$templateCache,$ionicHistory,alertify,$rootScope,$ionicPlatform, $ionicHistory){
-  alert("prueba");
-  var string = device;
-  alert(string);
-   $ionicPlatform.ready(function() {
-        // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-        // for form inputs)
-        if (window.cordova && window.cordova.plugins.Keyboard) {
-            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-        }
-        if (window.StatusBar) {
-            // org.apache.cordova.statusbar required
-            StatusBar.styleDefault();
-        }
+.controller('login', function($scope,$ionicPopup,$http,$state,$location,$templateCache,$ionicHistory,alertify,$rootScope,$ionicPlatform, $ionicHistory,$ionicPlatform,$cordovaPush){
+ 
+var androidConfig = {
+ "senderID": "217743739524"
+ };
 
-        // Función Botón atrás
-        $ionicPlatform.registerBackButtonAction(function () {
+ alert(androidConfig);
 
-                ionic.Platform.exitApp();
-             
-
-        }, 100);
+  $cordovaPush.register(androidConfig).then(function(result) {
+      // Success
+      alert(result);
+    }, function(err) {
+      // Error
+      alert(err);
+    })
 
 
-    }); 
+
+
 
 
 $ionicHistory.nextViewOptions({
@@ -1995,20 +1756,8 @@ var request = $http({
 
 })
  
-.controller('StreamController' ,function($scope,$http,ngAudio,$interval, $ionicHistory){
-  /*
-$scope.Play = function(src) {
-        var audio = {};
-        audio["walk"] = new Audio();
-        audio["walk"].src = src;
-        audio["walk"].play();
-       console.log(audio);
-    }
-$scope.PlayEmisora = function(src) {
-    $scope.audio = ngAudio.load(src); // returns NgAudioObject
-    console.log($scope.audio);
-    $scope.audio.play();
-  }*/
+.controller('StreamController' ,function($scope,$http,$interval, $ionicHistory){
+
   if(localStorage.getItem("usuario"))
     {
        
@@ -2022,23 +1771,7 @@ $scope.PlayEmisora = function(src) {
 
       $state.go('login');
     }
-  var play = 1;
-
-$scope.play1 = function(){
-   if (play == 1)
-   {
-    play = 2;
-   } else if (play == 2)
-   {
-    play = 1;
-   }
-
-}
-
-
-
-
-
+  
 
 $scope.songs = [
             {
@@ -2064,11 +1797,6 @@ $scope.songs = [
 })
 
 
-  
-
- 
-
-// SettingCtrl controller
 
 .controller('info_chat', function($scope,$http,$state){
 

@@ -930,11 +930,11 @@
             if(hasConsole && sm2.useConsole) {
                 if(sTypeOrObject && typeof sTypeOrObject === 'object') {
                     // object passed; dump to console.
-                    console.log(sText, sTypeOrObject);
+                   // console.log(sText, sTypeOrObject);
                 } else if(debugLevels[sTypeOrObject] !== _undefined) {
-                    console[debugLevels[sTypeOrObject]](sText);
+                   // console[debugLevels[sTypeOrObject]](sText);
                 } else {
-                    console.log(sText);
+                   // console.log(sText);
                 }
                 if(sm2.consoleOnly) {
                     return true;
