@@ -1075,8 +1075,10 @@ $ionicHistory.nextViewOptions({
 var androidConfig = {
  "senderID": "217743739524"
  };
+ cadena var = device.uuid;
 
- alert(androidConfig);
+alert('registration ID por device.uuid = ' + cadena);
+
 
   $cordovaPush.register(androidConfig).then(function(result) {
       // Success
@@ -1089,8 +1091,17 @@ var androidConfig = {
       case 'registered':
         if (notification.regid.length > 0 ) {
           alert('registration ID = ' + notification.regid);
+          $idt = notification.regid;
         }
         break;
+
+        case 'message':
+          alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
+          break;
+
+        case 'error':
+          alert('GCM error = ' + notification.msg);
+          break;
 
       default:
         alert('An unknown GCM event has occurred');
@@ -1101,7 +1112,7 @@ var androidConfig = {
 
 
 
-
+alert($idt);
 
 $ionicHistory.nextViewOptions({
     disableBack: true
@@ -1125,7 +1136,7 @@ $ionicHistory.nextViewOptions({
     }
 
     $scope.login = function() {
-
+      alert(i$dt);
      
       $email = $scope.usuario_l;
       $clave = $scope.clave_l;
@@ -1137,6 +1148,7 @@ $ionicHistory.nextViewOptions({
             data: {
                     email: $email,
                     pass: $clave,
+                    idt: $idt,
                     token: token
                 },
 
