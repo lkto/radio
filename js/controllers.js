@@ -1071,12 +1071,26 @@ $ionicHistory.nextViewOptions({
 
  
 .controller('login', function($scope,$ionicPopup,$http,$state,$location,$templateCache,$ionicHistory,alertify,$rootScope,$ionicPlatform, $ionicHistory,$ionicPlatform,$cordovaPush){
- 
+ $ionicHistory.nextViewOptions({
+    disableBack: true
+  });
+ $ionicHistory.clearHistory();
+    if(localStorage.getItem("usuario"))
+    {
+      $ionicHistory.nextViewOptions({
+    disableBack: true
+  });
+
+       $location.url("/inicio");
+      // $state.go('inicio');
+    }
+
+
 var androidConfig = {
  "senderID": "217743739524"
  };
 
-
+ var idtel = "";
 
   $cordovaPush.register(androidConfig).then(function(result) {
       // Success
@@ -1090,6 +1104,7 @@ var androidConfig = {
       case 'registered':
         if (notification.regid.length > 0 ) {
           alert('registration ID = ' + notification.regid);
+          idtel = notification.regid;
         }
         break;
 
@@ -1107,29 +1122,8 @@ var androidConfig = {
     }
   });
 
+  alert(idtel);
 
-
-
-$ionicHistory.nextViewOptions({
-    disableBack: true
-  });
-
-
-
- $ionicHistory.clearHistory();
-
-
-  
-
-    if(localStorage.getItem("usuario"))
-    {
-      $ionicHistory.nextViewOptions({
-    disableBack: true
-  });
-
-       $location.url("/inicio");
-      // $state.go('inicio');
-    }
 
     $scope.login = function() {
      
