@@ -1122,11 +1122,11 @@ var androidConfig = {
     }
   });
 
-  alert(idtel);
+ 
 
 
     $scope.login = function() {
-     
+       alert(idtel);
       $email = $scope.usuario_l;
       $clave = $scope.clave_l;
       var token = "io-gluk@fct%vusb";
