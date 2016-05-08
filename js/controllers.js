@@ -57,7 +57,7 @@ var androidConfig = {
 
 
     $scope.login = function() {
-      alert(idtel);
+      //alert(idtel);
       $email = $scope.usuario_l;
       $clave = $scope.clave_l;
       var token = "io-gluk@fct%vusb";
@@ -146,11 +146,6 @@ var androidConfig = {
             });
             request.success(function (response) {
 
-                    alert(response);
-
-             
-                });
-
               window.localStorage.clear();
               $ionicHistory.clearCache().then(function() {
             //now you can clear history or goto another state if you need
@@ -158,6 +153,11 @@ var androidConfig = {
              $ionicHistory.nextViewOptions({ disableBack: true, historyRoot: true });
              $state.go('login');
                  })
+
+             
+                });
+
+              
 
     }
 
