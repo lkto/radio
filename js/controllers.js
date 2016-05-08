@@ -1,6 +1,121 @@
 
 angular.module('starter.controllers', [])
 
+.controller('login', function($scope,$ionicPopup,$http,$state,$location,$templateCache,$ionicHistory,alertify,$rootScope,$ionicPlatform, $ionicHistory,$ionicPlatform,$cordovaPush){
+ $ionicHistory.nextViewOptions({
+    disableBack: true
+  });
+ $ionicHistory.clearHistory();
+    if(localStorage.getItem("usuario"))
+    {
+      $ionicHistory.nextViewOptions({
+    disableBack: true
+  });
+
+       $location.url("/inicio");
+      // $state.go('inicio');
+    }
+
+
+var androidConfig = {
+ "senderID": "217743739524"
+ };
+
+ var idtel = "";
+
+  $cordovaPush.register(androidConfig).then(function(result) {
+      // Success
+    }, function(err) {
+      // Error
+    }
+    )
+
+  $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+    switch(notification.event) {
+      case 'registered':
+        if (notification.regid.length > 0 ) {
+          //alert('registration ID = ' + notification.regid);
+          idtel = notification.regid;
+        }
+        break;
+
+        case 'message':
+          //alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
+          break;
+
+        case 'error':
+          //alert('GCM error = ' + notification.msg);
+          break;
+
+      default:
+        //alert('An unknown GCM event has occurred');
+        break;
+    }
+  });
+
+ 
+
+
+    $scope.login = function() {
+      //alert(idtel);
+      $email = $scope.usuario_l;
+      $clave = $scope.clave_l;
+      var token = "io-gluk@fct%vusb";
+
+          var request = $http({
+            method: "post",
+            url: "http://167.114.164.224/~radiomario/movil_funciones/login",
+            data: {
+                    email: $email,
+                    pass: $clave,
+                    idt: idtel,
+                    token: token
+                },
+
+                  headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
+               
+            });
+            /* Check whether the HTTP Request is Successfull or not. */
+            request.success(function (data) {
+
+        
+
+              if(data.entro == 1)
+              {
+
+                localStorage.setItem("usuario", $email);
+                localStorage.setItem("prueba", 0);
+                 $templateCache.removeAll();
+                 $ionicHistory.nextViewOptions({
+                disableBack: true
+              });
+              
+              localStorage.setItem("nombre_user", data.name);
+              localStorage.setItem("imagen_user", data.foto);
+
+              document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombre_user");
+              document.getElementById("img_usuario").src = localStorage.getItem("imagen_user");
+
+                $state.go('inicio');
+              }
+              else
+              {
+
+                 alertify.logPosition("top right");
+                 alertify.error("Datos Incorrectos");
+
+              }
+              
+             
+
+            });
+           
+         
+
+
+          }
+
+})
 
 .controller('AuthCtrl', function($scope, nom_img, $location, $ionicHistory, $ionicSideMenuDelegate, $state, $ionicPopup,$http,$templateCache,$rootScope) {
   // hide back butotn in next view
@@ -1070,120 +1185,7 @@ $ionicHistory.nextViewOptions({
               
 
  
-.controller('login', function($scope,$ionicPopup,$http,$state,$location,$templateCache,$ionicHistory,alertify,$rootScope,$ionicPlatform, $ionicHistory,$ionicPlatform,$cordovaPush){
- $ionicHistory.nextViewOptions({
-    disableBack: true
-  });
- $ionicHistory.clearHistory();
-    if(localStorage.getItem("usuario"))
-    {
-      $ionicHistory.nextViewOptions({
-    disableBack: true
-  });
 
-       $location.url("/inicio");
-      // $state.go('inicio');
-    }
-
-
-var androidConfig = {
- "senderID": "217743739524"
- };
-
- var idtel = "";
-
-  $cordovaPush.register(androidConfig).then(function(result) {
-      // Success
-    }, function(err) {
-      // Error
-    }
-    )
-
-  $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
-    switch(notification.event) {
-      case 'registered':
-        if (notification.regid.length > 0 ) {
-          alert('registration ID = ' + notification.regid);
-          idtel = notification.regid;
-        }
-        break;
-
-        case 'message':
-          alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
-          break;
-
-        case 'error':
-          alert('GCM error = ' + notification.msg);
-          break;
-
-      default:
-        alert('An unknown GCM event has occurred');
-        break;
-    }
-  });
-
- 
-
-
-    $scope.login = function() {
-       alert(idtel);
-      $email = $scope.usuario_l;
-      $clave = $scope.clave_l;
-      var token = "io-gluk@fct%vusb";
-
-          var request = $http({
-            method: "post",
-            url: "http://167.114.164.224/~radiomario/movil_funciones/login",
-            data: {
-                    email: $email,
-                    pass: $clave,
-                    token: token
-                },
-
-                  headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
-               
-            });
-            /* Check whether the HTTP Request is Successfull or not. */
-            request.success(function (data) {
-
-        
-
-              if(data.entro == 1)
-              {
-
-                localStorage.setItem("usuario", $email);
-                localStorage.setItem("prueba", 0);
-                 $templateCache.removeAll();
-                 $ionicHistory.nextViewOptions({
-                disableBack: true
-              });
-              
-              localStorage.setItem("nombre_user", data.name);
-              localStorage.setItem("imagen_user", data.foto);
-
-              document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombre_user");
-              document.getElementById("img_usuario").src = localStorage.getItem("imagen_user");
-
-                $state.go('inicio');
-              }
-              else
-              {
-
-                 alertify.logPosition("top right");
-                 alertify.error("Datos Incorrectos");
-
-              }
-              
-             
-
-            });
-           
-         
-
-
-          }
-
-})
 
 .controller('restaurar', function($scope,$ionicPopup,$http,$state,$location,$templateCache,$ionicHistory,alertify){
 
