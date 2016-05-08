@@ -57,7 +57,7 @@ var androidConfig = {
 
 
     $scope.login = function() {
-      //alert(idtel);
+      alert(idtel);
       $email = $scope.usuario_l;
       $clave = $scope.clave_l;
       var token = "io-gluk@fct%vusb";
@@ -82,7 +82,6 @@ var androidConfig = {
 
               if(data.entro == 1)
               {
-
                 localStorage.setItem("usuario", $email);
                 localStorage.setItem("prueba", 0);
                  $templateCache.removeAll();
@@ -132,16 +131,34 @@ var androidConfig = {
 
     $scope.login_q = function() {
 
-       window.localStorage.clear();
+       $email_s = localStorage.getItem("usuario");
+
+         var request = $http({
+            method: "post",
+            url: "http://167.114.164.224/~radiomario/movil_funciones/salir",
+            data: {
+                    email: $email_s
+                 
+                },
+
+                  headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
+               
+            });
+            request.success(function (response) {
+
+               window.localStorage.clear();
      
 
-        $ionicHistory.clearCache().then(function() {
-    //now you can clear history or goto another state if you need
-       $ionicHistory.clearHistory();
-       $ionicHistory.nextViewOptions({ disableBack: true, historyRoot: true });
-       $state.go('login');
-      })
-     
+              $ionicHistory.clearCache().then(function() {
+            //now you can clear history or goto another state if you need
+             $ionicHistory.clearHistory();
+             $ionicHistory.nextViewOptions({ disableBack: true, historyRoot: true });
+             $state.go('login');
+                 })
+
+             
+                });
+
     }
 
 
