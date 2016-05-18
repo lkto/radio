@@ -1,30 +1,5 @@
 angular.module('starter.services', ['ngCordova'])
 
-.run(function($cordovaPush,$rootScope) {
-
-/*
-var idtel1 ="";
-
-    $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
-    switch(notification.event) {
-      
-        case 'message':
-          alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
-          break;
-
-        case 'error':
-          //alert('GCM error = ' + notification.msg);
-          break;
-
-      default:
-        //alert('An unknown GCM event has occurred');
-        break;
-    }
-  });
-*/
-
-})
-
 
 
 .factory('id_serve', function ($http) {

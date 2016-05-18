@@ -21,6 +21,7 @@ var androidConfig = {
  "senderID": "217743739524"
  };
 
+
  var idtel = "";
 
   $cordovaPush.register(androidConfig).then(function(result) {
@@ -40,16 +41,12 @@ var androidConfig = {
         break;
 
         case 'message':
-          //alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
+          alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
           break;
 
         case 'error':
-          //alert('GCM error = ' + notification.msg);
+          alert('GCM error = ' + notification.msg);
           break;
-
-      default:
-        //alert('An unknown GCM event has occurred');
-        break;
     }
   });
 
