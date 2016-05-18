@@ -16,7 +16,9 @@ angular.module('starter.controllers', [])
       // $state.go('inicio');
     }
 
+ var idt1 = localStorage.getItem("idtt");
 
+ alert(idt1 + " login");
 
 
  
@@ -34,7 +36,7 @@ angular.module('starter.controllers', [])
             data: {
                     email: $email,
                     pass: $clave,
-                    idt: idtel,
+                    idt: idt1,
                     token: token
                 },
 
