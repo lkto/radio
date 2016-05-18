@@ -16,11 +16,35 @@ angular.module('starter.controllers', [])
       // $state.go('inicio');
     }
 
- var idt1 = localStorage.getItem("idtt");
+      var androidConfig = {
+ "senderID": "217743739524"
+ };
+
+
+
+  $cordovaPush.register(androidConfig).then(function(result) {
+      // Success
+    }, function(err) {
+      // Error
+    }
+    )
+
+ var idt1 = "";
+
+
+
+  $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+    switch(notification.event) {
+      case 'registered':
+        if (notification.regid.length > 0 ) {
+          alert('registration ID = ' + notification.regid);
+          idt1 = notification.regid;
+        }
+        break;
+    }
+  });
 
  alert(idt1 + " login");
-
-
  
 
 
