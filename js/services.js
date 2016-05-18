@@ -2,7 +2,7 @@ angular.module('starter.services', ['ngCordova'])
 
 .run(function($cordovaPush,$rootScope) {
 
-
+/*
 var idtel1 ="";
 
     $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
@@ -21,7 +21,7 @@ var idtel1 ="";
         break;
     }
   });
-
+*/
 
 })
 
