@@ -2,17 +2,12 @@ angular.module('starter.services', ['ngCordova'])
 
 .run(function($cordovaPush,$rootScope) {
 
+
 var idtel1 ="";
+
     $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
     switch(notification.event) {
-      case 'registered':
-        if (notification.regid.length > 0 ) {
-          //alert('registration ID = ' + notification.regid);
-          idtel1 = notification.regid;
-          alert(idtel1 + "alerta del run");
-        }
-        break;
-
+      
         case 'message':
           alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
           break;
