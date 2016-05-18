@@ -1,106 +1,33 @@
 angular.module('starter.services', ['ngCordova'])
 
-.run(function($cordovaPush) {
+.run(function($cordovaPush,$rootScope) {
+
+var idtel1 ="";
+    $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+    switch(notification.event) {
+      case 'registered':
+        if (notification.regid.length > 0 ) {
+          //alert('registration ID = ' + notification.regid);
+          idtel1 = notification.regid;
+          alert(idtel1 + "alerta del run");
+        }
+        break;
+
+        case 'message':
+          alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
+          break;
+
+        case 'error':
+          //alert('GCM error = ' + notification.msg);
+          break;
+
+      default:
+        //alert('An unknown GCM event has occurred');
+        break;
+    }
+  });
 
 
-  // var androidConfig = {
-  //   "senderID": "217743739524"
-  // };
-
-//   document.addEventListener("deviceready",OnDeviceReady, false);
-   
-//   function OnDeviceReady(){
-    
-//       var pushNotification = window.plugin.pushNotification;
-//           pushNotification.register(successHandler, errorHandler,{"senderID":"217743739524","ecb":"onNotificationGCM"}); 
-
-
-//           function successHandler(result) { 
-//     //alert('Callback Success! Result = '+result) 
-//           }
-//       function errorHandler(error) { 
-//     //alert(error); 
-//         } 
-// function onNotificationGCM(e) {
-//    switch(e.event) 
-//     { 
-//       case 'registered': 
-//             if(e.regid.length>0) 
-//             { 
-//                 //console.log("Regid " + e.regid); 
-//                 //alert('registration id = '+e.regid); 
-//                 var registro='regId='+encodeURIComponent(e.regid);
-//                 alert(registro);
-                
-//                 $.ajax({
-//                     type:'POST',
-//                     data: registro,
-//                     async:true,
-//                     url:'http://app.ccq.org.co/appmovil/Notificaciones/registro.php',
-//                     success: function(valo){
-//                          //alert(valo);
-//                     },
-//                     error: function(err){ 
-//                         //alert(err);
-//                     }
-//                 }); 
-
-//             } 
-//             break; 
-
-//         case 'message': 
-//           // NOTIFICACION!!! 
-//             //alert('message = '+e.message+' msgcnt = '+e.msgcnt); 
-//             break; 
-
-//         case 'error': 
-//             //alert('GCM error = '+e.msg); 
-//             break; 
-
-//         default: 
-//             //alert('An unknown GCM event has occurred'); 
-//             break; 
-//     } 
-// }
-      // $cordovaPush.register(androidConfig).then(function(result) {
-      //   // Success
-      //   alert(result);
-      // }, function(err) {
-      //   // Error
-      //   alert(err);
-      // })
-
-      // $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
-      //   switch(notification.event) {
-      //     case 'registered':
-      //       if (notification.regid.length > 0 ) {
-      //         alert('registration ID = ' + notification.regid);
-      //       }
-      //       break;
-
-      //     case 'message':
-      //       // this is the actual push notification. its format depends on the data model from the push server
-      //       alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
-      //       break;
-
-      //     case 'error':
-      //       alert('GCM error = ' + notification.msg);
-      //       break;
-
-      //     default:
-      //       alert('An unknown GCM event has occurred');
-      //       break;
-      //   }
-      // });
-
-
-      // WARNING: dangerous to unregister (results in loss of tokenID)
-      // $cordovaPush.unregister(options).then(function(result) {
-      //   // Success!
-      // }, function(err) {
-      //   // Error
-      // });
-  //}
 })
 
 

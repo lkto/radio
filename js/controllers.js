@@ -64,7 +64,7 @@ var androidConfig = {
 
           var request = $http({
             method: "post",
-            url: "http://167.114.164.224/~radiomario/movil_funciones/login",
+            url: "http://adminenri.sigtics.org/movil_funciones/login",
             data: {
                     email: $email,
                     pass: $clave,
@@ -135,7 +135,7 @@ var androidConfig = {
 
          var request = $http({
             method: "post",
-            url: "http://167.114.164.224/~radiomario/movil_funciones/salir",
+            url: "http://adminenri.sigtics.org/movil_funciones/salir",
             data: {
                     email: $email_s
                  
@@ -191,7 +191,7 @@ document.getElementById("img_usuario").src = nom_img;
    var token = "io-gluk@fct%vusb";
    var request = $http({
             method: "post",
-            url: "http://167.114.164.224/~radiomario/movil_funciones/getUser",
+            url: "http://adminenri.sigtics.org/movil_funciones/getUser",
             data: {
                     email: $email_d,
                     token:token
@@ -276,7 +276,7 @@ $scope.Dchat = function() {
 
 var usuario = localStorage.getItem("usuario");
 
-$http.get('http://167.114.164.224/~radiomario/chat/ListarChat?usuario='+usuario).
+$http.get('http://adminenri.sigtics.org/chat/ListarChat?usuario='+usuario).
       then(function(response) {
        // $scope.$apply(function() {
          $scope.chats = response.data;
@@ -357,7 +357,7 @@ $scope.Dchat();
 
 
 
- var socket = io.connect( 'http://167.114.164.224:'+servicio);
+ var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio);
 
 
 socket.on( 'new_message', function( data ) {
@@ -398,7 +398,7 @@ socket.on( 'new_message', function( data ) {
      
         var request = $http({
                 method: "post",
-                url: "http://167.114.164.224/~radiomario/chat/SalirGrupo",
+                url: "http://adminenri.sigtics.org/chat/SalirGrupo",
                 data: {
                     usuario:usuario2,
                     id_chat:idf[1]
@@ -421,7 +421,7 @@ socket.on( 'new_message', function( data ) {
 
         var request = $http({
                 method: "post",
-                url: "http://167.114.164.224/~radiomario/chat/SalirChat",
+                url: "http://adminenri.sigtics.org/chat/SalirChat",
                 data: {
                     id_chat:idf[0]
                 },
@@ -494,7 +494,7 @@ $scope.uploadResult = [];
     for (var i = 0; i < $files.length; i++) {
       var $file = $files[i];
       $upload.upload({
-        url: 'http://167.114.164.224/~radiomario/chat/FotoChat',
+        url: 'http://adminenri.sigtics.org/chat/FotoChat',
         data: {
                     id_chat:id_chat1,
                     usuario:usuario1,
@@ -513,7 +513,7 @@ $scope.uploadResult = [];
           $scope.uploadResult.push(response.data);
        
         });
-            var socket = io.connect( 'http://167.114.164.224:'+servicio);
+            var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio);
 
                  socket.emit('new_message', { 
                  
@@ -557,7 +557,7 @@ $scope.chat1 = function(s) {
  
        var request = $http({
                 method: "post",
-                url: "http://167.114.164.224/~radiomario/chat/DetallesChat",
+                url: "http://adminenri.sigtics.org/chat/DetallesChat",
                 data: {
                     usuario:usuario,
                     id_chat:id_chat,
@@ -574,7 +574,7 @@ $scope.chat1 = function(s) {
            
 
                $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
-             var socket = io.connect( 'http://167.114.164.224:'+servicio);
+             var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio);
 
                 
 
@@ -588,7 +588,7 @@ $scope.chat1 = function(s) {
   
 
 
-var socket = io.connect( 'http://167.114.164.224:'+servicio);
+var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio);
 
 
 
@@ -637,7 +637,7 @@ var socket = io.connect( 'http://167.114.164.224:'+servicio);
 
     var request = $http({
                 method: "post",
-                url: "http://167.114.164.224/~radiomario/chat/InsertarChat",
+                url: "http://adminenri.sigtics.org/chat/InsertarChat",
                 data: {
                     message:message,
                     id_chat:id_chat,
@@ -664,7 +664,7 @@ var socket = io.connect( 'http://167.114.164.224:'+servicio);
 
              
 
-         var socket = io.connect( 'http://167.114.164.224:'+servicio );
+         var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio );
 
            
 
@@ -718,7 +718,7 @@ var socket = io.connect( 'http://167.114.164.224:'+servicio);
 
                var request = $http({
                 method: "post",
-                url: "http://167.114.164.224/~radiomario/chat/EliminarMensaje",
+                url: "http://adminenri.sigtics.org/chat/EliminarMensaje",
                 data: {
                     mensaje_id:idm
 
@@ -845,7 +845,7 @@ $usuarioG = localStorage.getItem("usuario");
 
   var request = $http({
                 method: "post",
-                url: "http://167.114.164.224/~radiomario/chat/crearGrupo",
+                url: "http://adminenri.sigtics.org/chat/crearGrupo",
                 data: {
                     usuario: $usuarioG,
                     contactos: contactos,
@@ -884,7 +884,7 @@ alertify.success('Agregando Usuarios, Espere por favor');
 
   var request = $http({
                 method: "post",
-                url: "http://167.114.164.224/~radiomario/chat/AgregarUsuarioGrupo",
+                url: "http://adminenri.sigtics.org/chat/AgregarUsuarioGrupo",
                 data: {
                     id_grupo:  Id_Gr,
                     contactos: contactos
@@ -920,7 +920,7 @@ $scope.ccon = function(){
 
   var request = $http({
                 method: "post",
-                url: "http://167.114.164.224/~radiomario/movil_funciones/listarUsuario",
+                url: "http://adminenri.sigtics.org/movil_funciones/listarUsuario",
                 data: {
                     usuario: $usuarioC 
               
@@ -983,7 +983,7 @@ $scope.viewChat1 = function(ID_cont) {
 
    var request = $http({
             method: "post",
-            url: "http://167.114.164.224/~radiomario/movil_funciones/eliminarContacto",
+            url: "http://adminenri.sigtics.org/movil_funciones/eliminarContacto",
             data: {
                     id: idE,
                     token:token
@@ -1047,7 +1047,7 @@ document.getElementById("img_usuario").src = nom_img;
   //console.log($email_d);
     var request = $http({
             method: "post",
-            url: "http://167.114.164.224/~radiomario/movil_funciones/getUser",
+            url: "http://adminenri.sigtics.org/movil_funciones/getUser",
             data: {
                     email: $email_d,
                     token: token
@@ -1080,7 +1080,7 @@ document.getElementById("img_usuario").src = nom_img;
 
             var request = $http({
                 method: "post",
-                url: "http://167.114.164.224/~radiomario/movil_funciones/datos_personales",
+                url: "http://adminenri.sigtics.org/movil_funciones/datos_personales",
                 data: {
                     nombre: $nombre,
                     estado: $estado,
@@ -1138,7 +1138,7 @@ $ionicHistory.nextViewOptions({
   var token = "io-gluk@fct%vusb";
   var request = $http({
             method: "post",
-            url: "http://167.114.164.224/~radiomario/movil_funciones/getUser",
+            url: "http://adminenri.sigtics.org/movil_funciones/getUser",
             data: {
                     email: email,
                     token: token
@@ -1164,7 +1164,7 @@ $ionicHistory.nextViewOptions({
     for (var i = 0; i < $files.length; i++) {
       var $file = $files[i];
       $upload.upload({
-        url: 'http://167.114.164.224/~radiomario/movil_funciones/fotoPerfil',
+        url: 'http://adminenri.sigtics.org/movil_funciones/fotoPerfil',
         data: {id: email,
                token: token},
         file: $file,
@@ -1219,7 +1219,7 @@ $ionicHistory.nextViewOptions({
 
     var request = $http({
             method: "post",
-            url: "http://167.114.164.224/~radiomario/movil_funciones/restaurar",
+            url: "http://adminenri.sigtics.org/movil_funciones/restaurar",
             data: {
                     email: $email_res,
                     token: token
@@ -1266,7 +1266,7 @@ $email_d = localStorage.getItem("usuario");
    var token = "io-gluk@fct%vusb";
    var request = $http({
             method: "post",
-            url: "http://167.114.164.224/~radiomario/movil_funciones/getUser",
+            url: "http://adminenri.sigtics.org/movil_funciones/getUser",
             data: {
                     email: $email_d,
                     token: token
@@ -1303,7 +1303,7 @@ $email_d = localStorage.getItem("usuario");
 
             var request = $http({
                 method: "post",
-                url: "http://167.114.164.224/~radiomario/movil_funciones/registrar",
+                url: "http://adminenri.sigtics.org/movil_funciones/registrar",
                 data: {
                     email: $scope.email_r,
                     pass: $scope.password_r,
@@ -1367,7 +1367,7 @@ $email_d = localStorage.getItem("usuario");
 
             var request = $http({
                 method: "post",
-                url: "http://167.114.164.224/~radiomario/movil_funciones/c_clave",
+                url: "http://adminenri.sigtics.org/movil_funciones/c_clave",
                 data: {
                     c_actual: $scope.c_actual,
                     c_nueva: $scope.c_nueva,
@@ -1433,7 +1433,7 @@ if(localStorage.getItem("usuario"))
  
             var request = $http({
                 method: "post",
-                url: "http://167.114.164.224/~radiomario/movil_funciones/Ausuario",
+                url: "http://adminenri.sigtics.org/movil_funciones/Ausuario",
                 data: {
                     usuario: usuario,
                     usuario_id: $email_con,
@@ -1459,7 +1459,7 @@ if(localStorage.getItem("usuario"))
               disableBack: true
                });
              
-            var socket = io.connect( 'http://167.114.164.224:'+servicio);
+            var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio);
               socket.emit('new_contact', { 
                   usuario: usuario,
                   usuario_id: $email_con,
@@ -1507,7 +1507,7 @@ $scope.solev = function(){
      
       var request = $http({
             method: "post",
-            url: "http://167.114.164.224/~radiomario/movil_funciones/S_enviadas",
+            url: "http://adminenri.sigtics.org/movil_funciones/S_enviadas",
             data: {
                     email: $email_en,
                     token: token
@@ -1531,7 +1531,7 @@ $scope.solev = function(){
 
 $scope.solev();
 
-  var socket = io.connect( 'http://167.114.164.224:'+servicio);
+  var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio);
 
     socket.on( 'new_contact', function( data ) {
 
@@ -1552,7 +1552,7 @@ var usuarioSoli = Csolicitu;
 
 var request = $http({
             method: "post",
-            url: "http://167.114.164.224/~radiomario/movil_funciones/S_cancelar",
+            url: "http://adminenri.sigtics.org/movil_funciones/S_cancelar",
             data: {
                     usuarioe: $email_can,
                     usuarios: usuarioSoli,
@@ -1572,7 +1572,7 @@ var request = $http({
               $ionicHistory.nextViewOptions({
               disableBack: true
                });
-              var socket = io.connect( 'http://167.114.164.224:'+servicio);
+              var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio);
               socket.on( 'new_contact', function( data ) {
 
                     $scope.solev();
@@ -1612,7 +1612,7 @@ $scope.solrec = function (){
    
   var request = $http({
             method: "post",
-            url: "http://167.114.164.224/~radiomario/movil_funciones/S_recibidas",
+            url: "http://adminenri.sigtics.org/movil_funciones/S_recibidas",
             data: {
                     email: $email_rec,
                     token: token
@@ -1635,7 +1635,7 @@ $scope.solrec = function (){
 
   $scope.solrec();
 
-  var socket = io.connect( 'http://167.114.164.224:'+servicio);
+  var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio);
 
     socket.on( 'new_contact', function( data ) {
 
@@ -1654,7 +1654,7 @@ var usuarioSoliD = Dsolicitu;
 
 var request = $http({
             method: "post",
-            url: "http://167.114.164.224/~radiomario/movil_funciones/S_cancelar_recibidas",
+            url: "http://adminenri.sigtics.org/movil_funciones/S_cancelar_recibidas",
             data: {
                     usuarioe: $email_den,
                     usuarios: usuarioSoliD,
@@ -1675,7 +1675,7 @@ var request = $http({
               disableBack: true
                });
 
-               var socket = io.connect( 'http://167.114.164.224:'+servicio);
+               var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio);
 
               socket.on( 'new_contact', function( data ) {
 
@@ -1698,7 +1698,7 @@ var usuarioSoliA = Asolicitu;
 
 var request = $http({
             method: "post",
-            url: "http://167.114.164.224/~radiomario/movil_funciones/S_aceptar_recibidas",
+            url: "http://adminenri.sigtics.org/movil_funciones/S_aceptar_recibidas",
             data: {
                     usuarioe: $email_acep,
                     usuarios: usuarioSoliA,
@@ -1719,7 +1719,7 @@ var request = $http({
               disableBack: true
                });
 
-               var socket = io.connect( 'http://167.114.164.224:'+servicio);
+               var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio);
 
               socket.on( 'new_contact', function( data ) {
 
@@ -1765,7 +1765,7 @@ var request = $http({
 
    var request = $http({
             method: "post",
-            url: "http://167.114.164.224/~radiomario/movil_funciones/getUser",
+            url: "http://adminenri.sigtics.org/movil_funciones/getUser",
             data: {
                     email: idC,
                     token:token
@@ -1836,7 +1836,7 @@ $scope.songs = [
 
   var request = $http({
                 method: "post",
-                url: "http://167.114.164.224/~radiomario/chat/DetallesGrupo",
+                url: "http://adminenri.sigtics.org/chat/DetallesGrupo",
                 data: {
                     id_grupo:ChatGrupo
               
@@ -1877,7 +1877,7 @@ $scope.songs = [
 
             var request = $http({
                 method: "post",
-                url: "http://167.114.164.224/~radiomario/movil_funciones/Ausuario",
+                url: "http://adminenri.sigtics.org/movil_funciones/Ausuario",
                 data: {
                     usuario: usuario,
                     usuario_id: id_contac,
@@ -1933,7 +1933,7 @@ $ionicHistory.nextViewOptions({
   var token = "io-gluk@fct%vusb";
   var request = $http({
             method: "post",
-            url: "http://167.114.164.224/~radiomario/chat/FotoGrupo",
+            url: "http://adminenri.sigtics.org/chat/FotoGrupo",
             data: {
                     id: grupo_id,
                     token: token
@@ -1958,7 +1958,7 @@ $ionicHistory.nextViewOptions({
     for (var i = 0; i < $files.length; i++) {
       var $file = $files[i];
       $upload.upload({
-        url: 'http://167.114.164.224/~radiomario/chat/UploadFotoGrupo',
+        url: 'http://adminenri.sigtics.org/chat/UploadFotoGrupo',
         data: {id: grupo_id,
                token: token},
         file: $file,
@@ -1991,7 +1991,7 @@ $ionicHistory.nextViewOptions({
 var s = 1;
        var request = $http({
                 method: "post",
-                url: "http://167.114.164.224/~radiomario/chat/DetallesCanal",
+                url: "http://adminenri.sigtics.org/chat/DetallesCanal",
                 data: {
                     usuario: s
             
@@ -2041,7 +2041,7 @@ document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombr
 document.getElementById("img_usuario").src = nom_img;
 
 
-  $http.get('http://167.114.164.224/~radiomario/movil_funciones/aceptar').
+  $http.get('http://adminenri.sigtics.org/movil_funciones/aceptar').
       then(function(response) {
        // $scope.$apply(function() {
            // localStorage.setItem("server", response.data.socket);
