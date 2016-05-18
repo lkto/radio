@@ -17,38 +17,7 @@ angular.module('starter.controllers', [])
     }
 
 
-var androidConfig = {
- "senderID": "217743739524"
- };
 
-
- var idtel = "";
-
-  $cordovaPush.register(androidConfig).then(function(result) {
-      // Success
-    }, function(err) {
-      // Error
-    }
-    )
-
-  $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
-    switch(notification.event) {
-      case 'registered':
-        if (notification.regid.length > 0 ) {
-          //alert('registration ID = ' + notification.regid);
-          idtel = notification.regid;
-        }
-        break;
-
-        case 'message':
-          alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
-          break;
-
-        case 'error':
-          alert('GCM error = ' + notification.msg);
-          break;
-    }
-  });
 
  
 
