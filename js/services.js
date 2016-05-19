@@ -2,12 +2,23 @@ angular.module('starter.services', ['ngCordova'])
 
 .run(function($cordovaPush,$rootScope) {
 
+ionic.Platform.ready(function() {
+
   var androidConfig = {
  "senderID": "217743739524"
  };
 
+ PushNotifications.setGcmSenderId('217743739524');
+      PushNotifications
+        .ensureRegistration()
+        .onMessage(function(message) {
+          alert("New push notification", message);
+        });
+
+    
 
  var idtel = "";
+
 
   $cordovaPush.register(androidConfig).then(function(result) {
       // Success
@@ -17,6 +28,8 @@ angular.module('starter.services', ['ngCordova'])
     )
 
   $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+
+    alert(notification.event);
     switch(notification.event) {
       case 'registered':
         if (notification.regid.length > 0 ) {
@@ -34,23 +47,27 @@ angular.module('starter.services', ['ngCordova'])
           alert('GCM error = ' + notification.msg);
           break;
     }
+
+
   });
 
 
-})
+});
+
+});
 
 
 
 .factory('id_serve', function ($http) {
 
-  $http.get('http://167.114.164.224/~radiomario/chat/aceptar').
+  $http.get('http://adminenri.sigtics.org/chat/aceptar').
       then(function(response) {
        // $scope.$apply(function() {
             localStorage.setItem("server", response.data.socket);
 
             $server = localStorage.getItem("server");
 
-          // console.log($server);
+           console.log($server);
            
       //  })
         
@@ -71,7 +88,7 @@ return $server;
   //console.log($email_d);
     var request = $http({
             method: "post",
-            url: "http://167.114.164.224/~radiomario/movil_funciones/getUser",
+            url: "http://adminenri.sigtics.org/movil_funciones/getUser",
             data: {
                     email: $email_d,
                     token: token
@@ -237,7 +254,7 @@ return $server;
     // Might use a resource here that returns a JSON array
  var posts;
     // Some fake testing data
-     $http.get('http://167.114.164.224/~radiomario/movil_funciones/getNoticias').
+     $http.get('http://adminenri.sigtics.org/movil_funciones/getNoticias').
       then(function(response) {
        // $scope.$apply(function() {
             posts= response.data;

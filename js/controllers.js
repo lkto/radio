@@ -34,6 +34,7 @@ angular.module('starter.controllers', [])
 
 
   $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+     alert(notification.event);
     switch(notification.event) {
       case 'registered':
         if (notification.regid.length > 0 ) {
@@ -43,6 +44,9 @@ angular.module('starter.controllers', [])
         break;
     }
   });
+
+  
+   var idt1 = "";
 
  alert(idt1 + " login");
  
@@ -434,7 +438,7 @@ socket.on( 'new_message', function( data ) {
  
 })
 
-.controller('ChatDetailCtrl', function($scope,$upload,$ionicHistory, $stateParams, Chats, $ionicScrollDelegate, $ionicActionSheet, $timeout, $http,$state,id_serve,$ionicPopup, $ionicHistory) {
+.controller('ChatDetailCtrl', function($scope,$upload,$ionicHistory, $stateParams, Chats, $ionicScrollDelegate, $ionicActionSheet, $timeout, $http,$state,id_serve,$ionicPopup, $ionicHistory,$rootScope,$cordovaPush) {
 
 
 $scope.ftoChat = function(foto) {
@@ -615,8 +619,22 @@ var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio);
    
 
   }
+  
+/*
+  $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+     alert(notification.event);
+    switch(notification.event) {
 
+        case 'message':
+          alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
+          break;
 
+        case 'error':
+          alert('GCM error = ' + notification.msg);
+          break;
+    }
+  });
+*/
 
 
   $scope.sendMessage = function() {
