@@ -2,19 +2,8 @@ angular.module('starter.services', ['ngCordova'])
 
 .run(function($cordovaPush,$rootScope) {
 
-  ionic.Platform.ready(function() {
+ionic.Platform.ready(function() {
 
-
-
- PushNotifications.setGcmSenderId('217743739524');
-      PushNotifications
-        .ensureRegistration()
-        .onMessage(function(message) {
-          alert("New push notification", message);
-        });
-
-
-  });
 
 var androidConfig = {
  "senderID": "217743739524"
@@ -54,7 +43,7 @@ var androidConfig = {
   });
 
 
-
+})
 })
 
 
