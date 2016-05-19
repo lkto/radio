@@ -2,11 +2,9 @@ angular.module('starter.services', ['ngCordova'])
 
 .run(function($cordovaPush,$rootScope) {
 
-ionic.Platform.ready(function() {
+  ionic.Platform.ready(function() {
 
-  var androidConfig = {
- "senderID": "217743739524"
- };
+
 
  PushNotifications.setGcmSenderId('217743739524');
       PushNotifications
@@ -15,7 +13,12 @@ ionic.Platform.ready(function() {
           alert("New push notification", message);
         });
 
-    
+
+  });
+
+var androidConfig = {
+ "senderID": "217743739524"
+ };
 
  var idtel = "";
 
@@ -27,7 +30,7 @@ ionic.Platform.ready(function() {
     }
     )
 
-  $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+    $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
 
     alert(notification.event);
     switch(notification.event) {
@@ -35,7 +38,6 @@ ionic.Platform.ready(function() {
         if (notification.regid.length > 0 ) {
           alert('registration ID = ' + notification.regid);
           idtel = notification.regid;
-          localStorage.setItem("idtt", idtel);
         }
         break;
 
@@ -52,9 +54,8 @@ ionic.Platform.ready(function() {
   });
 
 
-});
 
-});
+})
 
 
 
