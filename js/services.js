@@ -12,14 +12,7 @@ ionic.Platform.ready(function() {
 
     //alert(notification.event);
     switch(notification.event) {
-      case 'registered':
-        if (notification.regid.length > 0 ) {
-          //alert('registration ID = ' + notification.regid);
-          idtel = notification.regid;
-          localStorage.setItem("idtel1", idtel);
-          alert("Id Run " + localStorage.getItem("idtel1"));
-        }
-        break;
+    
 
         case 'message':
           alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
