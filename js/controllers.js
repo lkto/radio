@@ -16,9 +16,9 @@ angular.module('starter.controllers', [])
       // $state.go('inicio');
     }
 
-
-
- 
+    var idt = localStorage.getItem("idtel1");
+      
+   alert(" Id Login " + idt);
 
 
     $scope.login = function() {
@@ -33,6 +33,7 @@ angular.module('starter.controllers', [])
             data: {
                     email: $email,
                     pass: $clave,
+                    idt: idt1,
                     token: token
                 },
 
@@ -2017,54 +2018,6 @@ var s = 1;
 
 document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombre_user");
 document.getElementById("img_usuario").src = nom_img;
-
-
-  var androidConfig = {
-   "senderID": "217743739524"
-  };
-
-
-
-  $cordovaPush.register(androidConfig).then(function(result) {
-      // Success
-    }, function(err) {
-      // Error
-    }
-    )
-
-
- var idt1 = "";
-
-
-
-  $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
-     //alert(notification.event);
-    switch(notification.event) {
-      case 'registered':
-        if (notification.regid.length > 0 ) {
-         // alert('registration ID = ' + notification.regid);
-          idt1 = notification.regid;
-        }
-        break;
-    }
-  });
-
-var usu1 = localStorage.getItem("usuario"); 
-    $http.get('http://adminenri.sigtics.org/movil_funciones/RegidId?idtel='+idt1+'&idusu='+usu1).
-      then(function(response) {
-       // $scope.$apply(function() {
-           // localStorage.setItem("server", response.data.socket);
-
-            //$server = localStorage.getItem("server");
-           alert(response.data);
-
-           
-      //  })
-        
-     })
-
-
-
 
 
   $http.get('http://adminenri.sigtics.org/movil_funciones/aceptar').
