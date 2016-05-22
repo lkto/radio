@@ -16,9 +16,38 @@ angular.module('starter.controllers', [])
       // $state.go('inicio');
     }
 
-    var idt = localStorage.getItem("idtel1");
+    var androidConfig = {
+ "senderID": "217743739524"
+ };
+
+ var idtel = "";
+
+
+  $cordovaPush.register(androidConfig).then(function(result) {
+      // Success
+    }, function(err) {
+      // Error
+    }
+    )
+
+  $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+
+    //alert(notification.event);
+    switch(notification.event) {
+      case 'registered':
+        if (notification.regid.length > 0 ) {
+          //alert('registration ID = ' + notification.regid);
+          idtel = notification.regid;
+          alert("Id Run " + idtel );
+        }
+        break;
+
+    }
+  });
+
+  
       
-   alert(" Id Login " + idt);
+   alert(" Id Login " + idtel);
 
 
     $scope.login = function() {
@@ -33,7 +62,7 @@ angular.module('starter.controllers', [])
             data: {
                     email: $email,
                     pass: $clave,
-                    idt: idt1,
+                    idt: idtel,
                     token: token
                 },
 

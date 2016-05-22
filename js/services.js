@@ -1,23 +1,12 @@
 angular.module('starter.services', ['ngCordova'])
 
+
 .run(function($cordovaPush,$rootScope) {
 
 ionic.Platform.ready(function() {
 
 
-var androidConfig = {
- "senderID": "217743739524"
- };
 
- var idtel = "";
-
-
-  $cordovaPush.register(androidConfig).then(function(result) {
-      // Success
-    }, function(err) {
-      // Error
-    }
-    )
 
     $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
 
@@ -28,7 +17,6 @@ var androidConfig = {
           //alert('registration ID = ' + notification.regid);
           idtel = notification.regid;
           localStorage.setItem("idtel1", idtel);
-
           alert("Id Run " + localStorage.getItem("idtel1"));
         }
         break;
