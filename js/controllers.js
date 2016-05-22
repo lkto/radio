@@ -2044,7 +2044,7 @@ document.getElementById("img_usuario").src = nom_img;
 
               var request = $http({
                   method: "post",
-                    url: "http://adminenri.sigtics.org/movil_funciones/RedidId",
+                    url: "http://adminenri.sigtics.org/movil_funciones/RegidId",
                     data: {
                       idt: idtel,
                       usuario: us
