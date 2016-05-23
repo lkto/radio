@@ -40,7 +40,7 @@ angular.module('starter', ['ionic', 'btford.socket-io','starter.controllers', 's
     cache: false,
     url: '/home',
     templateUrl: 'templates/home.html',
-    controller: 'HomeCtrl'
+    controller:  'HomeCtrl'
   })
 
   //Inicio

@@ -221,7 +221,7 @@ $scope.viewPost = function(postId) {
 })
 
 // Chat controller, view list chats and chat detail
-.controller('ChatCtrl', function($scope, Chats,$http,$state,id_serve,nom_img, $ionicHistory, socket) {
+.controller('ChatCtrl', function($scope, Chats,$http,$state,id_serve,nom_img, $ionicHistory, socket,$rootScope,alertify,$cordovaPush) {
 
 
     if(localStorage.getItem("usuario"))
@@ -296,6 +296,27 @@ $http.get('http://adminenri.sigtics.org/chat/ListarChat?usuario='+usuario).
     }
 
 $scope.Dchat();
+
+  $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+
+    //alert(notification.event);
+    switch(notification.event) {
+
+        case 'message':
+          //alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
+          alertify.logPosition("top right");
+          alertify.delay(4000);
+          alertify.maxLogItems(1);
+          alertify.log(notification.message);
+
+          $scope.Dchat();
+ 
+
+
+          break;
+
+    }
+  }); 
 
 
 
@@ -393,7 +414,7 @@ socket.on('connect',function(){
  
 })
 
-.controller('ChatDetailCtrl', function($scope,$upload,$ionicHistory, $stateParams, Chats, $ionicScrollDelegate, $ionicActionSheet, $timeout, $http,$state,id_serve,$ionicPopup, $ionicHistory,$rootScope,$cordovaPush,socket) {
+.controller('ChatDetailCtrl', function($scope,$upload,$ionicHistory, $stateParams, Chats, $ionicScrollDelegate, $ionicActionSheet, $timeout, $http,$state,id_serve,$ionicPopup, $ionicHistory,$rootScope,$cordovaPush,socket,$rootScope,alertify) {
 
 
 $scope.ftoChat = function(foto) {
@@ -547,7 +568,26 @@ $scope.chat1 = function(s) {
     $scope.chat1();
 
   
+  $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
 
+    //alert(notification.event);
+    switch(notification.event) {
+
+        case 'message':
+          //alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
+          alertify.logPosition("top right");
+          alertify.delay(4000);
+          alertify.maxLogItems(1);
+          alertify.log(notification.message);
+
+          $scope.chat1();
+ 
+
+
+          break;
+
+    }
+  }); 
 
 //var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio);
 
@@ -2163,19 +2203,6 @@ document.getElementById("img_usuario").src = nom_img;
 
         }
         break;
-
-        case 'message':
-          //alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
-          alertify.logPosition("top right");
-          alertify.delay(2500);
-          alertify.maxLogItems(1);
-          alertify.log(notification.message);
-
-          $scope.chat2();
-          $scope.Dchat1();
-
-
-          break;
 
     }
   }); 
