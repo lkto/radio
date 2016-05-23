@@ -93,20 +93,23 @@
         </ion-nav-back-button> 
 
           <!-- Burger button -->
-          <div ng-controller = 'HomeCtrl'  > 
+       
           <ion-nav-buttons side="left">
-            <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-click="(pruebaC())">
+            <button class="button button-icon button-clear ion-navicon" menu-toggle="left" >
             </button>
           </ion-nav-buttons>
-          </div>
+    
 
           <!-- Cart button -->
-          <ion-nav-buttons side="right">
-            <button class="button button-icon button-clear ion-ios-email-outline" ui-sref="chats">
+
+   
+          <ion-nav-buttons side="right"  >
+            <button   stop-music class="button icon-left ion-stop button-clear" ng-model="pause" ng-click="pause1()"   data-ng-if="song.play = 2"  >
             </button>
           </ion-nav-buttons>
         </ion-nav-bar>
-
+    
+        <!--  stop-music class="button icon-left ion-stop button-clear" ng-model="pause" ng-click="play1()"   data-ng-if="song.play = 2" -->
         <!-- Main view content -->
         <ion-nav-view animation="slide-left-right"></ion-nav-view>
       </ion-side-menu-content>
@@ -117,7 +120,7 @@
         <ion-content>
 
   
-          <div class="text-center" ng-controller = 'HomeCtrl' >
+          <div class="text-center"  >
 
             <a ui-sref="user">
               <img class="profile-picture" menu-close="" src="" id="img_usuario">

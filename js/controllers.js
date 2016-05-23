@@ -41,7 +41,7 @@ angular.module('starter.controllers', [])
             request.success(function (data) {
 
         
-
+            
               if(data.entro == 1)
               {
                 localStorage.setItem("usuario", $email);
@@ -51,11 +51,12 @@ angular.module('starter.controllers', [])
                 disableBack: true
               });
               
+              document.getElementById("nombre_usuario").innerHTML =data.name;
+              document.getElementById("img_usuario").src ='';
+              document.getElementById("img_usuario").src =data.foto;
+
               localStorage.setItem("nombre_user", data.name);
               localStorage.setItem("imagen_user", data.foto);
-
-              document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombre_user");
-              document.getElementById("img_usuario").src = localStorage.getItem("imagen_user");
 
                 $state.go('inicio');
               }
@@ -191,8 +192,17 @@ document.getElementById("img_usuario").src = nom_img;
       
 
   // get list posts froms service
-  $scope.posts = Posts.all();
 
+ $http.get('http://adminenri.sigtics.org/movil_funciones/getNoticias').
+      then(function(response) {
+       // $scope.$apply(function() {
+            $scope.posts = response.data;
+             console.log($scope.posts);
+        
+           
+      //  })
+        
+     }) 
 
 $scope.viewPost = function(postId) {
 
@@ -201,7 +211,7 @@ $scope.viewPost = function(postId) {
  
   /*  $state.go('post'); */
 
-    $state.go('post', {postId: postId});
+    $state.go('post');
 }
    
   // view user
@@ -211,7 +221,7 @@ $scope.viewPost = function(postId) {
 })
 
 // Chat controller, view list chats and chat detail
-.controller('ChatCtrl', function($scope, Chats,$http,$state,id_serve,nom_img, $ionicHistory) {
+.controller('ChatCtrl', function($scope, Chats,$http,$state,id_serve,nom_img, $ionicHistory, socket) {
 
 
     if(localStorage.getItem("usuario"))
@@ -319,14 +329,23 @@ $scope.Dchat();
 
 
 
- var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio);
+ //var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio);
+
+socket.on('connect',function(){
+    connected = true
 
 
-socket.on( 'new_message', function( data ) {
+      socket.on('new message', function (data) {
 
-     $scope.Dchat();
-  
-  });
+          $scope.Dchat();
+
+        });
+
+
+
+
+})
+
 
 
 
@@ -404,7 +423,7 @@ socket.on( 'new_message', function( data ) {
  
 })
 
-.controller('ChatDetailCtrl', function($scope,$upload,$ionicHistory, $stateParams, Chats, $ionicScrollDelegate, $ionicActionSheet, $timeout, $http,$state,id_serve,$ionicPopup, $ionicHistory,$rootScope,$cordovaPush) {
+.controller('ChatDetailCtrl', function($scope,$upload,$ionicHistory, $stateParams, Chats, $ionicScrollDelegate, $ionicActionSheet, $timeout, $http,$state,id_serve,$ionicPopup, $ionicHistory,$rootScope,$cordovaPush,socket) {
 
 
 $scope.ftoChat = function(foto) {
@@ -475,13 +494,23 @@ $scope.uploadResult = [];
           $scope.uploadResult.push(response.data);
        
         });
-            var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio);
 
-                 socket.emit('new_message', { 
-                 
-                 
 
-                });
+            //var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio);
+
+
+      socket.on('connect',function(){
+
+        connected = true
+
+        socket.emit('new message', function (data) {
+  
+          });
+      
+      
+
+
+    })
 
             
 
@@ -536,9 +565,9 @@ $scope.chat1 = function(s) {
            
 
                $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
-             var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio);
+            // var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio);
 
-                
+                socket.on('connect',function(){ })
 
              }); 
  }
@@ -550,16 +579,11 @@ $scope.chat1 = function(s) {
   
 
 
-var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio);
+//var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio);
 
 
 
-    socket.on( 'new_message', function( data ) {
 
-
-     $scope.chat1(false);
-  
-  });
 
 
   $scope.viwPerfilU = function(idU) {
@@ -606,9 +630,9 @@ var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio);
   $scope.sendMessage = function() {
 
     var message =  $scope.input.message;
-     var id_chat = localStorage.getItem("View_id_chat");
-     var usuario = localStorage.getItem("usuario");
-       var id_user2 = localStorage.getItem("user_id_chat");
+    var id_chat = localStorage.getItem("View_id_chat");
+    var usuario = localStorage.getItem("usuario");
+    var id_user2 = localStorage.getItem("user_id_chat");
 
 
     var request = $http({
@@ -625,31 +649,31 @@ var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio);
             }); 
            
           request.success(function (data) {
+                   
+
+               localStorage.setItem("View_id_chat", data.id_chat);
+               var id_chat1 = localStorage.getItem("View_id_chat");
+               $scope.chat1(false);
              
 
-              var message = {
-              type: data.tipo,
-             time: 'Just now',
-             text: data.mensaje
-                  };
+         //var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio );
 
 
-                  
 
-                  $scope.chat1(false);
+    socket.on('connect',function(){
 
-             
+        connected = true
 
-         var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio );
+        socket.emit('new message', function (data) {
+              
+          
+         
+          });
+      
+      
 
-           
 
-                 socket.emit('new_message', { 
-                  mensaje: data.mensaje,
-                  id_chat: data.id_chat,
-                  tipo: data.tipo
-
-                });
+    })
 
           
 
@@ -751,7 +775,32 @@ var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio);
 document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombre_user");
 document.getElementById("img_usuario").src = nom_img;
  
-  $scope.post = Posts.get(0);
+
+  var id_post = localStorage.getItem("View_id_noticia");
+  //sconsole.log(id_post);
+
+  var request = $http({
+                method: "post",
+                url: "http://adminenri.sigtics.org/movil_funciones/GetNotice",
+                data: {
+                    id_post:id_post,
+                },
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            }); 
+           
+          request.success(function (data) {
+
+            
+              $scope.post = data[0];
+
+              //console.log($scope.post);
+           
+
+             }); 
+
+
+
+  //$scope.post = Posts.get(0);
 
  
 })
@@ -1493,6 +1542,7 @@ $scope.solev = function(){
                
             });
         
+
           request.success(function (response) {
 
               $scope.soli = response;
@@ -1506,14 +1556,6 @@ $scope.solev = function(){
 
 
 $scope.solev();
-
-  var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio);
-
-    socket.on( 'new_contact', function( data ) {
-
-    $scope.solev();
-  
-  });
 
 
 
@@ -1548,12 +1590,8 @@ var request = $http({
               $ionicHistory.nextViewOptions({
               disableBack: true
                });
-              var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio);
-              socket.on( 'new_contact', function( data ) {
-
-                    $scope.solev();
-               });
-             
+      
+             $scope.solev();
               $state.go('solicitudes'); 
 
 
@@ -1611,15 +1649,6 @@ $scope.solrec = function (){
 
   $scope.solrec();
 
-  var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio);
-
-    socket.on( 'new_contact', function( data ) {
-
-
-     $scope.solrec();
-  
-  });
-
   $scope.Dsolicitud = function (Dsolicitu) {
 
 
@@ -1651,14 +1680,8 @@ var request = $http({
               disableBack: true
                });
 
-               var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio);
 
-              socket.on( 'new_contact', function( data ) {
-
-
-                $scope.solrec();
-  
-              });
+               $scope.solrec();
               $state.go('solicitudes'); 
 
 
@@ -1695,15 +1718,8 @@ var request = $http({
               disableBack: true
                });
 
-               var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio);
 
-              socket.on( 'new_contact', function( data ) {
-
-
-                $scope.solrec();
-  
-              });
-
+              $scope.solrec();
               $state.go('solicitudes'); 
 
 
@@ -1763,7 +1779,7 @@ var request = $http({
 
 })
  
-.controller('StreamController' ,function($scope,$http,$interval, $ionicHistory){
+.controller('StreamController' ,function($scope,$http,$interval, $ionicHistory, $state, $ionicPopup){
 
   if(localStorage.getItem("usuario"))
     {
@@ -1778,7 +1794,8 @@ var request = $http({
 
       $state.go('login');
     }
-  
+
+
 
 $scope.songs = [
             {
@@ -1786,17 +1803,37 @@ $scope.songs = [
                 title: 'Mario En Tu Radio Juvenil',
                 artist: 'Mario',
                 url: 'http://5.199.169.190:8221/;stream.mp3',
-                play:'play'
+                play:'play',
+                img:'img/juvenil.png'
             },{
                 id: 'sal',
                 title: 'Mario En Tu Radio Salsa',
                 artist: 'Mario',
                 url: 'http://5.199.169.190:8036/;stream.mp3',
-                play:'play'
+                play:'play',
+                img:'img/salsa.png'
             }
             
         ];
 
+
+    $scope.radio = function()
+     {
+        console.log("j");
+
+        $scope.cssClass = "cssClass"
+
+
+          var myPopup = $ionicPopup.show({
+            template:" Esto es una prueba",
+           buttons: [
+            { 
+              text: 'Cerrar',
+              type: 'button-positive'
+           }      
+         ]
+        })
+     }
 
 
 
@@ -2040,7 +2077,7 @@ document.getElementById("img_usuario").src = nom_img;
         if (notification.regid.length > 0 ) {
           //alert('registration ID = ' + notification.regid);
           idtel = notification.regid;
-          alert("Id Run " + idtel );
+          //alert("Id Run " + idtel );
 
               var request = $http({
                   method: "post",
@@ -2056,7 +2093,7 @@ document.getElementById("img_usuario").src = nom_img;
 
               request.success(function (data) {
 
-              alert(data);
+              //alert(data);
 
                })
 

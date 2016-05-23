@@ -13,34 +13,22 @@
 
 		<button class="button" ng-click="Play('http://69.64.58.8:8005/;listen.pls')">Reproducir</button>-->
 </br> 
+         
+<div class="list" ng-repeat="song in songs">
 
-		<div >
-            <div >
+    <a class="item item-thumbnail-left" href="#"  music-player="play" add-song="song" ng-model="play" ng-click="play1() " data-ng-if="song.play = 1" style="background: transparent;
+    border: none;">
+      <img src="{{ song.img }}">
+      <h2 style="padding-top:20px">{{ song.title }}</h2>
+      <p style="width:90%">Clic y espera un momento...</p>
 
-                <ul>
-                    <li ng-repeat="song in songs">
-                        <button class="button icon-left ion-play   button-positive"  music-player="play" add-song="song" ng-model="play" ng-click="play1()" data-ng-if="song.play = 1">{{ song.title }}</button>
-
-                        
-
-                        </br>  </br>
-                    </li>
+    </a>
 
 
 
-                </ul>
+</div>
 
-                <button stop-music class="button icon-left ion-stop button-clear  button-outline button-assertive" ng-model="pause" ng-click="play1()" data-ng-if="song.play = 2">Pausar</button>
-
-               
-
-             
-
-            </div>
-        </div>
-
-
-        
+ <!-- <button stop-music class="button icon-left ion-stop button-clear  button-outline button-assertive" ng-model="pause" ng-click="play1()" data-ng-if="song.play = 2">Pausar</button>     -->
 
 
 

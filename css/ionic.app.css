@@ -9872,6 +9872,7 @@ img.profile-picture {
     padding-right: 0; }
   .chat-detail .bar-footer textarea {
     resize: none;
+    padding-left: 4px;
     height: 1.5em;
     width: 100%;
     background: none; }

@@ -1,11 +1,9 @@
 angular.module('starter.services', ['ngCordova'])
 
 
-.run(function($cordovaPush,$rootScope) {
+.run(function($cordovaPush,$rootScope,alertify) {
 
 ionic.Platform.ready(function() {
-
-
 
 
     $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
@@ -15,11 +13,15 @@ ionic.Platform.ready(function() {
     
 
         case 'message':
-          alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
+          //alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
+          alertify.logPosition("top right");
+          alertify.delay(2500);
+          alertify.maxLogItems(3);
+          alertify.log( notification.title + " : " + notification.message);
           break;
 
         case 'error':
-          alert('GCM error = ' + notification.msg);
+          //alert('GCM error = ' + notification.msg);
           break;
     }
 
@@ -27,9 +29,19 @@ ionic.Platform.ready(function() {
   });
 
 
-})
+}) 
 })
 
+.factory('socket',function(socketFactory){
+  //Create socket and connect to http://chat.socket.io 
+  var myIoSocket = io.connect('http://chat.socket.io');
+
+    mySocket = socketFactory({
+      ioSocket: myIoSocket
+    });
+    
+  return mySocket;
+})
 
 
 .factory('id_serve', function ($http) {
