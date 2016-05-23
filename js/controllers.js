@@ -268,36 +268,6 @@ $http.get('http://adminenri.sigtics.org/chat/ListarChat?usuario='+usuario).
                 cont = parseFloat(chat1[i].total) + cont;
 
 
-               // for (var x = 0 ; x < chat1[i].total ; x++) {
-
-                
-                  /*
-
-                  var audio = {};
-      
-                  audio["walk"] = new Audio();
-                  audio["walk"].src = "sounds/t3.mp3";
-                  audio["walk"].play();
-                  console.log(audio);
-
-                  */
-                  /*
-                  var src = "sounds/t3.mp3";
-                  $scope.audio = ngAudio.load(src); // returns NgAudioObject
-                  console.log($scope.audio);
-                  $scope.audio.play();*/
-
-
-
-                  //mensaje de los push
-                 // console.log(chat1[i].push.mensaje);
-                  //Usuario
-                 // console.log(chat1[i].name);
-
-                 
-             //   }
-
-
 
             }
 
@@ -2035,7 +2005,7 @@ var s = 1;
 })
 
 
-.controller('inicioC', function($scope,$http,$state,$ionicPopup, nom_img, $ionicHistory,$cordovaPush,$rootScope){
+.controller('inicioC', function($scope,$http,$state,$ionicPopup, nom_img, $ionicHistory,$cordovaPush,$rootScope,id_serve){
   if(localStorage.getItem("usuario"))
     {
        
@@ -2050,10 +2020,99 @@ var s = 1;
       $state.go('login');
     }
 
+
+  $scope.chat2 = function(s) {
+
+  var usuario = localStorage.getItem("usuario");
+   var id_chat = localStorage.getItem("View_id_chat");
+   var id_user2 = localStorage.getItem("user_id_chat");
+   
+ 
+       var request = $http({
+                method: "post",
+                url: "http://adminenri.sigtics.org/chat/DetallesChat",
+                data: {
+                    usuario:usuario,
+                    id_chat:id_chat,
+                    id_user2:id_user2,
+                    socket: s
+                },
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            }); 
+           
+          request.success(function (data) {
+
+            
+              $scope.chat = data;
+           
+
+               $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
+            // var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio);
+
+                socket.on('connect',function(){ })
+
+             }); 
+ }
+
+
+ var cont = 0;
+var servicio = id_serve;
+var chat1;
+$scope.Dchat1 = function() {
+
+var usuario = localStorage.getItem("usuario");
+
+$http.get('http://adminenri.sigtics.org/chat/ListarChat?usuario='+usuario).
+      then(function(response) {
+       // $scope.$apply(function() {
+         $scope.chats = response.data;
+         chat1 = response.data;
+      
+
+        for (var i = 0 ; i < chat1.length ; i++) {
+
+            //console.log(i);
+
+        
+           
+            if (chat1[i].total > 0){
+
+
+
+                cont = parseFloat(chat1[i].total) + cont;
+
+
+
+            }
+
+
+         
+        }
+
+
+     
+
+     if (cont > 0 )
+     {
+       document.getElementById("chatLey").innerHTML = cont;
+       cont = 0;
+     }
+     else
+     {
+      document.getElementById("chatLey").innerHTML = "";
+     }
+    
+
+})
+
+
+
+    }
+
 document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombre_user");
 document.getElementById("img_usuario").src = nom_img;
 
-
+ 
     var androidConfig = {
  "senderID": "217743739524"
  };
@@ -2068,6 +2127,8 @@ document.getElementById("img_usuario").src = nom_img;
       // Error
     }
     )
+
+ 
 
   $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
 
@@ -2107,14 +2168,17 @@ document.getElementById("img_usuario").src = nom_img;
           //alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
           alertify.logPosition("top right");
           alertify.delay(2500);
-          alertify.maxLogItems(3);
-          alertify.log( notification.title + " : " + notification.message);
+          alertify.maxLogItems(1);
+          alertify.log(notification.message);
+
+          $scope.chat2();
+          $scope.Dchat1();
 
 
           break;
 
     }
-  });
+  }); 
 
 
   $http.get('http://adminenri.sigtics.org/movil_funciones/aceptar').
