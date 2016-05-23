@@ -193,7 +193,9 @@ document.getElementById("img_usuario").src = nom_img;
 
   // get list posts froms service
 
- $http.get('http://adminenri.sigtics.org/movil_funciones/getNoticias').
+  $scope.notici = function(){
+
+     $http.get('http://adminenri.sigtics.org/movil_funciones/getNoticias').
       then(function(response) {
        // $scope.$apply(function() {
             $scope.posts = response.data;
@@ -203,6 +205,20 @@ document.getElementById("img_usuario").src = nom_img;
       //  })
         
      }) 
+
+
+  }
+$scope.notici();
+
+ $scope.actnotice = function(){
+
+    $scope.notici();
+ } 
+
+
+
+
+      
 
 $scope.viewPost = function(postId) {
 
@@ -296,6 +312,13 @@ $http.get('http://adminenri.sigtics.org/chat/ListarChat?usuario='+usuario).
     }
 
 $scope.Dchat();
+
+$scope.act_chat = function (){
+  console.log("act");
+  $scope.Dchat();
+}
+
+
 
   $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
 
@@ -580,7 +603,7 @@ $scope.chat1 = function(s) {
           alertify.maxLogItems(1);
           alertify.log(notification.message);
 
-          $scope.chat1();
+          $scope.chat1(false);
  
 
 
@@ -972,6 +995,12 @@ $scope.ccon = function(){
               return $scope.list
               
              }); 
+}
+
+$scope.actcontac = function(){
+
+  $scope.ccon();
+
 }
 
 
@@ -2060,99 +2089,15 @@ var s = 1;
       $state.go('login');
     }
 
-
-  $scope.chat2 = function(s) {
-
-  var usuario = localStorage.getItem("usuario");
-   var id_chat = localStorage.getItem("View_id_chat");
-   var id_user2 = localStorage.getItem("user_id_chat");
-   
- 
-       var request = $http({
-                method: "post",
-                url: "http://adminenri.sigtics.org/chat/DetallesChat",
-                data: {
-                    usuario:usuario,
-                    id_chat:id_chat,
-                    id_user2:id_user2,
-                    socket: s
-                },
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-            }); 
-           
-          request.success(function (data) {
-
-            
-              $scope.chat = data;
-           
-
-               $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
-            // var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio);
-
-                socket.on('connect',function(){ })
-
-             }); 
- }
-
-
- var cont = 0;
-var servicio = id_serve;
-var chat1;
-$scope.Dchat1 = function() {
-
-var usuario = localStorage.getItem("usuario");
-
-$http.get('http://adminenri.sigtics.org/chat/ListarChat?usuario='+usuario).
-      then(function(response) {
-       // $scope.$apply(function() {
-         $scope.chats = response.data;
-         chat1 = response.data;
+    
       
 
-        for (var i = 0 ; i < chat1.length ; i++) {
-
-            //console.log(i);
-
-        
-           
-            if (chat1[i].total > 0){
-
-
-
-                cont = parseFloat(chat1[i].total) + cont;
-
-
-
-            }
-
-
-         
-        }
-
-
-     
-
-     if (cont > 0 )
-     {
-       document.getElementById("chatLey").innerHTML = cont;
-       cont = 0;
-     }
-     else
-     {
-      document.getElementById("chatLey").innerHTML = "";
-     }
-    
-
-})
-
-
-
-    }
+ 
 
 document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombre_user");
 document.getElementById("img_usuario").src = nom_img;
 
- 
+ /*
     var androidConfig = {
  "senderID": "217743739524"
  };
@@ -2205,8 +2150,9 @@ document.getElementById("img_usuario").src = nom_img;
         break;
 
     }
-  }); 
+  });  */
 
+$scope.inic = function (){
 
   $http.get('http://adminenri.sigtics.org/movil_funciones/aceptar').
       then(function(response) {
@@ -2220,6 +2166,19 @@ document.getElementById("img_usuario").src = nom_img;
       //  })
         
      })
+
+}
+
+$scope.inic();
+
+$scope.actinicio = function(){
+  $scope.inic();
+}
+
+$scope.$broadcast('scroll.refreshComplete');
+
+
+      
 
 
      $scope.ftoini = function(dimg)

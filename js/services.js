@@ -5,7 +5,7 @@ angular.module('starter.services', ['ngCordova'])
 
 ionic.Platform.ready(function() {
 
-
+/*
     $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
 
     //alert(notification.event);
@@ -18,6 +18,8 @@ ionic.Platform.ready(function() {
           alertify.delay(2500);
           alertify.maxLogItems(3);
           alertify.log( notification.title + " : " + notification.message);
+
+
           break;
 
         case 'error':
@@ -27,7 +29,7 @@ ionic.Platform.ready(function() {
 
 
   });
-
+*/
 
 }) 
 })

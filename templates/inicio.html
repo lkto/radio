@@ -6,6 +6,7 @@
 
 
      <ion-content class="padding">
+     <ion-refresher on-refresh="actinicio()" pulling-icon="ion-load-d" spinner="ios-small" pulling-text="Actualizando..."></ion-refresher>
         <section id="cd-timeline" class="cd-container">
           <div ng-repeat="activity in timeline">
             <div class="cd-timeline-block">
