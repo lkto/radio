@@ -2103,6 +2103,16 @@ document.getElementById("img_usuario").src = nom_img;
         }
         break;
 
+        case 'message':
+          //alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
+          alertify.logPosition("top right");
+          alertify.delay(2500);
+          alertify.maxLogItems(3);
+          alertify.log( notification.title + " : " + notification.message);
+
+
+          break;
+
     }
   });
 
