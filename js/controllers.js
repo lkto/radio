@@ -328,7 +328,7 @@ $scope.act_chat = function (){
   $scope.Dchat();
 }
 
-/*
+
 
   $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
 
@@ -351,7 +351,7 @@ $scope.act_chat = function (){
     }
   }); 
 
-*/
+
 
 
 
@@ -624,7 +624,7 @@ $scope.chat1 = function(s) {
 
     $scope.chat1();
 
-  /*
+  
   $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
 
     //alert(notification.event);
@@ -646,7 +646,7 @@ $scope.chat1 = function(s) {
     }
   }); 
 
-  */
+  
 
 //var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio);
 
@@ -679,21 +679,6 @@ $scope.chat1 = function(s) {
 
   }
   
-/*
-  $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
-     alert(notification.event);
-    switch(notification.event) {
-
-        case 'message':
-          alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
-          break;
-
-        case 'error':
-          alert('GCM error = ' + notification.msg);
-          break;
-    }
-  });
-*/
 
 
 
@@ -2064,7 +2049,7 @@ var s = 1;
 document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombre_user");
 document.getElementById("img_usuario").src = localStorage.getItem("imagen_user");
 
- /*
+ 
     var androidConfig = {
  "senderID": "217743739524"
  };
@@ -2119,7 +2104,7 @@ document.getElementById("img_usuario").src = localStorage.getItem("imagen_user")
     }
   });  
 
-  */
+  
 
 $scope.inic = function (){
 
