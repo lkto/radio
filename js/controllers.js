@@ -2097,7 +2097,7 @@ var s = 1;
 document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombre_user");
 document.getElementById("img_usuario").src = nom_img;
 
- /*
+ 
     var androidConfig = {
  "senderID": "217743739524"
  };
@@ -2150,7 +2150,7 @@ document.getElementById("img_usuario").src = nom_img;
         break;
 
     }
-  });  */
+  });  
 
 $scope.inic = function (){
 
