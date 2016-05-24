@@ -100,8 +100,6 @@ angular.module('starter.controllers', [])
     disableBack: true
   });
 
-    document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombre_user");
-    document.getElementById("img_usuario").src = nom_img;
 
 
   $scope.data ={};
@@ -144,8 +142,7 @@ angular.module('starter.controllers', [])
 
 .controller('HomeCtrl', function($scope, nom_img, Posts, $state, $ionicHistory,$templateCache,$http,$ionicPlatform) {
 
-document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombre_user");
-document.getElementById("img_usuario").src = nom_img;
+
 
 
 
@@ -268,9 +265,7 @@ $scope.viewPost = function(postId) {
       $state.go('login');
     }
 
-  
-document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombre_user");
-document.getElementById("img_usuario").src = nom_img;
+
 
 var cont = 0;
 var servicio = id_serve;
@@ -779,8 +774,6 @@ $scope.chat1 = function(s) {
     }
   
 
-document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombre_user");
-document.getElementById("img_usuario").src = nom_img;
  
 
   var id_post = localStorage.getItem("View_id_noticia");
@@ -829,10 +822,7 @@ document.getElementById("img_usuario").src = nom_img;
 
       $state.go('login');
     }
- 
-document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombre_user");
-document.getElementById("img_usuario").src = nom_img;
-      
+
 
 $scope.cont=[];
 
@@ -1074,8 +1064,6 @@ $scope.viewChat1 = function(ID_cont) {
   $email_d = localStorage.getItem("usuario");
   var token = "io-gluk@fct%vusb";
 
-document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombre_user");
-document.getElementById("img_usuario").src = nom_img;
   
 
   $scope.clickUpload = function(){
