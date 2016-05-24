@@ -23,6 +23,20 @@ angular.module('starter.controllers', [])
       //alert(idtel);
       $email = $scope.usuario_l;
       $clave = $scope.clave_l;
+
+      if ($email == ""  ){
+
+        alertify.logPosition("top right");
+        alertify.error("Ingresar el email o nombre de usuario");
+
+      }else if ($clave == ""  ){
+
+        alertify.logPosition("top right");
+        alertify.error("Ingresar una contraseña");
+
+      }else{
+
+
       var token = "io-gluk@fct%vusb";
 
           var request = $http({
@@ -76,6 +90,7 @@ angular.module('starter.controllers', [])
 
 
           }
+        }
 
 })
 
@@ -318,7 +333,7 @@ $scope.act_chat = function (){
   $scope.Dchat();
 }
 
-
+/*
 
   $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
 
@@ -341,24 +356,9 @@ $scope.act_chat = function (){
     }
   }); 
 
+*/
 
 
- //var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio);
-
-socket.on('connect',function(){
-    connected = true
-
-
-      socket.on('new message', function (data) {
-
-          $scope.Dchat();
-
-        });
-
-
-
-
-})
 
 
 
@@ -437,7 +437,103 @@ socket.on('connect',function(){
  
 })
 
+
+.controller('mensajecontrol', function($scope,$upload,$ionicHistory, $stateParams, Chats, $ionicScrollDelegate, $ionicActionSheet, $timeout, $http,$state,id_serve,$ionicPopup, $ionicHistory,$rootScope,$cordovaPush,socket,$rootScope,alertify){
+
+$scope.sendMessage = function() {
+
+    var message =  $scope.input.message;
+    var id_chat = localStorage.getItem("View_id_chat");
+    var usuario = localStorage.getItem("usuario");
+    var id_user2 = localStorage.getItem("user_id_chat");
+
+    var request = $http({
+                method: "post",
+                url: "http://adminenri.sigtics.org/chat/InsertarChat",
+                data: {
+                    message:message,
+                    id_chat:id_chat,
+                    usuario:usuario,
+                    id_user2:id_user2
+              
+                },
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            }); 
+           
+          request.success(function (data) {
+                   
+
+               localStorage.setItem("View_id_chat", data.id_chat);
+               var id_chat1 = localStorage.getItem("View_id_chat");
+
+               $scope.chat1(false);
+
+
+
+              
+             }); 
+
+   
+    $scope.input.message = '';
+
+  };
+
+  $scope.uploadResult = [];
+   $scope.onFileSelect = function($files) {
+    //$files: an array of files selected, each file has name, size, and type.
+     alertify.logPosition("top right");
+      alertify.success("Enviando Archivo");
+
+        var id_chat1 = localStorage.getItem("View_id_chat");
+        var usuario1 = localStorage.getItem("usuario");
+        var id_user21 = localStorage.getItem("user_id_chat");
+        var token = "io-gluk@fct%vusb";
+    for (var i = 0; i < $files.length; i++) {
+      var $file = $files[i];
+      $upload.upload({
+        url: 'http://adminenri.sigtics.org/chat/FotoChat',
+        data: {
+                    id_chat:id_chat1,
+                    usuario:usuario1,
+                    id_user2:id_user21,
+                    token:token
+             },
+        file: $file,
+        progress: function(e){
+         
+        }
+      }).then(function(response) {
+        // file is uploaded successfully
+           
+       $timeout(function() {
+          
+          $scope.uploadResult.push(response.data);
+       
+        });
+
+
+               localStorage.setItem("View_id_chat", response.data.id_chat);
+               var id_chat1 = localStorage.getItem("View_id_chat");
+             
+                $scope.chat1(false);
+
+      }); 
+    }
+  }
+
+
+
+  $scope.clickUpload2 = function(){
+   ionic.trigger('click', { target: document.getElementById('i_file1') });
+   //console.log("tigged");
+   }
+
+
+})
+
 .controller('ChatDetailCtrl', function($scope,$upload,$ionicHistory, $stateParams, Chats, $ionicScrollDelegate, $ionicActionSheet, $timeout, $http,$state,id_serve,$ionicPopup, $ionicHistory,$rootScope,$cordovaPush,socket,$rootScope,alertify) {
+
+
 
 
 $scope.ftoChat = function(foto) {
@@ -476,82 +572,17 @@ var servicio = id_serve;
 
      }
 
-$scope.uploadResult = [];
-   $scope.onFileSelect = function($files) {
-    //$files: an array of files selected, each file has name, size, and type.
-     alertify.logPosition("top right");
-      alertify.success("Enviando Archivo");
-
-        var id_chat1 = localStorage.getItem("View_id_chat");
-        var usuario1 = localStorage.getItem("usuario");
-        var id_user21 = localStorage.getItem("user_id_chat");
-        var token = "io-gluk@fct%vusb";
-    for (var i = 0; i < $files.length; i++) {
-      var $file = $files[i];
-      $upload.upload({
-        url: 'http://adminenri.sigtics.org/chat/FotoChat',
-        data: {
-                    id_chat:id_chat1,
-                    usuario:usuario1,
-                    id_user2:id_user21,
-                    token:token
-             },
-        file: $file,
-        progress: function(e){
-         
-        }
-      }).then(function(response) {
-        // file is uploaded successfully
-           
-       $timeout(function() {
-          
-          $scope.uploadResult.push(response.data);
-       
-        });
-
-
-            //var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio);
-
-
-      socket.on('connect',function(){
-
-        connected = true
-
-        socket.emit('new message', function (data) {
-  
-          });
-      
-      
-
-
-    })
-
-            
-
-               localStorage.setItem("View_id_chat", response.data.id_chat);
-               var id_chat1 = localStorage.getItem("View_id_chat");
-             
-                $scope.chat1(false);
-
-      }); 
-    }
-  }
 
 
 
 
-$scope.clickUpload1 = function(){
 
-   ionic.trigger('click', { target: document.getElementById('i_file1') });
-
-
-   }
 
 
 
 $scope.chat1 = function(s) {
 
-
+//$ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
 
 
 
@@ -576,21 +607,29 @@ $scope.chat1 = function(s) {
 
             
               $scope.chat = data;
+
+                        $timeout(function(){
+        $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();  
+          },5)
            
 
-               $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
-            // var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio);
-
-                socket.on('connect',function(){ })
+              
 
              }); 
+
+
+          //$ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
+
+
+
+
  }
 
    
 
     $scope.chat1();
 
-  
+  /*
   $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
 
     //alert(notification.event);
@@ -611,6 +650,8 @@ $scope.chat1 = function(s) {
 
     }
   }); 
+
+  */
 
 //var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio);
 
@@ -660,76 +701,9 @@ $scope.chat1 = function(s) {
 */
 
 
-  $scope.sendMessage = function() {
-
-    var message =  $scope.input.message;
-    var id_chat = localStorage.getItem("View_id_chat");
-    var usuario = localStorage.getItem("usuario");
-    var id_user2 = localStorage.getItem("user_id_chat");
-
-
-    var request = $http({
-                method: "post",
-                url: "http://adminenri.sigtics.org/chat/InsertarChat",
-                data: {
-                    message:message,
-                    id_chat:id_chat,
-                    usuario:usuario,
-                    id_user2:id_user2
-              
-                },
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-            }); 
-           
-          request.success(function (data) {
-                   
-
-               localStorage.setItem("View_id_chat", data.id_chat);
-               var id_chat1 = localStorage.getItem("View_id_chat");
-               $scope.chat1(false);
-             
-
-         //var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio );
 
 
 
-    socket.on('connect',function(){
-
-        connected = true
-
-        socket.emit('new message', function (data) {
-              
-          
-         
-          });
-      
-      
-
-
-    })
-
-          
-
-               localStorage.setItem("View_id_chat", data.id_chat);
-               var id_chat1 = localStorage.getItem("View_id_chat");
-           
-        
- 
-              
-             }); 
-
-
-
-   
-   
-    $scope.input.message = '';
-
-  };
-
-  $scope.openFileDialog=function() {
-            console.log('fire! $scope.openFileDialog()');
-            ionic.trigger('click', { target: document.getElementById('file') });
-        };
 
   // hover menu
   $scope.onMessageHold = function(e, itemIndex, message , id_msg) {
@@ -1362,6 +1336,10 @@ $email_d = localStorage.getItem("usuario");
   $ionicHistory.nextViewOptions({
               disableBack: true
                });
+
+
+
+
  var token = "io-gluk@fct%vusb";
    $scope.registrar = function () {
 
@@ -1402,6 +1380,7 @@ $email_d = localStorage.getItem("usuario");
 
             });
     }
+  
 
 
 
@@ -1485,6 +1464,10 @@ if(localStorage.getItem("usuario"))
 
       $state.go('login');
     }
+
+
+
+
   $scope.cClave = function () {
 
     var token = "io-gluk@fct%vusb";
@@ -1492,7 +1475,9 @@ if(localStorage.getItem("usuario"))
     $email_con = localStorage.getItem("usuario");
     var tipoU = $scope.tipoU;
 
-    
+
+
+
    
  
             var request = $http({
@@ -1523,13 +1508,6 @@ if(localStorage.getItem("usuario"))
               disableBack: true
                });
              
-            var socket = io.connect( 'http://adminenri.sigtics.org:'+servicio);
-              socket.emit('new_contact', { 
-                  usuario: usuario,
-                  usuario_id: $email_con,
-                  tipoU: tipoU
-
-                });
 
               $state.go('contacts'); 
 
@@ -1541,6 +1519,7 @@ if(localStorage.getItem("usuario"))
              
             }); 
     }
+  
 
 })
 
@@ -2095,9 +2074,9 @@ var s = 1;
  
 
 document.getElementById("nombre_usuario").innerHTML =localStorage.getItem("nombre_user");
-document.getElementById("img_usuario").src = nom_img;
+document.getElementById("img_usuario").src = localStorage.getItem("imagen_user");
 
- 
+ /*
     var androidConfig = {
  "senderID": "217743739524"
  };
@@ -2151,6 +2130,8 @@ document.getElementById("img_usuario").src = nom_img;
 
     }
   });  
+
+  */
 
 $scope.inic = function (){
 

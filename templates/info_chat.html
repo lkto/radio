@@ -8,7 +8,7 @@
 <button class="button button-icon icon ion-ios-arrow-back" style="color:#fff" ui-sref="chat-detail">
    Perfil
  </button>
-<div class="h1 title" style="color:#fff">Informacion Grupos</div>
+<div class="h1 title" style="color:#fff">Información Grupo</div>
 
 </div>
 
@@ -22,22 +22,16 @@
 
 </br>
 
-<div class="list">
+<div class="list" style="margin-top:4px;margin-bottom:0px;">
 
     <ion-item class="item item-thumbnail-left" ng-click="viewFoto1(D_Grupo.id)">
       <img src="{{D_Grupo.img}}" style=" border-radius: 100%;">
-      <h2>{{D_Grupo.nombre}}</h2>
+      <h2 style="margin-top:15px">{{D_Grupo.nombre}}</h2>
       <p>{{D_Grupo.ultimo_mensaje}}</p>
 
   </ion-item>
 
 </div>
-
-
-
-  <h2 style="">Integrantes</h2>
-
-
 <ion-list class="contact-list"  >
  <ion-item class="item-avatar item-icon-right" ng-repeat="usuarios in D_Grupo.integrantes" >
 
@@ -60,12 +54,19 @@
 
 </ion-list>
 
+</br></br>
+
 
 </ion-content>
 
-<div class="contenedor" ui-sref="a_p_grupo">
-<button class="botonF1">
-<span><i class="icon ion-person-add"></i></span>
-</button>
+<div class="tabs tabs-icon-only" style="background-color: #387EF5;">
+  
+  <a class="tab-item"  href="#/a_p_grupo" style="color: white; font-weight: bold;">
+    <i class="ion-person-add" ></i>
+    Agregar usuarios
+  </a>
+
 </div>
+
+
 </ion-view>

@@ -75,6 +75,10 @@
 
     </div>
 
+    </br></br>
+
+<div ng-controller="mensajecontrol">
+
 <form style="display:none">
 <div style="text-align: left;font-size: 20px;padding: 10px;color: #487eaa;">
 </div>
@@ -87,13 +91,17 @@
   </div>
 </div>
 </form>
+</div>
 
   </ion-content>
+
+
+  <div ng-controller="mensajecontrol">
 
   <form name="sendMessageForm" ng-submit="sendMessage(sendMessageForm)" novalidate>
     <ion-footer-bar class="bar-stable message-footer">
       <div class="footer-btn-wrap">
-        <button type="button"  class="button button-icon icon ion-android-attach" ng-click="clickUpload1()" ></button>
+        <button type="button"  class="button button-icon icon ion-android-attach" ng-click="clickUpload2()" ></button>
       </div>
       <label class="item-input-wrapper">
         
@@ -106,5 +114,6 @@
       </div>
     </ion-footer-bar>
   </form>
+  </div>
 </ion-view>
 

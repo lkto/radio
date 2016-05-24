@@ -5636,7 +5636,7 @@ ion-tabs.tabs-color-active-dark .tab-item {
  * --------------------------------------------------
  */
 .item {
-  border-color: #ddd;
+  border-color: rgba(56, 126, 245, 0.53);
   background-color: #fff;
   color: #444;
   position: relative;
@@ -6109,7 +6109,7 @@ a.item-content {
   font-size: 28px; }
 
 .item-icon-left {
-  padding-left: 54px; }
+  padding-left: 54px; border-bottom: 1px solid rgba(56, 126, 245, 0.53);}
   .item-icon-left .icon {
     left: 11px; }
 
@@ -6126,7 +6126,8 @@ a.item-content {
 .item-complex.item-icon-right {
   padding-right: 0; }
   .item-complex.item-icon-right .item-content {
-    padding-right: 54px; }
+    padding-right: 54px;
+ }
 
 .item-icon-left.item-icon-right .icon:first-child {
   right: auto; }
@@ -7983,7 +7984,7 @@ input:checked + .checkbox-icon:after {
   opacity: 1; }
 
 .item-checkbox {
-  padding-left: 60px; }
+  padding-left: 80px; }
   .item-checkbox.active {
     box-shadow: none; }
 

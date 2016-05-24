@@ -6,7 +6,7 @@
 
 
      <ion-content class="padding">
-     <ion-refresher on-refresh="actinicio()" pulling-icon="ion-load-d" spinner="ios-small" pulling-text="Actualizando..."></ion-refresher>
+    
         <section id="cd-timeline" class="cd-container">
           <div ng-repeat="activity in timeline">
             <div class="cd-timeline-block">
@@ -26,8 +26,8 @@
       </ion-content>
 
 <div class="contenedor" >
-<button class="botonF1">
-<span><i class="icon ion-refresh"></i></span>
+<button class="botonF1" menu-toggle="left">
+<span><i class="icon ion-navicon"></i></span>
 </button>
 </div>
 
