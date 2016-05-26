@@ -1,0 +1,103 @@
+<ion-view>
+
+    <ion-nav-bar class="bar-stable">
+        
+        <ion-nav-buttons side="right" >
+            <button class="button button-icon button-clear" ng-click="modal_emisora()">
+              <i class="ion-play"></i>
+            </button>
+          
+            <button class="button button-icon button-clear" ng-click="modal_usuario()">
+              <img src="img/add.png"/>
+            </button>
+        </ion-nav-buttons>
+         <ion-nav-buttons side="left" >
+            <button class="button button-icon button-clear logo_img">
+              <img class="title-image" src="img/title.png" />
+            </button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+
+  <ion-content>
+  <!--
+   <a href="" class="people_list "
+       collection-repeat="item in chats"
+       collection-item-width="'100%'"
+       collection-item-height="85"
+       ng-click="viewChat(item.id)"
+       > 
+      
+      <div class="row">
+        <div class="col col-25">
+        <div class="img_status">
+            <div class="photo_person" style="background:url({{item.face}})no-repeat; background-size:100% 100%;"></div>
+            <span class="status" style="background:{{item.color}};"></span>
+        </div>    
+        </div>
+          <div class="col">
+          <h3>{{item.name}}</h3>
+          <p class="type_msg"><span>{{item.lasText}}</span></p>
+          <p class="status_person">
+            <span class="block_person"></span>
+          </p>
+          <span class="notificate" ng-show="item.number==true" ng-if="(chat.total > '0')">{{item.total}}</apan>
+
+
+        </div>
+      </div>
+      <ion-option-button class="button-stable ion-person-add" ng-click="agregar(usuarios.nombre_usuario)" >
+          </ion-option-button>
+    </a>
+
+     <ion-refresher >
+    
+
+  
+    </ion-refresher>
+ -->
+   
+
+    <div class="list list-inset" >
+        <label class="item item-input">
+         <i class="icon ion-search placeholder-icon"></i>
+         <input type="text" placeholder="Buscar" ng-model="busqueda">
+       </label>
+      </div>
+    
+  <ion-list>
+
+     <ion-item class="item-remove-animate item-avatar item-icon-right"  type="item-text-wrap"
+                ng-click="canal()">
+        <img ng-src="img/logotxt.png">
+
+        <h2>Enri Noticias</h2>
+   <span class="badge badge-assertive" ></span> 
+        <i class="icon ion-chevron-right icon-accessory"></i>
+     <!--
+        <ion-option-button class="button-energized" ng-click="mute(chat)">
+          Silenciar
+        </ion-option-button>
+      -->
+      </ion-item>
+    
+
+
+      <ion-item class="item-remove-animate item-avatar item-icon-right " ng-repeat="chat in chats | filter: busqueda | orderBy: 'chat.fecha' " type="item-text-wrap"
+                ng-click="viewChat(chat.id)">
+        <img ng-src="{{chat.face}}">
+        
+        <h2>{{chat.name}}</h2>
+        <p>{{chat.lasText}}</p>
+   <span class="badge badge-assertive" ng-if="(chat.total > '0')">{{chat.total}}</span> 
+       <span class="status" style="background:{{chat.color}};"></span>
+
+        <ion-option-button class="button-assertive" ng-click="remove(chat.id)">
+          Eliminar
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+
+    </br>
+    </br>
+  </ion-content>
+</ion-view>

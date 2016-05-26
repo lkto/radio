@@ -1,7 +1,32 @@
-<ion-view view-title="Agregar Contacto" cache-view="false">
+<ion-view >
+
+  <ion-nav-bar class="bar-stable">
+        
+        <ion-nav-buttons side="right" >
+            <button class="button button-icon button-clear" ng-click="modal_emisora()">
+              <i class="ion-play"></i>
+            </button>
+          
+            <button class="button button-icon button-clear" ng-click="modal_usuario()">
+              <img src="img/add.png"/>
+            </button>
+
+            <a class="button button-icon button-clear back_btn" href="#/tab/recent" style="padding-top: 15px;">
+                <i class="ion-chevron-left"></i>
+            </a>
+        </ion-nav-buttons>
+         <ion-nav-buttons side="left" >
+
+            <button class="button button-icon button-clear logo_img">
+              <img class="title-image" src="img/title.png" />
+            </button>
+            
+        </ion-nav-buttons>
+    </ion-nav-bar>
+
   <ion-content>
 
-<div id="c_clave" ng-app='angular_post' ng-controller='agrgarC' >
+<div id="c_clave" ng-app='angular_post'  >
   <div class="list list-inset transparent-form">
       
       <label class="item item-input">

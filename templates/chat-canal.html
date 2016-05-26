@@ -1,48 +1,26 @@
 
 
-<ion-view view-title="Chat"  hide-nav-bar="true" class="chat-detail" cache-view="false">
+<ion-view >
 
-<div class="bar bar-header" style="border-color: transparent;
-    background-color: #387EF5;
-    color: #fff;">
-  <button class="button button-icon icon ion-chevron-left" style="color: #fff;" ng-click="atras()">Atras</button>
-  <div class="h1 title" style="color: #fff;" >Enri Noticias</div>
-
-</div>
 
 
   <ion-content class="padding" delegate-handle="mainScroll">
-<br/>
-<br/>
 
-    <div ng-repeat="message in canalM" class="message-wrapper rlt" >
-
- 
-        <img class="profile-picture left" src="{{ message.face }}" />
-
-
-        <div class="chat-bubble left">
-
-          <div class="message">
-
-           {{ message.titulo | nl2br }}
-
-          <img src="{{ message.image }}" ng-click="ftoChat(message.image)" class="block" ng-if="message.image" alt="" style="width:90%" />
-
-          <pre>{{ message.text }}</pre>
-            
-            
-          </div>
-
-          <div class="message-detail">
+   <ion-list class="list_chat">
+        <ion-item ng-repeat="message in canalM" style="border:none;border-style: none; padding:2px;" >
+        <div class="item_content" >
           
-          </div>
-
+                   <pre class="content" style="min-width: 50%;max-width: 70%;
+    border-radius: 8px;
+    padding: 2px;
+    font-size: 14px;
+    font-family: fantasy;
+    background-color:#ddd;
+    text-align: left;"><span><b style="/*color:{{item.color}};*/">{{ message.titulo }}</b>  <br/> {{ message.text }}<span></pre> 
         </div>
-
-
-
-
+        </ion-item>
+    </ion-list>
+           <!-- <p class="date_chat"><span>29 August<span>2:50 pm</span></span></p> -->
 
     </div>
 

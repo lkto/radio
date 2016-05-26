@@ -1,218 +1,337 @@
 // Ionic Starter App
+
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'btford.socket-io','starter.controllers', 'starter.services', 'nl2br', 'ngCordova', 'ngAlertify','angularFileUpload','ngSanitize','ionic.service.core','ionic.service.push','angularSoundManager'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
-.value('_', window._)
+.run(function($ionicPlatform, $rootScope,$ionicHistory,$rootScope,$ionicModal) {
+	
+  //$rootScope.recent=[{id:"1",img:"img/003.png",name:"Nicolas Kage",type:"Hello John where are u?",date:"16 April",number:true,color:"#fbb116"},{id:"2",img:"img/002.png",name:"Tom Cruze",msg:"Please call me later",date:"29 August",color:"#ff0000"},{id:"3",img:"img/001.png",name:"Mark Antony",msg:"I will call you tomorrow",date:"4 October",color:"#27b600"},{id:"4",img:"img/def.png",name:"Robert D-Niro",type:"Web",msg:"Typing ....",date:"16 April",color:"#fbb116"}]	
+  //$rootScope.list=[{id:"1",img:"img/001.png",name:"Mark Antony",type:"Web",msg:"Typing....",status:"Avaliable",color:"#27b600"},{id:"2",img:"img/002.png",name:"Tom Cruze",type:"Mobile",msg:" Last message ( 5 minute ago )",status:"Busy",color:"#ff0000"},{id:"3",img:"img/003.png",name:"Nicolas Kage",type:"Web",msg:" Last message ( 5 minute ago )",status:"Away",number:true,color:"#fbb116"},{id:"4",img:"img/def.png",name:"Robert D-Niro",type:"Mobile",msg:" Last message ( 5 minute ago )",status:"Invisible",block:"Block"},{id:"5",img:"img/def.png",name:"Steve MQween",type:"Mobile",msg:"Typing....",status:"Offline",color:"#ccc"},{id:"6",img:"img/def.png",name:"Brayan Adams",type:"Web",msg:" Last message ( 5 minute ago )",status:"Away",color:"#fbb116"}]	
+  //$rootScope.chat=[{id:"1"},{id:"2",type:"1"},{id:"3"}]	
+  $rootScope.songs = [
+            {
+                id: 'juv',
+                title: 'Mario En Tu Radio Juvenil',
+                artist: 'Mario',
+                url: 'http://5.199.169.190:8221/;stream.mp3',
+                play:'play',
+                img:'img/juvenil.png'
+            },{
+                id: 'sal',
+                title: 'Mario En Tu Radio Salsa',
+                artist: 'Mario',
+                url: 'http://5.199.169.190:8036/;stream.mp3',
+                play:'play',
+                img:'img/salsa.png'
+            }
+            
+        ]
+  $rootScope.person={status:0};
+  $rootScope.myGoBack = function() {$ionicHistory.goBack();};
+  $ionicPlatform.ready(function() {
+    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+    // for form inputs)
+    if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+    }
+    if (window.StatusBar) {
+      // org.apache.cordova.statusbar required
+      StatusBar.styleLightContent();
+    }
+  });
+  /*************************************search_modal.html******************/
+	$ionicModal.fromTemplateUrl('templates/search_modal.html',function(modal){
+	$rootScope.search_modal=modal;
+	}, {
+		scope: $rootScope,
+		animation: 'slide-in-up'
+	});
 
+  $ionicModal.fromTemplateUrl('templates/modal_emisora.html',function(modal){
+  $rootScope.modal_emisora1 = modal;
+  }, {
+    scope: $rootScope,
+    animation: 'slide-in-up'
+  });
+
+  $rootScope.modal_emisora= function(){
+    $rootScope.modal_emisora1.show();
+  };
+  
+  $rootScope.closemodal_emisora= function() {  
+    $rootScope.modal_emisora1.hide();
+  };
+
+    $ionicModal.fromTemplateUrl('templates/modal-usuarios.html',function(modal){
+  $rootScope.modal_usuario1 = modal;
+  }, {
+    scope: $rootScope,
+    animation: 'slide-in-up'
+  });
+
+  $rootScope.modal_usuario= function(){
+    $rootScope.modal_usuario1.show();
+  };
+  
+  $rootScope.closemodal_usuario= function() {  
+    $rootScope.modal_usuario1.hide();
+  };
+	
+
+  
+	$rootScope.opensearch_modal= function(){
+		$rootScope.search_modal.show();
+	};
+	
+	$rootScope.closesearch_modal= function() {	
+		$rootScope.search_modal.hide();
+	};
+
+	$rootScope.$on('$destroy', function() {
+		$rootScope.search_modal.remove();
+    $rootScope.modal_emisora1.remove();
+    $rootScope.modal_usuario1.remove();
+    
+	});
+	$rootScope.$on('modal.hidden', function() {
+    // Execute action
+  });
+ /*************************************search_modal.html******************/
+  
+})
 
 .config(function($stateProvider, $urlRouterProvider,$ionicConfigProvider) {
+	
+	$ionicConfigProvider.tabs.position('bottom');
+	
+    $ionicConfigProvider.backButton.text('').previousTitleText('')  ;
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
-  $ionicConfigProvider.views.maxCache(0);
-
   $stateProvider
 
-  // login screen
-  .state('login', {
-    cache: false,
-    url: '/login',
-    templateUrl: 'templates/login.html',
-    controller: 'login'
+  // setup an abstract state for the tabs directive
+    .state('tab', {
+    url: "/tab",
+    abstract: true,
+    templateUrl: "templates/tabs.html"
   })
 
-  // register screen
-  .state('register', {
-    cache: false,
-    url: '/register',
-    templateUrl: 'templates/register.html',
-    controller: 'registrar'
+	.state('login', {
+		url: '/login',
+			templateUrl: 'templates/login.html',
+      controller: 'login'
+	  })
+	.state('register', {
+		url: '/register',
+			templateUrl: 'templates/register.html'
+	  })
+
+
+  // Each tab has its own nav history stack:
+
+  .state('tab.all', {
+    url: '/all',
+    views: {
+      'tab-all': {
+        templateUrl: 'templates/tab-all.html',
+        controller: 'ChatCtr'
+      }
+    }
   })
 
-  // Home screen
-  .state('home', {
-    cache: false,
-    url: '/home',
-    templateUrl: 'templates/home.html',
-    controller:  'HomeCtrl'
-  })
-
-  //Inicio
-  .state('inicio', {
-    cache: false,
-    url: '/inicio',
-    templateUrl: 'templates/inicio.html',
-    controller: 'inicioC'
-  
-  })
-
-
-
- // Agregar Contacto
-.state('agregar', {
-    url: '/agregar',
-    templateUrl: 'templates/agregar.html',
-    controller: 'agrgarC'
-  })
-
-  
-
-  // View post detailj
-  .state('post', {
-    cache: false,
-    url: '/post/:postId',
-    templateUrl: 'templates/post.html',
-    controller: 'PostCtrl'
-  })
-
-  // Chat list
-  .state('chats', {
-    cache: false,
-    url: '/chats',
-    templateUrl: 'templates/chats.html',
-    controller: 'ChatCtrl'
-  })
-
-  .state('chat-detail', {
-    cache: false,
-    url: '/chats-detail',
-    templateUrl: 'templates/chat-detail.html',
-    controller: 'ChatDetailCtrl'
-  })
-
-
-  // Contact list
-  .state('contacts', {
-    cache: false,
-    url: '/contacts',
-    templateUrl: 'templates/contacts.html',
-    controller: 'ContactsCtrl'
-  })
-
-  // User profile
-  .state('user', {
-    cache: false,
-    url: '/user/:userId',
-    templateUrl: 'templates/user.html',
-    controller: 'UserCtrl'
-  })
-
-  // Setting page
-  .state('setting', {
-    url: '/setting',
-    templateUrl: 'templates/setting.html',
-    controller: 'SettingCtrl'
-  })
-
-  .state('acercade', {
-    url: '/acercade',
-    templateUrl: 'templates/acerca.html',
-    controller: 'AcercaCtrl'
-  })
-
-  .state('edit_perfil', {
-    url: '/edit_perfil',
-    templateUrl: 'templates/edit_perfil.html',
-    controller: 'perfil'
-  })
-
-  .state('cambiar_contrasena', {
-    cache: false,
-    url: '/cambiar_contrasena',
-    templateUrl: 'templates/cambiar_contrasena.html',
-    controller: 'c_clave'
-  })
-
-  .state('restaurar', {
-    url: '/restaurar',
-    templateUrl: 'templates/restaurar.html',
-    controller: 'restaurar'
-  })
-
-  .state('solicitudes', {
-    cache: false,
-    url: '/solicitudes',
-    templateUrl: 'templates/solicitudes.html',
-    controller: 'SettingCtrl'
-  })
-
-  .state('viewfoto', {
-    cache: false,
-    url: '/viewfoto',
-    templateUrl: 'templates/viewfoto.html',
-    controller: 'foto'
-  })
-
-  .state('s_recibidas', {
-    cache: false,
-    url: '/s_recibidas',
-    templateUrl: 'templates/s_recibidas.html',
-    controller: 'Senrecibidas'
-  })
-
- .state('stream', {
-        url: '/stream',
-        templateUrl: 'templates/stream.html',
-        controller: 'StreamController as vm'          
+//Tab de noticias
+  .state('tab.active', {
+      url: '/active',
+      views: {
+        'tab-active': {
+          templateUrl: 'templates/tab-active.html',
+          controller: 'NoticeCtr'
+        }
+      }
     })
 
-  .state('s_enviadas', {
-    cache: false,
-    url: '/s_enviadas',
-    templateUrl: 'templates/s_enviadas.html',
-    controller: 'Senviadas'
-  })
-
-  .state('d_chat', {
-    cache: false,
-    url: '/d_chat',
-    templateUrl: 'templates/d_chat.html',
-    controller: 'prueba'
-  })
+  .state('tab.noticias', {
+      url: '/noticias',
+      views: {
+        'tab-active': {
+          templateUrl: 'templates/post.html',
+          controller: 'Noti-detailCtr'
+        }
+      }
+    })
 
   
-  .state('info_chat', {
+
+  //configuracion
+	 .state('tab.group', {
+      url: '/group',
+      views: {
+        'tab-group': {
+          templateUrl: 'templates/tab-group.html',
+          controller: 'confiCtr'
+        }
+      }
+    })
+
+   .state('tab.imagen', {
+      url: '/imagen',
+      views: {
+        'tab-group': {
+          templateUrl: 'templates/viewfoto.html',
+           controller: 'FotoCtr'
+        }
+      }
+    })
+
+   .state('tab.cclave', {
+      url: '/cclave',
+      views: {
+        'tab-group': {
+          templateUrl: 'templates/cambiar_contrasena.html',
+           controller: 'ClaveCtr'
+        }
+      }
+    })
+
+   .state('tab.perfil', {
+      url: '/perfil',
+      views: {
+        'tab-group': {
+          templateUrl: 'templates/profile.html',
+           controller: 'PerfilCtr'
+        }
+      }
+    })
+
+   .state('tab.sol-recibidas', {
+      url: '/sol-recibidas',
+      views: {
+        'tab-group': {
+          templateUrl: 'templates/s_recibidas.html',
+           controller: 'Sol-reciCrt'
+        }
+      }
+    })
+
+   .state('tab.sol-enviadas', {
+      url: '/sol-enviadas',
+      views: {
+        'tab-group': {
+          templateUrl: 'templates/s_enviadas.html',
+           controller: 'Sol-envCrt'
+        }
+      }
+    })
+   .state('tab.acercade', {
+      url: '/acercade',
+      views: {
+        'tab-group': {
+          templateUrl: 'templates/acerca.html'
+        
+        }
+      }
+    })
+
+
+	.state('tab.chat', {
     cache: false,
-    url: '/info_chat',
-    templateUrl: 'templates/info_chat.html',
-    controller: 'info_chat'
+    url: '/chat',
+    views: {
+      'tab-all': {
+        templateUrl: 'templates/chat.html',
+        controller: 'ChatDetailCtrl'
+      }
+    }
   })
 
-    .state('foto_grupo', {
+  .state('tab.profile', {
+    url: '/profile',
+    views: {
+      'tab-all': {
+        templateUrl: 'templates/profile.html'
+      }
+    }
+  })
+
+  .state('tab.perfil1', {
     cache: false,
+    url: '/perfil1',
+    views: {
+      'tab-all': {
+        templateUrl: 'templates/perfil.html',
+        controller: 'perfilCtr'
+      }
+    }
+  })
+
+  .state('tab.perfil2', {
+    url: '/perfil2',
+    views: {
+      'tab-all': {
+        templateUrl: 'templates/perfil1.html',
+        controller: 'perfilGrCtr'
+      }
+    }
+  })
+  .state('tab.foto_grupo', {
     url: '/foto_grupo',
-    templateUrl: 'templates/foto_grupo.html',
-    controller: 'foto_grupo'
+    views: {
+      'tab-all': {
+        templateUrl: 'templates/foto_grupo.html',
+        controller: 'foto_grupoCtr'
+      }
+    }
   })
 
-  .state('crear_grupo', {
-    cache: false,
-    url: '/crear_grupo',
-    templateUrl: 'templates/crear_grupo.html',
-    controller: 'ContactsCtrl'
-  })
-
-  .state('a_p_grupo', {
-    cache: false,
-    url: '/a_p_grupo',
-    templateUrl: 'templates/a_p_grupo.html',
-    controller: 'ContactsCtrl'
-  })
-
-  .state('chat-canal', {
-    cache: false,
+  .state('tab.chat-canal', {
     url: '/chat-canal',
-    templateUrl: 'templates/chat-canal.html',
-    controller: 'chat-canal'
+    views: {
+      'tab-all': {
+        templateUrl: 'templates/chat-canal.html',
+        controller: 'chat-canalCtr'
+      }
+    }
+  })
+   
+
+  .state('tab.recent', {
+    url: '/recent',
+    views: {
+      'tab-recent': {
+        templateUrl: 'templates/tab-recent.html',
+        controller: 'ContacCtr'
+      }
+    }
+  })
+  
+  .state('tab.agregar', {
+    url: '/agregar',
+    views: {
+      'tab-recent': {
+        templateUrl: 'templates/agregar.html',
+        controller: 'ContacCtr'
+      }
+    }
+  })
+  .state('tab.grupo', {
+    url: '/grupo',
+    views: {
+      'tab-recent': {
+        templateUrl: 'templates/crear_grupo.html',
+        controller: 'ContacCtr'
+      }
+    }
   })
 
-    // if none of the above states are matched, use this as the fallback
+
+  // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');
 
 });

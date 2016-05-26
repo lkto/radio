@@ -1,0 +1,31 @@
+<ion-view>
+
+  <ion-content >
+
+<div id="c_clave" ng-app='angular_post' >           
+<div class="list">
+  <label class="item item-input item-floating-label" >
+    <span class="input-label">Nombre</span>
+    <input type="text"   value="{{ user.nombre }}" id='nombre_u' name='nombre_u' >
+  </label>
+  <label class="item item-input item-floating-label">
+    <span class="input-label">Estado</span>
+    <input type="text"  value="{{ user.mensaje_personal }}" id='estado_u' name='estado_u' >
+  </label>
+  <label class="item item-input item-floating-label">
+    <span class="input-label">Correo</span>
+    <span> {{ user.email }} </span>
+  </label>
+  <div class="padding">
+      <button class="button button-block button-positive"  ng-click="actualizar()">
+        Actualizar
+      </button>
+    </div>
+</div>
+
+</div>
+
+  </ion-content>
+</ion-view>
+
+  

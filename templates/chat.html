@@ -1,0 +1,72 @@
+<ion-view>
+
+<ion-nav-bar class="bar-stable">
+        
+        <ion-nav-buttons side="right" >
+            <button class="button button-icon button-clear" ng-click="modal_emisora()">
+              <i class="ion-play"></i>
+            </button>
+          
+            <button class="button button-icon button-clear" ng-click="modal_usuario()">
+              <img src="img/add.png"/>
+            </button>
+            
+              <a class="button button-icon button-clear back_btn" href="#/tab/all" style="padding-top: 15px;">
+                <i class="ion-chevron-left"></i>
+            </a>
+        </ion-nav-buttons>
+         <ion-nav-buttons side="left" >
+            <button class="button button-icon button-clear logo_img">
+              <img class="title-image" src="img/title.png" />
+            </button>
+        </ion-nav-buttons>
+</ion-nav-bar>
+
+
+<div class="bar bar-subheader chat_head">
+      <div class="row">
+        <div class="col col-25">
+            <img class="photo_person" src="{{chat[0].faceg}}"/>
+            <span class="status" style="background:{{item.color}}"></span>
+        </div>
+        <div class="col">
+          <h3>{{chat[0].name}}</h3>
+          <p><a class="button button-clear" ng-click="viewPerfil(chat[0].id)">Perfil</a></p>
+        </div>
+      </div>
+ </div>  
+
+
+  <ion-content class="has-subheader chat_content" delegate-handle="mainScroll">
+   <ion-list class="list_chat">
+        <ion-item ng-repeat="item in chat[0].messages"  style="direction:{{item.type}}; ">
+        <div class="item_content">
+                   <pre class="content" style="min-width: 50%;max-width: 70%;
+    border-radius: 8px;
+    padding: 2px;
+    font-size: 14px;
+    font-family: fantasy;
+    background-color: {{item.b}};
+    text-align: left;"><span><b style="color:{{item.color}};">{{item.name}}</b>  <br/> {{item.text}}<img src="{{ item.image }}" ng-click="ftoChat(message.image)" class="block" ng-if="item.image" alt="" style="width:100%" /><span></pre> 
+        </div>
+        </ion-item>
+    </ion-list>
+           <!-- <p class="date_chat"><span>29 August<span>2:50 pm</span></span></p> -->
+  </ion-content>
+
+
+
+
+  
+    <ion-footer-bar class="footer_chat">
+        <div class="list list-inset">
+            <label class="item item-input">
+                <i class="icon ion-compose placeholder-icon"></i>
+                <textarea placeholder="type a message"></textarea>
+            </label>
+            <button class="button button-icon">
+               <img src="img/enter.png"/>
+            </button>
+        </div>
+    </ion-footer-bar>
+</ion-view>

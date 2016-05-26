@@ -1,0 +1,92 @@
+<ion-view>
+    <ion-nav-bar class="bar-stable">
+        
+        <ion-nav-buttons side="right" >
+            <button class="button button-icon button-clear" ng-click="modal_emisora()">
+              <i class="ion-play"></i>
+            </button>
+          
+            <button class="button button-icon button-clear" ng-click="modal_usuario()">
+              <img src="img/add.png"/>
+            </button>
+        </ion-nav-buttons>
+         <ion-nav-buttons side="left" >
+            <button class="button button-icon button-clear logo_img">
+              <img class="title-image" src="img/title.png" />
+            </button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+  <ion-content>
+
+  <div class ="item item-divider">
+  Perosnales
+</div>
+
+   <div class="list" style="margin-bottom: 0px;">
+
+  <a class="item item-icon-left" href="#/tab/imagen">
+    <i class="icon ion-image"></i>
+    Cambiar imagen
+  </a>
+
+  <a class="item item-icon-left " href="#/tab/cclave">
+    <i class="icon ion-ios-barcode"></i>
+    Cambiar contraseña
+   
+  </a>
+
+  <a class="item item-icon-left" href="#/tab/perfil">
+    <i class="icon ion-person"></i>
+    Cambiar datos personales
+  </a>
+
+</div>
+
+<div class ="item item-divider">
+  Gestionar contactos
+</div>
+
+<div class="list" style="margin-bottom: 0px;">
+
+  <a class="item item-icon-left" href="#/tab/sol-recibidas">
+    <i class="icon ion-person-add"></i>
+    Solicitudes recibidas
+  </a>
+
+  <a class="item item-icon-left " href="#/tab/sol-enviadas">
+    <i class="icon ion-paper-airplane"></i>
+    Solicitudes enviadas
+
+  </a>
+
+</div>
+
+<div class ="item item-divider">
+  Acerca de
+</div>
+
+
+<div class="list" style="margin-bottom: 0px;">
+
+  <a class="item item-icon-left" href="#/tab/acercade">
+    <i class="icon ion-ios-information-outline"></i>
+    Acerca de
+  </a>
+
+</div>
+
+<div class ="item item-divider">
+  Salir
+</div>
+
+<div class="list" style="margin-bottom: 0px;">
+
+  <a class="item item-icon-left" ng-click="salir()">
+    <i class="icon ion-ios-close-outline"></i>
+    Salir
+  </a>
+
+</div>
+  </ion-content>
+</ion-view>
+

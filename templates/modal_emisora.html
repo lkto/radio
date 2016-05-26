@@ -1,0 +1,18 @@
+<ion-modal-view class="search animated slideInDown ">
+    <ion-content class="ser_input">
+
+    <div class="list" ng-repeat="song in songs">
+
+    <a class="item item-thumbnail-left" href="#"  music-player="play" add-song="song" ng-model="play" ng-click="play1() " data-ng-if="song.play = 1" style="background: transparent;
+    border: none;">
+      <img src="{{ song.img }}">
+      <h2 style="padding-top:20px;color:#ccc">{{ song.title }}</h2>
+      <p style="width:100%">Clic y espera un momento...</p>
+
+    </a>
+  </div>
+<center>			
+  <button stop-music class="button icon-left ion-stop button-clear  button-outline button-assertive" ng-model="pause" ng-click="play1()" data-ng-if="song.play = 2">Pausar</button></center>
+    	
+    </ion-content>
+  </ion-modal-view>

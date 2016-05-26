@@ -1,5 +1,29 @@
 <link rel="stylesheet" type="text/css" href="css/inicio.css"> 
-  <ion-view view-title="Crear Grupo" cache-view="false">
+  <ion-view >
+
+    <ion-nav-bar class="bar-stable">
+        
+        <ion-nav-buttons side="right" >
+            <button class="button button-icon button-clear" ng-click="modal_emisora()">
+              <i class="ion-play"></i>
+            </button>
+          
+            <button class="button button-icon button-clear" ng-click="modal_usuario()">
+              <img src="img/add.png"/>
+            </button>
+
+            <a class="button button-icon button-clear back_btn" href="#/tab/recent" style="padding-top: 15px;">
+                <i class="ion-chevron-left"></i>
+            </a>
+        </ion-nav-buttons>
+         <ion-nav-buttons side="left" >
+
+            <button class="button button-icon button-clear logo_img">
+              <img class="title-image" src="img/title.png" />
+            </button>
+            
+        </ion-nav-buttons>
+    </ion-nav-bar>
 
     <ion-content>
 
@@ -40,7 +64,8 @@ height: 52px;" >
  <ion-checkbox ng-change="crearGrupo( {{ contact.id }})" ng-model="activo" id="{{ contact.id }}">
            <img class="profile-picture" src="{{ contact.face }}" alt=""/>
           <p>
-            <a href="#" class="post-author">
+            <a href="#" class="post-author" style="text-decoration: none;
+    color: #000;">
               {{ contact.name }}
             </a>
             <span class="badge badge-positive" ng-if="contact.group == 'Family'">Familia</span>
@@ -53,12 +78,16 @@ height: 52px;" >
       </ion-list>
 
 
+
+  <div class="padding">
+      <button class="button button-block button-positive" ng-click="InsertarGrupo()">
+        Crear grupo
+      </button>
+    </div>
+
+
     </ion-content>
 
-<div class="contenedor" >
-<button class="botonF1" ng-click="InsertarGrupo()" >
-<span><i class="ion-ios-compose-outline"></i></span>
-</button>
-</div>
+
 
   </ion-view>

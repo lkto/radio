@@ -2,46 +2,6 @@
 <link rel="stylesheet" type="text/css" href="css/line.css">
 <ion-content>
 
-     
-
-     <!--  <ul class="timeline"  >
-     
-        <li>
-
-        <div class="list list-inset transparent-form" ng-app='angular_post' ng-controller='Senviadas'>
-
-          <img src="img/adam.jpg" alt="" class="timeline-thumb">
-          <div class="timeline-item">
-            <h4>Fabio garcia alvarez</h4>
-            <p>Hola, fabio quiero ser tu amigo.....</p>
-            <div class="timeline-stats">
-            
-               <button class="button button-clear button-assertive" ng-click= "Csolicitud('fabio')"> <i class="ion-ios-close-outline"></i> Cancelar </button></span>
-            </div>
-          </div>
-
-        </div>
-        </li>
-
-         <li>
-
-        <div class="list list-inset transparent-form" ng-app='angular_post' ng-controller='Senviadas'>
-
-          <img src="img/adam.jpg" alt="" class="timeline-thumb">
-          <div class="timeline-item">
-            <h4>Fabio garcia alvarez</h4>
-            <p>Hola, fabio quiero ser tu amigo.....</p>
-            <div class="timeline-stats">
-            
-               <button class="button button-clear button-assertive" ng-click= "Csolicitud('ember')"> <i class="ion-ios-close-outline"></i> Cancelar </button></span>
-            </div>
-          </div>
-
-        </div>
-        </li>
-  
-        
-      </ul> -->
 
       <div class="list list-inset" >
         <label class="item item-input">
@@ -51,23 +11,32 @@
       </div>
 
 
-      <ul class="timeline" >
+      <ion-list>
+     <a href="" class="people_list"
+       collection-repeat="solicitud in soli | filter: busqueda"
+       collection-item-width="'100%'"
+       collection-item-height="85"> 
       
-        <li ng-repeat="solicitud in soli | filter: busqueda" >
-        <div class="list list-inset transparent-form" ng-app='angular_post' ng-controller='Senviadas'>
-          <img src="{{ solicitud.img_usuario }}" alt="" class="timeline-thumb">
-          <div class="timeline-item">
-            <h4>{{ solicitud.nombre_usuario }}</h4>
-            <div class="timeline-stats">
-              <button class="button button-clear button-positive"></button>
-              <span class="pos-absolute-right">  <button class="button button-clear button-assertive" ng-click="(Csolicitud({{ solicitud.id }}))" > <i class="ion-ios-close-outline"></i> Cancelar </button></span>
-            </div>
-          </div>
+      <div class="row">
+        <div class="col col-25">
+          <div class="img_status">
+            <div class="photo_person" style="background:url({{solicitud.img_usuario}})no-repeat; background-size:100% 100%;"></div>
+            
+          </div>  
         </div>
-        </li>
-   
-        
-      </ul>
+          <div class="col">
+          <h3>{{ solicitud.nombre_usuario }}</h3>
+
+          <div class="timeline-stats">
+              <span class="pos-absolute-right">  <button class="button button-clear button-assertive" ng-click="(Csolicitud({{ solicitud.id }}))"> <i class="ion-ios-close-outline"></i> Cancelar </button></span>
+            </div>
+          
+        </div>
+      </div>
+    </a>
+    </ion-list>
+
+
 
 
       

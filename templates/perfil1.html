@@ -1,0 +1,41 @@
+<ion-view>
+
+
+
+
+  <ion-content class="setting_page padding ">
+  
+    <div class="profil_img" style="padding-top: 50px;">
+       <img class="cir_img" src="{{D_Grupo.img}}" ng-click="viewFoto1(D_Grupo.id)"/>
+       <h3>{{D_Grupo.nombre}}</h3>
+    </div>
+    <div class="content">
+        
+
+        <br>
+
+        <h3><i class="ion-chatbox-working"></i>{{D_Grupo.ultimo_mensaje}}</h3>
+        
+        <br>
+
+        <ion-list class="contact-list"  >
+ <ion-item class="item-avatar item-icon-right" ng-repeat="usuarios in D_Grupo.integrantes" >
+
+          <img class="profile-picture" src="{{usuarios.img}}" alt=""/>
+          <h2>{{usuarios.nombre}}</h2>
+          <ion-option-button class="button-stable ion-person-add" ng-click="agregar(usuarios.nombre_usuario)" >
+          </ion-option-button>
+
+ </ion-item>
+
+
+
+
+
+</ion-list>
+  
+        
+        
+   </div>
+  </ion-content>
+  </ion-view>

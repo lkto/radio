@@ -1,26 +1,30 @@
-<ion-view view-title="Foto de perfil" hide-nav-bar="true" cache-view="false">
+<ion-view >
   <ion-content>
-<div class="bar bar-header" style="border:none;background-color:#387EF5;">
-<button class="button button-icon icon ion-ios-arrow-back" style="color:#fff" ui-sref="user">
-   Perfil
- </button>
-<div class="h1 title" style="color:#fff">Cambiar Fotos</div>
+
+<!-- <div class="list" style="margin-bottom: 0px;">
+
+  <a class="item item-icon-left" href="#/tab/group">
+    <i class="icon ion-arrow-return-left"></i>
+    Configuracion
+  </a> -->
+
+
+<br/>
+<br/>
+<br/>
+<!--
 <button type="button" class="button button-icon icon ion-edit" style="color:#fff" ng-click="clickUpload()"> 
-  </button>
-</div>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
+  </button> -->
 
 <div style="position:relative">
 
 <div style="z-index:1;position:absolute;width:100%">
 <img src="{{ img }}" style="-webkit-filter:blur(5px);width:100%;">
 </div>
+
+
+<br/>
+<br/>
 <!-- PRINCIPA -->
 
 <div style="z-index:2;position:absolute;width:100%;padding-top:20px">
@@ -28,6 +32,8 @@
 <form style="display:none">
 <div style="text-align: left;font-size: 20px;padding: 10px;color: #487eaa;">
 </div>
+<br/>
+<br/>
 <div class="file-upload">
   <br/>
   <input type="file" id="i_file" name="file" ng-file-select="onFileSelect($files)" accept="image/*"/>

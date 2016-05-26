@@ -1,0 +1,50 @@
+<ion-view>
+    <ion-nav-bar class="bar-stable">
+        
+        <ion-nav-buttons side="right" >
+           <button class="button button-icon button-clear" ng-click="modal_emisora()">
+              <i class="ion-play"></i>
+            </button>
+          
+            <button class="button button-icon button-clear" ng-click="modal_usuario()">
+              <img src="img/add.png"/>
+            </button>
+        </ion-nav-buttons>
+
+         <ion-nav-buttons side="left" >
+            <button class="button button-icon button-clear logo_img">
+              <img class="title-image" src="img/title.png" />
+            </button>
+            
+        </ion-nav-buttons>
+    </ion-nav-bar>
+
+
+  <ion-content>
+    <ion-list>
+     <a href="" class="people_list"
+       collection-repeat="item in posts"
+       collection-item-width="'100%'"
+       collection-item-height="85"
+       ng-click="viewPost(item.id_noticia)"> 
+      
+      <div class="row">
+        <div class="col col-25">
+          <div class="img_status">
+            <div class="photo_person" style="background:url({{item.img_noticia}})no-repeat; background-size:100% 100%;"></div>
+           </div> 
+        </div>
+          <div class="col">
+          <h3>{{item.titulo}}</h3>
+          <p class="type_msg"><span ng-class="{'del_margin':!item.type}">{{item.descripcionC}}</span></p>
+          <p>{{item.fechar}}</p>
+          <span class="notificate" ng-show="item.number==true">3</apan>
+        </div>
+      </div>
+    </a>
+    
+    </ion-list>
+
+    </br></br></br>
+  </ion-content>
+</ion-view>
