@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','angularSoundManager','chieffancypants.loadingBar','ngAnimate','ngAlertify','angularFileUpload'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','angularSoundManager','chieffancypants.loadingBar','ngAnimate','ngAlertify','angularFileUpload','ngCordova'])
 
 .run(function($ionicPlatform, $rootScope,$ionicHistory,$rootScope,$ionicModal) {
 	

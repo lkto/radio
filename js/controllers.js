@@ -355,7 +355,7 @@ alertify.success('Agregando Usuarios, Espere por favor');
   //$scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('ChatCtr', function($scope,$http,$state,$rootScope,cfpLoadingBar,$rootScope) {
+.controller('ChatCtr', function($scope,$http,$state,$rootScope,cfpLoadingBar,$rootScope,$cordovaPush) {
 
   if(localStorage.getItem("usuario"))
     {
@@ -659,7 +659,7 @@ $scope.sendMessage = function() {
 
 })
 
-.controller('ChatDetailCtrl', function($scope,$http,$timeout,$ionicScrollDelegate,$state,$ionicPopup,$ionicActionSheet,$rootScope) {
+.controller('ChatDetailCtrl', function($scope,$http,$timeout,$ionicScrollDelegate,$state,$ionicPopup,$ionicActionSheet,$rootScope,$cordovaPush) {
 
 $scope.ftoChat = function(foto) {
 
