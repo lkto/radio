@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','angularSoundManager','chieffancypants.loadingBar','ngAnimate','ngAlertify','angularFileUpload'])
 
 .run(function($ionicPlatform, $rootScope,$ionicHistory,$rootScope,$ionicModal) {
 	
@@ -100,7 +100,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 	$rootScope.$on('modal.hidden', function() {
     // Execute action
   });
+
+ 
  /*************************************search_modal.html******************/
+
+
   
 })
 
@@ -137,6 +141,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // Each tab has its own nav history stack:
 
   .state('tab.all', {
+    cache: false,
     url: '/all',
     views: {
       'tab-all': {
@@ -157,14 +162,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
 
-  .state('tab.noticias', {
+  .state('noticias', {
       url: '/noticias',
-      views: {
-        'tab-active': {
           templateUrl: 'templates/post.html',
           controller: 'Noti-detailCtr'
-        }
-      }
     })
 
   
@@ -180,75 +181,57 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
 
-   .state('tab.imagen', {
+   .state('imagen', {
       url: '/imagen',
-      views: {
-        'tab-group': {
+
           templateUrl: 'templates/viewfoto.html',
            controller: 'FotoCtr'
-        }
-      }
     })
 
-   .state('tab.cclave', {
+   .state('cclave', {
       url: '/cclave',
-      views: {
-        'tab-group': {
+  
           templateUrl: 'templates/cambiar_contrasena.html',
            controller: 'ClaveCtr'
-        }
-      }
+ 
     })
 
-   .state('tab.perfil', {
+   .state('perfil', {
       url: '/perfil',
-      views: {
-        'tab-group': {
+   
           templateUrl: 'templates/profile.html',
            controller: 'PerfilCtr'
-        }
-      }
+
     })
 
-   .state('tab.sol-recibidas', {
+   .state('sol-recibidas', {
       url: '/sol-recibidas',
-      views: {
-        'tab-group': {
+     
           templateUrl: 'templates/s_recibidas.html',
            controller: 'Sol-reciCrt'
-        }
-      }
+ 
     })
 
-   .state('tab.sol-enviadas', {
+   .state('sol-enviadas', {
       url: '/sol-enviadas',
-      views: {
-        'tab-group': {
+
           templateUrl: 'templates/s_enviadas.html',
            controller: 'Sol-envCrt'
-        }
-      }
+
     })
-   .state('tab.acercade', {
+   .state('acercade', {
       url: '/acercade',
-      views: {
-        'tab-group': {
+  
           templateUrl: 'templates/acerca.html'
-        
-        }
-      }
+ 
     })
 
 
-	.state('tab.chat', {
+	.state('chat', {
     cache: false,
     url: '/chat',
-    views: {
-      'tab-all': {
         templateUrl: 'templates/chat.html',
         controller: 'ChatDetailCtrl'
-      }
-    }
   })
 
   .state('tab.profile', {
@@ -260,44 +243,35 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
-  .state('tab.perfil1', {
+  .state('perfil1', {
     cache: false,
     url: '/perfil1',
-    views: {
-      'tab-all': {
+   
         templateUrl: 'templates/perfil.html',
         controller: 'perfilCtr'
-      }
-    }
+
   })
 
-  .state('tab.perfil2', {
+  .state('perfil2', {
     url: '/perfil2',
-    views: {
-      'tab-all': {
+
         templateUrl: 'templates/perfil1.html',
         controller: 'perfilGrCtr'
-      }
-    }
+
   })
-  .state('tab.foto_grupo', {
+  .state('foto_grupo', {
     url: '/foto_grupo',
-    views: {
-      'tab-all': {
+
         templateUrl: 'templates/foto_grupo.html',
         controller: 'foto_grupoCtr'
-      }
-    }
+
   })
 
-  .state('tab.chat-canal', {
-    url: '/chat-canal',
-    views: {
-      'tab-all': {
+  .state('chat-canal', {
+
         templateUrl: 'templates/chat-canal.html',
         controller: 'chat-canalCtr'
-      }
-    }
+
   })
    
 
@@ -310,24 +284,32 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
-  
-  .state('tab.agregar', {
-    url: '/agregar',
-    views: {
-      'tab-recent': {
-        templateUrl: 'templates/agregar.html',
+ 
+  .state('a_grupo', {
+    cache: false,
+    url: '/a_grupo',
+ 
+        templateUrl: 'templates/a_p_grupo.html',
         controller: 'ContacCtr'
-      }
-    }
+
   })
-  .state('tab.grupo', {
+
+    .state('agregar', {
+    cache: false,
+    url: '/agregar',
+ 
+        templateUrl: 'templates/agregar.html',
+        controller: 'agregarCtr'
+
+  })
+
+  .state('grupo', {
+    cache: false,
     url: '/grupo',
-    views: {
-      'tab-recent': {
+  
         templateUrl: 'templates/crear_grupo.html',
         controller: 'ContacCtr'
-      }
-    }
+
   })
 
 

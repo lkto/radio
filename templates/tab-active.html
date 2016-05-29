@@ -1,26 +1,7 @@
 <ion-view>
-    <ion-nav-bar class="bar-stable">
-        
-        <ion-nav-buttons side="right" >
-           <button class="button button-icon button-clear" ng-click="modal_emisora()">
-              <i class="ion-play"></i>
-            </button>
-          
-            <button class="button button-icon button-clear" ng-click="modal_usuario()">
-              <img src="img/add.png"/>
-            </button>
-        </ion-nav-buttons>
-
-         <ion-nav-buttons side="left" >
-            <button class="button button-icon button-clear logo_img">
-              <img class="title-image" src="img/title.png" />
-            </button>
-            
-        </ion-nav-buttons>
-    </ion-nav-bar>
 
 
-  <ion-content>
+  <ion-content style="{{not_error[0].img}}">
     <ion-list>
      <a href="" class="people_list"
        collection-repeat="item in posts"
@@ -44,6 +25,9 @@
     </a>
     
     </ion-list>
+
+    <button  class="button" ng-if="not_error[0].text" ng-click="notici()" style="    margin-top: 270px;
+    margin-left: 130px;"> <i class="icon ion-refresh"></i> Actualizar </button>
 
     </br></br></br>
   </ion-content>

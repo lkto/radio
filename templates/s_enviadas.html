@@ -1,6 +1,20 @@
-<ion-view view-title="Solicitudes enviadas" cache-view="false">
+<ion-view >
 <link rel="stylesheet" type="text/css" href="css/line.css">
-<ion-content>
+<ion-nav-bar class="bar-stable">
+        
+        <ion-nav-buttons side="right" >
+            
+              <a class="button button-icon button-clear back_btn" ng-click="myGoBack()" style="padding-top: 15px;">
+                <i class="ion-chevron-left"></i>
+            </a>
+        </ion-nav-buttons>
+         <ion-nav-buttons side="left" >
+            <button class="button button-icon button-clear logo_img">
+              <img class="title-image" src="img/title.png" />
+            </button>
+        </ion-nav-buttons>
+</ion-nav-bar>
+<ion-content style="top: 50px;">
 
 
       <div class="list list-inset" >
@@ -28,7 +42,7 @@
           <h3>{{ solicitud.nombre_usuario }}</h3>
 
           <div class="timeline-stats">
-              <span class="pos-absolute-right">  <button class="button button-clear button-assertive" ng-click="(Csolicitud({{ solicitud.id }}))"> <i class="ion-ios-close-outline"></i> Cancelar </button></span>
+              <span class="pos-absolute-right">  <button class="button button-clear button-assertive" ng-click="Csolicitud(solicitud.id)"> <i class="ion-ios-close-outline"></i> Cancelar </button></span>
             </div>
           
         </div>

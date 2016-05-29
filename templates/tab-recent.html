@@ -1,52 +1,12 @@
 <ion-view>
-    <ion-nav-bar class="bar-stable">
-        
-        <ion-nav-buttons side="right" >
-            <button class="button button-icon button-clear" ng-click="modal_emisora()">
-              <i class="ion-play"></i>
-            </button>
-          
-            <button class="button button-icon button-clear" ng-click="modal_usuario()">
-              <img src="img/add.png"/>
-            </button>
-        </ion-nav-buttons>
-         <ion-nav-buttons side="left" >
-            <button class="button button-icon button-clear logo_img">
-              <img class="title-image" src="img/title.png" />
-            </button>
-        </ion-nav-buttons>
-    </ion-nav-bar>
-  <ion-content>
+
+   
+  <ion-content style="{{cont_error[0].img}}">
     <ion-list>
 
-    <!--
-     <a href="" class="people_list"
-       collection-repeat="item in contacts"
-       collection-item-width="'100%'"
-       collection-item-height="85"> 
-      
-      <div class="row">
-        <div class="col col-25">
-          <div class="img_status">
-            <div class="photo_person" style="background:url({{item.face}})no-repeat; background-size:100% 100%;"></div>
-            
-          </div>  
-        </div>
-          <div class="col">
-          <h3>{{item.name}}</h3>
-          <p class="type_msg">{{item.group}}</p>
-        </div>
 
-        
-      </div>
 
-    
-     
-    </a>
-
-    -->
-
-    <div class="list list-inset" >
+    <div class="list list-inset" ng-if="contacts[0].name" >
         <label class="item item-input">
          <i class="icon ion-search placeholder-icon"></i>
          <input type="text" placeholder="Buscar" ng-model="busqueda">
@@ -63,12 +23,15 @@
         <p>{{item.group}}</p>
  
        <span class="status" style="background:{{item.color}};"></span>
-          <ion-option-button class="button-assertive ion-android-delete" ng-click="eliminar_contac({{ contact.id_relacion }})">
+          <ion-option-button class="button-assertive ion-android-delete" ng-click="eliminar_contac({{ item.id_relacion }})">
           </ion-option-button>
       </ion-item>
     </ion-list>
           
     </ion-list>
+
+    <button  class="button" ng-if="cont_error[0].text" ng-click="ccon()" style="    margin-top: 270px;
+    margin-left: 130px;"> <i class="icon ion-refresh"></i> Actualizar </button>
 
     <br><br><br>
   </ion-content>

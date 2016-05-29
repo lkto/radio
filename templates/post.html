@@ -5,7 +5,22 @@
   The Posts Service returns post object
 -->
 <ion-view >
-  <ion-content>
+
+<ion-nav-bar class="bar-stable">
+        
+        <ion-nav-buttons side="right" >
+            
+              <a class="button button-icon button-clear back_btn" ng-click="myGoBack()" style="padding-top: 15px;">
+                <i class="ion-chevron-left"></i>
+            </a>
+        </ion-nav-buttons>
+         <ion-nav-buttons side="left" >
+            <button class="button button-icon button-clear logo_img">
+              <img class="title-image" src="img/title.png" />
+            </button>
+        </ion-nav-buttons>
+</ion-nav-bar>
+  <ion-content style="top: 50px;">
 
     <div class="main-post item item-avatar no-border">
       <img ng-src="{{post.img_publica}}" ng-click="viewUser(post.id_usuario)">

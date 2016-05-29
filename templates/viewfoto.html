@@ -1,5 +1,22 @@
 <ion-view >
-  <ion-content>
+
+<ion-nav-bar class="bar-stable">
+        
+        <ion-nav-buttons side="right" >
+            
+              <a class="button button-icon button-clear back_btn" ng-click="myGoBack()" style="padding-top: 15px;">
+                <i class="ion-chevron-left"></i>
+            </a>
+        </ion-nav-buttons>
+         <ion-nav-buttons side="left" >
+            <button class="button button-icon button-clear logo_img">
+              <img class="title-image" src="img/title.png" />
+            </button>
+        </ion-nav-buttons>
+</ion-nav-bar>
+
+
+  <ion-content style="margin-top: -50px;">
 
 <!-- <div class="list" style="margin-bottom: 0px;">
 
@@ -46,6 +63,8 @@
 </center>
 </div>
 </div>
+
+<button ng-click="clickUpload()" class="button button-positive" style="top: -90px;">Cambiar foto</button>
 <style type="text/css">
 div.file-upload {
     width: 157px;

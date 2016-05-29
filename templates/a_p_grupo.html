@@ -1,23 +1,20 @@
 <link rel="stylesheet" type="text/css" href="css/inicio.css"> 
   <ion-view >
 
-    <ion-nav-bar class="bar-stable">
+  <ion-nav-bar class="bar-stable">
         
         <ion-nav-buttons side="right" >
-
-
-            <a class="button button-icon button-clear back_btn" ng-click="myGoBack()" style="padding-top: 15px;">
+            
+              <a class="button button-icon button-clear back_btn" ng-click="myGoBack()" style="padding-top: 15px;">
                 <i class="ion-chevron-left"></i>
             </a>
         </ion-nav-buttons>
          <ion-nav-buttons side="left" >
-
             <button class="button button-icon button-clear logo_img">
               <img class="title-image" src="img/title.png" />
             </button>
-            
         </ion-nav-buttons>
-    </ion-nav-bar>
+</ion-nav-bar>
 
     <ion-content>
 
@@ -25,12 +22,6 @@
 
       <ion-list class="contact-list">
         
-        <div class="list list-inset" >
-        <label class="item item-input">
-        <input type="text" placeholder="Asunto del grupo" ng-model="asunto" id="asunto" name="asunto">
-        </label>
-        </div>
-
 <style type="text/css">
   .item-checkbox .checkbox {
 position: absolute;
@@ -58,8 +49,7 @@ height: 52px;" >
  <ion-checkbox ng-change="crearGrupo(contact.id)" ng-model="activo" id="contact.id">
            <img class="profile-picture" src="{{ contact.face }}" alt=""/>
           <p>
-            <a href="#" class="post-author" style="text-decoration: none;
-    color: #000;">
+            <a href="#" class="post-author">
               {{ contact.name }}
             </a>
             <span class="badge badge-positive" ng-if="contact.group == 'Family'">Familia</span>
@@ -71,15 +61,7 @@ height: 52px;" >
         </ion-item>
       </ion-list>
 
-
-
-  <div class="padding">
-      <button class="button button-block button-positive" ng-click="InsertarGrupo()">
-        Crear grupo
-      </button>
-    </div>
-
-
+<button ng-click="Agregar_mas()" class="button button-positive" >Guardar</button>
     </ion-content>
 
 

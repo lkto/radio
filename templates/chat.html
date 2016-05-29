@@ -3,27 +3,23 @@
 <ion-nav-bar class="bar-stable">
         
         <ion-nav-buttons side="right" >
-            <button class="button button-icon button-clear" ng-click="modal_emisora()">
-              <i class="ion-play"></i>
-            </button>
-          
-            <button class="button button-icon button-clear" ng-click="modal_usuario()">
-              <img src="img/add.png"/>
-            </button>
+
+
             
-              <a class="button button-icon button-clear back_btn" href="#/tab/all" style="padding-top: 15px;">
+              <a class="button button-icon button-clear back_btn" ng-click="myGoBack()" style="padding-top: 15px;">
                 <i class="ion-chevron-left"></i>
             </a>
+            
         </ion-nav-buttons>
          <ion-nav-buttons side="left" >
             <button class="button button-icon button-clear logo_img">
               <img class="title-image" src="img/title.png" />
             </button>
-        </ion-nav-buttons>
+        </ion-nav-buttons> 
 </ion-nav-bar>
 
 
-<div class="bar bar-subheader chat_head">
+<div class="bar bar-subheader chat_head" style="margin-top: -50px;">
       <div class="row">
         <div class="col col-25">
             <img class="photo_person" src="{{chat[0].faceg}}"/>
@@ -40,6 +36,9 @@
   <ion-content class="has-subheader chat_content" delegate-handle="mainScroll">
    <ion-list class="list_chat">
         <ion-item ng-repeat="item in chat[0].messages"  style="direction:{{item.type}}; ">
+
+       <div on-hold="onMessageHold($event, $index, item )"> 
+
         <div class="item_content">
                    <pre class="content" style="min-width: 50%;max-width: 70%;
     border-radius: 8px;
@@ -47,26 +46,46 @@
     font-size: 14px;
     font-family: fantasy;
     background-color: {{item.b}};
-    text-align: left;"><span><b style="color:{{item.color}};">{{item.name}}</b>  <br/> {{item.text}}<img src="{{ item.image }}" ng-click="ftoChat(message.image)" class="block" ng-if="item.image" alt="" style="width:100%" /><span></pre> 
+    text-align: left;"><span><b style="color:{{item.color}};">{{item.name}}</b>  <br/> {{item.text}}<img src="{{ item.image }}" ng-click="ftoChat(item.image)" class="block" ng-if="item.image" alt="" style="width:100%" /><span></pre> 
+        </div>
         </div>
         </ion-item>
     </ion-list>
+
+
+    <div ng-controller="mensajecontrol">
+
+<form style="display:none">
+<div style="text-align: left;font-size: 20px;padding: 10px;color: #487eaa;">
+</div>
+<div class="file-upload">
+  <br/>
+  <input type="file" id="i_file1" name="file" ng-file-select="onFileSelect($files)" accept="image/*"/>
+  <div ng-repeat="files in uploadResult">
+  <!-- in case of error show error message with file name-->
+  <span class='label label-info'>{{files.name}}</span><br/>
+  </div>
+</div>
+</form>
+</div>
            <!-- <p class="date_chat"><span>29 August<span>2:50 pm</span></span></p> -->
   </ion-content>
 
 
 
-
   
     <ion-footer-bar class="footer_chat">
-        <div class="list list-inset">
+
+    
+        <div class="list list-inset" ng-controller="mensajecontrol" style="margin-left: 0px; margin-right: 0px">
+
+               <img src="img/adjunto.png" ng-click="clickUpload2()" style="float:left;margin-top: 12px" />
+
             <label class="item item-input">
-                <i class="icon ion-compose placeholder-icon"></i>
-                <textarea placeholder="type a message"></textarea>
+                <textarea placeholder="Escribir ...... " id="mensjaetxt"></textarea>
             </label>
-            <button class="button button-icon">
-               <img src="img/enter.png"/>
-            </button>
+               <img src="img/enter.png" ng-click="sendMessage()" style="float:right;margin-top: 15px"/>
+            
         </div>
     </ion-footer-bar>
 </ion-view>
