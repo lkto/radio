@@ -379,6 +379,50 @@ alertify.success('Agregando Usuarios, Espere por favor');
     };
 
 
+
+
+ 
+
+
+
+$scope.Dchat = function() {
+
+var usuario = localStorage.getItem("usuario");
+
+$scope.subreddit = getRandomSubreddit();
+
+$http.get('http://adminenri.sigtics.org/chat/ListarChat?usuario='+usuario).
+      then(function successCallback (response) {
+       // $scope.$apply(function() {
+         $scope.chats = response.data; 
+         console.log(response.data);  
+          $scope.chat_error="";   
+
+      },function errorCallback(response) {
+
+        $scope.chat_error = [
+            {
+                text: 'Error al cragar datos actualizar',
+                img: 'background-image:url(img/error3.png);background-repeat: no-repeat;background-position-x: 65px;background-position-y: 20px;'
+            }
+            
+        ]
+
+
+            
+
+            
+
+        //console.log(response);
+
+      })
+
+
+
+    }
+
+$scope.Dchat();
+
  
     var androidConfig = {
  "senderID": "217743739524"
@@ -394,8 +438,6 @@ alertify.success('Agregando Usuarios, Espere por favor');
       // Error
     }
     )
-
- 
 
   $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
 
@@ -445,47 +487,7 @@ alertify.success('Agregando Usuarios, Espere por favor');
           break;
 
     }
-  });  
-
-
-
-$scope.Dchat = function() {
-
-var usuario = localStorage.getItem("usuario");
-
-$scope.subreddit = getRandomSubreddit();
-
-$http.get('http://adminenri.sigtics.org/chat/ListarChat?usuario='+usuario).
-      then(function successCallback (response) {
-       // $scope.$apply(function() {
-         $scope.chats = response.data; 
-         console.log(response.data);  
-          $scope.chat_error="";   
-
-      },function errorCallback(response) {
-
-        $scope.chat_error = [
-            {
-                text: 'Error al cragar datos actualizar',
-                img: 'background-image:url(img/error3.png);background-repeat: no-repeat;background-position-x: 65px;background-position-y: 20px;'
-            }
-            
-        ]
-
-
-            
-
-            
-
-        //console.log(response);
-
-      })
-
-
-
-    }
-
-$scope.Dchat();
+  }); 
 
 $scope.viewChat = function(chatId) {
   localStorage.setItem("View_id_chat", chatId);
