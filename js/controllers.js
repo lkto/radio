@@ -355,7 +355,7 @@ alertify.success('Agregando Usuarios, Espere por favor');
   //$scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('ChatCtr', function($scope,$http,$state,$rootScope,cfpLoadingBar,$rootScope,$cordovaPush) {
+.controller('ChatCtr', function($scope,$http,$state,cfpLoadingBar,$rootScope,$cordovaPush) {
 
   if(localStorage.getItem("usuario"))
     {
@@ -378,26 +378,6 @@ alertify.success('Agregando Usuarios, Espere por favor');
       return sub;
     };
 
-      $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
-
-    //alert(notification.event);
-    switch(notification.event) {
-
-        case 'message':
-          //alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
-          alertify.logPosition("top right");
-          alertify.delay(4000);
-          alertify.maxLogItems(1);
-          alertify.log(notification.message);
-
-          $scope.Dchat();
- 
-
-
-          break;
-
-    }
-  }); 
 
  
     var androidConfig = {
@@ -425,7 +405,7 @@ alertify.success('Agregando Usuarios, Espere por favor');
         if (notification.regid.length > 0 ) {
           //alert('registration ID = ' + notification.regid);
           idtel = notification.regid;
-          //alert("Id Run " + idtel );
+          alert("Id Run " + idtel );
 
               var request = $http({
                   method: "post",
@@ -450,6 +430,19 @@ alertify.success('Agregando Usuarios, Espere por favor');
 
         }
         break;
+
+         case 'message':
+          //alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
+          alertify.logPosition("top right");
+          alertify.delay(4000);
+          alertify.maxLogItems(1);
+          alertify.log(notification.message);
+
+          $scope.Dchat();
+ 
+
+
+          break;
 
     }
   });  
