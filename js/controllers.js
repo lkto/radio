@@ -2,6 +2,8 @@ angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope) {})
 
+.value('clientId', 'a12345654321x')
+
 .controller('login', function($scope,$http,$state,$location,$rootScope,$ionicPlatform,alertify){
 
     if(localStorage.getItem("usuario"))
@@ -356,7 +358,7 @@ alertify.success('Agregando Usuarios, Espere por favor');
 }
 })
 
-.controller('ChatCtr', function($scope,$http,$state,cfpLoadingBar,$rootScope,$cordovaPush) {
+.controller('ChatCtr', function($scope,$http,$state,cfpLoadingBar,$rootScope,$cordovaPush,clientId) {
 
   if(localStorage.getItem("usuario"))
     {
@@ -418,15 +420,51 @@ $http.get('http://adminenri.sigtics.org/chat/ListarChat?usuario='+usuario).
     }
 
 $scope.Dchat();
+//console.log(appName);
+
+
+  $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+
+    //alert(notification.event);
+    switch(notification.event) {
+      case 'registered':
+        if (notification.regid.length > 0 ) {
+          alert('registration ID = ' + notification.regid);
+
+
+        }
+        break;
+
+        
+    }
+  }); 
 
  
 
 
 /*
-
  var idtel = "";
  var us = localStorage.getItem("usuario");
- 
+   var request = $http({
+                  method: "post",
+                    url: "http://adminenri.sigtics.org/movil_funciones/RegidId",
+                    data: {
+                      idt: idtel,
+                      usuario: us
+                },
+
+                  headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
+               
+            });
+
+              request.success(function (data) {
+
+              //alert(data);
+
+               })
+
+
+
   $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
 
     //alert(notification.event);
