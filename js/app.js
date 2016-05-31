@@ -36,8 +36,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
   $rootScope.person={status:0};
   $rootScope.myGoBack = function() {$ionicHistory.goBack();};
 
+
+
+
   $ionicPlatform.ready(function() {
 
+    var idtel = "";
+    var us = localStorage.getItem("usuario");
+
+
+  
         var androidConfig = {
       "senderID": "217743739524"
      };
@@ -51,10 +59,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
     }
     )
 
-       var idtel = "";
- var us = localStorage.getItem("usuario");
-
   $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+
+ 
 
     //alert(notification.event);
     switch(notification.event) {
@@ -63,14 +70,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
           
           alert('registration ID = ' + notification.regid);
           idtel = notification.regid;
+          localStorage.setItem("prueba", idtel);
 
+    
         }
-        break;
-
-
-
-
-        
+        break;    
     }
   }); 
 
@@ -90,6 +94,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
       StatusBar.styleLightContent();
     }
   });
+
+
+
   /*************************************search_modal.html******************/
 	$ionicModal.fromTemplateUrl('templates/search_modal.html',function(modal){
 	$rootScope.search_modal=modal;

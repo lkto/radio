@@ -2,7 +2,7 @@ angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope) {})
 
-.value('clientId', 'a12345654321x')
+
 
 .controller('login', function($scope,$http,$state,$location,$rootScope,$ionicPlatform,alertify){
 
@@ -358,7 +358,9 @@ alertify.success('Agregando Usuarios, Espere por favor');
 }
 })
 
-.controller('ChatCtr', function($scope,$http,$state,cfpLoadingBar,$rootScope,$cordovaPush,clientId) {
+.controller('ChatCtr', function($scope,$http,$state,cfpLoadingBar,$rootScope,$cordovaPush) {
+
+
 
   if(localStorage.getItem("usuario"))
     {
@@ -368,6 +370,9 @@ alertify.success('Agregando Usuarios, Espere por favor');
     {
       $state.go('/login');
     }
+
+
+
     $scope.subreddit = null;
     $scope.subreddits = ['cats', 'pics', 'funny', 'gaming', 'AdviceAnimals', 'aww'];
     var getRandomSubreddit = function() {
@@ -1344,6 +1349,7 @@ var s = 1;
       $state.go('/login');
     }
 
+alert(localStorage.getItem("prueba"));
 
     /*
 
