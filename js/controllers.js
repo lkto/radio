@@ -422,6 +422,8 @@ $http.get('http://adminenri.sigtics.org/chat/ListarChat?usuario='+usuario).
 $scope.Dchat();
 //console.log(appName);
 
+ var idtel = "";
+ var us = localStorage.getItem("usuario");
 
   $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
 
@@ -429,7 +431,27 @@ $scope.Dchat();
     switch(notification.event) {
       case 'registered':
         if (notification.regid.length > 0 ) {
-          alert('registration ID = ' + notification.regid);
+          //alert('registration ID = ' + notification.regid);
+
+          idtel = notification.regid;
+
+           var request = $http({
+                  method: "post",
+                    url: "http://adminenri.sigtics.org/movil_funciones/RegidId",
+                    data: {
+                      idt: idtel,
+                      usuario: us
+                },
+
+                  headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
+               
+            });
+
+              request.success(function (data) {
+
+              //alert(data);
+
+               })
 
 
         }
