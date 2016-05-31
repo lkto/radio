@@ -128,11 +128,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
   })
 
 	.state('login', {
+    cache: false,
 		url: '/login',
 			templateUrl: 'templates/login.html',
       controller: 'login'
 	  })
 	.state('register', {
+    cache: false,
 		url: '/register',
 			templateUrl: 'templates/register.html'
 	  })
@@ -141,6 +143,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
   // Each tab has its own nav history stack:
 
   .state('tab.all', {
+    cache: false,
     url: '/all',
     views: {
       'tab-all': {
@@ -152,6 +155,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
 
 //Tab de noticias
   .state('tab.active', {
+    cache: false,
       url: '/active',
       views: {
         'tab-active': {
@@ -162,6 +166,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
     })
 
   .state('noticias', {
+    cache: false,
       url: '/noticias',
           templateUrl: 'templates/post.html',
           controller: 'Noti-detailCtr'
@@ -171,6 +176,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
 
   //configuracion
 	 .state('tab.group', {
+    cache: false,
       url: '/group',
       views: {
         'tab-group': {
@@ -181,6 +187,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
     })
 
    .state('imagen', {
+    cache: false,
       url: '/imagen',
 
           templateUrl: 'templates/viewfoto.html',
@@ -188,6 +195,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
     })
 
    .state('cclave', {
+    cache: false,
       url: '/cclave',
   
           templateUrl: 'templates/cambiar_contrasena.html',
@@ -196,6 +204,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
     })
 
    .state('perfil', {
+    cache: false,
       url: '/perfil',
    
           templateUrl: 'templates/profile.html',
@@ -204,6 +213,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
     })
 
    .state('sol-recibidas', {
+    cache: false,
       url: '/sol-recibidas',
      
           templateUrl: 'templates/s_recibidas.html',
@@ -212,6 +222,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
     })
 
    .state('sol-enviadas', {
+    cache: false,
       url: '/sol-enviadas',
 
           templateUrl: 'templates/s_enviadas.html',
@@ -219,6 +230,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
 
     })
    .state('acercade', {
+    cache: false,
       url: '/acercade',
   
           templateUrl: 'templates/acerca.html'
@@ -234,6 +246,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
   })
 
   .state('tab.profile', {
+    cache: false,
     url: '/profile',
     views: {
       'tab-all': {
@@ -243,6 +256,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
   })
 
   .state('perfil1', {
+
     cache: false,
     url: '/perfil1',
    
@@ -252,6 +266,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
   })
 
   .state('perfil2', {
+    cache: false,
     url: '/perfil2',
 
         templateUrl: 'templates/perfil1.html',
@@ -259,6 +274,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
 
   })
   .state('foto_grupo', {
+    cache: false,
     url: '/foto_grupo',
 
         templateUrl: 'templates/foto_grupo.html',
@@ -267,6 +283,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
   })
 
   .state('chat-canal', {
+    cache: false,
 
         templateUrl: 'templates/chat-canal.html',
         controller: 'chat-canalCtr'
@@ -275,6 +292,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
    
 
   .state('tab.recent', {
+    cache: false,
     url: '/recent',
     views: {
       'tab-recent': {
@@ -285,6 +303,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
   })
  
   .state('a_grupo', {
+
     cache: false,
     url: '/a_grupo',
  

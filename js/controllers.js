@@ -354,7 +354,6 @@ alertify.success('Agregando Usuarios, Espere por favor');
              }); 
 
 }
-  //$scope.chat = Chats.get($stateParams.chatId);
 })
 
 .controller('ChatCtr', function($scope,$http,$state,cfpLoadingBar,$rootScope,$cordovaPush) {
@@ -408,12 +407,7 @@ $http.get('http://adminenri.sigtics.org/chat/ListarChat?usuario='+usuario).
                 img: 'background-image:url(img/error3.png);background-repeat: no-repeat;background-position-x: 65px;background-position-y: 20px;'
             }
             
-        ]
-
-
-            
-
-            
+        ]   
 
         //console.log(response);
 
@@ -425,8 +419,8 @@ $http.get('http://adminenri.sigtics.org/chat/ListarChat?usuario='+usuario).
 
 $scope.Dchat();
 
- 
-    var androidConfig = {
+ /*
+var androidConfig = {
  "senderID": "217743739524"
  };
 
@@ -436,33 +430,12 @@ $scope.Dchat();
 
   $cordovaPush.register(androidConfig).then(function(result) {
       // Success
+      alert("susses");
     }, function(err) {
       // Error
     }
     )
 
-
-
-  $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
-
-    //alert(notification.event);
-    switch(notification.event) {
-
-        case 'message':
-          //alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
-          alertify.logPosition("top right");
-          alertify.delay(4000);
-          alertify.maxLogItems(1);
-          alertify.log(notification.message);
-
-          $scope.Dchat();
- 
-
-
-          break;
-
-    }
-  }); 
 
   $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
 
@@ -502,6 +475,28 @@ $scope.Dchat();
     }
   }); 
 
+  $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+
+    //alert(notification.event);
+    switch(notification.event) {
+
+        case 'message':
+          //alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
+          alertify.logPosition("top right");
+          alertify.delay(4000);
+          alertify.maxLogItems(1);
+          alertify.log(notification.message);
+
+          $scope.Dchat();
+ 
+
+
+          break;
+
+    }
+  }); 
+
+*/
 $scope.viewChat = function(chatId) {
   localStorage.setItem("View_id_chat", chatId);
   //console.log(ID_cont);
