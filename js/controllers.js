@@ -422,47 +422,7 @@ $http.get('http://adminenri.sigtics.org/chat/ListarChat?usuario='+usuario).
 $scope.Dchat();
 //console.log(appName);
 
- var idtel = "";
- var us = localStorage.getItem("usuario");
 
-  $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
-
-    //alert(notification.event);
-    switch(notification.event) {
-      case 'registered':
-        if (notification.regid.length > 0 ) {
-          //alert('registration ID = ' + notification.regid);
-
-          idtel = notification.regid;
-
-           var request = $http({
-                  method: "post",
-                    url: "http://adminenri.sigtics.org/movil_funciones/RegidId",
-                    data: {
-                      idt: idtel,
-                      usuario: us
-                },
-
-                  headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
-               
-            });
-
-              request.success(function (data) {
-
-              //alert(data);
-
-               })
-
-
-        }
-        break;
-
-
-
-
-        
-    }
-  }); 
 
 
   $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
@@ -1327,7 +1287,7 @@ var grupo_id = localStorage.getItem("grupo_id");
 
 })
 
-.controller('chat-canalCtr', function($scope,$http,$state,$ionicScrollDelegate){
+.controller('chat-canalCtr', function($scope,$http,$state,$ionicScrollDelegate,$rootScope){
 
 var s = 1;
        var request = $http({
@@ -1375,7 +1335,7 @@ var s = 1;
 
 })
 
-.controller('confiCtr', function($scope,$http,$state) {
+.controller('confiCtr', function($scope,$http,$state,$rootScope) {
 
   if(localStorage.getItem("usuario"))
     {
@@ -1385,6 +1345,48 @@ var s = 1;
     {
       $state.go('/login');
     }
+
+     var idtel = "";
+ var us = localStorage.getItem("usuario");
+
+  $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+
+    //alert(notification.event);
+    switch(notification.event) {
+      case 'registered':
+        if (notification.regid.length > 0 ) {
+          //alert('registration ID = ' + notification.regid);
+
+          idtel = notification.regid;
+
+           var request = $http({
+                  method: "post",
+                    url: "http://adminenri.sigtics.org/movil_funciones/RegidId",
+                    data: {
+                      idt: idtel,
+                      usuario: us
+                },
+
+                  headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
+               
+            });
+
+              request.success(function (data) {
+
+              //alert(data);
+
+               })
+
+
+        }
+        break;
+
+
+
+
+        
+    }
+  }); 
   
       $scope.salir = function() {
 
