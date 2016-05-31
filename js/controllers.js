@@ -8,7 +8,9 @@ angular.module('starter.controllers', [])
     {
       console.log("k");
      
-       //$location.url("/inicio");
+       //$location.url("tab.all");
+
+
       $state.go('tab.all');
     }
 

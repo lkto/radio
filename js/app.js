@@ -141,7 +141,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
   // Each tab has its own nav history stack:
 
   .state('tab.all', {
-    cache: false,
     url: '/all',
     views: {
       'tab-all': {
