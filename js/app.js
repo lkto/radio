@@ -19,10 +19,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
 
   $cordovaPush.register(androidConfig).then(function(result) {
       // Success
-      alert(result);
+     // alert(result);
     }, function(err) {
       // Error
-      alert(err);
+     // alert(err);
     }
     )
 
