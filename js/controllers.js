@@ -59,7 +59,7 @@ angular.module('starter.controllers', [])
               if(data.entro == 1)
               {
                 localStorage.setItem("usuario", $email);
-                localStorage.setItem("prueba", 0);
+              
 
                  $state.go('tab.all');
               }
