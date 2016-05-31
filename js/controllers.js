@@ -1331,9 +1331,11 @@ var s = 1;
 
 })
 
-.controller('confiCtr', function($scope,$http,$state,$rootScope,$ionicPlatform) {
+.controller('confiCtr', function($scope,$http,$state,$rootScope,$ionicPlatform,$cordovaPush) {
 
- $ionicPlatform.ready(function(){
+ $ionicPlatform.ready(function($cordovaPush,$rootScope){
+
+  alert("jbj");
     var androidConfig = {
       "senderID": "217743739524"
      };
