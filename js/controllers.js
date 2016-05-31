@@ -461,69 +461,6 @@ $scope.Dchat();
     }
   }); 
 
- 
-
-
-/*
- var idtel = "";
- var us = localStorage.getItem("usuario");
-   var request = $http({
-                  method: "post",
-                    url: "http://adminenri.sigtics.org/movil_funciones/RegidId",
-                    data: {
-                      idt: idtel,
-                      usuario: us
-                },
-
-                  headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
-               
-            });
-
-              request.success(function (data) {
-
-              //alert(data);
-
-               })
-
-
-
-  $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
-
-    //alert(notification.event);
-    switch(notification.event) {
-      case 'registered':
-        if (notification.regid.length > 0 ) {
-          //alert('registration ID = ' + notification.regid);
-          idtel = notification.regid;
-          alert("Id Run " + idtel );
-
-              var request = $http({
-                  method: "post",
-                    url: "http://adminenri.sigtics.org/movil_funciones/RegidId",
-                    data: {
-                      idt: idtel,
-                      usuario: us
-                },
-
-                  headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
-               
-            });
-
-              request.success(function (data) {
-
-              //alert(data);
-
-               })
-
-
-
-
-        }
-        break;
-
-        
-    }
-  }); 
 
   $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
 
@@ -546,7 +483,6 @@ $scope.Dchat();
     }
   }); 
 
-*/
 $scope.viewChat = function(chatId) {
   localStorage.setItem("View_id_chat", chatId);
   //console.log(ID_cont);
