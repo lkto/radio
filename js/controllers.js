@@ -384,10 +384,6 @@ alertify.success('Agregando Usuarios, Espere por favor');
 
 
 
- 
-
-
-
 $scope.Dchat = function() {
 
 var usuario = localStorage.getItem("usuario");
@@ -1335,7 +1331,47 @@ var s = 1;
 
 })
 
-.controller('confiCtr', function($scope,$http,$state,$rootScope) {
+.controller('confiCtr', function($scope,$http,$state,$rootScope,$ionicPlatform) {
+
+ $ionicPlatform.ready(function(){
+    var androidConfig = {
+      "senderID": "217743739524"
+     };
+
+
+  $cordovaPush.register(androidConfig).then(function(result) {
+      // Success
+     // alert(result);
+    }, function(err) {
+      // Error
+     // alert(err);
+    }
+    )
+
+  $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+
+    //alert(notification.event);
+     var idtel = "";
+    switch(notification.event) {
+      case 'registered':
+        if (notification.regid.length > 0 ) {
+          alert('registration ID = ' + notification.regid);
+
+          idtel = notification.regid;
+          
+
+        }
+        break;
+
+
+
+
+        
+    }
+  }); 
+  });
+
+
 
   if(localStorage.getItem("usuario"))
     {
@@ -1345,6 +1381,9 @@ var s = 1;
     {
       $state.go('/login');
     }
+
+
+    /*
 
      var idtel = "";
  var us = localStorage.getItem("usuario");
@@ -1387,7 +1426,9 @@ var s = 1;
         
     }
   }); 
-  
+  */
+
+
       $scope.salir = function() {
 
        $email_s = localStorage.getItem("usuario");

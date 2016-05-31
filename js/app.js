@@ -35,21 +35,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
         ]
   $rootScope.person={status:0};
   $rootScope.myGoBack = function() {$ionicHistory.goBack();};
+
   $ionicPlatform.ready(function() {
 
-       var androidConfig = {
-      "senderID": "217743739524"
-     };
 
 
-  $cordovaPush.register(androidConfig).then(function(result) {
-      // Success
-     // alert(result);
-    }, function(err) {
-      // Error
-     // alert(err);
-    }
-    )
+
 
 
 
@@ -101,7 +92,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
     $rootScope.modal_usuario1.hide();
   };
 	
-
   
 	$rootScope.opensearch_modal= function(){
 		$rootScope.search_modal.show();
