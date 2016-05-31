@@ -44,13 +44,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
     var idtel = "";
     var us = localStorage.getItem("usuario");
 
-
-  
         var androidConfig = {
       "senderID": "217743739524"
      };
 
-  $cordovaPush.register(androidConfig).then(function(result) {
+if(localStorage.getItem("prueba"))
+    {
+      
+    }else {
+
+         $cordovaPush.register(androidConfig).then(function(result) {
       // Success
      // alert(result);
     }, function(err) {
@@ -58,6 +61,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
      // alert(err);
     }
     )
+
+    }
+
+ 
 
   $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
 
