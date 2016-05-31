@@ -13,7 +13,7 @@ angular.module('starter.controllers', [])
        //$location.url("tab.all");
 
 
-      $state.go('tab.all');
+      $state.go('tab');
     }
 
     $scope.login = function() {
@@ -61,7 +61,7 @@ angular.module('starter.controllers', [])
                 localStorage.setItem("usuario", $email);
                 localStorage.setItem("prueba", 0);
 
-                $state.go('tab.all');
+                 $state.go('tab');
               }
               else
               {
@@ -308,7 +308,7 @@ $usuarioG = localStorage.getItem("usuario");
             }); 
            
                 request.success(function (data) {
-                $state.go('tab.all');
+                 $state.go('tab');
             
                 
               
@@ -458,7 +458,7 @@ $scope.Dchat();
         break;
 
 
-        
+
 
         
     }
