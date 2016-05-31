@@ -8,36 +8,7 @@
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','angularSoundManager','chieffancypants.loadingBar','ngAnimate','ngAlertify','angularFileUpload','ngCordova'])
 
 .run(function($ionicPlatform, $rootScope,$ionicHistory,$rootScope,$ionicModal,$cordovaPush) {
-    $ionicPlatform.ready(function() {
 
-
-
-      var androidConfig = {
-      "senderID": "217743739524"
-     };
-
-
-  $cordovaPush.register(androidConfig).then(function(result) {
-      // Success
-     // alert(result);
-    }, function(err) {
-      // Error
-     // alert(err);
-    }
-    )
-
-
-
-
-
-
-
-
-
-
-
-
-})
 	
 
   //$rootScope.recent=[{id:"1",img:"img/003.png",name:"Nicolas Kage",type:"Hello John where are u?",date:"16 April",number:true,color:"#fbb116"},{id:"2",img:"img/002.png",name:"Tom Cruze",msg:"Please call me later",date:"29 August",color:"#ff0000"},{id:"3",img:"img/001.png",name:"Mark Antony",msg:"I will call you tomorrow",date:"4 October",color:"#27b600"},{id:"4",img:"img/def.png",name:"Robert D-Niro",type:"Web",msg:"Typing ....",date:"16 April",color:"#fbb116"}]	
@@ -65,6 +36,23 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
   $rootScope.person={status:0};
   $rootScope.myGoBack = function() {$ionicHistory.goBack();};
   $ionicPlatform.ready(function() {
+
+       var androidConfig = {
+      "senderID": "217743739524"
+     };
+
+
+  $cordovaPush.register(androidConfig).then(function(result) {
+      // Success
+     // alert(result);
+    }, function(err) {
+      // Error
+     // alert(err);
+    }
+    )
+
+
+
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
@@ -368,6 +356,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
 
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/login');
+  $urlRouterProvider.otherwise('/tab.all');
 
 });

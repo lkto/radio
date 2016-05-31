@@ -457,6 +457,9 @@ $scope.Dchat();
         }
         break;
 
+
+        
+
         
     }
   }); 
