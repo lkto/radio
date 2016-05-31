@@ -419,7 +419,7 @@ $http.get('http://adminenri.sigtics.org/chat/ListarChat?usuario='+usuario).
 
 $scope.Dchat();
 
- /*
+ 
 var androidConfig = {
  "senderID": "217743739524"
  };
@@ -430,13 +430,14 @@ var androidConfig = {
 
   $cordovaPush.register(androidConfig).then(function(result) {
       // Success
-      alert("susses");
+      alert(result);
     }, function(err) {
       // Error
+      alert(err);
     }
     )
 
-
+/*
   $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
 
     //alert(notification.event);
