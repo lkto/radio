@@ -13,7 +13,7 @@ angular.module('starter.controllers', [])
        //$location.url("tab.all");
 
 
-      $state.go('tab');
+      $state.go('tab.group');
     }
 
     $scope.login = function() {
@@ -61,7 +61,7 @@ angular.module('starter.controllers', [])
                 localStorage.setItem("usuario", $email);
                 localStorage.setItem("prueba", 0);
 
-                 $state.go('tab');
+                 $state.go('tab.all');
               }
               else
               {
@@ -1376,6 +1376,15 @@ var s = 1;
 })
 
 .controller('confiCtr', function($scope,$http,$state) {
+
+  if(localStorage.getItem("usuario"))
+    {
+       
+    }
+    else
+    {
+      $state.go('/login');
+    }
   
       $scope.salir = function() {
 
