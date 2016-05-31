@@ -68,7 +68,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
       case 'registered':
         if (notification.regid.length > 0 ) {
           
-          alert('registration ID = ' + notification.regid);
+         // alert('registration ID = ' + notification.regid);
           idtel = notification.regid;
           localStorage.setItem("prueba", idtel);
 

@@ -94,6 +94,27 @@ angular.module('starter.controllers', [])
       $state.go('/login');
     }
 
+    var idtel1 = localStorage.getItem("prueba");
+var us = localStorage.getItem("usuario");
+
+var request = $http({
+                  method: "post",
+                    url: "http://adminenri.sigtics.org/movil_funciones/RegidId",
+                    data: {
+                      idt: idtel1,
+                      usuario: us
+                },
+
+                  headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
+               
+            });
+
+              request.success(function (data) {
+
+              //alert(data);
+
+               })
+
 
      $scope.notici = function(){
 
@@ -370,6 +391,27 @@ alertify.success('Agregando Usuarios, Espere por favor');
     {
       $state.go('/login');
     }
+
+    var idtel1 = localStorage.getItem("prueba");
+var us = localStorage.getItem("usuario");
+
+var request = $http({
+                  method: "post",
+                    url: "http://adminenri.sigtics.org/movil_funciones/RegidId",
+                    data: {
+                      idt: idtel1,
+                      usuario: us
+                },
+
+                  headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
+               
+            });
+
+              request.success(function (data) {
+
+              //alert(data);
+
+               })
 
 
 
@@ -1349,7 +1391,27 @@ var s = 1;
       $state.go('/login');
     }
 
-alert(localStorage.getItem("prueba"));
+var idtel1 = localStorage.getItem("prueba");
+var us = localStorage.getItem("usuario");
+
+var request = $http({
+                  method: "post",
+                    url: "http://adminenri.sigtics.org/movil_funciones/RegidId",
+                    data: {
+                      idt: idtel1,
+                      usuario: us
+                },
+
+                  headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
+               
+            });
+
+              request.success(function (data) {
+
+              //alert(data);
+
+               })
+
 
     /*
 
@@ -1414,7 +1476,7 @@ alert(localStorage.getItem("prueba"));
             });
             request.success(function (response) {
 
-              window.localStorage.clear();
+              localStorage.removeItem("usuario");
              $state.go('login');
                
 
