@@ -467,7 +467,7 @@ $scope.Dchat();
 
 
 
-
+/*
 $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
 
     alert(notification.event);
@@ -477,12 +477,12 @@ $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification
 
           alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
 
-          /* alertify.logPosition("top right");
+        alertify.logPosition("top right");
           alertify.delay(4000);
           alertify.maxLogItems(1);
           alertify.log(notification.message);
 
-          */
+          
 
           $scope.Dchat();
  
@@ -492,7 +492,7 @@ $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification
 
     }
   }); 
-
+*/
 $scope.viewChat = function(chatId) {
   localStorage.setItem("View_id_chat", chatId);
   //console.log(ID_cont);
@@ -779,6 +779,8 @@ $scope.ftoChat = function(foto) {
 
     $scope.chat1();
 
+    /*
+
   $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
 
     alert(notification.event);
@@ -786,12 +788,12 @@ $scope.ftoChat = function(foto) {
 
         case 'message':
           alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
-          /*
+        
           alertify.logPosition("top right");
           alertify.delay(4000);
           alertify.maxLogItems(1);
           alertify.log(notification.message);
-          */
+       
 
           $scope.chat1(false);
  
@@ -801,6 +803,8 @@ $scope.ftoChat = function(foto) {
 
     }
   }); 
+
+  */
       $scope.viewPerfil = function(idU) {
 
 
