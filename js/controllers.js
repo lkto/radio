@@ -375,15 +375,13 @@ alertify.success('Agregando Usuarios, Espere por favor');
               
               
              }); 
-
 }
+
 })
 
 .controller('ChatCtr', function($scope,$http,$state,cfpLoadingBar,$rootScope,$cordovaPush,alertify) {
 
-
-
-  if(localStorage.getItem("usuario"))
+   if(localStorage.getItem("usuario"))
     {
        
     }
@@ -392,7 +390,21 @@ alertify.success('Agregando Usuarios, Espere por favor');
       $state.go('/login');
     }
 
-    var idtel1 = localStorage.getItem("prueba");
+
+    $scope.viewChat=function(chatId) {
+  
+    localStorage.setItem("View_id_chat", chatId);
+    $state.go('chat');
+  
+    }
+
+    $scope.canal=function(){
+
+    $state.go("chat-canal");
+
+    }; 
+
+        var idtel1 = localStorage.getItem("prueba");
 var us = localStorage.getItem("usuario");
 
 var request = $http({
@@ -413,9 +425,7 @@ var request = $http({
 
                })
 
-
-
-    $scope.subreddit = null;
+                 $scope.subreddit = null;
     $scope.subreddits = ['cats', 'pics', 'funny', 'gaming', 'AdviceAnimals', 'aww'];
     var getRandomSubreddit = function() {
       var sub = $scope.subreddits[Math.floor(Math.random() * $scope.subreddits.length)];
@@ -429,42 +439,35 @@ var request = $http({
     };
 
 
-
-
 $scope.Dchat = function() {
 
-var usuario = localStorage.getItem("usuario");
+  var usuario = localStorage.getItem("usuario");
 
-$scope.subreddit = getRandomSubreddit();
+  $scope.subreddit = getRandomSubreddit();
 
-$http.get('http://adminenri.sigtics.org/chat/ListarChat?usuario='+usuario).
+  $http.get('http://adminenri.sigtics.org/chat/ListarChat?usuario='+usuario).
       then(function successCallback (response) {
-       // $scope.$apply(function() {
-         $scope.chats = response.data; 
+
+          $scope.chats = response.data; 
          console.log(response.data);  
-          $scope.chat_error="";   
+          $scope.chat_error=""; 
 
       },function errorCallback(response) {
 
-        $scope.chat_error = [
+          $scope.chat_error = [
             {
                 text: 'Error al cragar datos actualizar',
                 img: 'background-image:url(img/error3.png);background-repeat: no-repeat;background-position-x: 65px;background-position-y: 20px;'
             }
             
-        ]   
-
-        //console.log(response);
+        ]  
 
       })
 
+}
 
-
-    }
-
+    
 $scope.Dchat();
-//console.log(appName);
-
 
 
 /*
@@ -493,18 +496,6 @@ $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification
     }
   }); 
 */
-$scope.viewChat = function(chatId) {
-  localStorage.setItem("View_id_chat", chatId);
-  //console.log(ID_cont);
-  /*  $state.go('post'); */
-  $state.go('chat');
-}
-
-$scope.canal=function() {
-            
-    $state.go('chat-canal');
-};
-
 
   $scope.remove = function(chat) {
 
@@ -562,10 +553,9 @@ $scope.canal=function() {
 
   };
 
-
-
-  //$scope.chat = Chats.get($stateParams.chatId);
 })
+
+
 
 .controller('mensajecontrol', function($scope,$http,alertify,$upload) {
 
@@ -771,7 +761,7 @@ $scope.ftoChat = function(foto) {
               console.log(data);
 
          
-        $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();  
+               $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();  
       
              }); 
 
@@ -779,7 +769,7 @@ $scope.ftoChat = function(foto) {
 
     $scope.chat1();
 
-    /*
+    
 
   $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
 
@@ -804,7 +794,7 @@ $scope.ftoChat = function(foto) {
     }
   }); 
 
-  */
+  
       $scope.viewPerfil = function(idU) {
 
 

@@ -82,37 +82,6 @@ if(localStorage.getItem("prueba"))
     }
   }); 
 
-  $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
-
-    alert(notification.event);
-    switch(notification.event) {
-
-        case 'message':
-
-          alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
-
-          /* alertify.logPosition("top right");
-          alertify.delay(4000);
-          alertify.maxLogItems(1);
-          alertify.log(notification.message);
-
-          
-
-          $scope.Dchat();*/
- 
-
-
-          break;
-
-    }
-  }); 
-
-
-
-
-
-
-
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
