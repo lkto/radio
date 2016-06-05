@@ -333,6 +333,7 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
 	border:none;
 	margin:0;
 	padding:5px 20px;
+	background: rgba(0, 0, 0, 0.17);;
 	}
 .chat_content .item p{
 	background:#f4f4f4;

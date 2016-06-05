@@ -7,6 +7,9 @@
               <a class="button button-icon button-clear back_btn" ng-click="myGoBack()" style="padding-top: 15px;">
                 <i class="ion-chevron-left"></i>
             </a>
+            <a class="button button-icon button-clear back_btn" ng-click="clickUpload()" style="padding-top: 15px;">
+                <i class="ion-edit"></i>
+            </a>
         </ion-nav-buttons>
          <ion-nav-buttons side="left" >
             <button class="button button-icon button-clear logo_img">
@@ -36,7 +39,7 @@
 <div style="position:relative">
 
 <div style="z-index:1;position:absolute;width:100%">
-<img src="{{ img }}" style="-webkit-filter:blur(5px);width:100%;">
+<img src="{{ img }}" style="-webkit-filter:blur(5px);width:100%;"  >
 </div>
 
 
@@ -64,7 +67,7 @@
 </div>
 </div>
 
-<button ng-click="clickUpload()" class="button button-positive" style="top: -90px;">Cambiar foto</button>
+<!-- <button ng-click="clickUpload()" class="button button-positive" style="top: -90px;">Cambiar foto</button> -->
 <style type="text/css">
 div.file-upload {
     width: 157px;

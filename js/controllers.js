@@ -189,7 +189,7 @@ var request = $http({
       $state.go('/login');
     }
 
-    //$scope.closemodal_usuario();
+    $scope.closemodal_usuario();
 
 $scope.ccon = function(){
 
@@ -210,7 +210,7 @@ $scope.ccon = function(){
 
             
               $scope.contacts = data;
-              console.log(data);
+             // console.log(data);
               $scope.cont_error="";
               
              });
@@ -233,7 +233,7 @@ $scope.ccon = function(){
   $scope.viewChat1 = function(ID_cont) {
   localStorage.setItem("View_id_chat", 0);
   localStorage.setItem("user_id_chat", ID_cont);
-  console.log(ID_cont);
+  //console.log(ID_cont);
   /*  $state.go('post'); */
   $state.go('chat');
 }
@@ -242,7 +242,7 @@ $scope.ccon = function(){
 
     
     var idE = idusuarioE;
-    console.log(idE);
+   // console.log(idE);
  
     var token = "io-gluk@fct%vusb";
 
@@ -379,7 +379,7 @@ alertify.success('Agregando Usuarios, Espere por favor');
 }
 })
 
-.controller('ChatCtr', function($scope,$http,$state,cfpLoadingBar,$rootScope,$cordovaPush) {
+.controller('ChatCtr', function($scope,$http,$state,cfpLoadingBar,$rootScope,$cordovaPush,alertify) {
 
 
 
@@ -654,7 +654,7 @@ $scope.sendMessage = function() {
 
 })
 
-.controller('ChatDetailCtrl', function($scope,$http,$timeout,$ionicScrollDelegate,$state,$ionicPopup,$ionicActionSheet,$rootScope,$cordovaPush) {
+.controller('ChatDetailCtrl', function($scope,$http,$timeout,$ionicScrollDelegate,$state,$ionicPopup,$ionicActionSheet,$rootScope,$cordovaPush,alertify) {
 
 $scope.ftoChat = function(foto) {
 

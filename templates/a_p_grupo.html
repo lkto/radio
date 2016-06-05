@@ -49,7 +49,7 @@ height: 52px;" >
  <ion-checkbox ng-change="crearGrupo(contact.id)" ng-model="activo" id="contact.id">
            <img class="profile-picture" src="{{ contact.face }}" alt=""/>
           <p>
-            <a href="#" class="post-author">
+            <a href="#" class="post-author" style="text-decoration: none;color:#000">
               {{ contact.name }}
             </a>
             <span class="badge badge-positive" ng-if="contact.group == 'Family'">Familia</span>
@@ -61,7 +61,7 @@ height: 52px;" >
         </ion-item>
       </ion-list>
 
-<button ng-click="Agregar_mas()" class="button button-positive" >Guardar</button>
+<button ng-click="Agregar_mas()" class="button button-positive" style="width:100%;margin-top:5px">Guardar</button>
     </ion-content>
 
 
