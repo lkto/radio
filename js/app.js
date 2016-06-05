@@ -67,10 +67,7 @@ if(localStorage.getItem("prueba"))
  
 
   $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
-
- 
-
-    //alert(notification.event);
+    alert(notification.event);
     switch(notification.event) {
       case 'registered':
         if (notification.regid.length > 0 ) {
