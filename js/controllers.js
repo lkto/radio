@@ -515,12 +515,12 @@ $scope.Dchat();
 
 $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
 
-    alert(notification.event);
+   // alert(notification.event);
     switch(notification.event) {
 
         case 'message':
 
-          alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
+         // alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
 
           alertify.logPosition("top right");
           alertify.delay(4000);
@@ -818,7 +818,7 @@ $scope.ftoChat = function(foto) {
 
 
   $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
-    alert(notification.event);
+   // alert(notification.event);
     switch(notification.event) {
         case 'message':
          // alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
@@ -1421,8 +1421,7 @@ var s = 1;
 
 })
 
-.controller('confiCtr', function($scope,$http,$state,$rootScope,$ionicPlatform) {
-
+.controller('confiCtr', function($scope,$http,$state,$rootScope,$ionicPlatform,$window,$cordovaNetwork) {
 
 
   if(localStorage.getItem("usuario"))
@@ -1433,6 +1432,30 @@ var s = 1;
     {
       $state.go('/login');
     }
+
+
+  document.addEventListener("deviceready", function () {
+
+    var type = $cordovaNetwork.getNetwork()
+
+    var isOnline = $cordovaNetwork.isOnline()
+
+    var isOffline = $cordovaNetwork.isOffline()
+
+
+    // listen for Online event
+    $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
+      var onlineState = networkState;
+      alert(onlineState);
+    })
+
+    // listen for Offline event
+    $rootScope.$on('$cordovaNetwork:offline', function(event, networkState){
+      var offlineState = networkState;
+      alert(offlineState);
+    })
+
+  }, false);
 
     var idtel1 = localStorage.getItem("prueba");
     var us = localStorage.getItem("usuario");
@@ -1477,50 +1500,6 @@ var request = $http({
                })
 
 
-    /*
-
-     var idtel = "";
- var us = localStorage.getItem("usuario");
-
-  $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
-
-    //alert(notification.event);
-    switch(notification.event) {
-      case 'registered':
-        if (notification.regid.length > 0 ) {
-          //alert('registration ID = ' + notification.regid);
-
-          idtel = notification.regid;
-
-           var request = $http({
-                  method: "post",
-                    url: "http://adminenri.sigtics.org/movil_funciones/RegidId",
-                    data: {
-                      idt: idtel,
-                      usuario: us
-                },
-
-                  headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' }
-               
-            });
-
-              request.success(function (data) {
-
-              //alert(data);
-
-               })
-
-
-        }
-        break;
-
-
-
-
-        
-    }
-  }); 
-  */
 
 
       $scope.salir = function() {

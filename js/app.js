@@ -41,6 +41,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
 
   $ionicPlatform.ready(function() {
 
+
+
     var idtel = "";
     var us = localStorage.getItem("usuario");
 
