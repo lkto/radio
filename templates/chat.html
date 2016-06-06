@@ -38,8 +38,10 @@
   <ion-content class="has-subheader chat_content" delegate-handle="mainScroll">
    <ion-list class="list_chat" style="background-color: transparent;">
         <ion-item ng-repeat="item in chat[0].messages"  style="direction:{{item.type}}; ">
-<div on-hold="onMessageHold($event, $index, item )"> 
-        <div class="item_content" style="background-color: transparent;">
+ 
+        <div class="item_content" style="background-color: transparent;" >
+
+        <div on-hold="onMessageHold($event, $index, item )" >
                    <pre class="content" style="min-width: 50%;max-width: 70%;
     border-radius: 8px;
     padding: 2px;

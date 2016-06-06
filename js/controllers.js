@@ -706,7 +706,7 @@ $scope.sendMessage = function() {
 
 })
 
-.controller('ChatDetailCtrl', function($scope,$http,$timeout,$ionicScrollDelegate,$state,$ionicPopup,$ionicActionSheet,$rootScope,$cordovaPush,alertify) {
+.controller('ChatDetailCtrl', function($scope,$http,$timeout,$ionicScrollDelegate,$state,$ionicPopup,$ionicActionSheet,$rootScope,$cordovaPush,alertify,$cordovaClipboard) {
 
 $scope.ftoChat = function(foto) {
 
@@ -736,17 +736,23 @@ $scope.ftoChat = function(foto) {
     $ionicActionSheet.show({
       buttons: [
        {
-          text: 'Eliminar Mensage',
+          text: 'Eliminar Mensaje',
           type: 'button-assertive'
+        },{
+
+          text: 'Copiar mensaje',
+          type: 'button-assertive'
+
         }
       ],
       buttonClicked: function(index) {
         switch (index) {
           case 0: // ELiminar Mensage
             //cordova.plugins.clipboard.copy(message.text);
-             
+              var direccion = message.type
               var idm = message.id;
               var usuario = localStorage.getItem("usuario");
+              console.log(direccion);
              
 
                var request = $http({
@@ -754,7 +760,8 @@ $scope.ftoChat = function(foto) {
                 url: "http://adminenri.sigtics.org/chat/EliminarMensaje",
                 data: {
                     mensaje_id:idm,
-                    usuario:usuario
+                    usuario:usuario,
+                    direccion: direccion
 
                 },
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -774,9 +781,7 @@ $scope.ftoChat = function(foto) {
                }
                else{
 
-                
-            
-              $scope.chat1();
+                 $scope.chat1();
 
                }
               //$scope.chat = data;
@@ -788,6 +793,23 @@ $scope.ftoChat = function(foto) {
              
 
             break;
+
+            case 1:
+
+              console.log(message.text);
+
+              $cordovaClipboard
+             .copy(message.text)
+             .then(function () {
+                // success
+                alert("Copio" + message.text);
+              }, function () {
+                // error
+                alert("error");
+              });
+              
+
+              break;
         }
 
         return true;
