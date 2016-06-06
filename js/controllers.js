@@ -1434,29 +1434,6 @@ var s = 1;
     }
 
 
-  document.addEventListener("deviceready", function () {
-
-    var type = $cordovaNetwork.getNetwork()
-
-    var isOnline = $cordovaNetwork.isOnline()
-
-    var isOffline = $cordovaNetwork.isOffline()
-
-
-    // listen for Online event
-    $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
-      var onlineState = networkState;
-      alert(onlineState);
-    })
-
-    // listen for Offline event
-    $rootScope.$on('$cordovaNetwork:offline', function(event, networkState){
-      var offlineState = networkState;
-      alert(offlineState);
-    })
-
-  }, false);
-
     var idtel1 = localStorage.getItem("prueba");
     var us = localStorage.getItem("usuario");
 
