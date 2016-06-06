@@ -605,14 +605,18 @@ $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification
 .controller('mensajecontrol', function($scope,$http,alertify,$upload) {
 
 $scope.sendMessage = function() {
-
-    //var message =  $scope.input.message;
     var message = document.getElementById("mensjaetxt").value;
     var id_chat = localStorage.getItem("View_id_chat");
     var usuario = localStorage.getItem("usuario");
     var id_user2 = localStorage.getItem("user_id_chat");
 
-    var request = $http({
+  if(message == ""){
+
+
+  }else
+  {
+
+        var request = $http({
                 method: "post",
                 url: "http://adminenri.sigtics.org/chat/InsertarChat",
                 data: {
@@ -638,8 +642,17 @@ $scope.sendMessage = function() {
               
              }); 
 
+          document.getElementById("mensjaetxt").value = "";
+
+  }
+
+    //var message =  $scope.input.message;
    
-    document.getElementById("mensjaetxt").value = "";
+
+
+
+   
+    
 
   };
 
