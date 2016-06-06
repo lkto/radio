@@ -1028,7 +1028,7 @@ $scope.ftoChat = function(foto) {
   //$scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('PerfilCtr', function($scope,$http, alertify) {
+.controller('PerfilCtr', function($scope,$http, alertify,$ionicPopup) {
 
 
   var idC = localStorage.getItem("usuario");
@@ -1050,6 +1050,9 @@ $scope.ftoChat = function(foto) {
               $scope.user = response;
 
             }); 
+
+
+
 
 $scope.actualizar = function () {
 
@@ -1279,7 +1282,31 @@ var request = $http({
 })
 
 
-.controller('perfilCtr', function($scope,$http) {
+.controller('perfilCtr', function($scope,$http,$ionicPopup) {
+
+
+  $scope.ftoChat1 = function(foto) {
+  //console.log("ss");
+
+  var foto1 = foto;
+  $scope.cssClass = "cssClass"
+
+  $foto = " <img src='"+foto1+"'   /> ";
+
+
+
+  var myPopup = $ionicPopup.show({
+    template:$foto,
+    buttons: [
+       { 
+        text: 'X',
+        type: 'button-positive'
+       }      
+    ]
+  })
+
+
+}
 
    var idC = localStorage.getItem("View_id_contac");
    console.log(idC);
