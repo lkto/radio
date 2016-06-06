@@ -44,16 +44,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
     var idtel = "";
     var us = localStorage.getItem("usuario");
 
-        var androidConfig = {
+    var androidConfig = {
       "senderID": "217743739524"
      };
 
-if(localStorage.getItem("prueba"))
-    {
-      
-    }else {
 
-         $cordovaPush.register(androidConfig).then(function(result) {
+
+    $cordovaPush.register(androidConfig).then(function(result) {
       // Success
      // alert(result);
     }, function(err) {
@@ -62,10 +59,25 @@ if(localStorage.getItem("prueba"))
     }
     )
 
+
+    $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+    //alert(notification.event);
+    switch(notification.event) {
+      case 'registered':
+        if (notification.regid.length > 0 ) {
+          
+         // alert('registration ID = ' + notification.regid);
+          idtel = notification.regid;
+          localStorage.setItem("prueba", idtel);
+
+    
+        }
+        
+        break;  
     }
 
- 
-
+    
+  }); 
 
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
