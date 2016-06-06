@@ -121,9 +121,12 @@ body,h3{
     margin: 0;
 	}	
 .bar.bar-stable .button.button-icon{
-	width:42px;
+	/*width:42px;*/
 	color:#fff;
 	min-height:59px;
+	margin-left: 10px;
+	margin-right: 10px;
+	padding-top:10px !important; 
 	}
 .has-header{
 	top:60px;

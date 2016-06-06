@@ -722,7 +722,7 @@ $scope.ftoChat = function(foto) {
     template:$foto,
     buttons: [
        { 
-        text: 'Cerrar',
+        text: 'X',
         type: 'button-positive'
        }      
     ]
@@ -794,10 +794,10 @@ $scope.ftoChat = function(foto) {
 
             break;
 
-            case 1:
+            case 1: // Copiar Mensage
 
               console.log(message.text);
-
+/*
               $cordovaClipboard
              .copy(message.text)
              .then(function () {
@@ -808,7 +808,11 @@ $scope.ftoChat = function(foto) {
                 alert("error");
               });
               
+*/
 
+         window.prompt("Copia este texto:", message.text);
+
+          //window.clipboardData.setData("Text", message.text);
               break;
         }
 
