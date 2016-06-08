@@ -530,6 +530,8 @@ $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification
           
 
           $scope.Dchat();
+
+          $state.go('tab');
  
 
 

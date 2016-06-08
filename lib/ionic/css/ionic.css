@@ -6037,7 +6037,7 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
   opacity: 1; }
 
 .item-checkbox {
-  padding-left: 60px; }
+  padding-left: 80px; }
   .item-checkbox.active {
     box-shadow: none; }
 
