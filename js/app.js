@@ -47,7 +47,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
     var us = localStorage.getItem("usuario");
 
     var androidConfig = {
-      "senderID": "383955868623"
+      "senderID": "⁠⁠⁠253825415142"
      };
 
 
