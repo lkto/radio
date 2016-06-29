@@ -482,13 +482,20 @@ var request = $http({
     };
 
 
+ 
+    
+
+
 $scope.Dchat = function() {
 
   var usuario = localStorage.getItem("usuario");
 
-  $scope.subreddit = getRandomSubreddit();
 
-  $http.get('http://adminenri.sigtics.org/chat/ListarChat?usuario='+usuario).
+
+
+     $scope.subreddit = getRandomSubreddit();
+
+      $http.get('http://adminenri.sigtics.org/chat/ListarChat?usuario='+usuario).
       then(function successCallback (response) {
 
           $scope.chats = response.data; 
@@ -507,10 +514,20 @@ $scope.Dchat = function() {
 
       })
 
+
+
+
+
+ 
+
 }
 
+  $scope.Dchat();
+
+
     
-$scope.Dchat();
+
+
 
 
 $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
@@ -530,9 +547,6 @@ $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification
           
 
           $scope.Dchat();
-
-          $state.go('tab');
- 
 
 
           break;
