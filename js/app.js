@@ -190,7 +190,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
 	.state('register', {
     cache: false,
 		url: '/register',
-			templateUrl: 'templates/register.html'
+			templateUrl: 'templates/register.html',
+      controller: 'RegisterCrt'
 	  })
 
 

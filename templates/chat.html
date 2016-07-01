@@ -48,7 +48,8 @@
     font-size: 14px;
     font-family: fantasy;
     background-color: {{item.b}};
-    text-align: left;"><span><b style="color:{{item.color}};">{{item.name}}</b>  <br/> {{item.text}}<img src="{{ item.image }}" ng-click="ftoChat(item.image)" class="block" ng-if="item.image" alt="" style="width:100%" /></pre> 
+    text-align: left; 
+    float:{{item.type}}; "><span><b style="color:{{item.color}};">{{item.name}}</b>  <br/> {{item.text}}<img src="{{ item.image }}" ng-click="ftoChat(item.image)" class="block" ng-if="item.image" alt="" style="width:100%" /></pre> 
         
         </div>
      </div>
@@ -77,17 +78,26 @@
 <div style="clear:both;"></div>
 
   
-    <ion-footer-bar class="footer_chat" style="background:rgba(0, 0, 0, 0.17);">
+    <ion-footer-bar class="footer_chat" style="background:white;padding:0px">
 
     
-        <div class="list list-inset" ng-controller="mensajecontrol" style="margin-left: 0px; margin-right: 0px;border: 1px solid #387EF5;border-radius: 0px 20px 20px 0px;background:transparent">
+        <div class="list list-inset" ng-controller="mensajecontrol" style="margin-left: 0px; margin-right: 0px;background:transparent">
 
-               <img src="img/adjunto.png" ng-click="clickUpload2()" style="float:left;margin-top: 12px;width: 10%" />
+        <a class="button button-icon button-clear back_btn" ng-click="clickUpload2()" style="float:left;width: 10%;background:#fff;height:37px;">
+                <i class="ion-image" style="color:#387ef5;font-size: 32px;"></i>
+        </a>
+
+          
+         <!--<img src="img/adjunto.png" ng-click="clickUpload2()" style="float:left;width: 10%" />-->
 
             <label class="item item-input" style="width:80% !important">
-                <textarea ng-model="input.message" placeholder="Escribir a {{chat[0].name}} ...." id="mensjaetxt" required style="padding: 9px;"></textarea>
+                <textarea ng-model="input.message" placeholder="Escribir a {{chat[0].name}} ...." id="mensjaetxt" required style="padding: 9px;border: 1px solid #838479;font-size: 16px;"></textarea>
             </label>
-               <img src="img/enter.png" ng-disabled="!input.message || input.message === ''" ng-click="sendMessage()" style="padding-right:2px;float:right;margin-top: 8px; width: 10%;"/>
+             <!--  <img src="img/enter.png" ng-disabled="!input.message || input.message === ''" ng-click="sendMessage()" style="padding-right:2px;float:right;width: 10%;"/>-->
+
+               <a class="button button-icon button-clear back_btn" ng-click="sendMessage()" style="float:right;width: 10%;background:#fff;height:37px;">
+                <i class="ion-android-send" style="color:#387ef5;font-size: 32px;"></i>
+            </a>
             
         </div>
     </ion-footer-bar>

@@ -351,7 +351,7 @@ $usuarioG = localStorage.getItem("usuario");
             }); 
            
                 request.success(function (data) {
-                 $state.go('tab');
+                 $state.go('tab.all');
             
                 
               
@@ -1642,6 +1642,70 @@ var request = $http({
              
             }); 
     }
+
+})
+
+.controller('RegisterCrt', function($scope,$ionicPopup,$http,$state,$location,$templateCache,$ionicHistory,alertify){
+
+ var token = "io-gluk@fct%vusb";
+
+
+
+
+
+   $scope.registrar = function () {
+var email = document.getElementById("mail").value;
+ var pass = document.getElementById("clave").value;
+ var nombre = document.getElementById("nombre").value;
+ var user = document.getElementById("user").value;
+ var sexo = 1;
+
+ console.log(email);
+ console.log(pass);
+ console.log(nombre);
+ console.log(user);
+ console.log(sexo);
+
+            var request = $http({
+                method: "post",
+                url: "http://adminenri.sigtics.org/movil_funciones/registrar",
+                data: {
+                    email: email,
+                    pass: pass,
+                    nombre: nombre,
+                    user: user,
+                    sexo: sexo,
+                    token: token
+                },
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+            /* Check whether the HTTP Request is Successfull or not. */
+            request.success(function (data) {
+               
+              $men = data.msg;
+              if (data.error==true) {
+                
+              alertify.logPosition("top right");
+              alertify.error($men);
+
+              }else
+              {
+
+              alertify.logPosition("top right");
+              alertify.success($men);
+              $ionicHistory.nextViewOptions({
+              disableBack: true
+               });
+                 $state.go('login');
+              }
+            
+
+
+            });
+    }
+  
+
+
 
 })
 

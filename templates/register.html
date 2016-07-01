@@ -6,9 +6,9 @@
     
     <label class="item item-input">
         <i class="icon ion-person"></i>
-        <input type="text" placeholder="Nombre completo">
+        <input type="text" placeholder="Nombre completo" id="nombre" nombre="nombre">
     </label>
-
+<!--
     <label class="item item-input">
          <div class="input-label" style="color:#bbb;">
       <i class="ion-ios-person-outline light icon-label"></i> Sexo
@@ -20,29 +20,29 @@
   </select>
     </label>
 
-
+-->
      <label class="item item-input">
         <i class="icon ion-person"></i>
-        <input type="text" placeholder="Nombre de usuario">
+        <input type="text" placeholder="Nombre de usuario" id="user" nombre="user">
       </label>
       <label class="item item-input">
         <i class="icon ion-at"></i>
-        <input type="email" placeholder="Email">
+        <input type="email" placeholder="Email" id="mail" nombre="mail">
       </label>
        <label class="item item-input">
         <i class="icon ion-unlocked"></i>
-        <input type="password" placeholder="Contraseña">
+        <input type="password" placeholder="Contraseña" id="clave" nombre="clave">
       </label>
    </div>
      <div class="row">
        <div class="col">
-            <a href="" class="button button-block button-positive">
-            Register
+            <a href="" class="button button-block button-positive" ng-click="registrar();">
+            Registrarse
             </a>  
        </div>
         <div class="col col-33">
             <a href="#/login" class="button button-block button-positive new_reg">
-            Back
+            Login
             </a>  
        </div>
       </div>

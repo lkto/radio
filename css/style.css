@@ -375,10 +375,10 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
 	}
 .footer_chat.bar-footer{
 	bottom:0;
-	height:80px;
+	height:40px;
 	}	
 .chat_content.has-header{
-	bottom:80px !important;
+	bottom:50px !important;
 	}		
 .footer_chat .item-input{
 	width:100%;
@@ -387,15 +387,14 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-col
     float: left;
 	background:transparent;
 	padding: 10px;
-    height: 49px;
+    height: 40px;
 	}	
 .footer_chat .list{
 	width:100% !important;
 	border:1px solid #c7c6c6;
 	background:#f4f5f5;
 	margin: 0 20px;
-	height: 50px;
-	margin-top:10px;
+	height: 40px;
 	display:inline-block
 	}
 .footer_chat .item-input textarea {
