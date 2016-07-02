@@ -13,7 +13,7 @@ angular.module('starter.controllers', [])
        //$location.url("tab.all");
 
 
-      $state.go('tab.group');
+      $state.go('tab.all');
     }
 
     $scope.login = function() {
