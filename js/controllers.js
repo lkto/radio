@@ -651,7 +651,7 @@ $scope.sendMessage = function() {
                localStorage.setItem("View_id_chat", data.id_chat);
                var id_chat1 = localStorage.getItem("View_id_chat");
 
-               $scope.chat1(false);
+               $scope.chat1();
 
 
 
@@ -704,7 +704,7 @@ $scope.sendMessage = function() {
                localStorage.setItem("View_id_chat", response.data.id_chat);
                var id_chat1 = localStorage.getItem("View_id_chat");
              
-                $scope.chat1(false);
+                $scope.chat1();
 
       }); 
     }
@@ -868,6 +868,7 @@ $scope.ftoChat = function(foto) {
  }
 
     $scope.chat1();
+    $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom(); 
 
     
 
@@ -884,7 +885,8 @@ $scope.ftoChat = function(foto) {
           alertify.log(notification.message);
        
 
-          $scope.chat1(false);
+          $scope.chat1();
+          $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom(); 
 
           break;  
     }
@@ -1656,6 +1658,7 @@ var request = $http({
    $scope.registrar = function () {
 var email = document.getElementById("mail").value;
  var pass = document.getElementById("clave").value;
+ var pass2 = document.getElementById("clave2").value;
  var nombre = document.getElementById("nombre").value;
  var user = document.getElementById("user").value;
  var sexo = 1;
@@ -1672,6 +1675,7 @@ var email = document.getElementById("mail").value;
                 data: {
                     email: email,
                     pass: pass,
+                    pass2: pass2,
                     nombre: nombre,
                     user: user,
                     sexo: sexo,

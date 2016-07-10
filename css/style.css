@@ -201,8 +201,8 @@ body,h3{
 	margin-top:1px;
 	}	
 ion-tabs.tabs-color-active-positive .tab-item.tab-item-active{
-	color:#27b600;
-	border-bottom:2px solid #27b600;
+	color:#387ef5;
+	border-bottom:2px solid #387ef5;
 	border-top:0 !important
 	}
 ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-color-active-positive .tab-item.active, ion-tabs.tabs-color-active-positive .tab-item.activated {

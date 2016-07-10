@@ -21,7 +21,7 @@
 
   <ion-content style="{{chat_error[0].img}}">
 
-    <div class="list list-inset" ng-if="chats[0].name">
+    <div class="list list-inset" >
         <label class="item item-input">
          <i class="icon ion-search placeholder-icon"></i>
          <input type="text" placeholder="Buscar" ng-model="busqueda">
@@ -30,12 +30,12 @@
     
   <ion-list>
 
-     <ion-item  ng-if="chats[0].name" class="item-remove-animate item-avatar item-icon-right"  type="item-text-wrap"
+     <ion-item  class="item-remove-animate item-avatar item-icon-right"  type="item-text-wrap"
                 ng-click="canal()">
         <img ng-src="img/logotxt.png">
 
         <h2>Enri Noticias</h2>
-   <span class="badge badge-assertive" ></span> 
+    <span class="badge badge-assertive"><i class="ion-ios-bell-outline"></i></span> 
         <i class="icon ion-chevron-right icon-accessory"></i>
      <!--
         <ion-option-button class="button-energized" ng-click="mute(chat)">
@@ -51,7 +51,10 @@
         <img ng-src="{{chat.face}}">
         
         <h2>{{chat.name}}</h2>
-        <p> <pre>{{chat.lasText}}</pre></p>
+        <p> <pre style="    width: 100%;
+    text-overflow: ellipsis;
+    height: 20px;
+    overflow: hidden;">{{chat.lasText}}</pre></p>
    <span class="badge badge-assertive" ng-if="(chat.total > '0')">{{chat.total}}</span> 
        <span class="status" style="background:{{chat.color}};"></span>
 
