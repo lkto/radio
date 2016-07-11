@@ -1,4 +1,4 @@
-<!--<ion-modal-view class="search animated slideInDown ">
+<ion-modal-view class="search animated slideInDown ">
     <ion-content class="ser_input">
 
     <div class="list" ng-repeat="song in songs">
@@ -18,20 +18,20 @@
     width: 100%;">Detener</button></center>
     	
     </ion-content>
-  </ion-modal-view>-->
-
+  </ion-modal-view>
+<!--
 <ion-modal-view class="search animated slideInDown ">
   <ion-content>
     <button class="button button-assertive" ng-click="stopPlayback()">Stop all</button>
 
-    <ion-audio-track ng-repeat="track in tracks" track="track">
+    <ion-audio-track ng-repeat="song in songs" track="track">
         <div class="card">
             <div class="item">
-                <h2>{{track.title}}</h2>
+                <h2>{{ song.title }}</h2>
 
-                <p>{{track.artist}}</p>
+                <p>Clic y espera un momento...</p>
                 <ion-audio-controls>
-                    <a class="button button-icon icon" ion-audio-play></a>
+                    <a class="button button-icon icon" ng-model="play" ng-click="play1()"></a>
                     <ion-spinner icon="ios" style="position: relative; top: 8px; left: 4px"></ion-spinner>
                 </ion-audio-controls>
             </div>
@@ -41,4 +41,4 @@
 
 
   </ion-content>
- </ion-modal-view>
+ </ion-modal-view>-->

@@ -5,9 +5,9 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','angularSoundManager','chieffancypants.loadingBar','ngAnimate','ngAlertify','angularFileUpload','ngCordova','ionic-audio'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','angularSoundManager','chieffancypants.loadingBar','ngAnimate','ngAlertify','angularFileUpload','ngCordova'])
 
-.run(function($ionicPlatform, $rootScope,$ionicHistory,$rootScope,$ionicModal,$cordovaPush,MediaManager) {
+.run(function($ionicPlatform, $rootScope,$ionicHistory,$rootScope,$ionicModal,$cordovaPush) {
 
 	
 
@@ -15,56 +15,24 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
   //$rootScope.list=[{id:"1",img:"img/001.png",name:"Mark Antony",type:"Web",msg:"Typing....",status:"Avaliable",color:"#27b600"},{id:"2",img:"img/002.png",name:"Tom Cruze",type:"Mobile",msg:" Last message ( 5 minute ago )",status:"Busy",color:"#ff0000"},{id:"3",img:"img/003.png",name:"Nicolas Kage",type:"Web",msg:" Last message ( 5 minute ago )",status:"Away",number:true,color:"#fbb116"},{id:"4",img:"img/def.png",name:"Robert D-Niro",type:"Mobile",msg:" Last message ( 5 minute ago )",status:"Invisible",block:"Block"},{id:"5",img:"img/def.png",name:"Steve MQween",type:"Mobile",msg:"Typing....",status:"Offline",color:"#ccc"},{id:"6",img:"img/def.png",name:"Brayan Adams",type:"Web",msg:" Last message ( 5 minute ago )",status:"Away",color:"#fbb116"}]	
   //$rootScope.chat=[{id:"1"},{id:"2",type:"1"},{id:"3"}]
 
-    $rootScope.dynamicTrack = {};
-
-    $rootScope.tracks = [
-        {
-            url: 'audio/t1.mp3',
-            artist: 'Genesis',
-            title: 'Land of Confusion',
-            img:'img/juvenil.png'
-        },
-        {
-            url: 'audio/t2.mp3',
-            artist: 'Genesis',
-            title: 'Tonight. Tonight. Tonight',
-            img:'img/salsa.png'
-        }
-    ];
-
-    $rootScope.stopPlayback = function() {
-        MediaManager.stop();
-    };
-    $rootScope.playTrack = function(index) {
-
-      console.log($rootScope.tracks[index]);
-        $rootScope.dynamicTrack = $rootScope.tracks[index];
-
-        $rootScope.togglePlayback = $rootScope.togglePlayback;    
-    };
-
-    $rootScope.playTrack(0);
-
-
   $rootScope.songs = [
             {
                 id: 'juv',
                 title: 'Mario En Tu Radio Juvenil',
                 artist: 'Mario',
-                url: 'http://5.199.169.190:8221/;stream.mp3',
+                url: 'http://69.64.58.8:8005/;stream.mp3',
                 play:'play',
                 img:'img/juvenil.png'
             },{
                 id: 'sal',
                 title: 'Mario En Tu Radio Salsa',
                 artist: 'Mario',
-                url: 'http://5.199.169.190:8036/;stream.mp3',
+                url: 'http://69.64.58.8:8003/;stream.mp3',
                 play:'play',
                 img:'img/salsa.png'
             }
             
         ]
-
   $rootScope.person={status:0};
   $rootScope.myGoBack = function() {$ionicHistory.goBack();};
 
