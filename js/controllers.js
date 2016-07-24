@@ -16,6 +16,9 @@ angular.module('starter.controllers', [])
       $state.go('tab.all');
     }
 
+
+    
+
     $scope.login = function() {
       //alert(idtel);
       $email = document.getElementById("user").value;
@@ -403,6 +406,7 @@ alertify.success('Agregando Usuarios, Espere por favor');
 
 .controller('ChatCtr', function($scope,$http,$state,cfpLoadingBar,$rootScope,$cordovaPush,alertify) {
 
+  
    if(localStorage.getItem("usuario"))
     {
        
