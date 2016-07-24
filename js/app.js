@@ -9,63 +9,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
 
 .run(function($ionicPlatform, $rootScope,$ionicHistory,$rootScope,$ionicModal,$cordovaPush) {
 
-	if (window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-    }
-    if (window.StatusBar) {
-      StatusBar.styleDefault();
-    }
-
-
+ $rootScope.audio1 = 'http://www.w3schools.com/tags/horse.mp3';
+  $rootScope.audio2 = 'http://69.64.58.8:8005/;stream.mp3';
   //$rootScope.recent=[{id:"1",img:"img/003.png",name:"Nicolas Kage",type:"Hello John where are u?",date:"16 April",number:true,color:"#fbb116"},{id:"2",img:"img/002.png",name:"Tom Cruze",msg:"Please call me later",date:"29 August",color:"#ff0000"},{id:"3",img:"img/001.png",name:"Mark Antony",msg:"I will call you tomorrow",date:"4 October",color:"#27b600"},{id:"4",img:"img/def.png",name:"Robert D-Niro",type:"Web",msg:"Typing ....",date:"16 April",color:"#fbb116"}]	
   //$rootScope.list=[{id:"1",img:"img/001.png",name:"Mark Antony",type:"Web",msg:"Typing....",status:"Avaliable",color:"#27b600"},{id:"2",img:"img/002.png",name:"Tom Cruze",type:"Mobile",msg:" Last message ( 5 minute ago )",status:"Busy",color:"#ff0000"},{id:"3",img:"img/003.png",name:"Nicolas Kage",type:"Web",msg:" Last message ( 5 minute ago )",status:"Away",number:true,color:"#fbb116"},{id:"4",img:"img/def.png",name:"Robert D-Niro",type:"Mobile",msg:" Last message ( 5 minute ago )",status:"Invisible",block:"Block"},{id:"5",img:"img/def.png",name:"Steve MQween",type:"Mobile",msg:"Typing....",status:"Offline",color:"#ccc"},{id:"6",img:"img/def.png",name:"Brayan Adams",type:"Web",msg:" Last message ( 5 minute ago )",status:"Away",color:"#fbb116"}]	
   //$rootScope.chat=[{id:"1"},{id:"2",type:"1"},{id:"3"}]
-
-  var audio = [{
-    id: 1,
-    key: 'master',
-    title: "The Master",
-    track: 'audio/The_Master.mp3',
-    genre: "This will be card Description"
-  }, {
-    id: 2,
-    key: 'give',
-    title: "Mario",
-    track: 'http://69.64.58.8:8005/;stream.mp3',
-    genre: "Alternative & Punk | Bright"
-  }, ];
-
-  $rootScope.audioTracks = Array.prototype.slice.call(audio, 0);
-  $rootScope.player = {
-    key: '' // Holds a last active track
-  }
-
-  $rootScope.playTrack = function(track, key) {
-      // Preload an audio track before we play it
-      window.plugins.NativeAudio.preloadComplex(key, track, 1, 1, 0, function(msg) {
-        // If this is not a first playback stop and unload previous audio track
-        if ($rootScope.player.key.length > 0) {
-          window.plugins.NativeAudio.stop($rootScope.player.key); // Stop audio track
-          window.plugins.NativeAudio.unload($rootScope.player.key); // Unload audio track
-        }
-
-        window.plugins.NativeAudio.play(key); // Play audio track
-        $rootScope.player.key = key; // Set a current audio track so we can close it if needed 
-      }, function(msg) {
-        console.log('error: ' + msg); // Loading error
-      });
-    };
-
-    $rootScope.stopTrack = function() {
-        // If this is not a first playback stop and unload previous audio track
-        if ($rootScope.player.key.length > 0) {
-          window.plugins.NativeAudio.stop($rootScope.player.key); // Stop audio track
-          window.plugins.NativeAudio.unload($rootScope.player.key); // Unload audio track
-          $rootScope.player.key = '';
-        }
-    };
-
-
 
   $rootScope.songs = [
             {
@@ -85,7 +33,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
             }
             
         ]
-
   $rootScope.person={status:0};
   $rootScope.myGoBack = function() {$ionicHistory.goBack();};
 

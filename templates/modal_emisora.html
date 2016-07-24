@@ -1,6 +1,18 @@
 <ion-modal-view class="search animated slideInDown ">
     <ion-content class="ser_input">
 
+    <style>
+      .speaker {
+  width:48px;
+  height:48px;
+  float: left;
+  background-image: url(http://www.stillonthehill.com/images/Play-grey.png);
+}
+.speaker.pause {
+  background-image: url(http://www.iconhot.com/icon/png/addictive-flavour/48/button-red-pause.png);    
+}
+    </style>
+
     <!--
 
     <div class="list" ng-repeat="song in songs">
@@ -19,24 +31,32 @@
     color: #387ef5;
     width: 100%;">Detener</button></center>
     	-->
-<div class="list card" ng-repeat="audio in audioTracks">
+
+
+<div class="list card" ng-repeat="song in songs">
       <div class="item item-avatar">
-        <img src="http://findicons.com/files/icons/2711/free_icons_for_windows8_metro/512/audio_wave.png">
-        <h2>{{audio.title}}</h2>
-        <p>{{audio.genre}}</p>
+        <img src="{{ song.img }}">
+        <h2>{{ song.title }}</h2>
+        <p>Clic y espera un momento...</p>
       </div>
 
       <div class="item tabs tabs-secondary tabs-icon-left" style="top: 0px !important;">
-        <a class="tab-item" href="#" ng-click="playTrack(audio.track, audio.key)">
+        <a music-player="play" add-song="song" ng-model="play" ng-click="play1() " data-ng-if="song.play = 1" style="background: transparent;
+    border: none;">
           <i class="icon ion-ios-play"></i>
           Play
         </a>
-        <a class="tab-item" href="#" ng-click="stopTrack()">
+
+        <a class="tab-item" href="#" ng-model="pause" stop-music ng-click="play1()" data-ng-if="song.play = 2" >
           <i class="icon ion-android-checkbox-blank"></i>
           Stop
         </a>
+       
       </div>
 </div>
+
+
+
 
     </ion-content>
   </ion-modal-view>
