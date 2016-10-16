@@ -32,28 +32,36 @@
     width: 100%;">Detener</button></center>
     	-->
 
-
-<div class="list card" ng-repeat="song in songs">
+<div class="list card" style="box-shadow:-4px -4px 10px 0px rgb(56, 126, 245);">
       <div class="item item-avatar">
-        <img src="{{ song.img }}">
-        <h2>{{ song.title }}</h2>
-        <p>Clic y espera un momento...</p>
+        <img src="img/juvenil.png">
+        <h2 class="ng-binding">Mario En Tu Radio Juvenil</h2>
       </div>
 
       <div class="item tabs tabs-secondary tabs-icon-left" style="top: 0px !important;">
-        <a music-player="play" add-song="song" ng-model="play" ng-click="play1() " data-ng-if="song.play = 1" style="background: transparent;
-    border: none;">
-          <i class="icon ion-ios-play"></i>
-          Play
-        </a>
-
-        <a class="tab-item" href="#" ng-model="pause" stop-music ng-click="play1()" data-ng-if="song.play = 2" >
-          <i class="icon ion-android-checkbox-blank"></i>
-          Stop
-        </a>
-       
+       <audio controls="">
+        <source src="http://69.64.58.8:8004/live" type="audio/ogg">
+        <source src="http://69.64.58.8:8004/live" type="audio/mpeg">
+      </audio> 
       </div>
-</div>
+</div><!-- end ngRepeat: song in songs -->
+
+
+<div class="list card" style="box-shadow:-4px -4px 10px 0px rgb(56, 126, 245);">
+      <div class="item item-avatar">
+        <img src="img/salsa.png">
+        <h2 class="ng-binding">Mario En Tu Radio Salsa</h2>
+      </div>
+
+      <div class="item tabs tabs-secondary tabs-icon-left" style="top: 0px !important;">
+        <audio controls="">
+        <source src="http://69.64.58.8:8003/live" type="audio/ogg">
+        <source src="http://69.64.58.8:8003/live" type="audio/mpeg">
+        </audio>
+      </div>
+</div><!-- end ngRepeat: song in songs -->
+
+
 
 
 

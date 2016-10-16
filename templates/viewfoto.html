@@ -49,14 +49,14 @@
 
 <div style="z-index:2;position:absolute;width:100%;padding-top:20px">
 <center><img src="{{ img }}" class="profile-picture" style="width:90%;box-shadow:0px 0px 10px">
-<form style="display:none">
+<form style="display:block">
 <div style="text-align: left;font-size: 20px;padding: 10px;color: #487eaa;">
 </div>
-<br/>
-<br/>
 <div class="file-upload">
-  <br/>
-  <input type="file" id="i_file" name="file" ng-file-select="onFileSelect($files)" accept="image/*"/>
+  <input type="file" id="i_file" name="file" ng-file-select="onFileSelect($files)" accept="image/*" style="width: 155px !important;
+    height: 50px !important;
+    background: transparent !important;
+    border: none !important;"/>
   <div ng-repeat="files in uploadResult">
   <!-- in case of error show error message with file name-->
   <span class='label label-info'>{{files.name}}</span><br/>
@@ -72,11 +72,11 @@
 div.file-upload {
     width: 157px;
     height: 57px;
-    background: url(img/upload.png);
     overflow: hidden;
     background-repeat: no-repeat;
+     background: url(img/upload.png);
+    overflow: hidden;
 }
-
 div.file-upload input {
     display: block !important;
     width: 157px !important;

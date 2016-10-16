@@ -20,14 +20,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
                 id: 'juv',
                 title: 'Mario En Tu Radio Juvenil',
                 artist: 'Mario',
-                url: 'http://69.64.58.8:8005/;stream.mp3',
+                url: 'http://69.64.58.8:8004/live',
                 play:'play',
                 img:'img/juvenil.png'
             },{
                 id: 'sal',
                 title: 'Mario En Tu Radio Salsa',
                 artist: 'Mario',
-                url: 'http://69.64.58.8:8003/;stream.mp3',
+                url: 'http://69.64.58.8:8003/live',
                 play:'play',
                 img:'img/salsa.png'
             }
@@ -382,6 +382,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','a
   
         templateUrl: 'templates/crear_grupo.html',
         controller: 'ContacCtr'
+
+  })
+
+   .state('terminos', {
+    cache: false,
+    url: '/terminos',
+  
+        templateUrl: 'templates/terminos.html'
+    
 
   })
 

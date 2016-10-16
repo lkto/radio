@@ -17,9 +17,44 @@
         </ion-nav-buttons>
     </ion-nav-bar>
 
-  <ion-content>
+  <ion-content style="top: 50px;">
 
-<div id="c_clave" ng-app='angular_post'  >
+  <div class="list list-inset" >
+        <label class="item item-input">
+         <i class="icon ion-search placeholder-icon"></i>
+         <input type="text" placeholder="Buscar" ng-model="busqueda">
+       </label>
+      </div>
+
+    <ion-list>
+     <a href="" class="people_list"
+       collection-repeat="list in con | filter: busqueda"
+       collection-item-width="'100%'"
+       collection-item-height="85"> 
+      
+      <div class="row">
+        <div class="col col-25">
+          <div class="img_status">
+            <div class="photo_person" style="background:url({{list.img}})no-repeat; background-size:100% 100%;"></div>
+            
+          </div>  
+        </div>
+          <div class="col">
+          <h3 style="margin:auto">{{ list.nombre}}</h3>
+
+          <div class="timeline-stats">
+              <button class="button button-clear button-balanced" ng-click="Ausuario(list.user)"><i class="ion-ios-checkmark-outline"></i> Agregar </button>
+            
+            </div>
+          
+        </div>
+      </div>
+    </a>
+    </ion-list>
+
+
+
+<!--
   <div class="list list-inset transparent-form">
       
       <label class="item item-input">
@@ -37,6 +72,6 @@
       </button>
     </div>
 </div>
-
+-->
       </ion-content>
 </ion-view>
