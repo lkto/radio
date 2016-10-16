@@ -3,7 +3,7 @@
 		xmlns:gap = "http://phonegap.com/ns/1.0"
 		xmlns:android = "http://schemas.android.com/apk/res/android"
 		id        = "www.EnriMessenger.sigtics.org"
-		versionCode=""
+		versionCode="13.0.0"
 		version   = "13.0.0">
 		<name>Enri Messenger		</name>
 		<description>Aplicacion oficial de Mario En tu radio		</description>
