@@ -3,7 +3,7 @@
 		xmlns:gap = "http://phonegap.com/ns/1.0"
 		xmlns:android = "http://schemas.android.com/apk/res/android"
 		id        = "www.EnriMessenger.sigtics.org"
-		versionCode="13.0.0"
+		versionCode=""
 		version   = "13.0.0">
 		<name>Enri Messenger		</name>
 		<description>Aplicacion oficial de Mario En tu radio		</description>
@@ -48,23 +48,23 @@
 		<platform name="ios">
 		</platform>
 		<platform name="android">
-		<icon src="a2/img/iconos/Android/iconos/36-36.png" qualifier="ldpi" />
-		<icon src="a2/img/iconos/Android/iconos/48-48.png" qualifier="mdpi" />
-		<icon src="a2/img/iconos/Android/iconos/72-72.png" qualifier="hdpi" />
-		<icon src="a2/img/iconos/Android/iconos/96-96.png" qualifier="xhdpi" />
-		<icon src="a2/img/iconos/Android/iconos/144-144.png" qualifier="xxhdpi" />
-		<icon src="a2/img/iconos/Android/iconos/192-192.png" qualifier="xxxhdpi" />
-		<splash src="a2/img/iconos/Android/imgs/240_320.png" qualifier="" />
-		<splash src="a2/img/iconos/Android/imgs/320_240.png" qualifier="" />
-		<splash src="a2/img/iconos/Android/imgs/320_480.png" qualifier="" />
-		<splash src="a2/img/iconos/Android/imgs/480_320.png" qualifier="" />
-		<splash src="a2/img/iconos/Android/imgs/480_800.png" qualifier="" />
-		<splash src="a2/img/iconos/Android/imgs/720_1280.png" qualifier="" />
-		<splash src="a2/img/iconos/Android/imgs/1280_720.png" qualifier="" />
-		<splash src="a2/img/iconos/Android/imgs/960_1600.png" qualifier="" />
-		<splash src="a2/img/iconos/Android/imgs/1600_960.png" qualifier="" />
-		<splash src="a2/img/iconos/Android/imgs/1280_1920.png" qualifier="" />
-		<splash src="a2/img/iconos/Android/imgs/1920_1280.png" qualifier="" />
+		<icon src="img/iconos/Android/iconos/36-36.png" qualifier="ldpi" />
+		<icon src="img/iconos/Android/iconos/48-48.png" qualifier="mdpi" />
+		<icon src="img/iconos/Android/iconos/72-72.png" qualifier="hdpi" />
+		<icon src="img/iconos/Android/iconos/96-96.png" qualifier="xhdpi" />
+		<icon src="img/iconos/Android/iconos/144-144.png" qualifier="xxhdpi" />
+		<icon src="img/iconos/Android/iconos/192-192.png" qualifier="xxxhdpi" />
+		<splash src="img/iconos/Android/imgs/240_320.png" qualifier="" />
+		<splash src="img/iconos/Android/imgs/320_240.png" qualifier="" />
+		<splash src="img/iconos/Android/imgs/320_480.png" qualifier="" />
+		<splash src="img/iconos/Android/imgs/480_320.png" qualifier="" />
+		<splash src="img/iconos/Android/imgs/480_800.png" qualifier="" />
+		<splash src="img/iconos/Android/imgs/720_1280.png" qualifier="" />
+		<splash src="img/iconos/Android/imgs/1280_720.png" qualifier="" />
+		<splash src="img/iconos/Android/imgs/960_1600.png" qualifier="" />
+		<splash src="img/iconos/Android/imgs/1600_960.png" qualifier="" />
+		<splash src="img/iconos/Android/imgs/1280_1920.png" qualifier="" />
+		<splash src="img/iconos/Android/imgs/1920_1280.png" qualifier="" />
 		</platform>
 		<platform name="winphone">
 		</platform>
